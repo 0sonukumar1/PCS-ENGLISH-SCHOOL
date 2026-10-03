@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS ENGLISH SCHOOL</title>
+</head>
+<body>
+
+<span style="color: red;"></span>PCS ENGLISH SCHOOL
+
+
+    <script>
+     const students_answer = [
+  {
+    id: 1,
+    student_class: "I",  
+    name: "Golu_kumar",
+    answers: [
+      { id: "q1", Q: "1", opt: "4" },
+      { id: "q2", Q: "2", opt: "4" },
+      { id: "q3", Q: "3", opt: "1" },
+      { id: "q4", Q: "4", opt: "3" }
+    ]
+  }
+  ,
+  {
+    id: 2,
+    student_class: "II",  
+    name: "Bittu_kumar",
+    answers: [
+      { id: "q1", Q: "1", opt: "4" },
+      { id: "q2", Q: "2", opt: "4" },
+      { id: "q3", Q: "3", opt: "3" },
+      { id: "q4", Q: "4", opt: "3" }
+    ]
+  }
+  ,
+  {
+    id: 3,
+    student_class: "IV",  
+    name: "Gautam_kumar",
+    answers: [
+      { id: "q1", Q: "1", opt: "4" },
+      { id: "q2", Q: "2", opt: "4" },
+      { id: "q3", Q: "3", opt: "3" },
+      { id: "q4", Q: "4", opt: "1" }
+    ]
+  },
+  {
+    id: 4,
+    student_class: "VI",  
+    name: "Arnaw_kuswaha",
+    answers: [
+      { id: "q1", Q: "1", opt: "1" },
+      { id: "q2", Q: "2", opt: "2" },
+      { id: "q3", Q: "3", opt: "4" },
+      { id: "q4", Q: "4", opt: "1" }
+    ]
+  },
+  {
+    id: 5,
+    student_class: "VI",  
+    name: "Ashlok_kumar",
+    answers: [
+      { id: "q1", Q: "1", opt: "1" },
+      { id: "q2", Q: "2", opt: "2" },
+      { id: "q3", Q: "3", opt: "4" },
+      { id: "q4", Q: "4", opt: "1" }
+    ]
+  }
+];
+   
+
+
+ 
+     const span=document.querySelector("span");
+      
+       const correct_ans=[{student_class:"I",answers:[{Q:"1",opt:"2"},{Q:"2",opt:"1"},{Q:"3",opt:"1"},{Q:"4",opt:"3"}]} 
+    ,{student_class:"II",answers:[{Q:"1",opt:"2"},{Q:"2",opt:"4"},{Q:"3",opt:"1"},{Q:"4",opt:"3"}]},
+    {student_class:"IV",answers:[{Q:"1",opt:"4"},{Q:"2",opt:"4"},{Q:"3",opt:"3"},{Q:"4",opt:"3"}]},{student_class:"VI",answers:[{Q:"1",opt:"3"},{Q:"2",opt:"4"},{Q:"3",opt:"1"},{Q:"4",opt:"3"}]}
+    ];
+let obtained_marks=0;
+//let obtained_students_array=[{class_1:[]}];
+let obtained_students_array=[ ];
+students_answer.forEach((sa,i)=>{
+    
+
+
+if(sa.student_class=="I"){let T_o_m=0 
+    sa.answers.forEach((a,a_indexi)=>{
+        if(a.opt===correct_ans[0].answers[a_indexi].opt){ 
+        //   console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/T");
+            T_o_m=`${+T_o_m+1}`;
+        }
+        else{
+        //    console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/F");
+        }
+      
+
+    })
+   console.log(sa.student_class,sa.name,T_o_m,"/",correct_ans[0].answers.length);
+ 
+obtained_students_array.push({name:sa.name,student_class:sa.student_class,T_o_m:T_o_m })
+      
+    }else if(sa.student_class=="II"){let T_o_m=0 
+    sa.answers.forEach((a,a_indexi)=>{
+        if(a.opt===correct_ans[1].answers[a_indexi].opt){ 
+        //   console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/T");
+            T_o_m=`${+T_o_m+1}`;
+        }
+        else{
+        //    console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/F");
+        }
+      
+
+    })
+   console.log(sa.student_class,sa.name,T_o_m,"/",correct_ans[0].answers.length);
+ 
+obtained_students_array.push({name:sa.name,student_class:sa.student_class,T_o_m:T_o_m })
+}else if(sa.student_class=="IV"){let T_o_m=0 
+    sa.answers.forEach((a,a_indexi)=>{
+        if(a.opt===correct_ans[2].answers[a_indexi].opt){ 
+        //   console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/T");
+            T_o_m=`${+T_o_m+1}`;
+        }
+        else{
+        //    console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/F");
+        }
+      
+
+    })
+   console.log(sa.student_class,sa.name,T_o_m,"/",correct_ans[0].answers.length);
+ 
+obtained_students_array.push({name:sa.name,student_class:sa.student_class,T_o_m:T_o_m })
+      
+    }else  if(sa.student_class=="VI"){let T_o_m=0 
+    sa.answers.forEach((a,a_indexi)=>{
+        if(a.opt===correct_ans[3].answers[a_indexi].opt){ 
+        //   console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/T");
+            T_o_m=`${+T_o_m+1}`;
+        }
+        else{
+        //    console.table("Q:",a.Q,";","sa:",a.opt,";","ca",correct_ans[0].answers[a_indexi].opt,"/F");
+        }
+      
+
+    })
+   console.log(sa.student_class,sa.name,T_o_m,"/",correct_ans[0].answers.length);
+ 
+obtained_students_array.push({name:sa.name,student_class:sa.student_class,T_o_m:T_o_m })
+      
+    }
+    
+
+     
+})
+ 
+
+
+
+
+
+console.log(obtained_students_array)
+ 
+    
+ 
+ 
+    </script>
+    
+</body>
+</html>
