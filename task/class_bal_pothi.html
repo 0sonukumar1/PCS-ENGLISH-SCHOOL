@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बाल मनोहर पोथी - पूर्ण डिजिटल संस्करण (कक्षा 1)</title>
+    <style>
+        :root {
+            --primary: #e74c3c;
+            --secondary: #3498db;
+            --accent: #f1c40f;
+            --success: #27ae60;
+            --bg-color: #fdfefe;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .pothi-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-color);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 6px solid var(--secondary);
+        }
+
+        .cover {
+            text-align: center;
+            border-bottom: 4px dashed var(--primary);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        .cover h1 {
+            color: var(--primary);
+            font-size: 2.8em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px var(--accent);
+        }
+
+        .cover p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+
+        .section-box {
+            background: #fff9e6;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+        }
+
+        .section-title {
+            color: #d35400;
+            font-size: 1.5em;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .grid-item {
+            background: #ffffff;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2980b9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .word-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .word-card {
+            background: #ffffff;
+            border-left: 5px solid var(--primary);
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .item-card {
+            background: #ffffff;
+            border: 2px solid var(--success);
+            border-radius: 10px;
+            text-align: center;
+            padding: 12px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .item-card span {
+            display: block;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #1e8449;
+            margin-top: 8px;
+        }
+
+        .svg-banner {
+            text-align: center;
+            margin: 15px 0;
+            background: #eafaf1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px dashed #27ae60;
+        }
+    </style>
+    <style>
+        :root {
+            --primary: #2980b9;
+            --secondary: #e67e22;
+            --accent: #27ae60;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+        }
+    
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 6px solid var(--primary);
+        }
+    
+        .header {
+            text-align: center;
+            border-bottom: 4px dashed var(--secondary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+    
+        .header h1 {
+            color: var(--primary);
+            font-size: 2.8em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px #ffeaa7;
+        }
+    
+        .header p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+    
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 20px;
+        }
+    
+        .table-card {
+            background: #fffdf0;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+    
+        .table-card:hover {
+            transform: translateY(-5px);
+        }
+    
+        .table-title {
+            text-align: center;
+            color: #d35400;
+            font-size: 1.3em;
+            border-bottom: 2px solid #f39c12;
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+    
+        .table-content {
+            font-size: 1.05em;
+            line-height: 1.5;
+            text-align: center;
+        }
+    
+        .table-content div {
+            padding: 2px 0;
+            border-bottom: 1px dashed #f5b041;
+        }
+    
+        .table-content div:last-child {
+            border-bottom: none;
+        }
+    
+        .svg-banner {
+            text-align: center;
+            margin: 15px 0 25px 0;
+            background: #eafaf1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed var(--accent);
+        }
+    </style>
+    <style>
+    .container {
+    max-width: 950px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 6px solid var(--primary);
+    }
+    .header {
+    text-align: center;
+    border-bottom: 4px dashed var(--secondary);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    }
+    .header h1 {
+    color: var(--primary);
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0px #f39c12;
+    }
+    .header p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+    }
+    .svg-banner {
+    text-align: center;
+    margin: 15px 0 25px 0;
+    background: #f4ecf7;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px dashed var(--primary);
+    }
+    .number-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    }
+    .num-box {
+    background: #fffdf0;
+    border: 2px solid var(--secondary);
+    border-radius: 6px;
+    text-align: center;
+    padding: 8px 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.1s;
+    }
+    .num-box:hover {
+    transform: scale(1.05);
+    background: #ebf5fb;
+    }
+    .digit {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #c0392b;
+    }
+    .hindi-word {
+    font-size: 0.8em;
+    color: #2980b9;
+    margin-top: 2px;
+    }
+    @media (max-width: 768px) {
+    .number-grid {
+    grid-template-columns: repeat(5, 1fr);
+    }
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="pothi-container">
+
+        <!-- मुखपृष्ठ -->
+        <div class="cover">
+            <h1>📖 बाल मनोहर पोथी 📖</h1>
+            <p>पारंपरिक हिंदी प्रारंभिक शिक्षण, वर्ण-बोध, फल तथा सब्जियों की ज्ञानवर्धक ई-बुक</p>
+        </div>
+
+        <!-- खंड 1: स्वर ज्ञान -->
+        <div class="section-box" style="background-color: #fef9e7; border-color: #f39c12;">
+            <h2 class="section-title">1. स्वर ज्ञान (Vowels)</h2>
+            <div class="svg-banner">
+                <svg width="280" height="40" viewBox="0 0 280 40">
+                    <text x="140" y="26" font-size="16" font-weight="bold" text-anchor="middle" fill="#d35400">अ, आ, इ,
+                        ई, उ, ऊ, ऋ, ए, ऐ, ओ, औ, अं, अः</text>
+                </svg>
+            </div>
+            <div class="grid-container">
+                <div class="grid-item">अ</div>
+                <div class="grid-item">आ</div>
+                <div class="grid-item">इ</div>
+                <div class="grid-item">ई</div>
+                <div class="grid-item">उ</div>
+                <div class="grid-item">ऊ</div>
+                <div class="grid-item">ऋ</div>
+                <div class="grid-item">ए</div>
+                <div class="grid-item">ऐ</div>
+                <div class="grid-item">ओ</div>
+                <div class="grid-item">औ</div>
+                <div class="grid-item">अं</div>
+            </div>
+        </div>
+
+        <!-- खंड 2: व्यंजन ज्ञान -->
+        <div class="section-box" style="background-color: #ebf5fb; border-color: #3498db;">
+            <h2 class="section-title" style="color: #2980b9; border-color: #2980b9;">2. व्यंजन ज्ञान (Consonants)</h2>
+            <div class="grid-container">
+                <div class="grid-item">क</div>
+                <div class="grid-item">ख</div>
+                <div class="grid-item">ग</div>
+                <div class="grid-item">घ</div>
+                <div class="grid-item">ङ</div>
+                <div class="grid-item">च</div>
+                <div class="grid-item">छ</div>
+                <div class="grid-item">ज</div>
+                <div class="grid-item">झ</div>
+                <div class="grid-item">ञ</div>
+                <div class="grid-item">ट</div>
+                <div class="grid-item">ठ</div>
+                <div class="grid-item">ड</div>
+                <div class="grid-item">ढ</div>
+                <div class="grid-item">ण</div>
+                <div class="grid-item">त</div>
+                <div class="grid-item">थ</div>
+                <div class="grid-item">द</div>
+                <div class="grid-item">ध</div>
+                <div class="grid-item">न</div>
+                <div class="grid-item">प</div>
+                <div class="grid-item">फ</div>
+                <div class="grid-item">ब</div>
+                <div class="grid-item">भ</div>
+                <div class="grid-item">म</div>
+                <div class="grid-item">य</div>
+                <div class="grid-item">र</div>
+                <div class="grid-item">ल</div>
+                <div class="grid-item">व</div>
+                <div class="grid-item">श</div>
+                <div class="grid-item">ष</div>
+                <div class="grid-item">स</div>
+                <div class="grid-item">ह</div>
+                <div class="grid-item">क्ष</div>
+                <div class="grid-item">त्र</div>
+                <div class="grid-item">ज्ञ</div>
+            </div>
+        </div>
+
+        <!-- खंड 3: दो, तीन और चार अक्षर वाले शब्द -->
+        <div class="section-box" style="background-color: #fadbd8; border-color: #e74c3c;">
+            <h2 class="section-title" style="color: #c0392b; border-color: #e74c3c;">3. शब्द अभ्यास (बिना मात्रा के)
+            </h2>
+            <p><strong>दो अक्षर वाले शब्द:</strong></p>
+            <div class="word-list">
+                <div class="word-card">घर</div>
+                <div class="word-card">नल</div>
+                <div class="word-card">चल</div>
+                <div class="word-card">धन</div>
+                <div class="word-card">रथ</div>
+                <div class="word-card">जग</div>
+                <div class="word-card">बस</div>
+            </div>
+            <p style="margin-top: 15px;"><strong>तीन और चार अक्षर वाले शब्द:</strong></p>
+            <div class="word-list">
+                <div class="word-card">कमल</div>
+                <div class="word-card">कलश</div>
+                <div class="word-card">बटन</div>
+                <div class="word-card">कलम</div>
+                <div class="word-card">अदरक</div>
+                <div class="word-card">बरगद</div>
+                <div class="word-card">कसरत</div>
+            </div>
+        </div>
+
+        <!-- खंड 4: 10 फलों के नाम (चित्र/SVG के साथ) -->
+        <div class="section-box" style="background-color: #eafaf1; border-color: #27ae60;">
+            <h2 class="section-title" style="color: #1e8449; border-color: #27ae60;">4. 10 फलों के नाम (Fruits Name)
+            </h2>
+            <div class="item-grid">
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="22" fill="#f39c12" />
+                        <path d="M30 8 Q35 2 40 8" stroke="#27ae60" stroke-width="3" fill="none" />
+                    </svg>
+                    <span>1. आम (Mango)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="32" r="20" fill="#e74c3c" />
+                        <path d="M30 12 Q33 5 36 12" stroke="#27ae60" stroke-width="3" fill="none" />
+                    </svg>
+                    <span>2. सेब (Apple)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <path d="M20 15 Q40 30 20 45" stroke="#f1c40f" stroke-width="8" fill="none"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>3. केला (Banana)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="24" cy="28" r="7" fill="#9b59b6" />
+                        <circle cx="36" cy="28" r="7" fill="#9b59b6" />
+                        <circle cx="30" cy="40" r="7" fill="#9b59b6" />
+                    </svg>
+                    <span>4. अंगूर (Grapes)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="20" fill="#e67e22" />
+                    </svg>
+                    <span>5. संतरा (Orange)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <ellipse cx="30" cy="32" rx="16" ry="20" fill="#f39c12" />
+                    </svg>
+                    <span>6. पपीता (Papaya)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="32" r="18" fill="#c0392b" />
+                        <path d="M27 14 L33 14 L30 8 Z" fill="#27ae60" />
+                    </svg>
+                    <span>7. अनार (Pomegranate)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <ellipse cx="30" cy="32" rx="18" ry="15" fill="#f1c40f" />
+                        <path d="M30 17 L35 10" stroke="#27ae60" stroke-width="3" />
+                    </svg>
+                    <span>8. अमरूद (Guava)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <path d="M10 30 A20 20 0 0 1 50 30 Z" fill="#2ecc71" />
+                    </svg>
+                    <span>9. तरबूज (Watermelon)</span>
+                </div>
+                <div class="item-card">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <polygon points="30,10 42,30 30,50 18,30" fill="#f39c12" />
+                    </svg>
+                    <span>10. अनानास (Pineapple)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- खंड 5: 10 सब्जियों के नाम (चित्र/SVG के साथ) -->
+        <div class="section-box" style="background-color: #fcf3cf; border-color: #f39c12;">
+            <h2 class="section-title" style="color: #b7950b; border-color: #f1c40f;">5. 10 सब्जियों के नाम (Vegetables
+                Name)</h2>
+            <div class="item-grid">
+                <div class="item-card" style="border-color: #d35400;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <ellipse cx="30" cy="34" rx="18" ry="15" fill="#d35400" />
+                    </svg>
+                    <span style="color: #d35400;">1. आलू (Potato)</span>
+                </div>
+                <div class="item-card" style="border-color: #8e44ad;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <ellipse cx="30" cy="34" rx="16" ry="18" fill="#bb8fce" />
+                    </svg>
+                    <span style="color: #8e44ad;">2. प्याज (Onion)</span>
+                </div>
+                <div class="item-card" style="border-color: #c0392b;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="32" r="18" fill="#e74c3c" />
+                        <path d="M27 14 L33 14 L30 10 Z" fill="#27ae60" />
+                    </svg>
+                    <span style="color: #c0392b;">3. टमाटर (Tomato)</span>
+                </div>
+                <div class="item-card" style="border-color: #7f8c8d;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="32" r="16" fill="#f2f4f4" stroke="#bdc3c7" stroke-width="2" />
+                        <path d="M22 22 Q30 10 38 22" fill="#27ae60" />
+                    </svg>
+                    <span style="color: #7f8c8d;">4. फूलगोभी (Cauliflower)</span>
+                </div>
+                <div class="item-card" style="border-color: #27ae60;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <path d="M15 35 Q30 15 45 35 Z" fill="#2ecc71" />
+                    </svg>
+                    <span style="color: #27ae60;">5. पालक (Spinach)</span>
+                </div>
+                <div class="item-card" style="border-color: #e67e22;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <polygon points="30,50 20,20 40,20" fill="#e67e22" />
+                        <path d="M25 20 L35 20 L30 12 Z" fill="#27ae60" />
+                    </svg>
+                    <span style="color: #e67e22;">6. गाजर (Carrot)</span>
+                </div>
+                <div class="item-card" style="border-color: #27ae60;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="22" cy="30" r="6" fill="#2ecc71" />
+                        <circle cx="38" cy="30" r="6" fill="#2ecc71" />
+                        <circle cx="30" cy="40" r="6" fill="#2ecc71" />
+                    </svg>
+                    <span style="color: #27ae60;">7. मटर (Green Peas)</span>
+                </div>
+                <div class="item-card" style="border-color: #8e44ad;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <ellipse cx="30" cy="34" rx="14" ry="18" fill="#8e44ad" />
+                        <path d="M27 16 L33 16 L30 10 Z" fill="#27ae60" />
+                    </svg>
+                    <span style="color: #8e44ad;">8. बैंगन (Brinjal)</span>
+                </div>
+                <div class="item-card" style="border-color: #27ae60;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <path d="M25 10 L35 10 L33 50 L27 50 Z" fill="#27ae60" />
+                    </svg>
+                    <span style="color: #27ae60;">9. भिंडी (Ladyfinger)</span>
+                </div>
+                <div class="item-card" style="border-color: #16a085;">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <path d="M15 30 Q30 15 45 30 Q45 45 30 45 Q15 45 15 30 Z" fill="#2ecc71" />
+                    </svg>
+                    <span style="color: #16a085;">10. लौकी (Bottle Gourd)</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    ///////////
+    <div class="container">
+    
+        <!-- Header & Vector Banner -->
+        <div class="header">
+            <h1>📊 1 से 20 तक पहाड़े (Tables 1 to 20) 📊</h1>
+            <p>गणितीय गणना और स्मरण शक्ति बढ़ाने के लिए संपूर्ण पहाड़ा संग्रह</p>
+        </div>
+    
+        <div class="svg-banner">
+            <svg width="350" height="50" viewBox="0 0 350 50">
+                <rect x="10" y="5" width="330" height="40" rx="8" fill="#d4efdf" stroke="#27ae60" stroke-width="2" />
+                <text x="175" y="30" font-size="15" font-weight="bold" text-anchor="middle" fill="#1e8449">गणित का अभ्यास -
+                    सफलता की कुंजी 🚀</text>
+            </svg>
+        </div>
+    
+        <!-- Tables Grid Container -->
+        <div class="tables-grid">
+    
+            <!-- Table 1 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 1</h3>
+                <div class="table-content">
+                    <div>1 × 1 = 1</div>
+                    <div>1 × 2 = 2</div>
+                    <div>1 × 3 = 3</div>
+                    <div>1 × 4 = 4</div>
+                    <div>1 × 5 = 5</div>
+                    <div>1 × 6 = 6</div>
+                    <div>1 × 7 = 7</div>
+                    <div>1 × 8 = 8</div>
+                    <div>1 × 9 = 9</div>
+                    <div>1 × 10 = 10</div>
+                </div>
+            </div>
+    
+            <!-- Table 2 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 2</h3>
+                <div class="table-content">
+                    <div>2 × 1 = 2</div>
+                    <div>2 × 2 = 4</div>
+                    <div>2 × 3 = 6</div>
+                    <div>2 × 4 = 8</div>
+                    <div>2 × 5 = 10</div>
+                    <div>2 × 6 = 12</div>
+                    <div>2 × 7 = 14</div>
+                    <div>2 × 8 = 16</div>
+                    <div>2 × 9 = 18</div>
+                    <div>2 × 10 = 20</div>
+                </div>
+            </div>
+    
+            <!-- Table 3 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 3</h3>
+                <div class="table-content">
+                    <div>3 × 1 = 3</div>
+                    <div>3 × 2 = 6</div>
+                    <div>3 × 3 = 9</div>
+                    <div>3 × 4 = 12</div>
+                    <div>3 × 5 = 15</div>
+                    <div>3 × 6 = 18</div>
+                    <div>3 × 7 = 21</div>
+                    <div>3 × 8 = 24</div>
+                    <div>3 × 9 = 27</div>
+                    <div>3 × 10 = 30</div>
+                </div>
+            </div>
+    
+            <!-- Table 4 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 4</h3>
+                <div class="table-content">
+                    <div>4 × 1 = 4</div>
+                    <div>4 × 2 = 8</div>
+                    <div>4 × 3 = 12</div>
+                    <div>4 × 4 = 16</div>
+                    <div>4 × 5 = 20</div>
+                    <div>4 × 6 = 24</div>
+                    <div>4 × 7 = 28</div>
+                    <div>4 × 8 = 32</div>
+                    <div>4 × 9 = 36</div>
+                    <div>4 × 10 = 40</div>
+                </div>
+            </div>
+    
+            <!-- Table 5 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 5</h3>
+                <div class="table-content">
+                    <div>5 × 1 = 5</div>
+                    <div>5 × 2 = 10</div>
+                    <div>5 × 3 = 15</div>
+                    <div>5 × 4 = 20</div>
+                    <div>5 × 5 = 25</div>
+                    <div>5 × 6 = 30</div>
+                    <div>5 × 7 = 35</div>
+                    <div>5 × 8 = 40</div>
+                    <div>5 × 9 = 45</div>
+                    <div>5 × 10 = 50</div>
+                </div>
+            </div>
+    
+            <!-- Table 6 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 6</h3>
+                <div class="table-content">
+                    <div>6 × 1 = 6</div>
+                    <div>6 × 2 = 12</div>
+                    <div>6 × 3 = 18</div>
+                    <div>6 × 4 = 24</div>
+                    <div>6 × 5 = 30</div>
+                    <div>6 × 6 = 36</div>
+                    <div>6 × 7 = 42</div>
+                    <div>6 × 8 = 48</div>
+                    <div>6 × 9 = 54</div>
+                    <div>6 × 10 = 60</div>
+                </div>
+            </div>
+    
+            <!-- Table 7 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 7</h3>
+                <div class="table-content">
+                    <div>7 × 1 = 7</div>
+                    <div>7 × 2 = 14</div>
+                    <div>7 × 3 = 21</div>
+                    <div>7 × 4 = 28</div>
+                    <div>7 × 5 = 35</div>
+                    <div>7 × 6 = 42</div>
+                    <div>7 × 7 = 49</div>
+                    <div>7 × 8 = 56</div>
+                    <div>7 × 9 = 63</div>
+                    <div>7 × 10 = 70</div>
+                </div>
+            </div>
+    
+            <!-- Table 8 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 8</h3>
+                <div class="table-content">
+                    <div>8 × 1 = 8</div>
+                    <div>8 × 2 = 16</div>
+                    <div>8 × 3 = 24</div>
+                    <div>8 × 4 = 32</div>
+                    <div>8 × 5 = 40</div>
+                    <div>8 × 6 = 48</div>
+                    <div>8 × 7 = 56</div>
+                    <div>8 × 8 = 64</div>
+                    <div>8 × 9 = 72</div>
+                    <div>8 × 10 = 80</div>
+                </div>
+            </div>
+    
+            <!-- Table 9 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 9</h3>
+                <div class="table-content">
+                    <div>9 × 1 = 9</div>
+                    <div>9 × 2 = 18</div>
+                    <div>9 × 3 = 27</div>
+                    <div>9 × 4 = 36</div>
+                    <div>9 × 5 = 45</div>
+                    <div>9 × 6 = 54</div>
+                    <div>9 × 7 = 63</div>
+                    <div>9 × 8 = 72</div>
+                    <div>9 × 9 = 81</div>
+                    <div>9 × 10 = 90</div>
+                </div>
+            </div>
+    
+            <!-- Table 10 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 10</h3>
+                <div class="table-content">
+                    <div>10 × 1 = 10</div>
+                    <div>10 × 2 = 20</div>
+                    <div>10 × 3 = 30</div>
+                    <div>10 × 4 = 40</div>
+                    <div>10 × 5 = 50</div>
+                    <div>10 × 6 = 60</div>
+                    <div>10 × 7 = 70</div>
+                    <div>10 × 8 = 80</div>
+                    <div>10 × 9 = 90</div>
+                    <div>10 × 10 = 100</div>
+                </div>
+            </div>
+    
+            <!-- Table 11 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 11</h3>
+                <div class="table-content">
+                    <div>11 × 1 = 11</div>
+                    <div>11 × 2 = 22</div>
+                    <div>11 × 3 = 33</div>
+                    <div>11 × 4 = 44</div>
+                    <div>11 × 5 = 55</div>
+                    <div>11 × 6 = 66</div>
+                    <div>11 × 7 = 77</div>
+                    <div>11 × 8 = 88</div>
+                    <div>11 × 9 = 99</div>
+                    <div>11 × 10 = 110</div>
+                </div>
+            </div>
+    
+            <!-- Table 12 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 12</h3>
+                <div class="table-content">
+                    <div>12 × 1 = 12</div>
+                    <div>12 × 2 = 24</div>
+                    <div>12 × 3 = 36</div>
+                    <div>12 × 4 = 48</div>
+                    <div>12 × 5 = 60</div>
+                    <div>12 × 6 = 72</div>
+                    <div>12 × 7 = 84</div>
+                    <div>12 × 8 = 96</div>
+                    <div>12 × 9 = 108</div>
+                    <div>12 × 10 = 120</div>
+                </div>
+            </div>
+    
+            <!-- Table 13 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 13</h3>
+                <div class="table-content">
+                    <div>13 × 1 = 13</div>
+                    <div>13 × 2 = 26</div>
+                    <div>13 × 3 = 39</div>
+                    <div>13 × 4 = 52</div>
+                    <div>13 × 5 = 65</div>
+                    <div>13 × 6 = 78</div>
+                    <div>13 × 7 = 91</div>
+                    <div>13 × 8 = 104</div>
+                    <div>13 × 9 = 117</div>
+                    <div>13 × 10 = 130</div>
+                </div>
+            </div>
+    
+            <!-- Table 14 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 14</h3>
+                <div class="table-content">
+                    <div>14 × 1 = 14</div>
+                    <div>14 × 2 = 28</div>
+                    <div>14 × 3 = 42</div>
+                    <div>14 × 4 = 56</div>
+                    <div>14 × 5 = 70</div>
+                    <div>14 × 6 = 84</div>
+                    <div>14 × 7 = 98</div>
+                    <div>14 × 8 = 112</div>
+                    <div>14 × 9 = 126</div>
+                    <div>14 × 10 = 140</div>
+                </div>
+            </div>
+    
+            <!-- Table 15 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 15</h3>
+                <div class="table-content">
+                    <div>15 × 1 = 15</div>
+                    <div>15 × 2 = 30</div>
+                    <div>15 × 3 = 45</div>
+                    <div>15 × 4 = 60</div>
+                    <div>15 × 5 = 75</div>
+                    <div>15 × 6 = 90</div>
+                    <div>15 × 7 = 105</div>
+                    <div>15 × 8 = 120</div>
+                    <div>15 × 9 = 135</div>
+                    <div>15 × 10 = 150</div>
+                </div>
+            </div>
+    
+            <!-- Table 16 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 16</h3>
+                <div class="table-content">
+                    <div>16 × 1 = 16</div>
+                    <div>16 × 2 = 32</div>
+                    <div>16 × 3 = 48</div>
+                    <div>16 × 4 = 64</div>
+                    <div>16 × 5 = 80</div>
+                    <div>16 × 6 = 96</div>
+                    <div>16 × 7 = 112</div>
+                    <div>16 × 8 = 128</div>
+                    <div>16 × 9 = 144</div>
+                    <div>16 × 10 = 160</div>
+                </div>
+            </div>
+    
+            <!-- Table 17 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 17</h3>
+                <div class="table-content">
+                    <div>17 × 1 = 17</div>
+                    <div>17 × 2 = 34</div>
+                    <div>17 × 3 = 51</div>
+                    <div>17 × 4 = 68</div>
+                    <div>17 × 5 = 85</div>
+                    <div>17 × 6 = 102</div>
+                    <div>17 × 7 = 119</div>
+                    <div>17 × 8 = 136</div>
+                    <div>17 × 9 = 153</div>
+                    <div>17 × 10 = 170</div>
+                </div>
+            </div>
+    
+            <!-- Table 18 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 18</h3>
+                <div class="table-content">
+                    <div>18 × 1 = 18</div>
+                    <div>18 × 2 = 36</div>
+                    <div>18 × 3 = 54</div>
+                    <div>18 × 4 = 72</div>
+                    <div>18 × 5 = 90</div>
+                    <div>18 × 6 = 108</div>
+                    <div>18 × 7 = 126</div>
+                    <div>18 × 8 = 144</div>
+                    <div>18 × 9 = 162</div>
+                    <div>18 × 10 = 180</div>
+                </div>
+            </div>
+    
+            <!-- Table 19 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 19</h3>
+                <div class="table-content">
+                    <div>19 × 1 = 19</div>
+                    <div>19 × 2 = 38</div>
+                    <div>19 × 3 = 57</div>
+                    <div>19 × 4 = 76</div>
+                    <div>19 × 5 = 95</div>
+                    <div>19 × 6 = 114</div>
+                    <div>19 × 7 = 133</div>
+                    <div>19 × 8 = 152</div>
+                    <div>19 × 9 = 171</div>
+                    <div>19 × 10 = 190</div>
+                </div>
+            </div>
+    
+            <!-- Table 20 -->
+            <div class="table-card">
+                <h3 class="table-title">पहाड़ा 20</h3>
+                <div class="table-content">
+                    <div>20 × 1 = 20</div>
+                    <div>20 × 2 = 40</div>
+                    <div>20 × 3 = 60</div>
+                    <div>20 × 4 = 80</div>
+                    <div>20 × 5 = 100</div>
+                    <div>20 × 6 = 120</div>
+                    <div>20 × 7 = 140</div>
+                    <div>20 × 8 = 160</div>
+                    <div>20 × 9 = 180</div>
+                    <div>20 × 10 = 200</div>
+                </div>
+            </div>
+    
+        </div>
+    
+    </div>
+//////
+<div class="container">
+
+    <!-- Header & Vector Banner -->
+    <div class="header">
+        <h1>🔢 1 से 100 तक गिनती (Numbers 1 to 100) 🔢</h1>
+        <p>हिंदी अंकों और शब्दों के साथ प्रारंभिक गणितीय ज्ञान</p>
+    </div>
+
+    <div class="svg-banner">
+        <svg width="350" height="50" viewBox="0 0 350 50">
+            <rect x="10" y="5" width="330" height="40" rx="8" fill="#e8f8f5" stroke="#27ae60" stroke-width="2" />
+            <text x="175" y="30" font-size="14" font-weight="bold" text-anchor="middle" fill="#1e8449">हँसते-खेलते सीखें
+                हिंदी गिनती 🌟</text>
+        </svg>
+    </div>
+
+    <!-- Number Grid Container -->
+    <div class="number-grid">
+        <!-- 1 to 10 -->
+        <div class="num-box">
+            <div class="digit">1</div>
+            <div class="hindi-word">एक</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">2</div>
+            <div class="hindi-word">दो</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">3</div>
+            <div class="hindi-word">तीन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">4</div>
+            <div class="hindi-word">चार</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">5</div>
+            <div class="hindi-word">पाँच</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">6</div>
+            <div class="hindi-word">छः</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">7</div>
+            <div class="hindi-word">सात</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">8</div>
+            <div class="hindi-word">आठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">9</div>
+            <div class="hindi-word">नौ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">10</div>
+            <div class="hindi-word">दस</div>
+        </div>
+
+        <!-- 11 to 20 -->
+        <div class="num-box">
+            <div class="digit">11</div>
+            <div class="hindi-word">ग्यारह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">12</div>
+            <div class="hindi-word">बारह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">13</div>
+            <div class="hindi-word">तेरह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">14</div>
+            <div class="hindi-word">चौदह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">15</div>
+            <div class="hindi-word">पन्द्रह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">16</div>
+            <div class="hindi-word">सोलह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">17</div>
+            <div class="hindi-word">सत्रह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">18</div>
+            <div class="hindi-word">अठारह</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">19</div>
+            <div class="hindi-word">उन्नीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">20</div>
+            <div class="hindi-word">बीस</div>
+        </div>
+
+        <!-- 21 to 30 -->
+        <div class="num-box">
+            <div class="digit">21</div>
+            <div class="hindi-word">इक्कीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">22</div>
+            <div class="hindi-word">बाइस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">23</div>
+            <div class="hindi-word">तेईस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">24</div>
+            <div class="hindi-word">चौबीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">25</div>
+            <div class="hindi-word">पच्चीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">26</div>
+            <div class="hindi-word">छब्बीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">27</div>
+            <div class="hindi-word">सत्ताईस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">28</div>
+            <div class="hindi-word">अठाईस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">29</div>
+            <div class="hindi-word">उनतीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">30</div>
+            <div class="hindi-word">तीस</div>
+        </div>
+
+        <!-- 31 to 40 -->
+        <div class="num-box">
+            <div class="digit">31</div>
+            <div class="hindi-word">इकतीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">32</div>
+            <div class="hindi-word">बत्तीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">33</div>
+            <div class="hindi-word">तैंतीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">34</div>
+            <div class="hindi-word">चौंतीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">35</div>
+            <div class="hindi-word">पैंतीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">36</div>
+            <div class="hindi-word">छत्तीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">37</div>
+            <div class="hindi-word">सैंतीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">38</div>
+            <div class="hindi-word">अड़तीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">39</div>
+            <div class="hindi-word">उनतालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">40</div>
+            <div class="hindi-word">चालीस</div>
+        </div>
+
+        <!-- 41 to 50 -->
+        <div class="num-box">
+            <div class="digit">41</div>
+            <div class="hindi-word">इकतालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">42</div>
+            <div class="hindi-word">बयालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">43</div>
+            <div class="hindi-word">तैंतालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">44</div>
+            <div class="hindi-word">चौवालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">45</div>
+            <div class="hindi-word">पैंतालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">46</div>
+            <div class="hindi-word">छियालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">47</div>
+            <div class="hindi-word">सैंतालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">48</div>
+            <div class="hindi-word">अड़तालीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">49</div>
+            <div class="hindi-word">उनचास</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">50</div>
+            <div class="hindi-word">पचपस</div>
+        </div>
+
+        <!-- 51 to 60 -->
+        <div class="num-box">
+            <div class="digit">51</div>
+            <div class="hindi-word">इक्यावन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">52</div>
+            <div class="hindi-word">बावन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">53</div>
+            <div class="hindi-word">तिरपन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">54</div>
+            <div class="hindi-word">चौवन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">55</div>
+            <div class="hindi-word">पचपन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">56</div>
+            <div class="hindi-word">छप्पन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">57</div>
+            <div class="hindi-word">सत्तावन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">58</div>
+            <div class="hindi-word">अट्ठावन</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">59</div>
+            <div class="hindi-word">उनसठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">60</div>
+            <div class="hindi-word">साठ</div>
+        </div>
+
+        <!-- 61 to 70 -->
+        <div class="num-box">
+            <div class="digit">61</div>
+            <div class="hindi-word">इकसठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">62</div>
+            <div class="hindi-word">बासठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">63</div>
+            <div class="hindi-word">तिरसठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">64</div>
+            <div class="hindi-word">चौंसठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">65</div>
+            <div class="hindi-word">पैंसठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">66</div>
+            <div class="hindi-word">छियासठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">67</div>
+            <div class="hindi-word">सड़सठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">68</div>
+            <div class="hindi-word">अड़सठ</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">69</div>
+            <div class="hindi-word">उनहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">70</div>
+            <div class="hindi-word">सत्तर</div>
+        </div>
+
+        <!-- 71 to 80 -->
+        <div class="num-box">
+            <div class="digit">71</div>
+            <div class="hindi-word">इकहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">72</div>
+            <div class="hindi-word">बहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">73</div>
+            <div class="hindi-word">तिरहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">74</div>
+            <div class="hindi-word">चौहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">75</div>
+            <div class="hindi-word">पचहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">76</div>
+            <div class="hindi-word">छिहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">77</div>
+            <div class="hindi-word">सतहत्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">78</div>
+            <div class="hindi-word">अट्ठात्तर</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">79</div>
+            <div class="hindi-word">उसीस</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">80</div>
+            <div class="hindi-word">अस्सी</div>
+        </div>
+
+        <!-- 81 to 90 -->
+        <div class="num-box">
+            <div class="digit">81</div>
+            <div class="hindi-word">इक्यासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">82</div>
+            <div class="hindi-word">ब्यासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">83</div>
+            <div class="hindi-word">तिरासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">84</div>
+            <div class="hindi-word">चौरासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">85</div>
+            <div class="hindi-word">पचासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">86</div>
+            <div class="hindi-word">छियासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">87</div>
+            <div class="hindi-word">सतासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">88</div>
+            <div class="hindi-word">अट्ठासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">89</div>
+            <div class="hindi-word">नवासी</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">90</div>
+            <div class="hindi-word">नब्बे</div>
+        </div>
+
+        <!-- 91 to 100 -->
+        <div class="num-box">
+            <div class="digit">91</div>
+            <div class="hindi-word">इक्यानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">92</div>
+            <div class="hindi-word">बानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">93</div>
+            <div class="hindi-word">तिरानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">94</div>
+            <div class="hindi-word">चौरानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">95</div>
+            <div class="hindi-word">पंचानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">96</div>
+            <div class="hindi-word">छियानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">97</div>
+            <div class="hindi-word">सतानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">98</div>
+            <div class="hindi-word">अट्ठानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">99</div>
+            <div class="hindi-word">निन्यानवे</div>
+        </div>
+        <div class="num-box">
+            <div class="digit">100</div>
+            <div class="hindi-word">सौ</div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0%;
+            padding: 0%;
+            font-size: 16px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        button,
+        input {
+            width: 30vw;
+            height: 2rem;
+            font-size: 1.5rem;
+            padding: 1rem;
+            margin-right: 2rem;
+
+        }
+
+        body {
+            background-color: bolac;
+            margin-top: 50px
+        }
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .table_container {
+            width: 100%;
+            height: 50%;
+            border: 0px solid red;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            background-colorl: black;
+        }
+
+        .div_upto_input_value {
+            margin-bottom: 3rem;
+            border-right: 1.0px solid green;
+            border-bottom: 1.0px solid green;
+            border-top: 1.0px solid green;
+        }
+
+        .ten_div_in_each_div {
+            border: 0px solid rgb(0, 0, 0);
+            ;
+            font-weight: 500;
+            padding: 0.5rem;
+            color: black;
+            border-left: 0px solid red;
+            background-color: greuen;
+            margin-bottom: 5px;
+            border-radius: 0%;
+            /* width: 150px;
+            height: 15px; */
+            font-size: 1.4rem;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: cursive;
+        }
+
+        .ten_div_in_each_div:hover {
+            /* width: 200px;
+
+
+            height: 200px;
+            border-radius: 50%; */
+
+        }
+.equal_input{display:flex;justify-content:center;align-items:center;margin-bottom:2rem}
+        .t888diev {
+            height: 0;
+        }
+input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        @keyframes spinzr {
+            from {
+                transform: rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateZ(calc(360deg));
+            }
+        }
+
+        @keyframes spinzw {
+            from {
+                transform: rotateZ(0deg);
+            }
+
+            to {
+                transform: rotateZ(calc(360deg));
+            }
+        }
+
+        @keyframes spinz {
+
+            from {
+                5transform: rotateZ(0deg);
+            }
+
+            to {
+                rotate: 1turn;
+                6transform: rotateZ(3600000deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="equal_input">
+
+
+        <input type="number" placeholder=" पहाड़ा संख्या दर्ज करें" autofocus  >
+        <button class="btn_equal">=</button> <button class="refresh_button">Refresh</button>
+    </div>
+    <div class="table_container">
+
+    </div>
+    <script>
+        const equal_input = document.querySelector(".equal_input");
+        function getRandomRgbColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+
+            return `rgb(${r}, ${g}, ${b})`;
+
+
+
+
+        };
+
+
+
+        const colorArray = ["red", "blue", "green", "pink", "yellow"]
+
+        for (let k = 0; k <= colorArray.length; k++) {
+
+        }
+
+
+
+
+
+        // const ten_div_in_each_div=document.querySelectorAll(".ten_div_in_each_div");
+
+
+        const table_container = document.querySelector(".table_container");
+        // table_container.style.background="conic-gradient(pink,gray,green)";
+        setInterval(() => {
+            // table_container.style.background=`${getRandomRgbColor()}`;
+        }, 1000)
+        const input = document.querySelector("input");
+        const btn = document.querySelector("button.btn_equal");
+        const refresh_button = document.querySelector(".refresh_button");
+        refresh_button.addEventListener("click", () => {input.value = ""; table_container.innerHTML = "" });
+
+        btn.addEventListener("click", () => {
+            //equal_input.style.display = "none"
+            const time = 0;
+            // function div_upto_input_value_f(){
+            /////////////////////div_upto_input_value
+            for (let i = 1; i <= +input.value; i++) {
+                setTimeout(() => {
+                    const div_upto_input_value = document.createElement("div");
+                    div_upto_input_value.classList.add(`div_upto_input_value`);
+                    div_upto_input_value.classList.add(`i_${i}`);
+                    table_container.appendChild(div_upto_input_value);
+                    ////////////////////////ten_div_in_each_div
+                    for (let j = 1; j <= 10; j++) {
+                        setTimeout(() => {
+                            const ten_div_in_each_div = document.createElement("div");
+                            ten_div_in_each_div.classList.add(`ten_div_in_each_div`);
+                            // Run this inside or after your button click event:
+                            const allTenDivs = document.querySelectorAll(".ten_div_in_each_div");
+
+                            // Loop through them using standard array methods like .forEach()
+
+
+
+
+                            setInterval(() => {
+                                //ten_div_in_each_div.style.border=`10px solid ${getRandomRgbColor()}`;
+                                //ten_div_in_each_div.style.background = `${getRandomRgbColor()}`;
+                                //ten_div_in_each_div.style.color=`${getRandomRgbColor()}`;
+                                ;
+                                //  ten_div_in_each_div[0].style.fontSize="80px";
+                                allTenDivs.forEach((div, index) => {
+                                    if ((index) % 2 === 0) {
+                                        div.style.backgroundColor = "rjed";
+
+
+                                        //div.style.animation=`spinzr 3s linear infinite`
+                                    }
+                                    else {
+                                        div.style.backgroundColor = "gwhite";
+                                        // div.style.animation=`spinzw 3s linear infinite`;
+
+                                    }
+
+                                });
+                               // ten_div_in_each_div.style.animation = `spinz 3s linear infinite,spiny 3s linear infinite,spinx 3s linear infinite`;
+
+                            }, 1000)
+
+
+                            ten_div_in_each_div.classList.add(`j_${j}`, "tdiev");
+                            div_upto_input_value.appendChild(ten_div_in_each_div);
+
+                            ten_div_in_each_div.innerHTML = `${i * j}`;
+
+                        }, time * j);
+
+
+
+
+
+
+
+                    }
+                }, 10 * time * i)
+
+
+
+
+
+            }
+
+
+
+
+
+            //btn.addEventListener(     }) UP
+        })
+
+
+
+
+
+
+        //ten_div_in_each_div[i].backgroundColor=`getRandomRgbColor()`
+
+        //console.log(getRandomRgbColor()); // Example output: rgb(123, 45, 200)
+
+
+        const ten_each_div = document.querySelector(".ten_div_in_each_div"); </script>
+</body>
+
+</html>
