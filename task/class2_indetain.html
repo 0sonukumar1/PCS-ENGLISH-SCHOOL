@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS ENGLISH SCHOOL - Class 2 All-in-One Master Book</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #1e90ff;
+            --accent: #ffa502;
+            --green: #2ed573;
+            --purple: #8e44ad;
+            --dark: #2f3542;
+            --bg: #f1f2f6;
+            --card-bg: #ffffff;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* Top Banner */
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #48dbfb);
+            color: white;
+            padding: clamp(1.2rem, 3vw, 2.2rem) 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-bottom: 5px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: clamp(1.6rem, 4.5vw, 2.5rem);
+            margin-bottom: 0.3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.25);
+            display: inline-block;
+            padding: 4px 18px;
+            border-radius: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: clamp(1rem, 2.5vw, 1.8rem) auto;
+            padding: 0 clamp(0.75rem, 2vw, 1rem);
+        }
+
+        /* Control & Print Bar */
+        .controls-bar {
+            background: var(--card-bg);
+            padding: 0.85rem 1.2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border: 2px solid #dfe4ea;
+        }
+
+        .search-box {
+            flex: 1 1 240px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            border: 2px solid #dfe4ea;
+            border-radius: 25px;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary);
+        }
+
+        .btn {
+            padding: 0.65rem 1.4rem;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+        }
+
+        .btn:hover {
+            transform: scale(1.03);
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-success {
+            background: var(--green);
+            color: white;
+        }
+
+        /* Layout Grid */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 880px) {
+            .layout {
+                grid-template-columns: 270px 1fr;
+                gap: 1.8rem;
+            }
+        }
+
+        /* Navigation Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow);
+            border: 3px solid #f1f2f6;
+            height: fit-content;
+        }
+
+        @media (min-width: 880px) {
+            .sidebar {
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+        .sidebar h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 3px dashed var(--accent);
+            padding-bottom: 0.4rem;
+            text-align: center;
+        }
+
+        .subject-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .subject-menu a {
+            display: block;
+            padding: 0.65rem 0.9rem;
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 0.92rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            transition: all 0.2s;
+        }
+
+        .subject-menu a:hover,
+        .subject-menu a.active {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        /* Chapter Cards */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chapter-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: clamp(1.2rem, 3vw, 2rem);
+            box-shadow: var(--shadow);
+            border: 3px solid #ffffff;
+            position: relative;
+        }
+
+        .chapter-title {
+            color: var(--primary);
+            font-size: clamp(1.3rem, 3.2vw, 1.7rem);
+            margin-bottom: 0.8rem;
+            border-bottom: 3px dashed var(--accent);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            margin: 1.2rem 0 0.6rem 0;
+            font-weight: bold;
+        }
+
+        .info-box {
+            background: #eccc68;
+            border-radius: 12px;
+            padding: 0.9rem 1.2rem;
+            margin: 0.8rem 0;
+            font-weight: bold;
+            color: #2f3542;
+        }
+
+        /* Story & Vocabulary Layout */
+        .story-text {
+            background: #f8fafc;
+            border-left: 5px solid var(--purple);
+            padding: 1rem 1.2rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+            font-size: 1.02rem;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .word-card {
+            background: #eff6ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 0.6rem 0.9rem;
+            text-align: center;
+        }
+
+        .word-card .eng {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .word-card .hin {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border: 2px solid #dfe4ea;
+        }
+
+        .class2-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+            font-size: 0.95rem;
+        }
+
+        .class2-table th,
+        .class2-table td {
+            border: 1px solid #dfe4ea;
+            padding: 0.65rem 0.85rem;
+            text-align: center;
+        }
+
+        .class2-table th {
+            background: var(--primary);
+            color: white;
+        }
+
+        .class2-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* Visual Cards (EVS & Math) */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .v-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .v-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .v-card .title {
+            font-weight: bold;
+            color: var(--purple);
+        }
+
+        /* Interactive Quiz Box */
+        .quiz-box {
+            background: #f0fdf4;
+            border: 2px dashed var(--green);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            margin: 0.4rem 0;
+            padding: 0.5rem 0.8rem;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .quiz-option:hover {
+            background: #dcfce7;
+        }
+
+        /* Print Styling */
+        @media print {
+
+            header,
+            .controls-bar,
+            .sidebar,
+            .btn {
+                display: none !important;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>PCS ENGLISH SCHOOL</h1>
+        <p>Class 2 Complete Master Learning Book (LKG to Primary Series)</p>
+    </header>
+
+    <div class="container">
+        <!-- Controls & Search -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" onkeyup="searchTopics()"
+                    placeholder="विषय या पाठ खोजें (e.g., Story, Noun, Addition, Body Parts)...">
+            </div>
+            <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Top</button>
+            <button class="btn btn-success" onclick="window.print()">🖨️ Print Book</button>
+        </div>
+
+        <div class="layout">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <h3>Class 2 Subjects</h3>
+                <ul class="subject-menu">
+                    <li><a href="#english-reader">1. English Stories</a></li>
+                    <li><a href="#english-grammar">2. English Grammar</a></li>
+                    <li><a href="#maths">3. Mathematics</a></li>
+                    <li><a href="#evs">4. EVS & Science</a></li>
+                    <li><a href="#hindi">5. हिंदी साहित्य व व्याकरण</a></li>
+                    <li><a href="#quiz">6. Interactive Quiz Engine</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+
+                <!-- 1. English Reader & Stories -->
+                <article class="chapter-card" id="english-reader">
+                    <h2 class="chapter-title">Subject 1: English Reader & Stories</h2>
+
+                    <h3 class="section-subtitle">Lesson 1: The Thirsty Crow (चतुर कौआ)</h3>
+                    <div class="story-text">
+                        Once upon a time, there was a thirsty crow. He flew here and there in search of water.
+                        He saw a pitcher in a garden. There was very little water in it. He could not drink the water.
+                        He saw some pebbles nearby. He picked up the pebbles one by one and dropped them into the
+                        pitcher.
+                        The water level came up. The crow drank the water and flew away happily.
+                        <br><br>
+                        <strong>Moral:</strong> Where there is a will, there is a way. (जहाँ चाह, वहाँ राह।)
+                    </div>
+
+                    <h4 style="color: var(--primary); margin-top: 0.8rem;">Word Meanings (कठिन शब्दार्थ):</h4>
+                    <div class="word-grid">
+                        <div class="word-card">
+                            <div class="eng">Thirsty</div>
+                            <div class="hin">प्यासा</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">Pitcher</div>
+                            <div class="hin">घड़ा</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">Pebbles</div>
+                            <div class="hin">कंकड़</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">Level</div>
+                            <div class="hin">स्तर</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. English Grammar -->
+                <article class="chapter-card" id="english-grammar">
+                    <h2 class="chapter-title">Subject 2: English Grammar Basics</h2>
+
+                    <h3 class="section-subtitle">1. Nouns (Naming Words)</h3>
+                    <p>A Noun is the name of a person, place, animal, or thing.</p>
+                    <div class="info-box">
+                        • <strong>Person:</strong> Rohan, Doctor | • <strong>Place:</strong> School, Bihar<br>
+                        • <strong>Animal:</strong> Dog, Elephant | • <strong>Thing:</strong> Pencil, Book
+                    </div>
+
+                    <h3 class="section-subtitle">2. One and Many (Singular & Plural)</h3>
+                    <div class="table-responsive">
+                        <table class="class2-table">
+                            <thead>
+                                <tr>
+                                    <th>One (Singular)</th>
+                                    <th>Many (Plural)</th>
+                                    <th>Rule Applied</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Boy</td>
+                                    <td>Boys</td>
+                                    <td>Add -s</td>
+                                </tr>
+                                <tr>
+                                    <td>Box</td>
+                                    <td>Boxes</td>
+                                    <td>Add -es (ends with x)</td>
+                                </tr>
+                                <tr>
+                                    <td>Baby</td>
+                                    <td>Babies</td>
+                                    <td>Remove y, add -ies</td>
+                                </tr>
+                                <tr>
+                                    <td>Leaf</td>
+                                    <td>Leaves</td>
+                                    <td>Remove f, add -ves</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="section-subtitle">3. Action Words (Verbs)</h3>
+                    <p>Words that show what a person, animal, or thing is doing are called <strong>Verbs</strong>.</p>
+                    <div class="word-grid">
+                        <div class="word-card">
+                            <div class="eng">Eat</div>
+                            <div class="hin">खाना</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">Run</div>
+                            <div class="hin">दौड़ना</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">Sleep</div>
+                            <div class="hin">सोना</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">Read</div>
+                            <div class="hin">पढ़ना</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Mathematics -->
+                <article class="chapter-card" id="maths">
+                    <h2 class="chapter-title">Subject 3: Class 2 Mathematics</h2>
+
+                    <h3 class="section-subtitle">1. Place Value & Expanded Form</h3>
+                    <div class="info-box">
+                        • Number: <strong>245</strong><br>
+                        • Hundreds: <strong>200</strong> | Tens: <strong>40</strong> | Ones: <strong>5</strong><br>
+                        • Expanded Form: <strong>200 + 40 + 5</strong>
+                    </div>
+
+                    <h3 class="section-subtitle">2. Shapes & Geometry (आकृतियाँ)</h3>
+                    <div class="grid-cards">
+                        <div class="v-card">
+                            <div class="icon">⏹️</div>
+                            <div class="title">Square</div>
+                            <p>4 equal sides</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">⏺️</div>
+                            <div class="title">Circle</div>
+                            <p>Round shape</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">🔺</div>
+                            <div class="title">Triangle</div>
+                            <p>3 sides</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">▭</div>
+                            <div class="title">Rectangle</div>
+                            <p>Opposite sides equal</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-subtitle">3. Quick Addition Practice</h3>
+                    <div class="table-responsive">
+                        <table class="class2-table">
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Solution Breakdown</th>
+                                    <th>Final Answer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>35 + 24</td>
+                                    <td>(30+20) + (5+4)</td>
+                                    <td><strong>59</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>48 + 17 (Carry over)</td>
+                                    <td>48 + 10 + 7</td>
+                                    <td><strong>65</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>95 - 32</td>
+                                    <td>(90-30) + (5-2)</td>
+                                    <td><strong>63</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- 4. EVS & General Awareness -->
+                <article class="chapter-card" id="evs">
+                    <h2 class="chapter-title">Subject 4: Environmental Studies (EVS)</h2>
+
+                    <h3 class="section-subtitle">1. Our Body Parts & Sense Organs</h3>
+                    <div class="grid-cards">
+                        <div class="v-card">
+                            <div class="icon">👀</div>
+                            <div class="title">Eyes</div>
+                            <p>To See</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">👂</div>
+                            <div class="title">Ears</div>
+                            <p>To Hear</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">👃</div>
+                            <div class="title">Nose</div>
+                            <p>To Smell</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">👅</div>
+                            <div class="title">Tongue</div>
+                            <p>To Taste</p>
+                        </div>
+                        <div class="v-card">
+                            <div class="icon">✋</div>
+                            <div class="title">Skin</div>
+                            <p>To Feel</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-subtitle">2. Animals and Their Young Ones (बच्चे)</h3>
+                    <div class="table-responsive">
+                        <table class="class2-table">
+                            <thead>
+                                <tr>
+                                    <th>Animal Name</th>
+                                    <th>Young One (बच्चा)</th>
+                                    <th>Home (आवास)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dog</td>
+                                    <td>Puppy</td>
+                                    <td>Kennel</td>
+                                </tr>
+                                <tr>
+                                    <td>Cat</td>
+                                    <td>Kitten</td>
+                                    <td>Cattery</td>
+                                </tr>
+                                <tr>
+                                    <td>Cow</td>
+                                    <td>Calf</td>
+                                    <td>Shed</td>
+                                </tr>
+                                <tr>
+                                    <td>Lion</td>
+                                    <td>Cub</td>
+                                    <td>Den</td>
+                                </tr>
+                                <tr>
+                                    <td>Horse</td>
+                                    <td>Foal</td>
+                                    <td>Stable</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- 5. Hindi Literature & Grammar -->
+                <article class="chapter-card" id="hindi">
+                    <h2 class="chapter-title">Subject 5: हिंदी साहित्य एवं व्याकरण</h2>
+
+                    <h3 class="section-subtitle">1. वचन बदलो (Singular - Plural)</h3>
+                    <div class="table-responsive">
+                        <table class="class2-table">
+                            <thead>
+                                <tr>
+                                    <th>एकवचन</th>
+                                    <th>बहुवचन</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>लड़का</td>
+                                    <td>लड़के</td>
+                                </tr>
+                                <tr>
+                                    <td>किताब</td>
+                                    <td>किताबें</td>
+                                </tr>
+                                <tr>
+                                    <td>चिड़िया</td>
+                                    <td>चिड़ियाँ</td>
+                                </tr>
+                                <tr>
+                                    <td>मछली</td>
+                                    <td>मछलियाँ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="section-subtitle">2. विलोम शब्द (Opposite Words)</h3>
+                    <div class="word-grid">
+                        <div class="word-card">
+                            <div class="eng">दिन ➔ रात</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">सच्चा ➔ झूठा</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">नया ➔ पुराना</div>
+                        </div>
+                        <div class="word-card">
+                            <div class="eng">अमीर ➔ गरीब</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. Interactive Quiz -->
+                <article class="chapter-card" id="quiz">
+                    <h2 class="chapter-title">Subject 6: Class 2 Practice Quiz Engine</h2>
+                    <p>नीचे दिए गए प्रश्नों के सही उत्तर पर क्लिक करें:</p>
+
+                    <div class="quiz-box">
+                        <p style="font-size: 1.1rem; font-weight: bold; color: var(--primary);">Q1. Which sense organ
+                            helps us to hear sound?</p>
+                        <div class="quiz-option" onclick="checkQuiz(this, false)">A. Eyes</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, true)">B. Ears</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, false)">C. Nose</div>
+                    </div>
+
+                    <div class="quiz-box">
+                        <p style="font-size: 1.1rem; font-weight: bold; color: var(--primary);">Q2. What is the plural
+                            of 'Baby'?</p>
+                        <div class="quiz-option" onclick="checkQuiz(this, false)">A. Babys</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, true)">B. Babies</div>
+                        <div class="quiz-option" onclick="checkQuiz(this, false)">C. Babyes</div>
+                    </div>
+                </article>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Topic Search Filter
+        function searchTopics() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.chapter-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Quiz Verification
+        function checkQuiz(element, isCorrect) {
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.quiz-option');
+
+            options.forEach(opt => {
+                opt.style.backgroundColor = 'white';
+                opt.style.color = 'black';
+            });
+
+            if (isCorrect) {
+                element.style.backgroundColor = '#2ed573';
+                element.style.color = 'white';
+                alert('🎉 Correct Answer! Great Job!');
+            } else {
+                element.style.backgroundColor = '#ff4757';
+                element.style.color = 'white';
+                alert('❌ Incorrect! Try Again.');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS English School - Complete Kids Master Foundation Book</title>
+    <style>
+        :root {
+            --primary: #e84393;
+            --secondary: #0984e3;
+            --accent: #fdcb6e;
+            --green: #00b894;
+            --purple: #6c5ce7;
+            --orange: #e17055;
+            --dark: #2d3436;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--dark);
+            padding: 20px 10px;
+        }
+
+        .book-container {
+            max-width: 1150px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            border: 4px solid var(--accent);
+        }
+
+        /* Banner */
+        .book-header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .book-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-header p {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Navigation Bar */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: #dfe6e9;
+            padding: 12px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        /* Content Pages */
+        .page-content {
+            padding: 25px;
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px dashed var(--accent);
+            padding-bottom: 8px;
+        }
+
+        /* Alphabet Grid */
+        .abcd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+        }
+
+        .abcd-card {
+            background: #fff;
+            border: 2px solid #b2bec3;
+            border-radius: 15px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .abcd-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .abcd-card img {
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 6px;
+        }
+
+        .letter-pair {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--purple);
+        }
+
+        .word-label {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        /* Days, Months & Seasons Layouts */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .info-card {
+            background: #f1f2f6;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            border-top: 5px solid var(--purple);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .info-card .hindi-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .info-card .sub-detail {
+            font-size: 0.85rem;
+            color: #636e72;
+            margin-top: 4px;
+        }
+
+        /* Season Card Styling */
+        .season-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .season-card {
+            background: white;
+            border-radius: 16px;
+            border: 2px solid #dfe6e9;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .season-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* Kakhara / Barahkhadi (कखहरा) Deep Section */
+        .barahkhadi-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .varna-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .varna-btn.active {
+            background: var(--primary);
+        }
+
+        .barahkhadi-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .barahkhadi-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(70px, 1fr));
+            gap: 8px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .barahkhadi-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        .b-box {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            border-radius: 10px;
+            padding: 10px 4px;
+        }
+
+        .b-box .devanagari {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .b-box .matra {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .b-box .roman {
+            font-size: 0.85rem;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        /* Counting & Tables Grids */
+        .counting-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .counting-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .num-box {
+            background: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            border-radius: 10px;
+            padding: 10px 4px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .roman-box {
+            background: #eccc68;
+            border-color: #f5cd79;
+        }
+
+        .roman-box .roman-val {
+            font-size: 0.95rem;
+            color: var(--purple);
+            display: block;
+        }
+
+        .tables-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tbl-btn {
+            background: #e17055;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .tbl-btn.active {
+            background: var(--green);
+        }
+
+        .table-display {
+            max-width: 350px;
+            margin: 0 auto;
+            background: #f1f2f6;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 6px solid var(--green);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-row {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 4px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        /* Print Bar */
+        .print-bar {
+            text-align: center;
+            padding: 20px;
+            background: #dfe6e9;
+        }
+
+        .print-btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        @media print {
+
+            .nav-tabs,
+            .barahkhadi-selector,
+            .tables-selector,
+            .print-bar {
+                display: none !important;
+            }
+
+            .page-content {
+                display: block !important;
+                page-break-after: always;
+            }
+
+            .book-container {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="book-container">
+        <!-- Banner -->
+        <div class="book-header">
+            <h1>PCS ENGLISH SCHOOL</h1>
+            <p>Master Foundation Book (LKG to Primary All-In-One)</p>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openPage('page-abcd', this)">1. Aa to Zz (बड़की व छोटकी
+                ABCD)</button>
+            <button class="tab-btn" onclick="openPage('page-kakhara', this)">2. कखहरा (बारहखड़ी Deep)</button>
+            <button class="tab-btn" onclick="openPage('page-days', this)">3. 7 Days Name</button>
+            <button class="tab-btn" onclick="openPage('page-months', this)">4. 12 Months Name</button>
+            <button class="tab-btn" onclick="openPage('page-seasons', this)">5. Seasons (ऋतुएँ)</button>
+            <button class="tab-btn" onclick="openPage('page-counting', this)">6. Counting & Roman</button>
+            <button class="tab-btn" onclick="openPage('page-tables', this)">7. Tables (1 to 20)</button>
+        </div>
+
+        <!-- 1. Full Alphabet (Aa to Zz) -->
+        <div id="page-abcd" class="page-content active">
+            <h2 class="section-title">Capital & Small Letters (Aa to Zz)</h2>
+            <div class="abcd-grid" id="abcdContainer"></div>
+        </div>
+
+        <!-- 2. Kakhara / Barahkhadi (कखहरा - Detailed) -->
+        <div id="page-kakhara" class="page-content">
+            <h2 class="section-title">कखहरा / हिंदी बारहखड़ी (Deep Barahkhadi)</h2>
+            <p style="text-align: center; margin-bottom: 15px; color: #636e72;">Select a consonant below to learn its
+                complete 12 vowel sound variations (मात्राएँ) with English pronunciation:</p>
+
+            <div class="barahkhadi-selector" id="consonantSelector"></div>
+
+            <div style="background: #f8fafc; border-radius: 15px; padding: 20px; border: 2px solid #e2e8f0;">
+                <h3 id="currentVarnaTitle"
+                    style="text-align: center; color: var(--primary); font-size: 1.5rem; margin-bottom: 15px;">क का कि
+                    की... की बारहखड़ी</h3>
+                <div class="barahkhadi-grid" id="barahkhadiContainer"></div>
+            </div>
+        </div>
+
+        <!-- 3. 7 Days Name -->
+        <div id="page-days" class="page-content">
+            <h2 class="section-title">7 Days of the Week (सप्ताह के 7 दिन)</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>1. Monday</h3>
+                    <div class="hindi-text">सोमवार</div>
+                    <div class="sub-detail">First day of work</div>
+                </div>
+                <div class="info-card">
+                    <h3>2. Tuesday</h3>
+                    <div class="hindi-text">मंगलवार</div>
+                    <div class="sub-detail">Second day</div>
+                </div>
+                <div class="info-card">
+                    <h3>3. Wednesday</h3>
+                    <div class="hindi-text">बुधवार</div>
+                    <div class="sub-detail">Mid-week day</div>
+                </div>
+                <div class="info-card">
+                    <h3>4. Thursday</h3>
+                    <div class="hindi-text">गुरुवार</div>
+                    <div class="sub-detail">Fourth day</div>
+                </div>
+                <div class="info-card">
+                    <h3>5. Friday</h3>
+                    <div class="hindi-text">शुक्रवार</div>
+                    <div class="sub-detail">Fifth day</div>
+                </div>
+                <div class="info-card">
+                    <h3>6. Saturday</h3>
+                    <div class="hindi-text">शनिवार</div>
+                    <div class="sub-detail">Weekend begins</div>
+                </div>
+                <div class="info-card" style="border-top-color: var(--primary);">
+                    <h3>7. Sunday</h3>
+                    <div class="hindi-text">रविवार</div>
+                    <div class="sub-detail">Holiday! 🎉</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 12 Months Name -->
+        <div id="page-months" class="page-content">
+            <h2 class="section-title">12 Months of the Year (वर्ष के 12 महीने)</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>January</h3>
+                    <div class="hindi-text">जनवरी</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>February</h3>
+                    <div class="hindi-text">फरवरी</div>
+                    <div class="sub-detail">28/29 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>March</h3>
+                    <div class="hindi-text">मार्च</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>April</h3>
+                    <div class="hindi-text">अप्रैल</div>
+                    <div class="sub-detail">30 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>May</h3>
+                    <div class="hindi-text">मई</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>June</h3>
+                    <div class="hindi-text">जून</div>
+                    <div class="sub-detail">30 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>July</h3>
+                    <div class="hindi-text">जुलाई</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>August</h3>
+                    <div class="hindi-text">अगस्त</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>September</h3>
+                    <div class="hindi-text">सितंबर</div>
+                    <div class="sub-detail">30 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>October</h3>
+                    <div class="hindi-text">अक्टूबर</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>November</h3>
+                    <div class="hindi-text">नवंबर</div>
+                    <div class="sub-detail">30 Days</div>
+                </div>
+                <div class="info-card">
+                    <h3>December</h3>
+                    <div class="hindi-text">दिसंबर</div>
+                    <div class="sub-detail">31 Days</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Seasons Name -->
+        <div id="page-seasons" class="page-content">
+            <h2 class="section-title">Seasons in India (मुख्य ऋतुएँ)</h2>
+            <div class="season-grid">
+                <div class="season-card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&q=80" alt="Summer">
+                    <h3 style="color: #e17055;">Summer Season</h3>
+                    <div style="font-weight: bold; color: var(--dark);">ग्रीष्म ऋतु (गर्मी)</div>
+                    <div style="font-size: 0.85rem; color: #636e72; margin-top: 4px;">April to June | Hot weather, cold
+                        drinks & ice creams.</div>
+                </div>
+
+                <div class="season-card">
+                    <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=300&q=80" alt="Monsoon">
+                    <h3 style="color: #0984e3;">Monsoon / Rainy</h3>
+                    <div style="font-weight: bold; color: var(--dark);">वर्षा ऋतु (बरसात)</div>
+                    <div style="font-size: 0.85rem; color: #636e72; margin-top: 4px;">July to September | Raincoats,
+                        umbrellas & green trees.</div>
+                </div>
+
+                <div class="season-card">
+                    <img src="https://images.unsplash.com/photo-1507371341162-763b5e419408?w=300&q=80" alt="Autumn">
+                    <h3 style="color: #e67e22;">Autumn Season</h3>
+                    <div style="font-weight: bold; color: var(--dark);">शरद ऋतु (पतझड़)</div>
+                    <div style="font-size: 0.85rem; color: #636e72; margin-top: 4px;">October to November | Leaves fall,
+                        pleasant cool air.</div>
+                </div>
+
+                <div class="season-card">
+                    <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=300&q=80" alt="Winter">
+                    <h3 style="color: #6c5ce7;">Winter Season</h3>
+                    <div style="font-weight: bold; color: var(--dark);">शीत ऋतु (सर्दी)</div>
+                    <div style="font-size: 0.85rem; color: #636e72; margin-top: 4px;">December to February | Warm
+                        clothes, fog & fireside warmth.</div>
+                </div>
+
+                <div class="season-card">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=300&q=80" alt="Spring">
+                    <h3 style="color: #00b894;">Spring Season</h3>
+                    <div style="font-weight: bold; color: var(--dark);">वसन्त ऋतु</div>
+                    <div style="font-size: 0.85rem; color: #636e72; margin-top: 4px;">March | Blooming flowers,
+                        beautiful nature & Holi.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Counting & Roman Numerals -->
+        <div id="page-counting" class="page-content">
+            <h2 class="section-title">Counting (1-100) & Roman Numerals (I-C)</h2>
+            <p style="text-align: center; margin-bottom: 12px; font-weight: bold;">Arabic Numerals (1-100) with Roman
+                Equivalents:</p>
+            <div class="counting-grid" id="romanContainer"></div>
+        </div>
+
+        <!-- 7. Multiplication Tables 1 to 20 -->
+        <div id="page-tables" class="page-content">
+            <h2 class="section-title">Multiplication Tables (1 to 20)</h2>
+            <div class="tables-selector" id="tablesSelector"></div>
+            <div class="table-display" id="tableDisplay"></div>
+        </div>
+
+        <!-- Print Action -->
+        <div class="print-bar">
+            <button class="print-btn" onclick="window.print()">🖨️ Print Complete Book</button>
+        </div>
+    </div>
+
+    <script>
+        const abcdData = [
+            { cap: 'A', sm: 'a', word: 'Apple', img: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=200&q=80' },
+            { cap: 'B', sm: 'b', word: 'Ball', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=200&q=80' },
+            { cap: 'C', sm: 'c', word: 'Cat', img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=200&q=80' },
+            { cap: 'D', sm: 'd', word: 'Dog', img: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200&q=80' },
+            { cap: 'E', sm: 'e', word: 'Elephant', img: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=200&q=80' },
+            { cap: 'F', sm: 'f', word: 'Fish', img: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=200&q=80' },
+            { cap: 'G', sm: 'g', word: 'Grapes', img: 'https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=200&q=80' },
+            { cap: 'H', sm: 'h', word: 'Horse', img: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=200&q=80' },
+            { cap: 'I', sm: 'i', word: 'Ice Cream', img: 'https://images.unsplash.com/photo-1567206563064-6f60f4078b57?w=200&q=80' },
+            { cap: 'J', sm: 'j', word: 'Jug', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&q=80' },
+            { cap: 'K', sm: 'k', word: 'Kite', img: 'https://images.unsplash.com/photo-1534180477871-5d65836a177d?w=200&q=80' },
+            { cap: 'L', sm: 'l', word: 'Lion', img: 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=200&q=80' },
+            { cap: 'M', sm: 'm', word: 'Mango', img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=200&q=80' },
+            { cap: 'N', sm: 'n', word: 'Nest', img: 'https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=200&q=80' },
+            { cap: 'O', sm: 'o', word: 'Orange', img: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=200&q=80' },
+            { cap: 'P', sm: 'p', word: 'Parrot', img: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=200&q=80' },
+            { cap: 'Q', sm: 'q', word: 'Queen', img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80' },
+            { cap: 'R', sm: 'r', word: 'Rose', img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&q=80' },
+            { cap: 'S', sm: 's', word: 'Sun', img: 'https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=200&q=80' },
+            { cap: 'T', sm: 't', word: 'Tiger', img: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=200&q=80' },
+            { cap: 'U', sm: 'u', word: 'Umbrella', img: 'https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?w=200&q=80' },
+            { cap: 'V', sm: 'v', word: 'Van', img: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=200&q=80' },
+            { cap: 'W', sm: 'w', word: 'Watch', img: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=200&q=80' },
+            { cap: 'X', sm: 'x', word: 'Xylophone', img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200&q=80' },
+            { cap: 'Y', sm: 'y', word: 'Yak', img: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef9?w=200&q=80' },
+            { cap: 'Z', sm: 'z', word: 'Zebra', img: 'https://images.unsplash.com/photo-1501705388883-4ed8a543392c?w=200&q=80' }
+        ];
+
+        // Barahkhadi Vowel Schemes (मात्राएँ)
+        const matraList = [
+            { matra: 'अ', symbol: 'अ', eng: 'a' },
+            { matra: 'आ', symbol: 'ा', eng: 'aa' },
+            { matra: 'इ', symbol: 'ि', eng: 'i' },
+            { matra: 'ई', symbol: 'ी', eng: 'ee' },
+            { matra: 'उ', symbol: 'ु', eng: 'u' },
+            { matra: 'ऊ', symbol: 'ू', eng: 'oo' },
+            { matra: 'ए', symbol: 'े', eng: 'e' },
+            { matra: 'ऐ', symbol: 'ै', eng: 'ai' },
+            { matra: 'ओ', symbol: 'ो', eng: 'o' },
+            { matra: 'औ', symbol: 'ौ', eng: 'au' },
+            { matra: 'अं', symbol: 'ं', eng: 'an' },
+            { matra: 'अः', symbol: 'ः', eng: 'ah' }
+        ];
+
+        const consonants = [
+            { dev: 'क', eng: 'k' }, { dev: 'ख', eng: 'kh' }, { dev: 'ग', eng: 'g' }, { dev: 'घ', eng: 'gh' },
+            { dev: 'च', eng: 'ch' }, { dev: 'छ', eng: 'chh' }, { dev: 'ज', eng: 'j' }, { dev: 'झ', eng: 'jh' },
+            { dev: 'ट', eng: 't' }, { dev: 'ठ', eng: 'th' }, { dev: 'ड', eng: 'd' }, { dev: 'ढ', eng: 'dh' },
+            { dev: 'त', eng: 't' }, { dev: 'थ', eng: 'th' }, { dev: 'द', eng: 'd' }, { dev: 'ध', eng: 'dh' }, { dev: 'न', eng: 'n' },
+            { dev: 'प', eng: 'p' }, { dev: 'फ', eng: 'ph' }, { dev: 'ब', eng: 'b' }, { dev: 'भ', eng: 'bh' }, { dev: 'म', eng: 'm' },
+            { dev: 'य', eng: 'y' }, { dev: 'र', eng: 'r' }, { dev: 'ल', eng: 'l' }, { dev: 'व', eng: 'v' }, { dev: 'स', eng: 's' }, { dev: 'ह', eng: 'h' }
+        ];
+
+        function toRoman(num) {
+            const lookup = { C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+            let roman = '';
+            for (let i in lookup) {
+                while (num >= lookup[i]) {
+                    roman += i;
+                    num -= lookup[i];
+                }
+            }
+            return roman;
+        }
+
+        function initBook() {
+            // Render Aa to Zz
+            const abcdContainer = document.getElementById('abcdContainer');
+            abcdData.forEach(item => {
+                abcdContainer.innerHTML += `
+                    <div class="abcd-card">
+                        <img src="${item.img}" alt="${item.word}">
+                        <div class="letter-pair">${item.cap} ${item.sm}</div>
+                        <div class="word-label">${item.word}</div>
+                    </div>
+                `;
+            });
+
+            // Render Barahkhadi Selector
+            const cSelector = document.getElementById('consonantSelector');
+            consonants.forEach((c, idx) => {
+                cSelector.innerHTML += `<button class="varna-btn ${idx === 0 ? 'active' : ''}" onclick="renderBarahkhadi('${c.dev}', '${c.eng}', this)">${c.dev}</button>`;
+            });
+            renderBarahkhadi('क', 'k', cSelector.querySelector('.varna-btn'));
+
+            // Render 1 to 100 Roman Counting
+            const romanContainer = document.getElementById('romanContainer');
+            for (let i = 1; i <= 100; i++) {
+                romanContainer.innerHTML += `
+                    <div class="num-box roman-box">
+                        ${i}
+                        <span class="roman-val">${toRoman(i)}</span>
+                    </div>`;
+            }
+
+            // Render Table Selector 1 to 20
+            const selector = document.getElementById('tablesSelector');
+            for (let t = 1; t <= 20; t++) {
+                selector.innerHTML += `<button class="tbl-btn ${t === 1 ? 'active' : ''}" onclick="renderTable(${t}, this)">Table of ${t}</button>`;
+            }
+            renderTable(1, selector.querySelector('.tbl-btn'));
+        }
+
+        function renderBarahkhadi(varna, engPrefix, btn) {
+            document.querySelectorAll('.varna-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            document.getElementById('currentVarnaTitle').textContent = `${varna} वर्ग की बारहखड़ी (${varna}, ${varna}ा, ${varna}ि, ${varna}ी...)`;
+
+            const container = document.getElementById('barahkhadiContainer');
+            container.innerHTML = '';
+
+            matraList.forEach((m, idx) => {
+                let formattedVarna = (idx === 0) ? varna : varna + m.symbol;
+                let engText = engPrefix + m.eng;
+
+                container.innerHTML += `
+                    <div class="b-box">
+                        <div class="devanagari">${formattedVarna}</div>
+                        <div class="matra">(${m.matra})</div>
+                        <div class="roman">${engText}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderTable(num, btn) {
+            document.querySelectorAll('.tbl-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const display = document.getElementById('tableDisplay');
+            display.innerHTML = `<h3 style="text-align:center; color: var(--green); margin-bottom: 10px;">Table of ${num}</h3>`;
+            for (let i = 1; i <= 10; i++) {
+                display.innerHTML += `<div class="table-row">${num} × ${i} = ${num * i}</div>`;
+            }
+        }
+
+        function openPage(pageId, btn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById(pageId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        window.onload = initBook;
+    </script>
+</body>
+
+</html>

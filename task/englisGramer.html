@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS ENGLISH SCHOOL - Advanced English Grammar Master Book</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #2563eb;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: clamp(20px, 5vw, 50px);
+        }
+
+        /* Responsive Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: clamp(1.5rem, 4vw, 2.5rem) 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.4rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+            margin: clamp(1rem, 3vw, 2rem) auto;
+            padding: 0 clamp(0.75rem, 2vw, 1rem);
+        }
+
+        /* Controls & Search Bar (Flex Responsive) */
+        .controls-bar {
+            background: var(--card-bg);
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            border: 1px solid var(--border);
+        }
+
+        .search-box {
+            flex: 1 1 250px;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            flex: 1 1 auto;
+        }
+
+        @media (min-width: 640px) {
+            .btn-group {
+                width: auto;
+            }
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        /* Responsive Layout Grid */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .layout {
+                grid-template-columns: 280px 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Sidebar Index & Mobile Dropdown */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            height: fit-content;
+        }
+
+        @media (min-width: 900px) {
+            .sidebar {
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+        .sidebar h3 {
+            color: var(--primary);
+            font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .chapter-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 900px) {
+            .chapter-menu {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        .chapter-menu a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2vw, 0.92rem);
+            transition: all 0.2s;
+        }
+
+        .chapter-menu a:hover,
+        .chapter-menu a.active {
+            background: #eff6ff;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chapter-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: clamp(1rem, 3vw, 2rem);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .chapter-title {
+            color: var(--primary);
+            font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            margin: 1.25rem 0 0.75rem 0;
+            font-weight: 600;
+        }
+
+        .rule-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--secondary);
+            padding: 0.85rem clamp(0.75rem, 2vw, 1.2rem);
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: clamp(0.875rem, 2vw, 0.98rem);
+            word-wrap: break-word;
+        }
+
+        .example-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .example-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        @media (min-width: 500px) {
+            .example-list li {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+
+        .example-list li strong {
+            color: var(--primary);
+            min-width: 130px;
+        }
+
+        /* Responsive Tables with Horizontal Scrollbar for Mobile */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+            /* मोबाइल पर स्क्रॉल करने के लिए मिनिमम चौड़ाई */
+            font-size: clamp(0.825rem, 2vw, 0.93rem);
+        }
+
+        .grammar-table th,
+        .grammar-table td {
+            border: 1px solid var(--border);
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.6rem, 1.5vw, 0.9rem);
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .badge-err {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-corr {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* Print Styling */
+        @media print {
+
+            header,
+            .controls-bar,
+            .sidebar,
+            .btn-group {
+                display: none !important;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-after: always;
+            }
+
+            .table-responsive {
+                overflow: visible;
+            }
+
+            .grammar-table {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>PCS ENGLISH SCHOOL</h1>
+        <p>Advanced English Grammar & Sentence Master Book (Classes 1 to 10+)</p>
+    </header>
+
+    <div class="container">
+        <!-- Control & Search Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" onkeyup="searchTopics()"
+                    placeholder="Search topics (e.g. Noun, Tenses, Modals, Voice)...">
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Top</button>
+                <button class="btn btn-success" onclick="window.print()">🖨️ Print Book</button>
+            </div>
+        </div>
+
+        <div class="layout">
+            <!-- Sidebar Index Navigation -->
+            <nav class="sidebar">
+                <h3>Book Index (विषय-सूची)</h3>
+                <ul class="chapter-menu">
+                    <li><a href="#ch1">1. Sentence & Structure</a></li>
+                    <li><a href="#ch2">2. Parts of Speech</a></li>
+                    <li><a href="#ch3">3. Noun: Gender & Number</a></li>
+                    <li><a href="#ch4">4. Articles (A, An, The)</a></li>
+                    <li><a href="#ch5">5. Pronoun & Adjectives</a></li>
+                    <li><a href="#ch6">6. Modal Auxiliaries</a></li>
+                    <li><a href="#ch7">7. All 12 Tenses Master Chart</a></li>
+                    <li><a href="#ch8">8. Active & Passive Voice</a></li>
+                    <li><a href="#ch9">9. Direct & Indirect Speech</a></li>
+                    <li><a href="#ch10">10. Prepositions & Conjunctions</a></li>
+                    <li><a href="#ch11">11. Common Errors & Corrections</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+
+                <!-- Chapter 1 -->
+                <article class="chapter-card" id="ch1">
+                    <h2 class="chapter-title">Chapter 1: The Sentence & Its Structure</h2>
+                    <p>A group of words arranged in a meaningful order to make complete sense is called a
+                        <strong>Sentence</strong> (वाक्य)।</p>
+
+                    <div class="rule-box">
+                        <strong>Basic Structure of an English Sentence:</strong><br>
+                        <code>Subject (कर्ता) + Verb (क्रिया) + Object (कर्म) / Complement</code><br>
+                        <em>Example 1:</em> <strong>Rohan</strong> (Subject) <strong>plays</strong> (Verb)
+                        <strong>cricket</strong> (Object).<br>
+                        <em>Example 2:</em> <strong>The teacher</strong> (Subject) <strong>teaches</strong> (Verb)
+                        <strong>English</strong> (Object) <strong>in class</strong> (Complement).
+                    </div>
+
+                    <h3 class="section-subtitle">Types of Sentences (वाक्य के प्रकार):</h3>
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Sentence Type</th>
+                                    <th>Meaning & Purpose</th>
+                                    <th>Examples (सकारात्मक/नकारात्मक)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Assertive / Declarative</strong></td>
+                                    <td>साधारण कथन (Fact/State)</td>
+                                    <td>• She goes to school daily.<br>• He does not like sweets.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Interrogative</strong></td>
+                                    <td>प्रश्न पूछने वाले वाक्य</td>
+                                    <td>• Are you coming today?<br>• What is your name?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Imperative</strong></td>
+                                    <td>आदेश, सलाह या प्रार्थना</td>
+                                    <td>• Please bring a glass of water.<br>• Don't run on the road.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Exclamatory</strong></td>
+                                    <td>अचानक उठी भावना/आश्चर्य</td>
+                                    <td>• What a great surprise!<br>• Hurrah! We won the match.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Optative</strong></td>
+                                    <td>इच्छा, आशीर्वाद या प्रार्थना</td>
+                                    <td>• May God bless you!<br>• Long live PCS English School!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 2 -->
+                <article class="chapter-card" id="ch2">
+                    <h2 class="chapter-title">Chapter 2: Parts of Speech Overview (शब्द भेद)</h2>
+                    <p>अंग्रेजी भाषा के सभी शब्दों को उनके कार्य के अनुसार 8 प्रमुख भागों में विभाजित किया गया है:</p>
+
+                    <ul class="example-list">
+                        <li><strong>1. Noun (संज्ञा):</strong> Name of person, place, thing, or idea. <span
+                                class="badge">Rahul, Bihar, Book, Honesty</span></li>
+                        <li><strong>2. Pronoun (सर्वनाम):</strong> Replaces a noun to avoid repetition. <span
+                                class="badge">He, She, It, They, We</span></li>
+                        <li><strong>3. Adjective (विशेषण):</strong> Describes or qualifies a noun/pronoun. <span
+                                class="badge">Tall, Intelligent, Red, Four</span></li>
+                        <li><strong>4. Verb (क्रिया):</strong> Expresses action, state, or occurrence. <span
+                                class="badge">Read, Write, Play, Is, Have</span></li>
+                        <li><strong>5. Adverb (क्रियाविशेषण):</strong> Modifies a verb, adjective, or another adverb.
+                            <span class="badge">Slowly, Very, Well, Yesterday</span></li>
+                        <li><strong>6. Preposition (संबंध सूचक):</strong> Shows position or relation between words.
+                            <span class="badge">In, On, At, Under, With</span></li>
+                        <li><strong>7. Conjunction (समुच्चयबोधक):</strong> Connects words, phrases, or clauses. <span
+                                class="badge">And, But, Because, Although</span></li>
+                        <li><strong>8. Interjection (विस्मयादिबोधक):</strong> Expresses sudden emotions. <span
+                                class="badge">Ouch!, Bravo!, Alas!, Wow!</span></li>
+                    </ul>
+                </article>
+
+                <!-- Chapter 3 -->
+                <article class="chapter-card" id="ch3">
+                    <h2 class="chapter-title">Chapter 3: Noun In-Depth (Gender & Number Rules)</h2>
+
+                    <h3 class="section-subtitle">5 Kinds of Noun (संज्ञा के प्रकार):</h3>
+                    <ul class="example-list">
+                        <li><strong>1. Proper Noun (व्यक्तिवाचक):</strong> Specific name of a person, place or thing.
+                            <em>(India, Patna, Ganga)</em></li>
+                        <li><strong>2. Common Noun (जातिवाचक):</strong> General name for same class. <em>(Boy, Teacher,
+                                River, City)</em></li>
+                        <li><strong>3. Collective Noun (समूहवाचक):</strong> Name of a group of entities. <em>(Team,
+                                Class, Army, Crowd)</em></li>
+                        <li><strong>4. Material Noun (द्रव्यवाचक):</strong> Substance from which things are made.
+                            <em>(Gold, Silver, Milk, Water)</em></li>
+                        <li><strong>5. Abstract Noun (भाववाचक):</strong> Quality, state, or feeling. <em>(Wisdom,
+                                Childhood, Bravery)</em></li>
+                    </ul>
+
+                    <h3 class="section-subtitle">Noun: Gender (लिंग)</h3>
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Gender Category</th>
+                                    <th>Definition</th>
+                                    <th>Examples</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Masculine Gender (पुल्लिंग)</strong></td>
+                                    <td>पुरुष जाति का बोध</td>
+                                    <td>Boy, Man, Father, Lion, King</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Feminine Gender (स्त्रीलिंग)</strong></td>
+                                    <td>स्त्री जाति का बोध</td>
+                                    <td>Girl, Woman, Mother, Lioness, Queen</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Common Gender (उभयलिंग)</strong></td>
+                                    <td>पुरुष एवं स्त्री दोनों के लिए</td>
+                                    <td>Student, Doctor, Teacher, Child</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Neuter Gender (नपुंसक लिंग)</strong></td>
+                                    <td>निर्जीव वस्तुएं एवं छोटे जीव</td>
+                                    <td>Pen, Book, Table, Tree, Ant</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="section-subtitle">Noun: Number Rules (एकवचन - बहुवचन)</h3>
+                    <div class="rule-box">
+                        <strong>Rule 1:</strong> अंत में <em>-s, -ss, -sh, -ch, -x</em> होने पर <strong>-es</strong>
+                        जोड़ें: <br>
+                        <em>Box ➔ Boxes | Bus ➔ Buses | Church ➔ Churches | Class ➔ Classes</em><br><br>
+                        <strong>Rule 2:</strong> Consonant + Y होने पर 'Y' हटाकर <strong>-ies</strong> लगाएं: <br>
+                        <em>City ➔ Cities | Baby ➔ Babies | Country ➔ Countries</em><br><br>
+                        <strong>Rule 3:</strong> Vowel + Y होने पर केवल <strong>-s</strong> लगाएं: <br>
+                        <em>Boy ➔ Boys | Key ➔ Keys | Toy ➔ Toys</em>
+                    </div>
+                </article>
+
+                <!-- Chapter 4 -->
+                <article class="chapter-card" id="ch4">
+                    <h2 class="chapter-title">Chapter 4: Articles Mastery (A, An, The)</h2>
+                    <p>Articles qualify nouns and are divided into: <strong>Indefinite Articles</strong> (A, An) and
+                        <strong>Definite Article</strong> (The)।</p>
+
+                    <div class="rule-box">
+                        <strong>Use of 'A' (एक):</strong> व्यंजन ध्वनि (Consonant Sound) से शुरू होने वाले एकवचन शब्दों
+                        से पहले।<br>
+                        <em>Examples:</em> A book, A pen, A doctor, A European (यु ध्वनि), A university (यु ध्वनि)।
+                    </div>
+
+                    <div class="rule-box">
+                        <strong>Use of 'An' (एक):</strong> स्वर ध्वनि (Vowel Sound: अ, आ, इ, ई, उ, ए, ऐ, ओ...) से शुरू
+                        होने वाले शब्दों से पहले।<br>
+                        <em>Examples:</em> An apple, An elephant, An umbrella, An honest boy ('ह' साइलेंट), An M.L.A.
+                        ('ए' ध्वनि)।
+                    </div>
+
+                    <div class="rule-box">
+                        <strong>Use of 'The':</strong> विशेष वस्तुओं, नदियों, पर्वतमालाओं, धार्मिक ग्रंथों, और अद्वितीय
+                        चीज़ों से पहले।<br>
+                        <em>Examples:</em> The Sun, The Moon, The Ganga, The Ramayana, The Taj Mahal, The first boy.
+                    </div>
+                </article>
+
+                <!-- Chapter 5 -->
+                <article class="chapter-card" id="ch5">
+                    <h2 class="chapter-title">Chapter 5: Pronoun & Adjectives (Degrees of Comparison)</h2>
+
+                    <h3 class="section-subtitle">Pronoun Types & Personal Pronoun Table:</h3>
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Person</th>
+                                    <th>Subjective Case</th>
+                                    <th>Objective Case</th>
+                                    <th>Possessive Adj</th>
+                                    <th>Possessive Pronoun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1st Person</strong></td>
+                                    <td>I / We</td>
+                                    <td>Me / Us</td>
+                                    <td>My / Our</td>
+                                    <td>Mine / Ours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2nd Person</strong></td>
+                                    <td>You</td>
+                                    <td>You</td>
+                                    <td>Your</td>
+                                    <td>Yours</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3rd Person</strong></td>
+                                    <td>He / She / It / They</td>
+                                    <td>Him / Her / It / Them</td>
+                                    <td>His / Her / Its / Their</td>
+                                    <td>His / Hers / Its / Theirs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="section-subtitle">Adjectives: Degrees of Comparison (तुलना की अवस्थाएँ)</h3>
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Positive Degree (सामान्य)</th>
+                                    <th>Comparative Degree (-er/More)</th>
+                                    <th>Superlative Degree (-est/Most)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tall (लम्बा)</td>
+                                    <td>Taller (अधिक लंबा)</td>
+                                    <td>Tallest (सबसे लंबा)</td>
+                                </tr>
+                                <tr>
+                                    <td>Beautiful (सुंदर)</td>
+                                    <td>More Beautiful</td>
+                                    <td>Most Beautiful</td>
+                                </tr>
+                                <tr>
+                                    <td>Good / Well (अच्छा)</td>
+                                    <td>Better</td>
+                                    <td>Best</td>
+                                </tr>
+                                <tr>
+                                    <td>Bad (बुरे)</td>
+                                    <td>Worse</td>
+                                    <td>Worst</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 6 -->
+                <article class="chapter-card" id="ch6">
+                    <h2 class="chapter-title">Chapter 6: Modal Auxiliaries (Modals का प्रयोग)</h2>
+                    <p>Modals सहायक क्रियाएँ हैं जो योग्यता, अनुमति, संभावना, और कर्तव्य व्यक्त करती हैं:</p>
+
+                    <ul class="example-list">
+                        <li><strong>Can (क्षमता/योग्य):</strong> I <strong>can</strong> speak English. / He
+                            <strong>can</strong> lift this heavy box.</li>
+                        <li><strong>Could (भूतकाल की क्षमता):</strong> She <strong>could</strong> run fast in her
+                            childhood.</li>
+                        <li><strong>May (अनुमति/संभावना):</strong> <strong>May</strong> I come in, sir? / It
+                            <strong>may</strong> rain today.</li>
+                        <li><strong>Should (सलाह/कर्तव्य):</strong> You <strong>should</strong> respect your teachers. /
+                            We <strong>should</strong> help the poor.</li>
+                        <li><strong>Must (अनिवार्यता/पक्का):</strong> You <strong>must</strong> follow the traffic
+                            rules.</li>
+                        <li><strong>Would (विनम्र निवेदन):</strong> <strong>Would</strong> you like a cup of tea?</li>
+                    </ul>
+                </article>
+
+                <!-- Chapter 7 -->
+                <article class="chapter-card" id="ch7">
+                    <h2 class="chapter-title">Chapter 7: All 12 Tenses Master Chart (काल के सभी 12 भेद)</h2>
+                    <p>Tense क्रिया के उस रूप को कहते हैं जिससे कार्य के समय का बोध होता है।</p>
+
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Tense Name</th>
+                                    <th>Structure / Formula</th>
+                                    <th>Affirmative & Negative Examples</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Simple Present</strong></td>
+                                    <td>Sub + V1 (s/es) + Obj</td>
+                                    <td>Rohan plays football. / He does not play.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Present Continuous</strong></td>
+                                    <td>Sub + is/am/are + V1+ing + Obj</td>
+                                    <td>She is writing a letter. / She is not writing.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Present Perfect</strong></td>
+                                    <td>Sub + has/have + V3 + Obj</td>
+                                    <td>I have completed my work.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Present Perfect Cont.</strong></td>
+                                    <td>Sub + has/have + been + V1+ing + for/since</td>
+                                    <td>He has been reading since morning.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Simple Past</strong></td>
+                                    <td>Sub + V2 + Obj</td>
+                                    <td>She cooked delicious food yesterday.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Past Continuous</strong></td>
+                                    <td>Sub + was/were + V1+ing + Obj</td>
+                                    <td>They were playing cricket in the park.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Past Perfect</strong></td>
+                                    <td>Sub + had + V3 + Obj</td>
+                                    <td>The train had left before we reached.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Past Perfect Cont.</strong></td>
+                                    <td>Sub + had + been + V1+ing + for/since</td>
+                                    <td>She had been waiting for two hours.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>9. Simple Future</strong></td>
+                                    <td>Sub + will/shall + V1 + Obj</td>
+                                    <td>I will visit Delhi next month.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>10. Future Continuous</strong></td>
+                                    <td>Sub + will be + V1+ing + Obj</td>
+                                    <td>They will be studying at this time.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>11. Future Perfect</strong></td>
+                                    <td>Sub + will have + V3 + Obj</td>
+                                    <td>She will have finished her exam by 5 PM.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>12. Future Perfect Cont.</strong></td>
+                                    <td>Sub + will have been + V1+ing + for/since</td>
+                                    <td>We will have been living here for 5 years.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 8 -->
+                <article class="chapter-card" id="ch8">
+                    <h2 class="chapter-title">Chapter 8: Active & Passive Voice</h2>
+
+                    <div class="rule-box">
+                        <strong>Voice बदलने के 5 स्वर्ण नियम:</strong><br>
+                        1. Active के <strong>Object</strong> को Passive का <strong>Subject</strong> बनाएं।<br>
+                        2. काल (Tense) के अनुसार उचित <strong>Helping Verb</strong> लगाएं।<br>
+                        3. हमेशा मुख्य क्रिया का 3rd Form (<strong>V3 - Past Participle</strong>) प्रयोग करें।<br>
+                        4. नए Object से पहले साधारणतया <strong>'by'</strong> लगाएं।<br>
+                        5. Active के Subject को Passive का Object बनाएं।
+                    </div>
+
+                    <h3 class="section-subtitle">Tense-wise Voice Transformation Table:</h3>
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Tense</th>
+                                    <th>Active Voice Sentence</th>
+                                    <th>Passive Voice Sentence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Simple Present</td>
+                                    <td>She sings a song.</td>
+                                    <td>A song <strong>is sung by</strong> her.</td>
+                                </tr>
+                                <tr>
+                                    <td>Present Continuous</td>
+                                    <td>They are painting the wall.</td>
+                                    <td>The wall <strong>is being painted by</strong> them.</td>
+                                </tr>
+                                <tr>
+                                    <td>Present Perfect</td>
+                                    <td>Rohan has solved the sum.</td>
+                                    <td>The sum <strong>has been solved by</strong> Rohan.</td>
+                                </tr>
+                                <tr>
+                                    <td>Simple Past</td>
+                                    <td>The policeman caught the thief.</td>
+                                    <td>The thief <strong>was caught by</strong> the policeman.</td>
+                                </tr>
+                                <tr>
+                                    <td>Simple Future</td>
+                                    <td>My father will buy a new car.</td>
+                                    <td>A new car <strong>will be bought by</strong> my father.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 9 -->
+                <article class="chapter-card" id="ch9">
+                    <h2 class="chapter-title">Chapter 9: Direct & Indirect Speech (Narration)</h2>
+                    <p>वक्ता के शब्दों को ज्यों का त्यों कहना <strong>Direct Speech</strong> और अपने शब्दों में सार
+                        बताना <strong>Indirect Speech</strong> कहलाता है।</p>
+
+                    <div class="rule-box">
+                        <strong>Tense Change Rules (यदि Reporting Verb Past Tense में हो):</strong><br>
+                        • Simple Present ➔ Simple Past (is/am/are ➔ was/were)<br>
+                        • Present Continuous ➔ Past Continuous<br>
+                        • Simple Past ➔ Past Perfect (did ➔ had + V3)<br>
+                        • Will/Shall ➔ Would/Should | Can ➔ Could | May ➔ Might
+                    </div>
+
+                    <h3 class="section-subtitle">Word Change Table:</h3>
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Direct Word</th>
+                                    <th>Indirect Word</th>
+                                    <th>Direct Example Sentence</th>
+                                    <th>Indirect Transformed Sentence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Today</td>
+                                    <td>That day</td>
+                                    <td>He said, "I am busy <strong>today</strong>."</td>
+                                    <td>He said that he was busy <strong>that day</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Tomorrow</td>
+                                    <td>The next day</td>
+                                    <td>She said, "I will come <strong>tomorrow</strong>."</td>
+                                    <td>She said that she would come <strong>the next day</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Now</td>
+                                    <td>Then</td>
+                                    <td>Ram said, "I am reading <strong>now</strong>."</td>
+                                    <td>Ram said that he was reading <strong>then</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 10 -->
+                <article class="chapter-card" id="ch10">
+                    <h2 class="chapter-title">Chapter 10: Prepositions & Conjunctions</h2>
+
+                    <h3 class="section-subtitle">Important Preposition Usages with Examples:</h3>
+                    <ul class="example-list">
+                        <li><strong>In vs At (स्थान के लिए):</strong> 'At' छोटे स्थान/निश्चित बिंदु के लिए, 'In' बड़े
+                            शहर/देश के लिए।<br><em>Example:</em> He lives <strong>at</strong> Haspura
+                            <strong>in</strong> Bihar.</li>
+                        <li><strong>Since vs For (समय के लिए):</strong> 'Since' निश्चित समय (Point of time) के लिए,
+                            'For' अनिश्चित अवधि (Period of time) के लिए।<br><em>Example:</em> I have been living here
+                            <strong>since</strong> 2020. She has been reading <strong>for</strong> 3 hours.</li>
+                        <li><strong>Beside vs Besides:</strong> 'Beside' = बगल में, 'Besides' = के
+                            अतिरिक्त।<br><em>Example:</em> Come and sit <strong>beside</strong> me.
+                            <strong>Besides</strong> English, he knows Hindi.</li>
+                    </ul>
+
+                    <h3 class="section-subtitle">Key Conjunctions (जोड़ने वाले शब्द):</h3>
+                    <ul class="example-list">
+                        <li><strong>And (और):</strong> Joins similar sentences. ➔ Ram <strong>and</strong> Shyam are
+                            good friends.</li>
+                        <li><strong>But (लेकिन):</strong> Shows contrast. ➔ He worked hard, <strong>but</strong> he
+                            failed.</li>
+                        <li><strong>Because (क्योंकि):</strong> Shows reason. ➔ I was absent <strong>because</strong> I
+                            was ill.</li>
+                        <li><strong>Although...Yet (यद्यपि...फिर भी):</strong> ➔ <strong>Although</strong> he is rich,
+                            <strong>yet</strong> he is humble.</li>
+                    </ul>
+                </article>
+
+                <!-- Chapter 11 -->
+                <article class="chapter-card" id="ch11">
+                    <h2 class="chapter-title">Chapter 11: Common English Errors & Corrections</h2>
+                    <p>अक्सर विद्यार्थी निम्नलिखित वाक्यों को बोलने एवं लिखने में गलतियाँ करते हैं। सही और गलत रूप ध्यान
+                        से समझें:</p>
+
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Incorrect Sentence (गलत रूप)</th>
+                                    <th>Correct Sentence (सही रूप)</th>
+                                    <th>Explanation / Reason (कारण)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="badge badge-err">Incorrect</span> He is elder than me.</td>
+                                    <td><span class="badge badge-corr">Correct</span> He is elder <strong>to</strong>
+                                        me.</td>
+                                    <td>'Elder' के साथ 'than' नहीं बल्कि 'to' लगता है।</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-err">Incorrect</span> One of my friend is coming.</td>
+                                    <td><span class="badge badge-corr">Correct</span> One of my <strong>friends</strong>
+                                        is coming.</td>
+                                    <td>'One of' के बाद संज्ञा हमेशा Plural होती है।</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-err">Incorrect</span> She doesn't knows the answer.
+                                    </td>
+                                    <td><span class="badge badge-corr">Correct</span> She doesn't <strong>know</strong>
+                                        the answer.</td>
+                                    <td>'Does' आने के बाद Verb में 's/es' नहीं जुड़ता।</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-err">Incorrect</span> I am knowing him very well.</td>
+                                    <td><span class="badge badge-corr">Correct</span> I <strong>know</strong> him very
+                                        well.</td>
+                                    <td>'Know' क्रिया का प्रयोग Continuous में नहीं होता।</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-err">Incorrect</span> What is the time in your watch?
+                                    </td>
+                                    <td><span class="badge badge-corr">Correct</span> What is the time
+                                        <strong>by</strong> your watch?</td>
+                                    <td>घड़ी के समय के लिए 'by' Preposition का प्रयोग होता है।</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Live Topic Search Filter Engine
+        function searchTopics() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.chapter-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

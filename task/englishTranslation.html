@@ -1,0 +1,828 @@
+ !DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS ENGLISH SCHOOL - Hindi to English Translation Master Book</title>
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary: #0284c7;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: clamp(20px, 5vw, 50px);
+        }
+
+        /* Responsive Header Banner */
+        header {
+            background: linear-gradient(135deg, #0f766e, #0284c7);
+            color: white;
+            padding: clamp(1.5rem, 4vw, 2.5rem) 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.4rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+            margin: clamp(1rem, 3vw, 2rem) auto;
+            padding: 0 clamp(0.75rem, 2vw, 1rem);
+        }
+
+        /* Controls & Search Bar */
+        .controls-bar {
+            background: var(--card-bg);
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            border: 1px solid var(--border);
+        }
+
+        .search-box {
+            flex: 1 1 250px;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            flex: 1 1 auto;
+        }
+
+        @media (min-width: 640px) {
+            .btn-group {
+                width: auto;
+            }
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d9488;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        /* Responsive Layout Grid */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .layout {
+                grid-template-columns: 290px 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Sidebar Index */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            height: fit-content;
+        }
+
+        @media (min-width: 900px) {
+            .sidebar {
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+        .sidebar h3 {
+            color: var(--primary);
+            font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .chapter-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 900px) {
+            .chapter-menu {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+        .chapter-menu a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2vw, 0.92rem);
+            transition: all 0.2s;
+        }
+
+        .chapter-menu a:hover,
+        .chapter-menu a.active {
+            background: #ccfbf1;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chapter-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: clamp(1rem, 3vw, 2rem);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .chapter-title {
+            color: var(--primary);
+            font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+            margin: 1.25rem 0 0.75rem 0;
+            font-weight: 600;
+        }
+
+        .rule-box {
+            background: #f0fdf4;
+            border-left: 4px solid var(--primary);
+            padding: 0.85rem clamp(0.75rem, 2vw, 1.2rem);
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: clamp(0.875rem, 2vw, 0.98rem);
+            word-wrap: break-word;
+        }
+
+        .rule-box strong {
+            color: var(--primary);
+        }
+
+        /* Translation Pair Styling */
+        .trans-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .trans-item {
+            padding: 0.75rem;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            background: #fafafa;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .trans-hindi {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .trans-english {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: clamp(0.9rem, 2vw, 1.02rem);
+        }
+
+        /* Responsive Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 580px;
+            font-size: clamp(0.825rem, 2vw, 0.93rem);
+        }
+
+        .grammar-table th,
+        .grammar-table td {
+            border: 1px solid var(--border);
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.6rem, 1.5vw, 0.9rem);
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        /* Print Styling */
+        @media print {
+
+            header,
+            .controls-bar,
+            .sidebar,
+            .btn-group {
+                display: none !important;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-after: always;
+            }
+
+            .table-responsive {
+                overflow: visible;
+            }
+
+            .grammar-table {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>PCS ENGLISH SCHOOL</h1>
+        <p>Comprehensive Hindi to English Translation Book (Basic to Advanced)</p>
+    </header>
+
+    <div class="container">
+        <!-- Control & Search Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" onkeyup="searchTopics()"
+                    placeholder="सर्च करें (जैसे: Use of Is/Am/Are, Present Tense, Modals, Daily Use)...">
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Top</button>
+                <button class="btn btn-success" onclick="window.print()">🖨️ Print Book</button>
+            </div>
+        </div>
+
+        <div class="layout">
+            <!-- Sidebar Index Navigation -->
+            <nav class="sidebar">
+                <h3>Translation Index (विषय-सूची)</h3>
+                <ul class="chapter-menu">
+                    <li><a href="#ch1">1. Use of Is, Am, Are</a></li>
+                    <li><a href="#ch2">2. Use of Was, Were</a></li>
+                    <li><a href="#ch3">3. Introductory 'It' & 'There'</a></li>
+                    <li><a href="#ch4">4. Has, Have & Had (अधिकार/पास)</a></li>
+                    <li><a href="#ch5">5. Infinitive (Has to / Had to)</a></li>
+                    <li><a href="#ch6">6. Modals in Translation</a></li>
+                    <li><a href="#ch7">7. All 12 Tenses Translation</a></li>
+                    <li><a href="#ch8">8. Imperative & Order Sentences</a></li>
+                    <li><a href="#ch9">9. Daily Use Sentences</a></li>
+                    <li><a href="#ch10">10. Idioms & Proverbs</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+
+                <!-- Chapter 1 -->
+                <article class="chapter-card" id="ch1">
+                    <h2 class="chapter-title">Lesson 1: Use of Is, Am, Are (है, हूँ, हैं, हो)</h2>
+                    <p>जब वाक्य के अंत में मुख्य क्रिया (Action Verb) न हो और केवल संज्ञा (Noun) या विशेषण (Adjective)
+                        की स्थिति बताई गई हो।</p>
+
+                    <div class="rule-box">
+                        <strong>अनुवाद का नियम (Formula):</strong><br>
+                        <code>Subject + Is / Am / Are + Complement (Noun/Adjective)</code><br>
+                        • <strong>He / She / It / Singular Noun</strong> ➔ <strong>Is</strong><br>
+                        • <strong>I</strong> ➔ <strong>Am</strong><br>
+                        • <strong>We / You / They / Plural Noun</strong> ➔ <strong>Are</strong>
+                    </div>
+
+                    <h3 class="section-subtitle">व्यावहारिक अनुवाद उदाहरण (Examples):</h3>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">1. राम एक ईमानदार लड़का है।</div>
+                            <div class="trans-english">➔ Ram is an honest boy.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">2. मैं एक मेहनती छात्र हूँ।</div>
+                            <div class="trans-english">➔ I am a hard-working student.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">3. वे लोग निर्दोष हैं।</div>
+                            <div class="trans-english">➔ They are innocent.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">4. क्या तुम तैयार हो? (Interrogative)</div>
+                            <div class="trans-english">➔ Are you ready?</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">5. वह भूखा नहीं है। (Negative)</div>
+                            <div class="trans-english">➔ He is not hungry.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 2 -->
+                <article class="chapter-card" id="ch2">
+                    <h2 class="chapter-title">Lesson 2: Use of Was, Were (था, थी, थे)</h2>
+                    <p>भूतकाल (Past Time) में स्थिति या अवस्था दर्शाने के लिए Was/Were का प्रयोग करते हैं।</p>
+
+                    <div class="rule-box">
+                        <strong>अनुवाद का नियम (Formula):</strong><br>
+                        <code>Subject + Was / Were + Complement</code><br>
+                        • <strong>I / He / She / It / Singular</strong> ➔ <strong>Was</strong><br>
+                        • <strong>We / You / They / Plural</strong> ➔ <strong>Were</strong>
+                    </div>
+
+                    <h3 class="section-subtitle">उदाहरण (Examples):</h3>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">1. महात्मा गांधी एक महान नेता थे।</div>
+                            <div class="trans-english">➔ Mahatma Gandhi was a great leader.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">2. हम लोग कल बहुत व्यस्त थे।</div>
+                            <div class="trans-english">➔ We were very busy yesterday.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">3. मौसम बहुत सुहावना था।</div>
+                            <div class="trans-english">➔ The weather was very pleasant.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">4. वे लोग अनुपस्थित नहीं थे।</div>
+                            <div class="trans-english">➔ They were not absent.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 3 -->
+                <article class="chapter-card" id="ch3">
+                    <h2 class="chapter-title">Lesson 3: Introductory 'It' & 'There' का प्रयोग</h2>
+
+                    <h3 class="section-subtitle">1. Use of 'It' (समय, मौसम, तिथि, दिन व प्राकृतिक घटना):</h3>
+                    <div class="rule-box">
+                        <strong>Rule:</strong> समय, ऋतु, दिन या दूरी बताने वाले वाक्यों का प्रारंभ <strong>'It'</strong>
+                        से होता है।
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• अभी 10 बजे हैं।</div>
+                            <div class="trans-english">➔ It is 10 o'clock now.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• आज बहुत गर्मी है।</div>
+                            <div class="trans-english">➔ It is very hot today.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• आज सोमवार है।</div>
+                            <div class="trans-english">➔ It is Monday today.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• वर्षा हो रही है।</div>
+                            <div class="trans-english">➔ It is raining.</div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-subtitle">2. Use of 'There' (अस्तित्व या उपस्थिति दर्शाने हेतु):</h3>
+                    <div class="rule-box">
+                        <strong>Rule:</strong> जब किसी स्थान पर किसी वस्तु या व्यक्ति के होने या न होने का बोध हो, तब
+                        वाक्यों की शुरुआत <strong>'There'</strong> से होती है।
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• एक राजा था।</div>
+                            <div class="trans-english">➔ There was a king.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• हमारे स्कूल में 500 छात्र हैं।</div>
+                            <div class="trans-english">➔ There are 500 students in our school.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• कुएँ में पानी नहीं है।</div>
+                            <div class="trans-english">➔ There is no water in the well.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 4 -->
+                <article class="chapter-card" id="ch4">
+                    <h2 class="chapter-title">Lesson 4: Has, Have & Had (अधिकार / पास होना)</h2>
+                    <p>जब कर्ता के पास कोई वस्तु हो या उस पर कर्ता का अधिकार (Possession) हो।</p>
+
+                    <div class="rule-box">
+                        <code>Subject + Has / Have / Had + Object</code><br>
+                        • <strong>He/She/It/Singular (Present)</strong> ➔ <strong>Has</strong><br>
+                        • <strong>I/We/You/They/Plural (Present)</strong> ➔ <strong>Have</strong><br>
+                        • <strong>All Subjects (Past - पास था)</strong> ➔ <strong>Had</strong>
+                    </div>
+
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">1. मेरे पास एक नई कार है।</div>
+                            <div class="trans-english">➔ I have a new car.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">2. उसके पास पर्याप्त समय है।</div>
+                            <div class="trans-english">➔ He has sufficient time.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">3. किसान के पास दो बैल थे।</div>
+                            <div class="trans-english">➔ The farmer had two oxen.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">4. क्या आपके पास कोई किताब है?</div>
+                            <div class="trans-english">➔ Do you have any book? / Have you any book?</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 5 -->
+                <article class="chapter-card" id="ch5">
+                    <h2 class="chapter-title">Lesson 5: Infinitive Use (Has to / Have to / Had to)</h2>
+                    <p>मजबूरी, बाध्यता या अनिवार्यता (Compulsion / Obligation) दर्शाने वाले वाक्य (ना पड़ता है / ना है)।
+                    </p>
+
+                    <div class="rule-box">
+                        • <strong>Has to / Have to + V1:</strong> ना पड़ता है / ना है (Present)<br>
+                        • <strong>Had to + V1:</strong> ना पड़ता था / ना पड़ा (Past)
+                    </div>
+
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">1. मुझे रोज़ पैदल जाना पड़ता है।</div>
+                            <div class="trans-english">➔ I have to walk every day.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">2. उसे यह काम करना है।</div>
+                            <div class="trans-english">➔ He has to do this work.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">3. हमें स्टेशन जाना पड़ा।</div>
+                            <div class="trans-english">➔ We had to go to the station.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">4. आपको सच बोलना पड़ेगा।</div>
+                            <div class="trans-english">➔ You will have to speak the truth.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 6 -->
+                <article class="chapter-card" id="ch6">
+                    <h2 class="chapter-title">Lesson 6: Modal Verbs in Translation (Can, Should, May...)</h2>
+
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Modal Verb</th>
+                                    <th>हिंदी पहचान / भाव</th>
+                                    <th>अनुवाद उदाहरण (Hindi ➔ English)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Can + V1</strong></td>
+                                    <td>सकता है (क्षमता/योग्य)</td>
+                                    <td>• मैं अंग्रेजी बोल सकता हूँ। ➔ I can speak English.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Could + V1</strong></td>
+                                    <td>सका / सकता था</td>
+                                    <td>• वह समय पर न पहुँच सका। ➔ He could not reach on time.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Should + V1</strong></td>
+                                    <td>चाहिए (सामान्य सलाह)</td>
+                                    <td>• तुम्हें कड़ी मेहनत करनी चाहिए। ➔ You should work hard.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Must + V1</strong></td>
+                                    <td>अवश्य चाहिए (ज़रूरी)</td>
+                                    <td>• हमें नियमों का पालन अवश्य करना चाहिए। ➔ We must follow rules.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>May + V1</strong></td>
+                                    <td>सकता है (संभावना/अनुमति)</td>
+                                    <td>• आज बारिश हो सकती है। ➔ It may rain today.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 7 -->
+                <article class="chapter-card" id="ch7">
+                    <h2 class="chapter-title">Lesson 7: All 12 Tenses Translation Master Table</h2>
+                    <p>हिंदी वाक्यों के अंत में आने वाले शब्दों से Tense पहचान कर अनुवाद करने की संपूर्ण गाइड:</p>
+
+                    <div class="table-responsive">
+                        <table class="grammar-table">
+                            <thead>
+                                <tr>
+                                    <th>Tense का नाम</th>
+                                    <th>हिंदी पहचान</th>
+                                    <th>अनुवाद फॉर्मूला</th>
+                                    <th>अनुवाद उदाहरण (Hindi ➔ English)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Present Indefinite</strong></td>
+                                    <td>ता है, ती है, ते हैं</td>
+                                    <td>Sub + V1(s/es) + Obj</td>
+                                    <td>वह गाना गाती है। ➔ She sings a song.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Present Continuous</strong></td>
+                                    <td>रहा है, रही है, रहे हैं</td>
+                                    <td>Sub + is/am/are + V1+ing</td>
+                                    <td>बच्चे खेल रहे हैं। ➔ Children are playing.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Present Perfect</strong></td>
+                                    <td>चुका है, या है, ई है</td>
+                                    <td>Sub + has/have + V3</td>
+                                    <td>मैंने खाना खा लिया है। ➔ I have eaten food.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Present Perfect Cont.</strong></td>
+                                    <td>ता आ रहा है / समय+रहा है</td>
+                                    <td>Sub + has/have + been + V-ing + for/since</td>
+                                    <td>वह 2 घंटे से पढ़ रहा है। ➔ He has been studying for 2 hours.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Past Indefinite</strong></td>
+                                    <td>आ, ई, ए / ता था</td>
+                                    <td>Sub + V2 + Obj</td>
+                                    <td>उसने एक पत्र लिखा। ➔ He wrote a letter.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Past Continuous</strong></td>
+                                    <td>रहा था, रही थी, रहे थे</td>
+                                    <td>Sub + was/were + V1+ing</td>
+                                    <td>हम टीवी देख रहे थे। ➔ We were watching TV.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Past Perfect</strong></td>
+                                    <td>चुका था, या था</td>
+                                    <td>Sub + had + V3</td>
+                                    <td>डॉक्टर के आने से पहले मरीज मर चुका था। ➔ The patient had died before doctor
+                                        came.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Future Indefinite</strong></td>
+                                    <td>गा, गी, गे</td>
+                                    <td>Sub + will/shall + V1</td>
+                                    <td>मैं कल पटना जाऊँगा। ➔ I will go to Patna tomorrow.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Chapter 8 -->
+                <article class="chapter-card" id="ch8">
+                    <h2 class="chapter-title">Lesson 8: Imperative & Causative Sentences</h2>
+
+                    <h3 class="section-subtitle">1. Imperative Sentences (आज्ञा, प्रार्थना व सलाह):</h3>
+                    <div class="rule-box">
+                        वाक्य मुख्य क्रिया (Verb 1st form) से शुरू होते हैं। 'Don't' का प्रयोग मत/न के लिए करें।
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• दरवाजा बंद करो।</div>
+                            <div class="trans-english">➔ Close the door.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• यहाँ मत बैठो।</div>
+                            <div class="trans-english">➔ Don't sit here.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• कृपया मेरी मदद कीजिए।</div>
+                            <div class="trans-english">➔ Please help me.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• आओ खेलें। (Let us...)</div>
+                            <div class="trans-english">➔ Let's play.</div>
+                        </div>
+                    </div>
+
+                    <h3 class="section-subtitle">2. Causative Sentences (जब कर्ता स्वयं कार्य न करके किसी और से करवाए -
+                        Make / Get):</h3>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• वह मुझे हँसाता है।</div>
+                            <div class="trans-english">➔ He makes me laugh.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• मैंने बाल कटवाए।</div>
+                            <div class="trans-english">➔ I got my hair cut.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 9 -->
+                <article class="chapter-card" id="ch9">
+                    <h2 class="chapter-title">Lesson 9: Daily Use Sentences Translation</h2>
+                    <p>रोजमर्रा के जीवन में सबसे ज्यादा बोले जाने वाले हिंदी वाक्यों का अंग्रेजी अनुवाद:</p>
+
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">1. आपका नाम क्या है?</div>
+                            <div class="trans-english">➔ What is your name?</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">2. मुझे देर हो रही है।</div>
+                            <div class="trans-english">➔ I am getting late.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">3. बहाने मत बनाओ।</div>
+                            <div class="trans-english">➔ Don't make excuses.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">4. समझने की कोशिश करो।</div>
+                            <div class="trans-english">➔ Try to understand.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">5. बात को बढ़ाओ मत।</div>
+                            <div class="trans-english">➔ Don't stretch the matter.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">6. चिंता की कोई बात नहीं है।</div>
+                            <div class="trans-english">➔ There is nothing to worry about.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Chapter 10 -->
+                <article class="chapter-card" id="ch10">
+                    <h2 class="chapter-title">Lesson 10: Idioms & Proverbs Translation (कहावतें)</h2>
+                    <p>हिंदी की प्रसिद्ध कहावतों का अंग्रेजी में भावार्थ अनुवाद:</p>
+
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">1. नाच न जाने आँगन टेढ़ा।</div>
+                            <div class="trans-english">➔ A bad workman quarrels with his tools.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">2. जो गरजते हैं, वो बरसते नहीं।</div>
+                            <div class="trans-english">➔ Barking dogs seldom bite.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">3. जैसी करनी, वैसी भरनी।</div>
+                            <div class="trans-english">➔ As you sow, so shall you reap.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">4. दूर के ढोल सुहावने लगते हैं।</div>
+                            <div class="trans-english">➔ Grass is always greener on the other side.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">5. अंत भला तो सब भला।</div>
+                            <div class="trans-english">➔ All's well that ends well.</div>
+                        </div>
+                    </div>
+                </article>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Topic Search Filter Engine
+        function searchTopics() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.chapter-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

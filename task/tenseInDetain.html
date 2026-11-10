@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCS ENGLISH SCHOOL - Ultimate Tenses Translation Master Book</title>
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --secondary: #0284c7;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: clamp(20px, 5vw, 50px);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f766e, #0284c7);
+            color: white;
+            padding: clamp(1.5rem, 4vw, 2.5rem) 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.4rem);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1250px;
+            margin: clamp(1rem, 3vw, 2rem) auto;
+            padding: 0 clamp(0.75rem, 2vw, 1rem);
+        }
+
+        .controls-bar {
+            background: var(--card-bg);
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.5rem);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            border: 1px solid var(--border);
+        }
+
+        .search-box {
+            flex: 1 1 250px;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+            flex: 1 1 auto;
+        }
+
+        @media (min-width: 640px) {
+            .btn-group {
+                width: auto;
+            }
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0d9488;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .layout {
+                grid-template-columns: 290px 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            height: fit-content;
+        }
+
+        @media (min-width: 900px) {
+            .sidebar {
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+        .sidebar h3 {
+            color: var(--primary);
+            font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .chapter-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .chapter-menu a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: clamp(0.85rem, 2vw, 0.92rem);
+            transition: all 0.2s;
+        }
+
+        .chapter-menu a:hover,
+        .chapter-menu a.active {
+            background: #ccfbf1;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chapter-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: clamp(1rem, 3vw, 2rem);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .chapter-title {
+            color: var(--primary);
+            font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 0.2rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            margin: 1.75rem 0 0.75rem 0;
+            font-weight: 700;
+            border-left: 4px solid var(--secondary);
+            padding-left: 0.75rem;
+        }
+
+        .rule-box {
+            background: #f0fdf4;
+            border-left: 4px solid var(--primary);
+            padding: 0.85rem clamp(0.75rem, 2vw, 1.2rem);
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: clamp(0.875rem, 2vw, 0.98rem);
+        }
+
+        .rule-box strong {
+            color: var(--primary);
+        }
+
+        .trans-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .trans-item {
+            padding: 0.75rem;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            background: #fafafa;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .trans-hindi {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .trans-english {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: clamp(0.9rem, 2vw, 1.02rem);
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 620px;
+            font-size: clamp(0.825rem, 2vw, 0.93rem);
+        }
+
+        .grammar-table th,
+        .grammar-table td {
+            border: 1px solid var(--border);
+            padding: clamp(0.6rem, 1.5vw, 0.8rem);
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        @media print {
+
+            header,
+            .controls-bar,
+            .sidebar,
+            .btn-group {
+                display: none !important;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>PCS ENGLISH SCHOOL</h1>
+        <p>Ultimate Tenses Translation Master Book (Detailed Rules & Examples)</p>
+    </header>
+
+    <div class="container">
+        <!-- Control & Search Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" onkeyup="searchTopics()"
+                    placeholder="सर्च करें (जैसे: Present Indefinite, Past Tense, Future)...">
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Top</button>
+                <button class="btn btn-success" onclick="window.print()">🖨️ Print Section</button>
+            </div>
+        </div>
+
+        <div class="layout">
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar">
+                <h3>Tenses Index</h3>
+                <ul class="chapter-menu">
+                    <li><a href="#present">1. Present Tense (वर्तमान काल)</a></li>
+                    <li><a href="#past">2. Past Tense (भूतकाल)</a></li>
+                    <li><a href="#future">3. Future Tense (भविष्यकाल)</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+
+                <!-- PRESENT TENSE -->
+                <article class="chapter-card" id="present">
+                    <h2 class="chapter-title">Part 1: Present Tense (वर्तमान काल)</h2>
+                    <p>वर्तमान समय में होने वाले कार्यों को व्यक्त करने के लिए Present Tense का उपयोग किया जाता है। इसके
+                        4 प्रमुख रूप हैं:</p>
+
+                    <!-- 1. Present Indefinite -->
+                    <h3 class="section-subtitle">1. Present Indefinite Tense (ता है, ती है, ते हैं)</h3>
+                    <div class="rule-box">
+                        <strong>नियम व फॉर्मूले:</strong><br>
+                        • <strong>Affirmative:</strong> Sub + V1 (s/es) + Obj <em>(He, She, It, Singular के साथ V1 में
+                            s/es लगता है; I, We, You, They, Plural के साथ केवल V1)</em><br>
+                        • <strong>Negative:</strong> Sub + do/does + not + V1 + Obj<br>
+                        • <strong>Interrogative:</strong> Do/Does + Sub + V1 + Obj?
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• सूर्य पूर्व में उगता है।</div>
+                            <div class="trans-english">➔ The sun rises in the east.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• मेरी माँ रोज़ सुबह टहलती हैं।</div>
+                            <div class="trans-english">➔ My mother walks every morning.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• हम अंग्रेजी बोलते हैं।</div>
+                            <div class="trans-english">➔ We speak English.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• क्या तुम क्रिकेट खेलते हो?</div>
+                            <div class="trans-english">➔ Do you play cricket?</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• वह झूठ नहीं बोलता है।</div>
+                            <div class="trans-english">➔ He does not tell a lie.</div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Present Continuous -->
+                    <h3 class="section-subtitle">2. Present Continuous Tense (रहा है, रही है, रहे हैं)</h3>
+                    <div class="rule-box">
+                        <strong>नियम व फॉर्मूले:</strong><br>
+                        • <strong>Affirmative:</strong> Sub + is/am/are + V1 + ing + Obj<br>
+                        • <strong>Negative:</strong> Sub + is/am/are + not + V1 + ing + Obj<br>
+                        • <strong>Interrogative:</strong> Is/Am/Are + Sub + V1 + ing + Obj?
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• बच्चे मैदान में फुटबॉल खेल रहे हैं।</div>
+                            <div class="trans-english">➔ Children are playing football in the field.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• मैं एक पत्र लिख रहा हूँ।</div>
+                            <div class="trans-english">➔ I am writing a letter.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• क्या बारिश हो रही है?</div>
+                            <div class="trans-english">➔ Is it raining?</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• वे लोग शोर नहीं मचा रहे हैं।</div>
+                            <div class="trans-english">➔ They are not making a noise.</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Present Perfect -->
+                    <h3 class="section-subtitle">3. Present Perfect Tense (चुका है, चुकी है, या है, ई है)</h3>
+                    <div class="rule-box">
+                        <strong>नियम व फॉर्मूले:</strong><br>
+                        • <strong>Affirmative:</strong> Sub + has/have + V3 + Obj <em>(He/She/It/Singular के साथ has;
+                            I/We/You/They/Plural के साथ have)</em><br>
+                        • <strong>Negative:</strong> Sub + has/have + not + V3 + Obj
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• मैंने अपना गृहकार्य पूरा कर लिया है।</div>
+                            <div class="trans-english">➔ I have completed my homework.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• रेलगाड़ी अभी-अभी खुली है।</div>
+                            <div class="trans-english">➔ The train has just started.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• क्या आपने ताजमहल देखा है?</div>
+                            <div class="trans-english">➔ Have you seen the Taj Mahal?</div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Present Perfect Continuous -->
+                    <h3 class="section-subtitle">4. Present Perfect Continuous Tense (समय के साथ रहा है/रही है)</h3>
+                    <div class="rule-box">
+                        <strong>नियम:</strong> निश्चित समय (Point of time) के लिए <strong>since</strong> और अनिश्चित
+                        अवधि (Period of time) के लिए <strong>for</strong> का प्रयोग होता है।<br>
+                        • <strong>Formula:</strong> Sub + has/have + been + V1 + ing + object + since/for + time.
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• मूसलाधार बारिश सुबह से हो रही है।</div>
+                            <div class="trans-english">➔ It has been raining cats and dogs since morning.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• वह दो घंटे से पढ़ रहा है।</div>
+                            <div class="trans-english">➔ He has been studying for two hours.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PAST TENSE -->
+                <article class="chapter-card" id="past">
+                    <h2 class="chapter-title">Part 2: Past Tense (भूतकाल)</h2>
+                    <p>भूतकाल में बीते हुए समय में संपन्न कार्यों का अनुवाद करने के नियम:</p>
+
+                    <!-- 1. Past Indefinite -->
+                    <h3 class="section-subtitle">1. Past Indefinite Tense (आ, ई, ए / ता था, ती थी)</h3>
+                    <div class="rule-box">
+                        <strong>नियम व फॉर्मूले:</strong><br>
+                        • <strong>Affirmative:</strong> Sub + V2 + Obj <em>(सभी कर्ताओं के साथ क्रिया का दूसरा
+                            रूप)</em><br>
+                        • <strong>Negative/Interrogative:</strong> Did का प्रयोग होने पर हमेशा V1 (क्रिया का पहला रूप)
+                        आता है।<br>
+                        • Sub + did not + V1 + Obj | Did + Sub + V1 + Obj?
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• कल मैंने एक सुंदर पक्षी देखा।</div>
+                            <div class="trans-english">➔ I saw a beautiful bird yesterday.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• उसने मुझे एक कलम दी।</div>
+                            <div class="trans-english">➔ He gave me a pen.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• क्या तुमने कल मैच खेला था?</div>
+                            <div class="trans-english">➔ Did you play the match yesterday?</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• उसने कल मेरी बात नहीं मानी।</div>
+                            <div class="trans-english">➔ He did not obey me yesterday.</div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Past Continuous -->
+                    <h3 class="section-subtitle">2. Past Continuous Tense (रहा था, रही थी, रहे थे)</h3>
+                    <div class="rule-box">
+                        • <strong>Formula:</strong> Sub + was/were + V1 + ing + Obj<br>
+                        • <em>I, He, She, It, Singular</em> ➔ <strong>was</strong> | <em>We, You, They, Plural</em> ➔
+                        <strong>were</strong>
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• जब मैं आया, वह सो रहा था।</div>
+                            <div class="trans-english">➔ When I came, he was sleeping.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• कल शाम हम नदी में तैर रहे थे।</div>
+                            <div class="trans-english">➔ We were swimming in the river yesterday evening.</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Past Perfect -->
+                    <h3 class="section-subtitle">3. Past Perfect Tense (चुका था, चुकी थी, या था)</h3>
+                    <div class="rule-box">
+                        • <strong>Formula:</strong> Sub + had + V3 + Obj<br>
+                        • <em>दो भूतकालीन घटनाओं वाले वाक्य:</em> डॉक्टर के आने से पहले मरीज़ मर चुका था ➔ The patient
+                        had died before the doctor came.
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• सूर्य छिपने से पहले हम घर पहुँच चुके थे।</div>
+                            <div class="trans-english">➔ We had reached home before the sun set.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• उसने यह काम पहले ही कर लिया था।</div>
+                            <div class="trans-english">➔ He had already done this work.</div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Past Perfect Continuous -->
+                    <h3 class="section-subtitle">4. Past Perfect Continuous Tense</h3>
+                    <div class="rule-box">
+                        • <strong>Formula:</strong> Sub + had + been + V1 + ing + object + since/for + time.
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• वे लोग सुबह से क्रिकेट खेल रहे थे।</div>
+                            <div class="trans-english">➔ They had been playing cricket since morning.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- FUTURE TENSE -->
+                <article class="chapter-card" id="future">
+                    <h2 class="chapter-title">Part 3: Future Tense (भविष्यकाल)</h2>
+                    <p>भविष्य में होने वाले कार्यों को व्यक्त करने के नियम:</p>
+
+                    <!-- 1. Future Indefinite -->
+                    <h3 class="section-subtitle">1. Future Indefinite Tense (गा, गी, गे)</h3>
+                    <div class="rule-box">
+                        • <strong>Formula:</strong> Sub + will/shall + V1 + Obj<br>
+                        • <em>Note:</em> आधुनिक अंग्रेजी में सभी कर्ताओं के साथ सामान्यतः <strong>will</strong> का
+                        प्रयोग किया जाता है।
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• मैं कल दिल्ली जाऊँगा।</div>
+                            <div class="trans-english">➔ I will go to Delhi tomorrow.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• प्रधानमंत्री कल भाषण देंगे।</div>
+                            <div class="trans-english">➔ The Prime Minister will deliver a speech tomorrow.</div>
+                        </div>
+                        <div class="trans-item">
+                            <div class="trans-hindi">• क्या वह तुम्हारी मदद करेगा?</div>
+                            <div class="trans-english">➔ Will he help you?</div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Future Continuous -->
+                    <h3 class="section-subtitle">2. Future Continuous Tense (रहा होगा, रही होगी)</h3>
+                    <div class="rule-box">
+                        • <strong>Formula:</strong> Sub + will be + V1 + ing + Obj
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• इस समय कल हम खेल रहे होंगे।</div>
+                            <div class="trans-english">➔ We will be playing at this time tomorrow.</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Future Perfect -->
+                    <h3 class="section-subtitle">3. Future Perfect Tense (चुका होगा, चुकी होगी)</h3>
+                    <div class="rule-box">
+                        • <strong>Formula:</strong> Sub + will have + V3 + Obj
+                    </div>
+                    <div class="trans-list">
+                        <div class="trans-item">
+                            <div class="trans-hindi">• सूर्यास्त तक हम अपना काम समाप्त कर चुके होंगे।</div>
+                            <div class="trans-english">➔ We will have finished our work by sunset.</div>
+                        </div>
+                    </div>
+                </article>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function searchTopics() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.chapter-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
