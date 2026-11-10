@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 7 Topic-Wise Master Question Bank (150 Questions)</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --correct: #10b981;
+            --correct-bg: #ecfdf5;
+            --wrong: #ef4444;
+            --wrong-bg: #fef2f2;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3730a3, #4f46e5);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .controls-panel {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        select,
+        button {
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        select {
+            background-color: #fff;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        button.btn-outline:hover {
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .stat-item span {
+            color: var(--primary);
+        }
+
+        /* Question Cards Layout */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .q-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .q-badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .badge-math {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .badge-science {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-sst {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-english {
+            background: #fae8ff;
+            color: #86198f;
+        }
+
+        .badge-hindi {
+            background: #ffe4e6;
+            color: #9f1239;
+        }
+
+        .q-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .q-body {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .q-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .q-image-container {
+            width: 100%;
+            height: 160px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f1f5f9;
+        }
+
+        .q-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+        }
+
+        .opt-btn {
+            text-align: left;
+            background: #f8fafc;
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 400;
+            transition: all 0.2s;
+        }
+
+        .opt-btn:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .opt-btn.correct {
+            background: var(--correct-bg) !important;
+            border-color: var(--correct) !important;
+            color: #065f46 !important;
+            font-weight: 600;
+        }
+
+        .opt-btn.wrong {
+            background: var(--wrong-bg) !important;
+            border-color: var(--wrong) !important;
+            color: #991b1b !important;
+        }
+
+        .explanation {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f0fdf4;
+            border-left: 4px solid var(--correct);
+            font-size: 0.9rem;
+            color: #166534;
+            display: none;
+        }
+
+        /* Printable / Worksheet Styling */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            header,
+            .controls-panel,
+            .explanation {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            .q-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+                margin-bottom: 1.5rem;
+            }
+
+            .q-body {
+                grid-template-columns: 1fr;
+            }
+
+            .q-image-container {
+                display: none;
+            }
+
+            .opt-btn {
+                border: 1px solid #aaa;
+                background: none !important;
+                color: black !important;
+            }
+
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 2rem;
+                border-bottom: 2px solid #000;
+                padding-bottom: 1rem;
+            }
+        }
+
+        .print-header {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Class 7 All Subjects Topic-Wise Master Question Bank</h1>
+        <p>150 Standard NCERT/CBSE Questions with Answers, Explanations & Visuals</p>
+    </header>
+
+    <div class="container">
+        <div class="print-header">
+            <h2>PCS ENGLISH SCHOOL</h2>
+            <h3>Class 7 Comprehensive Practice Worksheet (150 Questions)</h3>
+            <p><strong>Name:</strong> ________________________ &nbsp;&nbsp; <strong>Roll No:</strong> ____________
+                &nbsp;&nbsp; <strong>Date:</strong> ____________</p>
+        </div>
+
+        <div class="controls-panel">
+            <div class="filter-group">
+                <select id="subjectFilter" onchange="filterQuestions()">
+                    <option value="all">All Subjects (150)</option>
+                    <option value="math">Mathematics (30 Qs)</option>
+                    <option value="science">Science (30 Qs)</option>
+                    <option value="sst">Social Science (30 Qs)</option>
+                    <option value="english">English Grammar & Lit (30 Qs)</option>
+                    <option value="hindi">Hindi - हिन्दी (30 Qs)</option>
+                </select>
+
+                <select id="topicFilter" onchange="filterQuestions()">
+                    <option value="all">All Topics</option>
+                </select>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-item">Total: <span id="totalCount">150</span></div>
+                <div class="stat-item">Score: <span id="scoreCount">0</span> / <span id="attemptedCount">0</span></div>
+            </div>
+
+            <div class="filter-group">
+                <button class="btn-outline" onclick="resetAnswers()">Reset Quiz</button>
+                <button onclick="window.print()">Print Worksheet</button>
+            </div>
+        </div>
+
+        <div id="questionsGrid" class="grid-layout">
+            <!-- Questions dynamically generated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const questionBank = [
+            // ==================== MATHEMATICS (30 Questions) ====================
+            {
+                id: 1,
+                subject: "math",
+                topic: "Integers",
+                question: "What is the result of (-15) + (-25) - (-10)?",
+                options: ["-30", "-50", "0", "30"],
+                correct: 0,
+                explanation: "(-15) + (-25) = -40. Then -40 - (-10) = -40 + 10 = -30.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 2,
+                subject: "math",
+                topic: "Fractions & Decimals",
+                question: "What is 3/4 of 4/5 expressed in simplest form?",
+                options: ["3/5", "12/20", "7/9", "4/3"],
+                correct: 0,
+                explanation: "(3 * 4) / (4 * 5) = 12/20. Dividing numerator and denominator by 4 gives 3/5.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 3,
+                subject: "math",
+                topic: "Fractions & Decimals",
+                question: "Find the value of 2.5 × 0.04.",
+                options: ["0.1", "0.01", "1.0", "0.25"],
+                correct: 0,
+                explanation: "25 × 4 = 100. Counting decimal places (1 + 2 = 3 decimal places), we get 0.100 = 0.1.",
+                img: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&q=80"
+            },
+            {
+                id: 4,
+                subject: "math",
+                topic: "Simple Equations",
+                question: "Solve for x: 3x - 7 = 14.",
+                options: ["x = 7", "x = 5", "x = 9", "x = 21"],
+                correct: 0,
+                explanation: "3x = 14 + 7 => 3x = 21 => x = 21 / 3 = 7.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 5,
+                subject: "math",
+                topic: "Lines & Angles",
+                question: "If two complementary angles are in the ratio 2:3, find the larger angle.",
+                options: ["54°", "36°", "90°", "108°"],
+                correct: 0,
+                explanation: "Sum of complementary angles = 90°. 2x + 3x = 90° => 5x = 90° => x = 18°. Larger angle = 3 * 18° = 54°.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 6,
+                subject: "math",
+                topic: "The Triangle & Its Properties",
+                question: "In a right-angled triangle, if the two perpendicular sides are 6 cm and 8 cm, find the hypotenuse.",
+                options: ["10 cm", "14 cm", "12 cm", "100 cm"],
+                correct: 0,
+                explanation: "Pythagoras theorem: H² = P² + B² = 6² + 8² = 36 + 64 = 100. H = √100 = 10 cm.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 7,
+                subject: "math",
+                topic: "Comparing Quantities",
+                question: "Convert the ratio 3 : 4 into percentage.",
+                options: ["75%", "60%", "80%", "70%"],
+                correct: 0,
+                explanation: "(3 / 4) * 100 = 75%.",
+                img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&q=80"
+            },
+            {
+                id: 8,
+                subject: "math",
+                topic: "Comparing Quantities",
+                question: "Find the Simple Interest on ₹ 5000 at 10% per annum for 2 years.",
+                options: ["₹ 1000", "₹ 500", "₹ 1200", "₹ 6000"],
+                correct: 0,
+                explanation: "SI = (P × R × T) / 100 = (5000 × 10 × 2) / 100 = ₹ 1000.",
+                img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&q=80"
+            },
+            {
+                id: 9,
+                subject: "math",
+                topic: "Rational Numbers",
+                question: "Which rational number is equivalent to -3/5?",
+                options: ["-9/15", "6/10", "-6/-10", "9/15"],
+                correct: 0,
+                explanation: "Multiplying numerator and denominator of -3/5 by 3 gives -9/15.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 10,
+                subject: "math",
+                topic: "Perimeter & Area",
+                question: "Find the area of a circle with radius 7 cm. (Use π = 22/7)",
+                options: ["154 cm²", "44 cm²", "308 cm²", "49 cm²"],
+                correct: 0,
+                explanation: "Area = π * r² = (22/7) * 7 * 7 = 22 * 7 = 154 cm².",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 11,
+                subject: "math",
+                topic: "Algebraic Expressions",
+                question: "Subtract (2x - 3y) from (5x + 4y).",
+                options: ["3x + 7y", "3x + y", "7x + y", "3x - 7y"],
+                correct: 0,
+                explanation: "(5x + 4y) - (2x - 3y) = 5x + 4y - 2x + 3y = (5x - 2x) + (4y + 3y) = 3x + 7y.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 12,
+                subject: "math",
+                topic: "Exponents & Powers",
+                question: "Express 108 × 192 as a product of prime factors in exponential form.",
+                options: ["2^8 × 3^4", "2^6 × 3^3", "2^7 × 3^4", "2^8 × 3^3"],
+                correct: 0,
+                explanation: "108 = 2² × 3³ and 192 = 2⁶ × 3¹. Product = (2² × 2⁶) × (3³ × 3¹) = 2⁸ × 3⁴.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 13,
+                subject: "math",
+                topic: "Symmetry",
+                question: "How many lines of symmetry does a regular hexagon have?",
+                options: ["6", "4", "3", "12"],
+                correct: 0,
+                explanation: "A regular polygon with 'n' sides has 'n' lines of symmetry. Hence, a hexagon has 6.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 14,
+                subject: "math",
+                topic: "Data Handling",
+                question: "Find the median of the data set: 5, 2, 9, 7, 3, 8, 6.",
+                options: ["6", "5", "7", "8"],
+                correct: 0,
+                explanation: "Arranging in ascending order: 2, 3, 5, 6, 7, 8, 9. The middle value (4th element) is 6.",
+                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80"
+            },
+            {
+                id: 15,
+                subject: "math",
+                topic: "Data Handling",
+                question: "What is the mode of the numbers: 2, 6, 5, 3, 0, 3, 4, 3, 2, 4, 5, 3?",
+                options: ["3", "2", "4", "5"],
+                correct: 0,
+                explanation: "Mode is the observation that occurs most frequently. Here 3 appears 4 times.",
+                img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80"
+            },
+            {
+                id: 16,
+                subject: "math",
+                topic: "Integers",
+                question: "Compute: (-30) ÷ [(-2) + (-1)].",
+                options: ["10", "-10", "15", "-15"],
+                correct: 0,
+                explanation: "[(-2) + (-1)] = -3. Then (-30) ÷ (-3) = 10.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 17,
+                subject: "math",
+                topic: "Perimeter & Area",
+                question: "The area of a parallelogram with base 8 cm and height 5 cm is:",
+                options: ["40 cm²", "20 cm²", "26 cm²", "80 cm²"],
+                correct: 0,
+                explanation: "Area of parallelogram = Base × Height = 8 cm × 5 cm = 40 cm².",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 18,
+                subject: "math",
+                topic: "Simple Equations",
+                question: "If 4(m + 3) = 20, find m.",
+                options: ["m = 2", "m = 5", "m = 8", "m = 17"],
+                correct: 0,
+                explanation: "m + 3 = 20 / 4 => m + 3 = 5 => m = 5 - 3 = 2.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 19,
+                subject: "math",
+                topic: "Exponents & Powers",
+                question: "Simplify: (2³)².",
+                options: ["64", "32", "16", "128"],
+                correct: 0,
+                explanation: "(2³)² = 2^(3*2) = 2⁶ = 64.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 20,
+                subject: "math",
+                topic: "Visualising Solid Shapes",
+                question: "A cube has how many faces, edges, and vertices respectively?",
+                options: ["6, 12, 8", "6, 8, 12", "8, 12, 6", "4, 6, 4"],
+                correct: 0,
+                explanation: "A standard 3D cube has 6 square faces, 12 straight edges, and 8 corner vertices.",
+                img: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80"
+            },
+            {
+                id: 21,
+                subject: "math",
+                topic: "Lines & Angles",
+                question: "An angle which is equal to its supplement is:",
+                options: ["90°", "45°", "180°", "60°"],
+                correct: 0,
+                explanation: "Supplementary angles add up to 180°. If x = 180° - x, then 2x = 180° => x = 90°.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 22,
+                subject: "math",
+                topic: "The Triangle & Its Properties",
+                question: "The sum of the lengths of any two sides of a triangle is always:",
+                options: ["Greater than the third side", "Less than the third side", "Equal to the third side", "Double the third side"],
+                correct: 0,
+                explanation: "According to triangle inequality theorem, the sum of any two sides is strictly greater than the third side.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 23,
+                subject: "math",
+                topic: "Rational Numbers",
+                question: "What is the additive inverse of -7/9?",
+                options: ["7/9", "-9/7", "9/7", "0"],
+                correct: 0,
+                explanation: "Additive inverse of a number 'a' is '-a' such that a + (-a) = 0. So, -(-7/9) = 7/9.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 24,
+                subject: "math",
+                topic: "Algebraic Expressions",
+                question: "What is the numerical coefficient of y in the expression 3x²y - 5y + 7?",
+                options: ["-5", "5", "3", "7"],
+                correct: 0,
+                explanation: "The term containing y as an isolated variable is -5y, so its coefficient is -5.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 25,
+                subject: "math",
+                topic: "Perimeter & Area",
+                question: "Area of a triangle with base 12 cm and height 7 cm is:",
+                options: ["42 cm²", "84 cm²", "24 cm²", "19 cm²"],
+                correct: 0,
+                explanation: "Area of Triangle = 1/2 × Base × Height = 1/2 × 12 × 7 = 42 cm².",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 26,
+                subject: "math",
+                topic: "Exponents & Powers",
+                question: "What is the standard form of 59,850,000?",
+                options: ["5.985 × 10^7", "59.85 × 10^6", "0.5985 × 10^8", "5.985 × 10^6"],
+                correct: 0,
+                explanation: "Moving the decimal point 7 places to the left gives 5.985 × 10^7.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+            {
+                id: 27,
+                subject: "math",
+                topic: "Comparing Quantities",
+                question: "If a shopkeeper buys a book for ₹200 and sells it for ₹250, what is the profit percentage?",
+                options: ["25%", "20%", "50%", "30%"],
+                correct: 0,
+                explanation: "Profit = 250 - 200 = ₹50. Profit % = (50 / 200) * 100 = 25%.",
+                img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&q=80"
+            },
+            {
+                id: 28,
+                subject: "math",
+                topic: "Fractions & Decimals",
+                question: "Divide 7.75 by 0.25.",
+                options: ["31", "3.1", "310", "0.31"],
+                correct: 0,
+                explanation: "7.75 / 0.25 = 775 / 25 = 31.",
+                img: "https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&q=80"
+            },
+            {
+                id: 29,
+                subject: "math",
+                topic: "Symmetry",
+                question: "What is the order of rotational symmetry of a square?",
+                options: ["4", "2", "8", "1"],
+                correct: 0,
+                explanation: "A square matches its original position 4 times during a full 360° turn (at 90°, 180°, 270°, 360°).",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 30,
+                subject: "math",
+                topic: "Integers",
+                question: "Which of the following expression illustrates the Distributive Property?",
+                options: ["a × (b + c) = a × b + a × c", "a + b = b + a", "(a × b) × c = a × (b × c)", "a + 0 = a"],
+                correct: 0,
+                explanation: "The distributive property of multiplication over addition is expressed as a × (b + c) = a × b + a × c.",
+                img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=80"
+            },
+
+            // ==================== SCIENCE (30 Questions) ====================
+            {
+                id: 31,
+                subject: "science",
+                topic: "Nutrition in Plants",
+                question: "Which tiny pores on leaves facilitate gas exchange during photosynthesis?",
+                options: ["Stomata", "Chloroplasts", "Xylem", "Phloem"],
+                correct: 0,
+                explanation: "Stomata are microscopic pores guarded by guard cells located on leaf surfaces for gaseous exchange.",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 32,
+                subject: "science",
+                topic: "Nutrition in Animals",
+                question: "In which part of the human digestive system is water primarily absorbed from undigested food?",
+                options: ["Large Intestine", "Small Intestine", "Stomach", "Oesophagus"],
+                correct: 0,
+                explanation: "The large intestine absorbs excess water and salts from unabsorbed food material before waste elimination.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 33,
+                subject: "science",
+                topic: "Heat & Temperature",
+                question: "What is the mode of heat transfer that takes place in liquids and gases without direct solid contact?",
+                options: ["Convection", "Conduction", "Radiation", "Insulation"],
+                correct: 0,
+                explanation: "Convection involves the actual movement of fluids (liquids/gases) where warmer portions rise and cooler portions sink.",
+                img: "https://images.unsplash.com/photo-1527066579998-dbbae57f45ce?w=400&q=80"
+            },
+            {
+                id: 34,
+                subject: "science",
+                topic: "Acids, Bases & Salts",
+                question: "Which indicator turns pink when added to a basic solution?",
+                options: ["Phenolphthalein", "Litmus Paper", "Turmeric", "China Rose"],
+                correct: 0,
+                explanation: "Phenolphthalein is a synthetic indicator that remains colorless in acids but turns magenta/pink in basic solutions.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 35,
+                subject: "science",
+                topic: "Physical & Chemical Changes",
+                question: "Which of the following represents a chemical change?",
+                options: ["Rusting of iron", "Melting of ice", "Cutting of wood", "Dissolving sugar in water"],
+                correct: 0,
+                explanation: "Rusting of iron creates a new chemical substance (iron oxide) with completely different properties, making it chemical.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 36,
+                subject: "science",
+                topic: "Respiration in Organisms",
+                question: "What are the breathing organs of cockroaches called?",
+                options: ["Spiracles", "Gills", "Lungs", "Skin"],
+                correct: 0,
+                explanation: "Cockroaches and insects possess small openings on the sides of their bodies called spiracles connected to tracheae.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 37,
+                subject: "science",
+                topic: "Transportation in Animals & Plants",
+                question: "Which blood cells contain hemoglobin responsible for oxygen transport?",
+                options: ["Red Blood Cells (RBCs)", "White Blood Cells (WBCs)", "Platelets", "Plasma"],
+                correct: 0,
+                explanation: "RBCs contain the red pigment hemoglobin, which binds with oxygen to transport it throughout the body.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 38,
+                subject: "science",
+                topic: "Reproduction in Plants",
+                question: "Vegetative propagation in bryophyllum plants occurs through which part?",
+                options: ["Leaves", "Roots", "Stem", "Flowers"],
+                correct: 0,
+                explanation: "Bryophyllum reproduces vegetatively via vegetative buds produced along the margins of its leaves.",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 39,
+                subject: "science",
+                topic: "Motion & Time",
+                question: "What is the SI unit of speed?",
+                options: ["Meter per second (m/s)", "Kilometer per hour (km/h)", "Meter per minute", "Kilometer per second"],
+                correct: 0,
+                explanation: "The standard international (SI) unit of distance is meter and time is second, making speed's SI unit m/s.",
+                img: "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=400&q=80"
+            },
+            {
+                id: 40,
+                subject: "science",
+                topic: "Electric Current & Its Effects",
+                question: "Which metal is predominantly used as the filament in incandescent electric bulbs?",
+                options: ["Tungsten", "Copper", "Aluminum", "Iron"],
+                correct: 0,
+                explanation: "Tungsten is used for bulb filaments because it has an extremely high melting point and resists burning at high heat.",
+                img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&q=80"
+            },
+            {
+                id: 41,
+                subject: "science",
+                topic: "Light",
+                question: "An image formed by a plane mirror is always:",
+                options: ["Virtual and erect", "Real and inverted", "Virtual and inverted", "Real and erect"],
+                correct: 0,
+                explanation: "Plane mirrors form images that cannot be projected on a screen (virtual) and are upright (erect).",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 42,
+                subject: "science",
+                topic: "Light",
+                question: "Splitting of white light into its seven constituent colors is called:",
+                options: ["Dispersion", "Reflection", "Refraction", "Diffraction"],
+                correct: 0,
+                explanation: "Dispersion is the phenomenon where white light splits into seven spectral colors when passing through a prism.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 43,
+                subject: "science",
+                topic: "Forests: Our Lifeline",
+                question: "Organisms that feed on dead plants and animals and convert them into dark humus are called:",
+                options: ["Decomposers", "Autotrophs", "Herbivores", "Carnivores"],
+                correct: 0,
+                explanation: "Microorganisms like fungi and bacteria act as decomposers, recycling organic nutrients into soil humus.",
+                img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80"
+            },
+            {
+                id: 44,
+                subject: "science",
+                topic: "Wastewater Story",
+                question: "Which process involves air being pumped into clarified water to encourage aerobic bacteria growth?",
+                options: ["Aeration", "Filtration", "Chlorination", "Sedimentation"],
+                correct: 0,
+                explanation: "Aeration pumps oxygen into sewage water to help aerobic microbes digest organic waste pollutants.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 45,
+                subject: "science",
+                topic: "Nutrition in Plants",
+                question: "Which symbiotic organism consists of an alga and a fungus living together?",
+                options: ["Lichen", "Mushroom", "Cuscuta", "Pitcher plant"],
+                correct: 0,
+                explanation: "Lichens represent a symbiotic partnership where algae provide photosynthesized food while fungi provide shelter and nutrients.",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 46,
+                subject: "science",
+                topic: "Nutrition in Animals",
+                question: "Where is bile juice synthesized and stored in the human body?",
+                options: ["Synthesized in Liver, stored in Gallbladder", "Synthesized in Gallbladder, stored in Stomach", "Synthesized in Pancreas, stored in Liver", "Synthesized in Stomach, stored in Intestine"],
+                correct: 0,
+                explanation: "Bile is produced continuously by liver cells and stored in the gallbladder until required for fat digestion.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 47,
+                subject: "science",
+                topic: "Heat & Temperature",
+                question: "What is the normal human body temperature on the Celsius scale?",
+                options: ["37 °C", "98.6 °C", "35 °C", "42 °C"],
+                correct: 0,
+                explanation: "Normal healthy human body temperature is 37 °C (which corresponds to 98.6 °F).",
+                img: "https://images.unsplash.com/photo-1527066579998-dbbae57f45ce?w=400&q=80"
+            },
+            {
+                id: 48,
+                subject: "science",
+                topic: "Acids, Bases & Salts",
+                question: "Which acid is secreted naturally inside the human stomach to aid digestion?",
+                options: ["Hydrochloric Acid (HCl)", "Sulfuric Acid", "Acetic Acid", "Nitric Acid"],
+                correct: 0,
+                explanation: "Stomach lining cells release dilute Hydrochloric acid (HCl) to kill bacteria and create an acidic medium for digestive enzymes.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 49,
+                subject: "science",
+                topic: "Physical & Chemical Changes",
+                question: "Preventing iron from rusting by applying a protective coating of zinc metal is called:",
+                options: ["Galvanization", "Crystallization", "Neutralization", "Oxidation"],
+                correct: 0,
+                explanation: "Galvanization is the industrial process of applying a sacrificial zinc layer onto steel or iron to prevent rust.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 50,
+                subject: "science",
+                topic: "Respiration in Organisms",
+                question: "Anaerobic respiration in human muscle cells during heavy exercise produces:",
+                options: ["Lactic Acid + Energy", "Alcohol + Carbon Dioxide", "Water + Oxygen", "Glucose + Water"],
+                correct: 0,
+                explanation: "When muscle cells lack sufficient oxygen during intense activity, glucose breaks down anaerobically into lactic acid.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 51,
+                subject: "science",
+                topic: "Transportation in Animals & Plants",
+                question: "Which plant vascular tissue transports water and minerals upwards from roots to leaves?",
+                options: ["Xylem", "Phloem", "Stomata", "Chloroplast"],
+                correct: 0,
+                explanation: "Xylem tissue consists of specialized tubular vessels that transport water and dissolved minerals upwards.",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 52,
+                subject: "science",
+                topic: "Reproduction in Plants",
+                question: "Transfer of pollen grains from the anther to the stigma of a flower is termed:",
+                options: ["Pollination", "Fertilization", "Germination", "Budding"],
+                correct: 0,
+                explanation: "Pollination is the physical transfer of pollen grains from the male anther to the female stigma.",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 53,
+                subject: "science",
+                topic: "Motion & Time",
+                question: "The distance-time graph for an object moving with a constant speed is a:",
+                options: ["Straight line", "Curved line", "Circular loop", "Vertical line"],
+                correct: 0,
+                explanation: "Uniform speed implies distance increases proportionally with time, yielding a straight inclined line graph.",
+                img: "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=400&q=80"
+            },
+            {
+                id: 54,
+                subject: "science",
+                topic: "Electric Current & Its Effects",
+                question: "A safety device based on the heating effect of electric current that breaks high current circuits is a:",
+                options: ["Electric Fuse", "Electromagnet", "Electric Bell", "Switch"],
+                correct: 0,
+                explanation: "Fuses contain thin wires with low melting points that melt and break the circuit whenever excessive current flows.",
+                img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&q=80"
+            },
+            {
+                id: 55,
+                subject: "science",
+                topic: "Light",
+                question: "Which lens is thicker in the middle than at the edges and converges parallel light rays?",
+                options: ["Convex Lens", "Concave Lens", "Plane Mirror", "Cylindrical Lens"],
+                correct: 0,
+                explanation: "A convex lens converges incoming light rays to a single focal point and is thicker at its center.",
+                img: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80"
+            },
+            {
+                id: 56,
+                subject: "science",
+                topic: "Acids, Bases & Salts",
+                question: "When an acid reacts with a base to form salt and water, the reaction is known as:",
+                options: ["Neutralization", "Crystallization", "Evaporation", "Oxidation"],
+                correct: 0,
+                explanation: "Neutralization reaction occurs between acidic and basic substances producing salt, water, and heat energy.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 57,
+                subject: "science",
+                topic: "Nutrition in Plants",
+                question: "Insectivorous plants like the Pitcher plant trap insects primarily to obtain:",
+                options: ["Nitrogen", "Water", "Carbon dioxide", "Sunlight"],
+                correct: 0,
+                explanation: "Insectivorous plants grow in nitrogen-deficient soils, trapping insects to satisfy their nitrogen requirements.",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 58,
+                subject: "science",
+                topic: "Transportation in Animals & Plants",
+                question: "Cellular fragments responsible for blood clotting at injury sites are called:",
+                options: ["Platelets", "WBCs", "RBCs", "Hemoglobin"],
+                correct: 0,
+                explanation: "Platelets initiate blood coagulation to stop bleeding whenever blood vessels get injured.",
+                img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80"
+            },
+            {
+                id: 59,
+                subject: "science",
+                topic: "Heat & Temperature",
+                question: "Heat transfer through direct molecular contact in solids without bulk fluid movement is called:",
+                options: ["Conduction", "Convection", "Radiation", "Absorption"],
+                correct: 0,
+                explanation: "Conduction is the primary mode of thermal energy transfer through solids from hot to cold regions.",
+                img: "https://images.unsplash.com/photo-1527066579998-dbbae57f45ce?w=400&q=80"
+            },
+            {
+                id: 60,
+                subject: "science",
+                topic: "Electric Current & Its Effects",
+                question: "Who discovered the magnetic effect of electric current for the first time?",
+                options: ["Hans Christian Oersted", "Michael Faraday", "Thomas Edison", "Albert Einstein"],
+                correct: 0,
+                explanation: "H.C. Oersted noticed in 1820 that a compass needle deflected when brought near a current-carrying wire.",
+                img: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=400&q=80"
+            },
+
+            // ==================== SOCIAL SCIENCE (30 Questions) ====================
+            {
+                id: 61,
+                subject: "sst",
+                topic: "History: Tracing Changes",
+                question: "Who was considered a 'foreigner' (pardesi) in the medieval period in India?",
+                options: ["Any stranger who was not part of that society or culture", "A person coming from another country", "A non-Muslim ruler", "A European trader"],
+                correct: 0,
+                explanation: "In medieval times, a 'foreigner' was any stranger who appeared in a given village and was not part of that culture or society.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 62,
+                subject: "sst",
+                topic: "History: New Kings & Kingdoms",
+                question: "Tripartite Struggle was fought among three dynasties over control of which strategic city?",
+                options: ["Kanauj", "Delhi", "Thanjavur", "Pataliputra"],
+                correct: 0,
+                explanation: "The Gurjara-Pratihara, Rashtrakuta, and Pala dynasties fought for centuries over control of Kanauj in the Ganga valley.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 63,
+                subject: "sst",
+                topic: "History: Delhi Sultans",
+                question: "Which Delhi Sultan established the revenue administration system based on measurement of land and market control?",
+                options: ["Alauddin Khalji", "Iltutmish", "Muhammad Tughluq", "Qutbuddin Aibak"],
+                correct: 0,
+                explanation: "Alauddin Khalji enforced strict market controls, set fixed commodity prices, and introduced direct land measurement for taxes.",
+                img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&q=80"
+            },
+            {
+                id: 64,
+                subject: "sst",
+                topic: "History: Mughal Empire",
+                question: "Who was Akbar's finance minister who surveyed crop yields and prices to fixed tax rates (Zabt system)?",
+                options: ["Raja Todar Mal", "Birbal", "Abul Fazl", "Bairam Khan"],
+                correct: 0,
+                explanation: "Todar Mal conducted a 10-year land survey (1570-1580) to formulate Akbar's revenue system known as Zabt.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 65,
+                subject: "sst",
+                topic: "Geography: Environment",
+                question: "Which sphere of the Earth includes all living organisms (plants and animals) interacting with air, water, and land?",
+                options: ["Biosphere", "Lithosphere", "Atmosphere", "Hydrosphere"],
+                correct: 0,
+                explanation: "Biosphere is the narrow zone of contact where land, water, and air interact together to sustain life.",
+                img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80"
+            },
+            {
+                id: 66,
+                subject: "sst",
+                topic: "Geography: Inside Our Earth",
+                question: "Which layer forms the innermost layer of the Earth composed mainly of nickel and iron (NIFE)?",
+                options: ["Core", "Mantle", "Crust", "Magma chamber"],
+                correct: 0,
+                explanation: "The innermost layer is the core with a radius of about 3500 km, composed primarily of Nickel (Ni) and Iron (Fe).",
+                img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80"
+            },
+            {
+                id: 67,
+                subject: "sst",
+                topic: "Geography: Our Changing Earth",
+                question: "Ox-bow lakes are characteristic depositional features found in which geographical region?",
+                options: ["River Valleys / Flood plains", "Deserts", "Glaciers", "Sea coasts"],
+                correct: 0,
+                explanation: "As a river meanders across floodplains, extreme loops get cut off over time to form isolated ox-bow lakes.",
+                img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80"
+            },
+            {
+                id: 68,
+                subject: "sst",
+                topic: "Geography: Atmosphere",
+                question: "Which layer of the atmosphere contains the ozone layer that protects life from harmful ultraviolet rays?",
+                options: ["Stratosphere", "Troposphere", "Mesosphere", "Thermosphere"],
+                correct: 0,
+                explanation: "The Stratosphere extends up to 50 km and contains the critical ozone gas layer which absorbs solar UV radiation.",
+                img: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=400&q=80"
+            },
+            {
+                id: 69,
+                subject: "sst",
+                topic: "Civics: On Equality",
+                question: "Universal Adult Suffrage grants the right to vote to which category of Indian citizens?",
+                options: ["All adult citizens aged 18 and above without discrimination", "Only educated male adults", "Tax-paying landowners only", "Citizens above 21 years with property"],
+                correct: 0,
+                explanation: "Universal Adult Suffrage ensures every citizen who is 18 years or older has one vote of equal value regardless of social/economic background.",
+                img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=400&q=80"
+            },
+            {
+                id: 70,
+                subject: "sst",
+                topic: "Civics: Role of Govt in Health",
+                question: "Which Indian state set aside 40% of its total state budget to Panchayats for health, water, and education in 1996?",
+                options: ["Kerala", "Tamil Nadu", "Gujarat", "Himachal Pradesh"],
+                correct: 0,
+                explanation: "In 1996, the Kerala government made major democratic changes by transferring 40% of state budget funds directly to local Panchayats.",
+                img: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=400&q=80"
+            },
+            {
+                id: 71,
+                subject: "sst",
+                topic: "Civics: How State Govt Works",
+                question: "Who is the executive head of an Indian State appointed by the Central Government?",
+                options: ["Governor", "Chief Minister", "Prime Minister", "Speaker of Assembly"],
+                correct: 0,
+                explanation: "The Governor is appointed by the President of India to ensure that the state government functions according to constitutional rules.",
+                img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=400&q=80"
+            },
+            {
+                id: 72,
+                subject: "sst",
+                topic: "Civics: Gender Roles",
+                question: "What term refers to unpaid domestic household duties traditionally expected from women?",
+                options: ["Caregiving / Domestic Work", "Voluntary Work", "Formal Sector Employment", "Outsourcing"],
+                correct: 0,
+                explanation: "Household chores and childcare are essential domestic labor often devalued as non-work in traditional gender models.",
+                img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+            },
+            {
+                id: 73,
+                subject: "sst",
+                topic: "History: Devotional Paths",
+                question: "Which Bhakti saint authored the famous compilation of devotional songs called 'Ramcharitmanas' in Awadhi?",
+                options: ["Tulsidas", "Kabir", "Surdas", "Mirabai"],
+                correct: 0,
+                explanation: "Goswami Tulsidas composed the Ramcharitmanas in local Awadhi Hindi, making epic devotional literature accessible to all.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 74,
+                subject: "sst",
+                topic: "Geography: Water",
+                question: "Rhythmic rise and fall of ocean water twice a day caused by gravitational pull is called:",
+                options: ["Tides", "Waves", "Ocean Currents", "Tsunamis"],
+                correct: 0,
+                explanation: "Tides are regular periodic sea level rises and falls caused by gravitational forces exerted by the Moon and Sun.",
+                img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80"
+            },
+            {
+                id: 75,
+                subject: "sst",
+                topic: "Geography: Human Environment",
+                question: "Which mode of transport is the most suitable for reaching remote areas affected by natural disasters?",
+                options: ["Airways (Helicopters)", "Railways", "Waterways", "Roadways"],
+                correct: 0,
+                explanation: "Helicopters are ideal for emergency relief, rescue operations, and dropping food supplies in inaccessible disaster zones.",
+                img: "https://images.unsplash.com/photo-1519074069444-1ba4eaa1674a?w=400&q=80"
+            },
+            {
+                id: 76,
+                subject: "sst",
+                topic: "History: Regional Cultures",
+                question: "The classical dance form 'Kathak' originated and developed primarily in which region of India?",
+                options: ["North India", "Kerala", "Tamil Nadu", "Odisha"],
+                correct: 0,
+                explanation: "Kathak evolved in Northern India from temple storytellers (Kathakars) into a major classical dance form.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 77,
+                subject: "sst",
+                topic: "Civics: Understanding Media",
+                question: "Which term describes a situation where media coverage favors a particular political or commercial viewpoint?",
+                options: ["Media Bias", "Independent Media", "Public Interest", "Censorship"],
+                correct: 0,
+                explanation: "Media bias occurs when news reports consistently favor one side of an argument or political interest group.",
+                img: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=400&q=80"
+            },
+            {
+                id: 78,
+                subject: "sst",
+                topic: "Geography: Life in Deserts",
+                question: "What is the cold desert region of India located in the Trans-Himalayan belt?",
+                options: ["Ladakh", "Thar Desert", "Spiti", "Rann of Kutch"],
+                correct: 0,
+                explanation: "Ladakh is a high-altitude cold desert lying in the rain shadow area of the Great Himalayas.",
+                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&q=80"
+            },
+            {
+                id: 79,
+                subject: "sst",
+                topic: "History: 18th Century Politics",
+                question: "Who was the founder of the autonomous state of Hyderabad in 1724?",
+                options: ["Nizam-ul-Mulk Asaf Jah", "Saadat Khan", "Murshid Quli Khan", "Tipu Sultan"],
+                correct: 0,
+                explanation: "Asaf Jah established the Asaf Jahi dynasty of Hyderabad after taking control from weakening Mughal authority.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 80,
+                subject: "sst",
+                topic: "Civics: Markets Around Us",
+                question: "A sequence of market intermediaries through which a product passes from producer to consumer is called a:",
+                options: ["Chain of Markets", "Weekly Market", "Wholesale Market", "Retail Outlet"],
+                correct: 0,
+                explanation: "A chain of markets connects producers to ultimate buyers via traders, wholesalers, and retail shopkeepers.",
+                img: "https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=400&q=80"
+            },
+            {
+                id: 81,
+                subject: "sst",
+                topic: "Geography: Tropical & Subtropical",
+                question: "Which main staple cash crop is grown extensively in the Ganga-Brahmaputra basin?",
+                options: ["Paddy (Rice) & Sugarcane", "Wheat & Barley", "Coffee & Tea", "Rubber & Spices"],
+                correct: 0,
+                explanation: "Fertile alluvial soil and abundant rainfall make paddy and sugarcane the primary crops in the Ganga-Brahmaputra plain.",
+                img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80"
+            },
+            {
+                id: 82,
+                subject: "sst",
+                topic: "History: Tribes, Nomads & Settled",
+                question: "The Ahom kingdom was established in which present-day state of India during the 13th century?",
+                options: ["Assam", "Odisha", "Nagaland", "West Bengal"],
+                correct: 0,
+                explanation: "The Ahoms migrated from Myanmar and created a powerful medieval kingdom in the Brahmaputra valley of Assam.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 83,
+                subject: "sst",
+                topic: "Civics: A Shirt in the Market",
+                question: "Which business arrangement involves merchants providing raw cotton to weavers and buying finished cloth back?",
+                options: ["Putting-out system", "Cooperative system", "Auction system", "Direct retail"],
+                correct: 0,
+                explanation: "Under putting-out system (Dadni system), merchant capitalists supply thread/yarn and receive finished woven fabrics.",
+                img: "https://images.unsplash.com/photo-1534723452862-4c874018d66d?w=400&q=80"
+            },
+            {
+                id: 84,
+                subject: "sst",
+                topic: "Geography: Inside Our Earth",
+                question: "Rocks formed due to the cooling and solidification of molten magma are called:",
+                options: ["Igneous Rocks", "Sedimentary Rocks", "Metamorphic Rocks", "Fossil Rocks"],
+                correct: 0,
+                explanation: "Igneous rocks (primary rocks) form directly when molten magma cools down either inside or on Earth's surface.",
+                img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80"
+            },
+            {
+                id: 85,
+                subject: "sst",
+                topic: "History: Devotional Paths",
+                question: "Which 16th-century female Bhakti poet was a disciple of Ravidas and devoted to Lord Krishna?",
+                options: ["Mirabai", "Akka Mahadevi", "Muktabai", "Andal"],
+                correct: 0,
+                explanation: "Mirabai was a Rajput princess who rejected royal status to write passionate devotional songs for Lord Krishna.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 86,
+                subject: "sst",
+                topic: "Geography: Atmosphere",
+                question: "Which weather instrument is used to measure atmospheric pressure?",
+                options: ["Barometer", "Thermometer", "Anemometer", "Hygrometer"],
+                correct: 0,
+                explanation: "A barometer measures ambient atmospheric air pressure in millibars or inches of mercury.",
+                img: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=400&q=80"
+            },
+            {
+                id: 87,
+                subject: "sst",
+                topic: "Civics: Struggles for Equality",
+                question: "Tawa Matsya Sangh was a federation of fisherworker cooperatives fighting for rights in which state?",
+                options: ["Madhya Pradesh", "Bihar", "Rajasthan", "Maharashtra"],
+                correct: 0,
+                explanation: "Tawa Matsya Sangh organized displaced villagers around Tawa reservoir in Madhya Pradesh to secure fishing livelihood rights.",
+                img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=400&q=80"
+            },
+            {
+                id: 88,
+                subject: "sst",
+                topic: "History: New Kings & Kingdoms",
+                question: "The famous Bronze statues of deity Nataraja were produced during the reign of which South Indian empire?",
+                options: ["Chola Empire", "Chera Dynasty", "Pandyan Dynasty", "Chalukya Empire"],
+                correct: 0,
+                explanation: "Chola bronze sculptures, especially the iconic depictions of Shiva Nataraja, are considered masterpieces of medieval art.",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 89,
+                subject: "sst",
+                topic: "Geography: Water",
+                question: "Warm ocean currents originate near which geographical zone and move towards poles?",
+                options: ["Equator", "Tropic of Capricorn", "Arctic Circle", "Prime Meridian"],
+                correct: 0,
+                explanation: "Warm ocean currents form near the Equator due to intense solar heating and carry warm waters poleward.",
+                img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80"
+            },
+            {
+                id: 90,
+                subject: "sst",
+                topic: "Civics: On Equality",
+                question: "Which article of the Indian Constitution abolishes Untouchability and forbids its practice in any form?",
+                options: ["Article 17", "Article 14", "Article 21", "Article 19"],
+                correct: 0,
+                explanation: "Article 17 of the Constitution of India explicitly abolishes 'Untouchability' and penalizes its enforcement.",
+                img: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=400&q=80"
+            },
+
+            // ==================== ENGLISH (30 Questions) ====================
+            {
+                id: 91,
+                subject: "english",
+                topic: "Tenses & Modals",
+                question: "Identify the tense: 'She had been waiting for two hours before the bus arrived.'",
+                options: ["Past Perfect Continuous", "Past Continuous", "Present Perfect Continuous", "Past Perfect"],
+                correct: 0,
+                explanation: "'Had + been + V1+ing' denotes an action that was ongoing in the past prior to another past event.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 92,
+                subject: "english",
+                topic: "Active & Passive Voice",
+                question: "Choose the correct passive voice: 'The master awarded him a gold medal.'",
+                options: ["He was awarded a gold medal by the master.", "A gold medal has been awarded to him.", "He is awarded a gold medal by master.", "A gold medal had awarded by master."],
+                correct: 0,
+                explanation: "Simple past active ('awarded') converts to 'was/were + past participle (awarded)' in passive voice.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 93,
+                subject: "english",
+                topic: "Direct & Indirect Speech",
+                question: "Convert to Indirect speech: He said, 'I am writing an essay today.'",
+                options: ["He said that he was writing an essay that day.", "He said that I was writing an essay today.", "He told that he is writing an essay that day.", "He said he wrote an essay that day."],
+                correct: 0,
+                explanation: "Present continuous 'am writing' shifts to past continuous 'was writing', and time word 'today' changes to 'that day'.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 94,
+                subject: "english",
+                topic: "Subject-Verb Agreement",
+                question: "Fill in the blank: 'Neither Rohan nor his friends _____ present at the party yesterday.'",
+                options: ["were", "was", "are", "is"],
+                correct: 0,
+                explanation: "When subjects are joined by 'neither...nor', the verb agrees with the closer subject ('friends' - plural past => were).",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 95,
+                subject: "english",
+                topic: "Prepositions",
+                question: "Choose the correct preposition: 'The thief jumped _____ the boundary wall and escaped.'",
+                options: ["over", "under", "into", "on"],
+                correct: 0,
+                explanation: "'Over' is used to indicate motion across a high obstacle without touching it.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 96,
+                subject: "english",
+                topic: "Conjunctions",
+                question: "Fill in the blank: 'Work hard _____ you will fail in the examination.'",
+                options: ["or", "and", "because", "so"],
+                correct: 0,
+                explanation: "'Or' is used to present an alternative consequence or warning condition.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 97,
+                subject: "english",
+                topic: "Vocabulary & Antonyms",
+                question: "What is the antonym of the word 'BENEVOLENT'?",
+                options: ["Malevolent", "Kind", "Generous", "Helpful"],
+                correct: 0,
+                explanation: "'Benevolent' means well-wishing and kind, so its direct antonym is 'Malevolent' (wishing evil).",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 98,
+                subject: "english",
+                topic: "Vocabulary & Synonyms",
+                question: "Choose the synonym for 'CANDID':",
+                options: ["Frank", "Secretive", "Dishonest", "Complex"],
+                correct: 0,
+                explanation: "'Candid' means truthful, straightforward, and frank in speech or expression.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 99,
+                subject: "english",
+                topic: "Literature: Three Questions",
+                question: "In Leo Tolstoy's story 'Three Questions', who answered the king's questions correctly through practical wisdom?",
+                options: ["The Hermit", "The Learned Scholars", "The Wounded Man", "The King's Guards"],
+                correct: 0,
+                explanation: "The wise old hermit living in the woods demonstrated the answers through actions during their meeting.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 100,
+                subject: "english",
+                topic: "Literature: A Gift of Chappals",
+                question: "In 'A Gift of Chappals', to whom did the children give the music master's old chappals?",
+                options: ["To the barefoot beggar", "To the gardener", "To the servant boy", "To the dog"],
+                correct: 0,
+                explanation: "Rukku Manni's children gifted the slippers to a poor barefoot beggar whose feet had developed blisters.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 101,
+                subject: "english",
+                topic: "Literature: Gopal & Hilsa Fish",
+                question: "How did Gopal prove that he could bring a Hilsa fish to the palace without anyone asking about it?",
+                options: ["He smeared ash on his face and wore rags as a distraction", "He hid the fish inside a large bag", "He came late at midnight", "He sent a servant to deliver it"],
+                correct: 0,
+                explanation: "Gopal disguised himself grotesquely with half-shaven face and rags so people talked only about his funny look.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 102,
+                subject: "english",
+                topic: "Poetry: The Rebel",
+                question: "According to D.J. Enright's poem 'The Rebel', what does a rebel do when everybody wears a uniform?",
+                options: ["He dresses in fantastic clothes", "He wears a neat uniform", "He stays at home", "He praises uniforms"],
+                correct: 0,
+                explanation: "The rebel always acts contrary to societal norms; when others wear uniforms, he dresses colorfully.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 103,
+                subject: "english",
+                topic: "Tenses & Modals",
+                question: "Complete the sentence with appropriate modal verb: 'You _____ obey traffic rules for safety.'",
+                options: ["must", "might", "could", "would"],
+                correct: 0,
+                explanation: "'Must' expresses strong obligation, legal requirement, or absolute necessity.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 104,
+                subject: "english",
+                topic: "Adjectives & Degrees",
+                question: "What is the superlative degree of the adjective 'GOOD'?",
+                options: ["Best", "Better", "Goodest", "More good"],
+                correct: 0,
+                explanation: "The degrees of comparison for 'good' are: Positive = Good, Comparative = Better, Superlative = Best.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 105,
+                subject: "english",
+                topic: "Idioms & Phrases",
+                question: "What does the idiom 'To burn the midnight oil' mean?",
+                options: ["To work or study late into the night", "To waste precious fuel", "To set things on fire", "To wake up early morning"],
+                correct: 0,
+                explanation: "The phrase means staying up late working, reading, or preparing for exams.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 106,
+                subject: "english",
+                topic: "Subject-Verb Agreement",
+                question: "Select the correct verb: 'Bread and butter _____ his favorite breakfast.'",
+                options: ["is", "are", "were", "have"],
+                correct: 0,
+                explanation: "When two singular nouns express a single combined unit or idea (bread and butter), a singular verb ('is') is used.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 107,
+                subject: "english",
+                topic: "Literature: The Ashes That Made Trees Bloom",
+                question: "In the Japanese tale, what caused the withered cherry tree to blossom brilliantly?",
+                options: ["Sprinkling a pinch of magical ash on it", "Pouring clean spring water", "Burying gold coins beneath roots", "Exposing it to sunlight"],
+                correct: 0,
+                explanation: "The kind old man scattered a pinch of ash from his burnt wooden mortar, turning dead branches into pink blossoms.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 108,
+                subject: "english",
+                topic: "Literature: Quality",
+                question: "In John Galsworthy's story 'Quality', what was Mr. Gessler's profession?",
+                options: ["Bootmaker", "Tailor", "Watchmaker", "Blacksmith"],
+                correct: 0,
+                explanation: "Mr. Gessler was a passionate German bootmaker in London dedicated to crafting perfectionist footwear.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 109,
+                subject: "english",
+                topic: "Relative Pronouns",
+                question: "Fill in the blank: 'This is the scientist _____ won the Nobel Prize in Physics.'",
+                options: ["who", "which", "whom", "whose"],
+                correct: 0,
+                explanation: "'Who' is used as a relative pronoun referring to people when acting as the subject of the clause.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 110,
+                subject: "english",
+                topic: "Poetry: Trees",
+                question: "According to Shirley Bauer's poem 'Trees', what do children build in trees?",
+                options: ["Tree houses", "Bird nests", "Swings only", "Paper boats"],
+                correct: 0,
+                explanation: "The poem describes how trees are used by children to make tree houses and hide behind in games.",
+                img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80"
+            },
+            {
+                id: 111,
+                subject: "english",
+                topic: "Active & Passive Voice",
+                question: "Change to Active voice: 'A letter is being written by Sanya.'",
+                options: ["Sanya is writing a letter.", "Sanya wrote a letter.", "Sanya has written a letter.", "Sanya writes a letter."],
+                correct: 0,
+                explanation: "Present continuous passive ('is being written') corresponds to present continuous active ('is writing').",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 112,
+                subject: "english",
+                topic: "Determiners",
+                question: "Fill in the blank: 'Could you please pass me _____ salt?'",
+                options: ["the", "a", "an", "many"],
+                correct: 0,
+                explanation: "Definite article 'the' specifies a particular item on the table available to speaker and listener.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 113,
+                subject: "english",
+                topic: "Vocabulary & One Word Substitution",
+                question: "Give one word for: 'A person who studies plant life'.",
+                options: ["Botanist", "Zoologist", "Geologist", "Astronomer"],
+                correct: 0,
+                explanation: "A scientist specializing in botany (study of plants) is called a Botanist.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 114,
+                subject: "english",
+                topic: "Direct & Indirect Speech",
+                question: "Teacher said to us, 'Honesty is the best policy.' Indirect speech:",
+                options: ["Teacher told us that honesty is the best policy.", "Teacher told us that honesty was the best policy.", "Teacher said us honesty is best policy.", "Teacher asked if honesty is best policy."],
+                correct: 0,
+                explanation: "Universal truths and proverbs do not change their tense when converted to indirect speech.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 115,
+                subject: "english",
+                topic: "Conditionals",
+                question: "Complete the first conditional sentence: 'If it rains, we _____ cancel the outdoor match.'",
+                options: ["will", "would", "had", "would have"],
+                correct: 0,
+                explanation: "First conditional pattern: If + present simple (rains), principal clause uses 'will + V1' (will cancel).",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 116,
+                subject: "english",
+                topic: "Literature: The Bear Story",
+                question: "Why was the lady's pet bear tied up with a chain on Sundays?",
+                options: ["Because the lady went to visit her married sister across the lake", "Because he was wild on Sundays", "Because he refused to eat honey", "Because guests came to the house"],
+                correct: 0,
+                explanation: "The lady visited her sister every Sunday and chained the bear for safety while crossing the forest.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 117,
+                subject: "english",
+                topic: "Poetry: Dad and the Cat and the Tree",
+                question: "What happened to Dad when he tried Plan C to rescue the cat from the tree?",
+                options: ["He landed flat in the flower bed while the cat sprang safely down", "He successfully rescued cat", "The tree fell down", "He broke the ladder"],
+                correct: 0,
+                explanation: "Dad leaped from the garden wall onto the tree trunk, landing heavily in the mud while the cat hopped down safely.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 118,
+                subject: "english",
+                topic: "Spelling & Punctuation",
+                question: "Choose the correctly spelled word:",
+                options: ["Accommodation", "Acommodation", "Accomodation", "Acomodation"],
+                correct: 0,
+                explanation: "The correct spelling is 'Accommodation' (with double 'c' and double 'm').",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 119,
+                subject: "english",
+                topic: "Prepositions",
+                question: "Fill in the blank: 'He has been living in Kolkata _____ 2018.'",
+                options: ["since", "for", "from", "in"],
+                correct: 0,
+                explanation: "'Since' denotes a specific starting point of time (2018) in perfect continuous tenses.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 120,
+                subject: "english",
+                topic: "Sentence Correction",
+                question: "Correct the sentence: 'She is more smarter than her sister.'",
+                options: ["She is smarter than her sister.", "She is most smarter than her sister.", "She is more smart than her sister.", "She is smart than her sister."],
+                correct: 0,
+                explanation: "Avoid double comparatives ('more smarter'). Use only the comparative degree 'smarter'.",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+
+            // ==================== HINDI (30 Questions) ====================
+            {
+                id: 121,
+                subject: "hindi",
+                topic: "वसंत: हम पंछी उन्मुक्त गगन के",
+                question: "कविता 'हम पंछी उन्मुक्त गगन के' के रचयिता कौन हैं?",
+                options: ["शिवमंगल सिंह 'सुमन'", "सूर्यकांत त्रिपाठी 'निराला'", "कबीरदास", "भवानी प्रसाद मिश्र"],
+                correct: 0,
+                explanation: "इस प्रसिद्ध स्वतंत्रता-प्रधान कविता की रचना कवि शिवमंगल सिंह 'सुमन' ने की है।",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 122,
+                subject: "hindi",
+                topic: "वसंत: दादी माँ",
+                question: "लेखक की दादी माँ किस बीमारी के इलाज की देशी दवाओं के नाम ज़बानी जानती थीं?",
+                options: ["कुनैन, गिलोय और चिरायता आदि घरेलू नुस्खे", "अंग्रेजी दवाएं", "केवल होम्योपैथी", "कोई नहीं"],
+                correct: 0,
+                explanation: "दादी माँ को देहाती इलाज और जड़ी-बूटियों (जैसे चिरायता, गिलोय) के पचासों नाम याद थे।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 123,
+                subject: "hindi",
+                topic: "वसंत: हिमालय की बेटियां",
+                question: "लेखक नागार्जुन ने 'हिमालय की बेटियां' किसे कहा है?",
+                options: ["हिमालय से निकलने वाली नदियों को", "जंगलों को", "बर्फ की चोटियों को", "जड़ी-बूटियों को"],
+                correct: 0,
+                explanation: "लेखक नागार्जुन ने हिमालय से निकलने वाली गंगा, यमुना, सतलुज आदि नदियों को 'हिमालय की बेटियां' कहा है।",
+                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&q=80"
+            },
+            {
+                id: 124,
+                subject: "hindi",
+                topic: "व्याकरण: संधि",
+                question: "'सूर्योदय' शब्द का सही संधि-विच्छेद क्या है?",
+                options: ["सूर्य + उदय", "सूर्यो + दय", "सूर्य + दोय", "सूर + उदय"],
+                correct: 0,
+                explanation: "सूर्य + उदय = सूर्योदय (यह गुण स्वर संधि का उदाहरण है, जहाँ अ + उ = ओ बनता है)।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 125,
+                subject: "hindi",
+                topic: "व्याकरण: समास",
+                question: "'राजपुत्र' शब्द में कौन-सा समास है?",
+                options: ["तत्पुरुष समास", "द्वंद्व समास", "बहुव्रीहि समास", "द्विगु समास"],
+                correct: 0,
+                explanation: "'राजा का पुत्र' = राजपुत्र। यहाँ सम्बन्ध कारक चिह्न 'का' का लोप है, अतः संबंध तत्पुरुष समास है।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 126,
+                subject: "hindi",
+                topic: "व्याकरण: कारक",
+                question: "'पेड़ से पत्ता गिरा' - इस वाक्य में 'से' किस कारक का चिह्न है?",
+                options: ["अपादान कारक", "करण कारक", "कर्म कारक", "संबोधन कारक"],
+                correct: 0,
+                explanation: "जहाँ किसी वस्तु का किसी स्थान या वस्तु से अलग होने का भाव हो, वहाँ अपादान कारक (से) होता है।",
+                img: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=80"
+            },
+            {
+                id: 127,
+                subject: "hindi",
+                topic: "व्याकरण: विलोम शब्द",
+                question: "'अनुराग' शब्द का सही विलोम क्या होगा?",
+                options: ["विराग", "राग", "प्रेम", "नफरत"],
+                correct: 0,
+                explanation: "'अनुराग' (प्रेम/आसक्ति) का सही विलोम शब्द 'विराग' (अनासक्ति) होता है।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 128,
+                subject: "hindi",
+                topic: "व्याकरण: पर्यायवाची",
+                question: "निम्न में से कौन-सा शब्द 'कमल' का पर्यायवाची नहीं है?",
+                options: ["जलद", "जलज", "पंकज", "नीरज"],
+                correct: 0,
+                explanation: "'जलद' का अर्थ 'बादल' (जल देने वाला) होता है, जबकि जलज, पंकज और नीरज कमल के पर्यायवाची हैं।",
+                img: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&q=80"
+            },
+            {
+                id: 129,
+                subject: "hindi",
+                topic: "वसंत: कठपुतली",
+                question: "कविता 'कठपुतली' में कठपुतली को किस बात का गुस्सा आया?",
+                options: ["धागे में बंधे होने और पराधीनता पर", "न नाच पाने पर", "भूखे रहने पर", "मालिक की डांट पर"],
+                correct: 0,
+                explanation: "कठपुतली अपने आगे-पीछे बंधे धागों और अपनी पराधीनता को देखकर गुस्से से उबल पड़ी और स्वतंत्र होना चाहती थी।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 130,
+                subject: "hindi",
+                topic: "वसंत: मिठाईवाला",
+                question: "कहानी 'मिठाईवाला' में भगवती बाबू की पत्नी का क्या नाम था?",
+                options: ["रोहिणी", "शारदा", "सुभद्रा", "कमला"],
+                correct: 0,
+                explanation: "कहानी में विजय बाबू और रोहिणी बच्चों (चुन्नू-मुन्नू) के माता-पिता हैं।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 131,
+                subject: "hindi",
+                topic: "व्याकरण: मुहावरे",
+                question: "'अंगूठा दिखाना' मुहावरे का सही अर्थ क्या है?",
+                options: ["ऐन वक्त पर इंकार कर देना", "मदद करना", "अंगूठा साफ़ करना", "जीत की घोषणा करना"],
+                correct: 0,
+                explanation: "'अंगूठा दिखाना' का अर्थ होता है ऐन मौके पर किसी काम के लिए साफ़ मना कर देना।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 132,
+                subject: "hindi",
+                topic: "व्याकरण: शब्द विचार",
+                question: "'अग्नि' किस प्रकार का शब्द है?",
+                options: ["तत्सम शब्द", "तद्भव शब्द", "देशज शब्द", "विदेशी शब्द"],
+                correct: 0,
+                explanation: "संस्कृत भाषा के जो शब्द बिना किसी परिवर्तन के हिंदी में प्रयोग होते हैं, उन्हें तत्सम कहते हैं (अग्नि का तद्भव 'आग' है)।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 133,
+                subject: "hindi",
+                topic: "व्याकरण: काल",
+                question: "'राधा पुस्तक पढ़ रही होगी' - यह वाक्य काल के किस भेद को दर्शाता है?",
+                options: ["संदिग्ध वर्तमान / संभाव्य काल", "आसन्न भूतकाल", "सामान्य भविष्यत काल", "अपूर्ण भूतकाल"],
+                correct: 0,
+                explanation: "वर्तमान समय में क्रिया के होने में संदेह प्रकट हो ('रही होगी'), वहाँ संदिग्ध वर्तमान काल होता है।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 134,
+                subject: "hindi",
+                topic: "व्याकरण: सर्वनाम",
+                question: "'जो परिश्रम करेगा, वह सफल होगा' - रेखांकित शब्द किस सर्वनाम के भेद हैं?",
+                options: ["संबंधवाचक सर्वनाम", "निजवाचक सर्वनाम", "निश्चयवाचक सर्वनाम", "अनिश्चयवाचक सर्वनाम"],
+                correct: 0,
+                explanation: "'जो...वह' परस्पर दो उपवाक्यों को जोड़ने वाले संबंधवाचक सर्वनाम के उदाहरण हैं।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 135,
+                subject: "hindi",
+                topic: "बाल महाभारत: आदि पर्व",
+                question: "महाभारत कथा में हस्तिनापुर के राजा शांतनु और गंगा के पुत्र का मूल नाम क्या था?",
+                options: ["देवव्रत (भीष्म)", "चित्रवाहन", "पांडु", "धृतराष्ट्र"],
+                correct: 0,
+                explanation: "गंगापुत्र का मूल नाम 'देवव्रत' था। भीषण प्रतिज्ञा लेने के बाद उन्हें 'भीष्म' नाम से जाना गया।",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 136,
+                subject: "hindi",
+                topic: "बाल महाभारत: सभा पर्व",
+                question: "कौरवों और पांडवों के बीच द्यूत (चौपड़) क्रीड़ा का आयोजन कहाँ किया गया था?",
+                options: ["हस्तिनापुर की सभा में", "इंद्रप्रस्थ में", "विराट नगर में", "कुरुक्षेत्र में"],
+                correct: 0,
+                explanation: "धृतराष्ट्र की आज्ञा से हस्तिनापुर के सभा भवन में द्यूत-क्रीड़ा का विनाशकारी आयोजन हुआ।",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 137,
+                subject: "hindi",
+                topic: "वसंत: शाम-एक किसान",
+                question: "कवि सर्वेश्वर दयाल सक्सेना ने 'शाम-एक किसान' कविता में पहाड़ को किस रूप में चित्रित किया है?",
+                options: ["बैठे हुए किसान के रूप में", "सोए हुए हाथी के रूप में", "सफेद घोड़े के रूप में", "मंदिर के गुंबद के रूप में"],
+                correct: 0,
+                explanation: "कवि ने जाड़े की शाम का मानवीकरण करते हुए पहाड़ को घुटने मोड़े बैठे हुए किसान के समान दर्शाया है।",
+                img: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&q=80"
+            },
+            {
+                id: 138,
+                subject: "hindi",
+                topic: "व्याकरण: विशेषण",
+                question: "'चार लीटर दूध' में 'चार लीटर' किस प्रकार का विशेषण है?",
+                options: ["परिमाणवाचक विशेषण", "संख्यावाचक विशेषण", "गुणवाचक विशेषण", "सार्वनामिक विशेषण"],
+                correct: 0,
+                explanation: "माप-तौल की निश्चित मात्रा (लीटर, मीटर, किग्रा) का बोध कराने वाले शब्द निश्चित परिमाणवाचक विशेषण कहलाते हैं।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 139,
+                subject: "hindi",
+                topic: "व्याकरण: अशुद्धि शोधन",
+                question: "निम्न में से शुद्ध वर्तनी वाला शब्द चुनिए:",
+                options: ["उज्ज्वल", "उज्वल", "उज्जवल", "उज़्वल"],
+                correct: 0,
+                explanation: "उत् + ज्वल = उज्ज्वल (दोनों 'ज' आधे होते हैं)।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 140,
+                subject: "hindi",
+                topic: "व्याकरण: अनेक शब्दों के लिए एक शब्द",
+                question: "'जिसके आने की कोई तिथि न हो' - वाक्यांश के लिए एक शब्द है:",
+                options: ["अतिथि", "सज्जन", "आगंतुक", "दुर्लभ"],
+                correct: 0,
+                explanation: "अ + तिथि = अतिथि (जिसके आने का कोई निश्चित दिन या समय तय न हो)।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 141,
+                subject: "hindi",
+                topic: "वसंत: अपूर्व अनुभव",
+                question: "जापानी लोककथा पर आधारित पाठ 'अपूर्व अनुभव' में तोत्तो-चान ने यासुकी-चान को कहाँ चढ़ने में मदद की?",
+                options: ["अपने निजी पेड़ की शाखा पर", "छत पर", "पहाड़ पर", "दीवार पर"],
+                correct: 0,
+                explanation: "तोत्तो-चान ने पोलिओ से ग्रस्त अपने दोस्त यासुकी-चान को अपने पेड़ की द्विशाखा पर चढ़ने का अद्भुत अनुभव कराया।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 142,
+                subject: "hindi",
+                topic: "वसंत: रहीम के दोहे",
+                question: "'कहि रहीम संपति सगे, बनत बहुत बहु रीत' - रहीम जी के अनुसार सच्चे मित्र की क्या पहचान है?",
+                options: ["जो विपत्ति और दुर्दिन में भी साथ न छोड़े", "जो धन-दौलत दे", "जो रोज मिलने आए", "जो मीठी बातें करे"],
+                correct: 0,
+                explanation: "रहीम दास जी कहते हैं कि सच्चा मित्र वही है जो कसौटी की भांति संकट काल में साथ निभाता है।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 143,
+                subject: "hindi",
+                topic: "व्याकरण: लिंग",
+                question: "'कवि' शब्द का सही स्त्रीलिंग रूप क्या होगा?",
+                options: ["कवयित्री", "कवियत्री", "कविइत्री", "कवयित्री"],
+                correct: 0,
+                explanation: "'कवि' का शुद्ध स्त्रीलिंग शब्द 'कवयित्री' होता है।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 144,
+                subject: "hindi",
+                topic: "व्याकरण: वचन",
+                question: "'चिड़िया' शब्द का बहुवचन रूप क्या होगा?",
+                options: ["चिड़ियाँ", "चिड़ियाएँ", "चिड़ियों", "चिड़ियाओं"],
+                correct: 0,
+                explanation: "इकारांत व एकांत स्त्री. शब्दों के अंत में 'याँ' (अनुनासिक) लगाकर बहुवचन बनता है (चिड़िया -> चिड़ियाँ)।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 145,
+                subject: "hindi",
+                topic: "बाल महाभारत: उद्योग पर्व",
+                question: "कुरुक्षेत्र के युद्ध से पूर्व श्री कृष्ण पांडवों के शांतिदूत बनकर किसकी सभा में गए थे?",
+                options: ["धृतराष्ट्र की कौरव सभा में", "विराट राजा के राजदरबार में", "द्रुपद की सभा में", "बलराम के आश्रम में"],
+                correct: 0,
+                explanation: "भगवान कृष्ण शांति-प्रस्ताव लेकर हस्तिनापुर में धृतराष्ट्र एवं दुर्योधन की सभा में गए थे।",
+                img: "https://images.unsplash.com/photo-1600100397608-f090742f483c?w=400&q=80"
+            },
+            {
+                id: 146,
+                subject: "hindi",
+                topic: "वसंत: एक तिनका",
+                question: "कविता 'एक तिनका' में कवि अयोध्यासिंह उपाध्याय 'हरिऔध' की आँख में क्या गिर गया था?",
+                options: ["सूखा तिनका", "धूल का कण", "कीड़ा", "पानी की बूंद"],
+                correct: 0,
+                explanation: "कवि जब घमंड में खड़े थे, तभी हवा में उड़कर एक छोटा-सा तिनका उनकी आँख में गिर गया जिसने उनका सारा घमंड चूर कर दिया।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 147,
+                subject: "hindi",
+                topic: "व्याकरण: विराम चिह्न",
+                question: "किसी के कहे कथन को ज्यों का त्यों प्रस्तुत करने के लिए किस चिह्न का प्रयोग किया जाता है?",
+                options: ["उद्धरण चिह्न (\" \")", "योजक चिह्न (-)", "अल्पविराम (,)", "प्रश्नवाचक चिह्न (?)"],
+                correct: 0,
+                explanation: "किसी के मूल कथन को उसी रूप में उद्धृत करने के लिए दोहरा उद्धरण चिह्न (\"...\") लगाया जाता है।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 148,
+                subject: "hindi",
+                topic: "व्याकरण: क्रियाविशेषण",
+                question: "'कछुआ धीरे-धीरे चलता है' - इसमें 'धीरे-धीरे' शब्द क्रियाविशेषण का कौन-सा भेद है?",
+                options: ["रीतिवाचक क्रियाविशेषण", "कालवाचक क्रियाविशेषण", "स्थानवाचक क्रियाविशेषण", "परिमाणवाचक क्रियाविशेषण"],
+                correct: 0,
+                explanation: "जो शब्द क्रिया के होने की ढंग या रीति का बोध कराते हैं, वे रीतिवाचक क्रियाविशेषण (कैसे? -> धीरे-धीरे) होते हैं।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 149,
+                subject: "hindi",
+                topic: "व्याकरण: उपसर्ग एवं प्रत्यय",
+                question: "'अपमान' शब्द में कौन-सा उपसर्ग प्रयुक्त हुआ है?",
+                options: ["अप", "अपम", "अ", "मान"],
+                correct: 0,
+                explanation: "'अप' (बुरा/विपरीत) उपसर्ग + मान (मूल शब्द) = अपमान।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            },
+            {
+                id: 150,
+                subject: "hindi",
+                topic: "वसंत: आश्रम का अनुमानित व्यय",
+                question: "पाठ 'आश्रम का अनुमानित व्यय' में महात्मा गांधी ने किस आश्रम का बजट तैयार किया था?",
+                options: ["साबरमती आश्रम (अहमदाबाद)", "सेवाग्राम आश्रम", "फिनिक्स फार्म", "वर्धा आश्रम"],
+                correct: 0,
+                explanation: "गांधी जी ने अहमदाबाद में नए साबरमती आश्रम की स्थापना हेतु प्रारंभिक अनुमानित खर्चों का विस्तृत हिसाब तैयार किया था।",
+                img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80"
+            }
+        ];
+
+        let state = {
+            subject: 'all',
+            topic: 'all',
+            score: 0,
+            attempted: 0,
+            answeredQuestions: new Set()
+        };
+
+        function init() {
+            populateTopics();
+            renderQuestions();
+        }
+
+        function populateTopics() {
+            const topicSelect = document.getElementById('topicFilter');
+            topicSelect.innerHTML = '<option value="all">All Topics</option>';
+
+            const filtered = state.subject === 'all'
+                ? questionBank
+                : questionBank.filter(q => q.subject === state.subject);
+
+            const topics = [...new Set(filtered.map(q => q.topic))];
+            topics.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t;
+                opt.textContent = t;
+                topicSelect.appendChild(opt);
+            });
+        }
+
+        function filterQuestions() {
+            state.subject = document.getElementById('subjectFilter').value;
+            state.topic = document.getElementById('topicFilter').value;
+
+            if (event && event.target.id === 'subjectFilter') {
+                populateTopics();
+                state.topic = 'all';
+            }
+
+            renderQuestions();
+        }
+
+        function getSubjectBadge(sub) {
+            switch (sub) {
+                case 'math': return '<span class="q-badge badge-math">Mathematics</span>';
+                case 'science': return '<span class="q-badge badge-science">Science</span>';
+                case 'sst': return '<span class="q-badge badge-sst">Social Science</span>';
+                case 'english': return '<span class="q-badge badge-english">English</span>';
+                case 'hindi': return '<span class="q-badge badge-hindi">Hindi</span>';
+                default: return '';
+            }
+        }
+
+        function renderQuestions() {
+            const grid = document.getElementById('questionsGrid');
+            grid.innerHTML = '';
+
+            const filtered = questionBank.filter(q => {
+                const subMatch = state.subject === 'all' || q.subject === state.subject;
+                const topMatch = state.topic === 'all' || q.topic === state.topic;
+                return subMatch && topMatch;
+            });
+
+            document.getElementById('totalCount').textContent = filtered.length;
+
+            filtered.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = 'q-card';
+                card.id = `q-card-${q.id}`;
+
+                card.innerHTML = `
+                    <div class="q-header">
+                        <div>
+                            ${getSubjectBadge(q.subject)}
+                            <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.5rem;">Topic: ${q.topic}</span>
+                        </div>
+                        <span style="font-weight: 700; color: var(--text-muted);">#${q.id}</span>
+                    </div>
+                    <div class="q-title">${q.id}. ${q.question}</div>
+                    <div class="q-body">
+                        <div class="options-grid">
+                            ${q.options.map((opt, i) => `
+                                <button class="opt-btn" onclick="checkAnswer(${q.id}, ${i}, this)">
+                                    ${String.fromCharCode(65 + i)}. ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div class="q-image-container">
+                            <img src="${q.img}" alt="Visual context for ${q.topic}" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="explanation" id="exp-${q.id}">
+                        <strong>Explanation:</strong> ${q.explanation}
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        function checkAnswer(qId, selectedIdx, btn) {
+            if (state.answeredQuestions.has(qId)) return;
+
+            const question = questionBank.find(q => q.id === qId);
+            const parent = btn.closest('.options-grid');
+            const buttons = parent.querySelectorAll('.opt-btn');
+
+            state.attempted++;
+            state.answeredQuestions.add(qId);
+
+            buttons.forEach((b, idx) => {
+                b.disabled = true;
+                if (idx === question.correct) {
+                    b.classList.add('correct');
+                }
+            });
+
+            if (selectedIdx === question.correct) {
+                state.score++;
+            } else {
+                btn.classList.add('wrong');
+            }
+
+            document.getElementById(`exp-${qId}`).style.display = 'block';
+            document.getElementById('scoreCount').textContent = state.score;
+            document.getElementById('attemptedCount').textContent = state.attempted;
+        }
+
+        function resetAnswers() {
+            state.score = 0;
+            state.attempted = 0;
+            state.answeredQuestions.clear();
+            document.getElementById('scoreCount').textContent = 0;
+            document.getElementById('attemptedCount').textContent = 0;
+            renderQuestions();
+        }
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>

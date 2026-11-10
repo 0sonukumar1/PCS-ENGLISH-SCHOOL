@@ -1,1682 +1,1772 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>कक्षा 1 से 6 - संपूर्ण पाठ्यक्रम मेगा क्विज (100 बहुविकल्पीय प्रश्न)</title>
+    <title>Class 1 All Subjects 150+ Topic-Wise Question Bank</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        math: { light: '#fee2e2', main: '#ef4444', dark: '#b91c1c' },
+                        evs: { light: '#dcfce7', main: '#22c55e', dark: '#15803d' },
+                        english: { light: '#e0f2fe', main: '#0284c7', dark: '#0369a1' },
+                        hindi: { light: '#fef3c7', main: '#d97706', dark: '#b45309' },
+                        gk: { light: '#f3e8ff', main: '#9333ea', dark: '#6b21a8' }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            margin: 20px;
-            padding: 0;
-            line-height: 1.6;
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f8fafc;
         }
 
-        .quiz-container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        h1,
+        h2,
+        h3,
+        .font-heading {
+            font-family: 'Fredoka', sans-serif;
         }
 
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 3px solid #2980b9;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
 
-        h3 {
-            color: #1b4f72;
-            background: #ebf5fb;
-            padding: 10px 15px;
-            border-left: 5px solid #3498db;
-            margin-top: 35px;
-            border-radius: 4px;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
 
-        .question-card {
-            margin-bottom: 25px;
-            padding: 18px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            background-color: #fafafa;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
         }
 
-        .question-title {
-            font-weight: bold;
-            font-size: 1.05em;
-            color: #2c3e50;
-            margin-bottom: 10px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
 
-        .diagram-container {
-            text-align: center;
-            margin: 12px 0;
-            background: #fff;
-            padding: 10px;
-            border: 1px dashed #3498db;
-            border-radius: 6px;
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .print-only {
+                display: block !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+            }
+
+            .page-break {
+                page-break-after: always;
+            }
         }
 
-        .options {
-            list-style: none;
-            padding: 0;
-        }
-
-        .options li {
-            margin: 8px 0;
-        }
-
-        label {
-            cursor: pointer;
-        }
-
-        details {
-            margin-top: 10px;
-            padding: 8px;
-            background-color: #eafaf1;
-            border-left: 4px solid #2ecc71;
-            border-radius: 4px;
-        }
-
-        summary {
-            font-weight: bold;
-            color: #27ae60;
-            cursor: pointer;
+        .print-only {
+            display: none;
         }
     </style>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col text-slate-800 antialiased selection:bg-amber-200">
 
-    <div class="quiz-container">
-        <h1>कक्षा 1 से 6 - संपूर्ण पाठ्यक्रम मेगा क्विज (100 प्रश्न)</h1>
-
-        <!-- ================= SECTION 1: LKG & UKG Foundations (Q1 - Q10) ================= -->
-        <h3>खण्ड I: प्रारंभिक शिक्षा (LKG & UKG Foundations)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.1 (LKG - English): अंग्रेजी वर्णमाला में कुल कितने अक्षर (Letters) होते हैं?
+    <!-- Header Banner -->
+    <header
+        class="bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-500 text-white shadow-lg sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-inner">
+                    <i data-lucide="smile" class="w-8 h-8 text-yellow-200"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide drop-shadow-sm">Class 1 Master Question Bank
+                    </h1>
+                    <p class="text-xs sm:text-sm text-pink-100 font-medium">150 Topic-Wise Interactive Questions &
+                        Worksheets</p>
+                </div>
             </div>
-            <div class="diagram-container">
-                <svg width="150" height="50" viewBox="0 0 150 50">
-                    <rect x="10" y="10" width="130" height="30" rx="4" fill="#ebf5fb" stroke="#2980b9"
-                        stroke-width="1.5" />
-                    <text x="75" y="30" font-size="13" font-weight="bold" text-anchor="middle" fill="#1b4f72">Total: 26
-                        Letters</text>
-                </svg>
+
+            <!-- Mode Selector & Print Action -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <div
+                    class="bg-black/20 p-1 rounded-xl flex items-center space-x-1 border border-white/20 text-xs font-semibold">
+                    <button id="mode-quiz-btn" onclick="setAppMode('quiz')"
+                        class="px-3 py-1.5 rounded-lg transition bg-white text-slate-900 shadow">
+                        <i data-lucide="gamepad-2" class="w-3.5 h-3.5 inline mr-1"></i>Quiz Mode
+                    </button>
+                    <button id="mode-cards-btn" onclick="setAppMode('cards')"
+                        class="px-3 py-1.5 rounded-lg transition text-white hover:bg-white/10">
+                        <i data-lucide="layers" class="w-3.5 h-3.5 inline mr-1"></i>Flashcards
+                    </button>
+                </div>
+
+                <button onclick="window.print()"
+                    class="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-1.5 border border-emerald-400">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Print Worksheets</span>
+                </button>
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q1"> (A) 20</label></li>
-                <li><label><input type="radio" name="q1"> (B) 26</label></li>
-                <li><label><input type="radio" name="q1"> (C) 30</label></li>
-                <li><label><input type="radio" name="q1"> (D) 50</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) 26</strong><br>व्याख्या: अंग्रेजी वर्णमाला (Alphabet) में A से Z तक कुल 26
-                    अक्षर होते हैं।</p>
-            </details>
         </div>
+    </header>
 
-        <div class="question-card">
-            <div class="question-title">Q.2 (LKG - Math): संख्या 1 से 10 के बीच कौन सी संख्या 5 के तुरंत बाद आती है?
+    <!-- App Layout -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-grow flex flex-col md:flex-row gap-6 no-print">
+
+        <!-- Sidebar Filters -->
+        <aside class="w-full md:w-72 flex-shrink-0 space-y-5">
+
+            <!-- Subject Filter Card -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm space-y-3">
+                <h2
+                    class="text-xs font-bold uppercase tracking-wider text-slate-400 px-2 flex items-center justify-between">
+                    <span>Class 1 Subjects (150 Qs)</span>
+                    <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+                </h2>
+
+                <div class="space-y-1.5" id="subject-buttons">
+                    <button onclick="filterSubject('all')" data-subject="all"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between bg-indigo-600 text-white shadow-md">
+                        <span class="flex items-center"><i data-lucide="award" class="w-4 h-4 mr-2"></i> All
+                            Subjects</span>
+                        <span class="bg-white/20 text-xs px-2 py-0.5 rounded-full">150</span>
+                    </button>
+                    <button onclick="filterSubject('math')" data-subject="math"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-rose-50 hover:text-rose-600">
+                        <span class="flex items-center"><i data-lucide="calculator"
+                                class="w-4 h-4 mr-2 text-rose-500"></i> Mathematics</span>
+                        <span class="bg-rose-100 text-rose-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('evs')" data-subject="evs"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">
+                        <span class="flex items-center"><i data-lucide="leaf" class="w-4 h-4 mr-2 text-emerald-500"></i>
+                            EVS & Nature</span>
+                        <span
+                            class="bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('english')" data-subject="english"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-sky-50 hover:text-sky-600">
+                        <span class="flex items-center"><i data-lucide="languages"
+                                class="w-4 h-4 mr-2 text-sky-500"></i> English Grammar</span>
+                        <span class="bg-sky-100 text-sky-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('hindi')" data-subject="hindi"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-amber-50 hover:text-amber-600">
+                        <span class="flex items-center"><i data-lucide="book-marked"
+                                class="w-4 h-4 mr-2 text-amber-500"></i> हिन्दी (Hindi)</span>
+                        <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('gk')" data-subject="gk"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-purple-50 hover:text-purple-600">
+                        <span class="flex items-center"><i data-lucide="monitor"
+                                class="w-4 h-4 mr-2 text-purple-500"></i> GK & Computer</span>
+                        <span class="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                </div>
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q2"> (A) 4</label></li>
-                <li><label><input type="radio" name="q2"> (B) 6</label></li>
-                <li><label><input type="radio" name="q2"> (C) 7</label></li>
-                <li><label><input type="radio" name="q2"> (D) 10</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) 6</strong><br>व्याख्या: गिनती में 5 के बाद 6 आता है।</p>
-            </details>
-        </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.3 (LKG - EVS): हमारे मुँह में भोजन चबाने के लिए मुख्य रूप से क्या मदद करता है?
+            <!-- Topic Dropdown Filter -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm space-y-2">
+                <label class="text-xs font-bold uppercase tracking-wider text-slate-400 block px-1">Specific Topic
+                    Filter</label>
+                <select id="topic-select" onchange="filterTopic(this.value)"
+                    class="w-full bg-slate-50 border-2 border-slate-200 text-slate-700 text-sm font-semibold rounded-xl p-2.5 outline-none focus:border-indigo-500">
+                    <option value="all">All Topics (150 Questions)</option>
+                </select>
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q3"> (A) दाँत (Teeth)</label></li>
-                <li><label><input type="radio" name="q3"> (B) कान</label></li>
-                <li><label><input type="radio" name="q3"> (C) नाक</label></li>
-                <li><label><input type="radio" name="q3"> (D) आँखें</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) दाँत (Teeth)</strong><br>व्याख्या: दाँत भोजन को काटने और चबाने में सहायता करते
-                    हैं।</p>
-            </details>
-        </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.4 (UKG - English): अंग्रेजी वर्णमाला में कुल कितने स्वर (Vowels) होते हैं?
+            <!-- Quick Navigator Grid -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Quick Navigator</span>
+                    <span id="score-counter"
+                        class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Score:
+                        0</span>
+                </div>
+                <div id="nav-grid" class="grid grid-cols-6 gap-1.5 max-h-56 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
             </div>
-            <div class="diagram-container">
-                <svg width="180" height="50" viewBox="0 0 180 50">
-                    <rect x="10" y="10" width="160" height="30" rx="4" fill="#fef5e7" stroke="#e67e22"
-                        stroke-width="1.5" />
-                    <text x="90" y="30" font-size="12" font-weight="bold" text-anchor="middle" fill="#d35400">Vowels: A,
-                        E, I, O, U (5)</text>
-                </svg>
+
+        </aside>
+
+        <!-- Main Quiz / Flashcard Workspace -->
+        <section class="flex-grow space-y-4">
+
+            <!-- Progress & Nav Header -->
+            <div
+                class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="w-full sm:w-1/2 space-y-1">
+                    <div class="flex justify-between text-xs font-bold text-slate-500">
+                        <span>Overall Progress</span>
+                        <span id="progress-text">Question 1 of 150</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden p-0.5 border border-slate-200">
+                        <div id="progress-bar"
+                            class="bg-gradient-to-r from-pink-400 to-indigo-500 h-full rounded-full transition-all duration-300 w-0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button id="btn-prev" onclick="prevQuestion()"
+                        class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition flex items-center space-x-1 border border-slate-200">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i><span>Prev</span>
+                    </button>
+                    <button id="btn-next" onclick="nextQuestion()"
+                        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs transition flex items-center space-x-1 shadow-md">
+                        <span>Next</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q4"> (A) 3</label></li>
-                <li><label><input type="radio" name="q4"> (B) 5</label></li>
-                <li><label><input type="radio" name="q4"> (C) 10</label></li>
-                <li><label><input type="radio" name="q4"> (D) 21</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) 5</strong><br>व्याख्या: अंग्रेजी में 5 स्वर (Vowels) होते हैं: A, E, I, O, U
-                    और बाकी 21 व्यंजन (Consonants) होते हैं।</p>
-            </details>
-        </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.5 (UKG - Math): यदि आपके पास 3 सेब हैं और 2 सेब आपने खा लिए, तो अब आपके पास
-                कितने सेब बचे?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q5"> (A) 5</label></li>
-                <li><label><input type="radio" name="q5"> (B) 1</label></li>
-                <li><label><input type="radio" name="q5"> (C) 3</label></li>
-                <li><label><input type="radio" name="q5"> (D) 0</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) 1</strong><br>व्याख्या: 3 में से 2 घटाने पर (3 - 2 = 1) 1 सेब बचता है।</p>
-            </details>
-        </div>
+            <!-- Interactive Question Card View -->
+            <div id="quiz-view" class="bg-white border-2 border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-6">
 
-        <div class="question-card">
-            <div class="question-title">Q.6 (UKG - Hindi): हिंदी वर्णमाला में 'क' के बाद कौन सा अक्षर आता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q6"> (A) ग</label></li>
-                <li><label><input type="radio" name="q6"> (B) ख</label></li>
-                <li><label><input type="radio" name="q6"> (C) च</label></li>
-                <li><label><input type="radio" name="q6"> (D) म</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) ख</strong><br>व्याख्या: व्यंजन क्रम में क के तुरंत बाद 'ख' आता है।</p>
-            </details>
-        </div>
+                <!-- Question Badge & Meta -->
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                    <div class="flex items-center space-x-2">
+                        <span id="badge-subject"
+                            class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700 border border-rose-200">
+                            Mathematics
+                        </span>
+                        <span id="badge-topic"
+                            class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                            Numbers 1-50
+                        </span>
+                    </div>
+                    <span id="q-id-tag" class="text-xs font-mono text-slate-400 font-bold">Q #1 of 150</span>
+                </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.7 (UKG - EVS): लाल बत्ती (Red Light) ट्रैफिक सिग्नल पर क्या संकेत देती है?
+                <!-- Question Body (Image & Text) -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-4 flex justify-center">
+                        <div
+                            class="w-full h-44 rounded-2xl overflow-hidden bg-slate-50 border-2 border-slate-100 relative shadow-inner flex items-center justify-center p-2">
+                            <img id="q-image" src="" alt="Question Illustration"
+                                class="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105">
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 space-y-4">
+                        <h2 id="q-text" class="text-lg sm:text-xl font-bold text-slate-800 leading-snug">
+                            Loading Question...
+                        </h2>
+                        <div id="options-box" class="grid grid-cols-1 gap-2.5">
+                            <!-- Dynamically populated options -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation Footer -->
+                <div id="explanation-box" class="hidden border-2 border-dashed rounded-2xl p-4 transition-all">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon-bg" class="p-2 rounded-xl text-white flex-shrink-0">
+                            <i id="feedback-icon" data-lucide="check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 id="feedback-title" class="font-bold text-sm">Correct Answer!</h4>
+                            <p id="explanation-text" class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q7"> (A) चलो (Go)</label></li>
-                <li><label><input type="radio" name="q7"> (B) रुको (Stop)</label></li>
-                <li><label><input type="radio" name="q7"> (C) तैयार रहो (Ready)</label></li>
-                <li><label><input type="radio" name="q7"> (D) तेज दौड़ो</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) रुको (Stop)</strong><br>व्याख्या: ट्रैफिक नियमों के अनुसार लाल बत्ती रुकने का
-                    संकेत देती है।</p>
-            </details>
-        </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.8 (Class 1 - Math): 10 और 5 को जोड़ने पर (10 + 5) कितना प्राप्त होता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q8"> (A) 12</label></li>
-                <li><label><input type="radio" name="q8"> (B) 15</label></li>
-                <li><label><input type="radio" name="q8"> (C) 50</label></li>
-                <li><label><input type="radio" name="q8"> (D) 5</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) 15</strong><br>व्याख्या: 10 और 5 का योग 15 होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.9 (Class 1 - English): Fill in the blank with 'A' or 'An': "This is ________
-                apple."</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q9"> (A) A</label></li>
-                <li><label><input type="radio" name="q9"> (B) An</label></li>
-                <li><label><input type="radio" name="q9"> (C) The</label></li>
-                <li><label><input type="radio" name="q9"> (D) In</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) An</strong><br>व्याख्या: स्वर (Vowel - 'a') से शुरू होने वाले शब्दों के पहले
-                    'An' का प्रयोग होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.10 (Class 1 - Hindi): आसमान का रंग सामान्यतः कैसा दिखाई देता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q10"> (A) नीला (Blue)</label></li>
-                <li><label><input type="radio" name="q10"> (B) लाल</label></li>
-                <li><label><input type="radio" name="q10"> (C) पीला</label></li>
-                <li><label><input type="radio" name="q10"> (D) काला</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) नीला</strong><br>व्याख्या: साफ दिन में आसमान नीला दिखाई देता है।</p>
-            </details>
-        </div>
-
-
-        <!-- ================= SECTION 2: Class 6 Science (Q11 - Q30) ================= -->
-        <h3>खण्ड II: विज्ञान (Class 6 Science)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.11 (Sorting Materials): जल में पूरी तरह घुल जाने वाले पदार्थ क्या कहलाते हैं?
+            <!-- Flashcards View (Hidden by Default) -->
+            <div id="cards-view"
+                class="hidden bg-white border-2 border-slate-200 rounded-3xl p-6 shadow-sm min-h-[350px] flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <span id="card-badge"
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">Topic</span>
+                    <span class="text-xs font-bold text-slate-400">Flashcard Mode</span>
+                </div>
+                <div class="py-8 text-center space-y-6 cursor-pointer" onclick="flipCard()">
+                    <p id="card-q-text" class="text-xl font-bold text-slate-800 px-4"></p>
+                    <div id="card-answer-box"
+                        class="hidden bg-emerald-50 border-2 border-emerald-200 text-emerald-800 p-4 rounded-2xl max-w-lg mx-auto">
+                        <span class="text-xs font-bold text-emerald-600 block uppercase mb-1">Answer</span>
+                        <p id="card-answer-text" class="font-bold text-lg"></p>
+                        <p id="card-exp-text" class="text-xs text-emerald-700 mt-2 italic"></p>
+                    </div>
+                    <p id="flip-hint" class="text-xs font-bold text-indigo-500 animate-pulse">💡 Click anywhere to
+                        reveal answer</p>
+                </div>
+                <div class="flex justify-between items-center border-t pt-3">
+                    <button onclick="prevQuestion()"
+                        class="px-3 py-1.5 bg-slate-100 rounded-xl text-xs font-bold">Previous</button>
+                    <button onclick="nextQuestion()"
+                        class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold">Next Card</button>
+                </div>
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q11"> (A) विलेय (Soluble)</label></li>
-                <li><label><input type="radio" name="q11"> (B) अविलेय</label></li>
-                <li><label><input type="radio" name="q11"> (C) पारदर्शी</label></li>
-                <li><label><input type="radio" name="q11"> (D) कठोर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) विलेय</strong><br>व्याख्या: जो पदार्थ जल में पूर्णतः घुल जाते हैं, उन्हें
-                    विलेय कहते हैं।</p>
-            </details>
-        </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.12 (Separation): समुद्र के पानी से नमक किस विधि द्वारा प्राप्त किया जाता है?
+        </section>
+    </main>
+
+    <!-- Printable Worksheet Container -->
+    <div class="print-only max-w-4xl mx-auto p-6 space-y-6">
+        <div class="text-center border-b-2 border-slate-900 pb-4">
+            <h1 class="text-3xl font-bold text-slate-900">PCS English School & Academy</h1>
+            <h2 class="text-xl font-semibold text-slate-700">Class 1 Topic-Wise Master Question Paper</h2>
+            <div class="flex justify-between text-sm mt-4 font-semibold text-slate-600">
+                <span>Student Name: _______________________</span>
+                <span>Roll No: __________</span>
+                <span>Date: ____________</span>
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q12"> (A) वाष्पन (Evaporation)</label></li>
-                <li><label><input type="radio" name="q12"> (B) थ्रेशिंग</label></li>
-                <li><label><input type="radio" name="q12"> (C) चालन</label></li>
-                <li><label><input type="radio" name="q12"> (D) निस्पंदन</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) वाष्पन</strong><br>व्याख्या: सूर्य के प्रकाश से जल वाष्पित हो जाता है और नमक
-                    पीछे छूट जाता है।</p>
-            </details>
         </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.13 (Changes Around Us): मोमबत्ती का जलना किस प्रकार का परिवर्तन है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q13"> (A) उत्क्रमणीय</label></li>
-                <li><label><input type="radio" name="q13"> (B) अनुत्क्रमणीय (Irreversible)</label></li>
-                <li><label><input type="radio" name="q13"> (C) भौतिक परिवर्तन मात्र</label></li>
-                <li><label><input type="radio" name="q13"> (D) इनमें से कोई नहीं</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (B) अनुत्क्रमणीय</strong><br>व्याख्या: जली हुई मोमबत्ती से पुनः प्रारंभिक मोमबत्ती
-                    नहीं बनाई जा सकती।</p>
-            </details>
+        <div id="print-questions-grid" class="space-y-4">
+            <!-- Populated dynamically by JS -->
         </div>
 
-        <div class="question-card">
-            <div class="question-title">Q.14 (Plants): पौधे का नर जनन अंग निम्नलिखित में से कौन सा है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q14"> (A) पुंकेसर (Stamen)</label></li>
-                <li><label><input type="radio" name="q14"> (B) स्त्रीकेसर</label></li>
-                <li><label><input type="radio" name="q14"> (C) पंखुड़ी</label></li>
-                <li><label><input type="radio" name="q14"> (D) बाह्यदल</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) पुंकेसर</strong><br>व्याख्या: फूल के भीतर पुंकेसर नर जनन अंग होता है।</p>
-            </details>
-        </div>
+        <div class="page-break"></div>
 
-        <div class="question-card">
-            <div class="question-title">Q.15 (Body Movements): हमारे कंधे और कूल्हे में किस प्रकार की संधि होती है?
+        <div class="pt-6">
+            <h3 class="text-xl font-bold border-b pb-2 mb-4">Teacher's Answer Key & Explanations</h3>
+            <div id="print-answer-key" class="grid grid-cols-2 gap-4 text-xs">
+                <!-- Populated dynamically by JS -->
             </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q15"> (A) कंदुक-खलिका संधि (Ball and Socket)</label></li>
-                <li><label><input type="radio" name="q15"> (B) हिंज संधि</label></li>
-                <li><label><input type="radio" name="q15"> (C) अचल संधि</label></li>
-                <li><label><input type="radio" name="q15"> (D) ध्रुवाग्र संधि</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) कंदुक-खलिका संधि</strong><br>व्याख्या: इससे सभी दिशाओं में गति संभव होती है।
-                </p>
-            </details>
         </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.16 (Living Organisms): मरुस्थल में उगने वाले पौधे अपनी रक्षा के लिए पत्तियों
-                को किस रूप में बदलते हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q16"> (A) काँटों में (Spines)</label></li>
-                <li><label><input type="radio" name="q16"> (B) बड़े फूलों में</label></li>
-                <li><label><input type="radio" name="q16"> (C) शाखाओं में</label></li>
-                <li><label><input type="radio" name="q16"> (D) फलों में</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) काँटों में</strong><br>व्याख्या: वाष्पोत्सर्जन से पानी बचाने के लिए पत्तियाँ
-                    काँटों में बदल जाती हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.17 (Motion): लंबाई का मानक मात्रक (SI Unit) क्या है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q17"> (A) मीटर (Metre)</label></li>
-                <li><label><input type="radio" name="q17"> (B) सेंटीमीटर</label></li>
-                <li><label><input type="radio" name="q17"> (C) किलोमीटर</label></li>
-                <li><label><input type="radio" name="q17"> (D) मिलीमीटर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) मीटर</strong><br>व्याख्या: अंतरराष्ट्रीय प्रणाली में लंबाई का मानक मात्रक मीटर
-                    है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.18 (Light): समतल दर्पण द्वारा बने प्रतिबिंब की क्या विशेषता होती है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q18"> (A) सीधा और समान आकार का</label></li>
-                <li><label><input type="radio" name="q18"> (B) हमेशा उल्टा</label></li>
-                <li><label><input type="radio" name="q18"> (C) बहुत छोटा</label></li>
-                <li><label><input type="radio" name="q18"> (D) वास्तविक</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) सीधा और समान आकार का</strong><br>व्याख्या: समतल दर्पण में प्रतिबिंब सीधा तथा
-                    वस्तु के आकार का होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.19 (Electricity): विद्युत परिपथ में धारा की दिशा पारंपरिक रूप से क्या मानी
-                जाती है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q19"> (A) धन (+) से ऋण (-) टर्मिनल की ओर</label></li>
-                <li><label><input type="radio" name="q19"> (B) ऋण से धन की ओर</label></li>
-                <li><label><input type="radio" name="q19"> (C) किसी भी दिशा में नहीं</label></li>
-                <li><label><input type="radio" name="q19"> (D) केवल मध्य में</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) धन से ऋण टर्मिनल की ओर</strong><br>व्याख्या: धारा प्रवाह की पारंपरिक दिशा सेल
-                    के पॉजिटिव से नेगेटिव टरमिनल होती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.20 (Magnets): छड़ चुंबक के कितने ध्रुव होते हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q20"> (A) दो (उत्तर और दक्षिण)</label></li>
-                <li><label><input type="radio" name="q20"> (B) एक</label></li>
-                <li><label><input type="radio" name="q20"> (C) तीन</label></li>
-                <li><label><input type="radio" name="q20"> (D) कोई नहीं</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) दो (उत्तर और दक्षिण)</strong><br>व्याख्या: प्रत्येक चुंबक के दो ध्रुव (North
-                    और South Pole) होते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.21 (Air): हमारे वायुमंडल में सबसे अधिक मात्रा में कौन सी गैस पाई जाती है?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q21"> (A) नाइट्रोजन (78%)</label></li>
-                <li><label><input type="radio" name="q21"> (B) ऑक्सीजन (21%)</label></li>
-                <li><label><input type="radio" name="q21"> (C) कार्बन डाइऑक्साइड</label></li>
-                <li><label><input type="radio" name="q21"> (D) आर्गन</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) नाइट्रोजन</strong><br>व्याख्या: वायु में लगभग 78% नाइट्रोजन गैस होती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.22 (Water): वर्षा के जल को एकत्रित करके भूजल स्तर बढ़ाने की तकनीक क्या कहलाती
-                है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q22"> (A) वर्षा जल संचयन (Rainwater Harvesting)</label></li>
-                <li><label><input type="radio" name="q22"> (B) वाष्पीकरण</label></li>
-                <li><label><input type="radio" name="q22"> (C) संघनन</label></li>
-                <li><label><input type="radio" name="q22"> (D) निसंदन</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) वर्षा जल संचयन</strong><br>व्याख्या: वर्षा जल का संग्रहण भूजल पुनर्भरण में मदद
-                    करता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.23 (Garbage): लाल केंचुओं की सहायता से रसोई के कचरे से खाद बनाने की विधि क्या
-                है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q23"> (A) वर्मीकंपोजिंग (Vermicomposting)</label></li>
-                <li><label><input type="radio" name="q23"> (B) भस्मीकरण</label></li>
-                <li><label><input type="radio" name="q23"> (C) पुनर्चक्रण</label></li>
-                <li><label><input type="radio" name="q23"> (D) भराव क्षेत्र</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) वर्मीकंपोजिंग</strong><br>व्याख्या: केंचुओं द्वारा जैविक कचरे को खाद में बदलना
-                    वर्मीकंपोजिंग कहलाता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.24 (Motion & Measurement): दीवार घड़ी के पेंडुलम की गति किस प्रकार की होती है?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q24"> (A) आवर्ती गति (Periodic motion)</label></li>
-                <li><label><input type="radio" name="q24"> (B) सरल रेखीय गति</label></li>
-                <li><label><input type="radio" name="q24"> (C) वृत्तीय गति</label></li>
-                <li><label><input type="radio" name="q24"> (D) यादृच्छिक गति</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) आवर्ती गति</strong><br>व्याख्या: जो गति एक निश्चित समय अंतराल के बाद दोहराई
-                    जाए, वह आवर्ती गति है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.25 (Electricity): निम्नलिखित में से कौन विद्युत का सुचालक है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q25"> (A) लोहे की कील / ग्रेफाइट</label></li>
-                <li><label><input type="radio" name="q25"> (B) रबर की स्केल</label></li>
-                <li><label><input type="radio" name="q25"> (C) प्लास्टिक की स्ट्रॉ</label></li>
-                <li><label><input type="radio" name="q25"> (D) लकड़ी का टुकड़ा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) लोहे की कील / ग्रेफाइट</strong><br>व्याख्या: धातुएँ और ग्रेफाइट विद्युत के
-                    अच्छे चालक होते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.26 (Magnets): चुंबक के दो समान ध्रुव एक-दूसरे के पास लाने पर क्या करते हैं?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q26"> (A) प्रतिकर्षित (Repel) करते हैं</label></li>
-                <li><label><input type="radio" name="q26"> (B) आकर्षित करते हैं</label></li>
-                <li><label><input type="radio" name="q26"> (C) चिपक जाते हैं</label></li>
-                <li><label><input type="radio" name="q26"> (D) कोई प्रभाव नहीं होता</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) प्रतिकर्षित करते हैं</strong><br>व्याख्या: समान ध्रुव (Like poles) एक-दूसरे को
-                    दूर भगाते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.27 (Water): जलवाष्प के ठंडे होकर पानी की बूँदों में बदलने की प्रक्रिया क्या
-                कहलाती है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q27"> (A) संघनन (Condensation)</label></li>
-                <li><label><input type="radio" name="q27"> (B) वाष्पन</label></li>
-                <li><label><input type="radio" name="q27"> (C) पिघलना</label></li>
-                <li><label><input type="radio" name="q27"> (D) अवसादन</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) संघनन</strong><br>व्याख्या: ठंडा होने पर वाष्प द्रव रूप में बदल जाती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.28 (Air): जलीय जीव पानी में साँस लेने के लिए किस अंग का उपयोग करते हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q28"> (A) क्लोम / गिल्स (Gills)</label></li>
-                <li><label><input type="radio" name="q28"> (B) फेफड़े</label></li>
-                <li><label><input type="radio" name="q28"> (C) त्वचा</label></li>
-                <li><label><input type="radio" name="q28"> (D) मुँह</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) गिल्स</strong><br>व्याख्या: मछलियाँ गिल्स द्वारा घुली हुई ऑक्सीजन का उपयोग
-                    करती हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.29 (Plants): पौधों की पत्तियों में जाल जैसा शिराविन्यास होने पर जड़ें कैसी
-                होती हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q29"> (A) मूसला जड़ (Taproot)</label></li>
-                <li><label><input type="radio" name="q29"> (B) झकड़ा जड़</label></li>
-                <li><label><input type="radio" name="q29"> (C) अपस्थानिक जड़</label></li>
-                <li><label><input type="radio" name="q29"> (D) कोई जड़ नहीं</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) मूसला जड़</strong><br>व्याख्या: जालिका रूपी शिराविन्यास मूसला जड़ों से जुड़ा
-                    होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.30 (Garbage): कचरा प्रबंधन के 3R सिद्धांत में क्या शामिल है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q30"> (A) Reduce, Reuse, Recycle</label></li>
-                <li><label><input type="radio" name="q30"> (B) Read, Write, Recite</label></li>
-                <li><label><input type="radio" name="q30"> (C) Remove, Replace, Repair</label></li>
-                <li><label><input type="radio" name="q30"> (D) Run, Rest, Repeat</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Reduce, Reuse, Recycle</strong><br>व्याख्या: पर्यावरण बचाने के लिए 3R का पालन
-                    करना आवश्यक है।</p>
-            </details>
-        </div>
-
-
-        <!-- ================= SECTION 3: Class 6 History (Q31 - Q45) ================= -->
-        <h3>खण्ड III: इतिहास - हमारे अतीत - I (Class 6 History)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.31 (What, Where, How): प्राचीन काल में हाथ से लिखी जाने वाली पुस्तकों को क्या
-                कहते हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q31"> (A) पांडुलिपि (Manuscript)</label></li>
-                <li><label><input type="radio" name="q31"> (B) शिलालेख</label></li>
-                <li><label><input type="radio" name="q31"> (C) उपन्यास</label></li>
-                <li><label><input type="radio" name="q31"> (D) समाचार पत्र</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) पांडुलिपि</strong><br>व्याख्या: ताड़पत्र या भोजपत्र पर हाथ से लिखी पुस्तकें
-                    पांडुलिपि कहलाती हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.32 (Hunter-Gatherer): मध्य प्रदेश में स्थित 'भीमबेटका' किसके लिए प्रसिद्ध है?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q32"> (A) पाषाण युग के शैल चित्र (Rock Paintings)</label></li>
-                <li><label><input type="radio" name="q32"> (B) हड़प्पाकालीन स्नागार</label></li>
-                <li><label><input type="radio" name="q32"> (C) बौद्ध स्तूप</label></li>
-                <li><label><input type="radio" name="q32"> (D) गुप्तकालीन मंदिर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) पाषाण युग के शैल चित्र</strong><br>व्याख्या: भीमबेटका में आदिमानव द्वारा बनाए
-                    गए शैल चित्र मिलते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.33 (Earliest Cities): मोहनजोदड़ो का 'महान स्नागार' किस सामग्री से जल-रोधी
-                बनाया गया था?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q33"> (A) तारकोल (Tar) की परत से</label></li>
-                <li><label><input type="radio" name="q33"> (B) संगमरमर से</label></li>
-                <li><label><input type="radio" name="q33"> (C) प्लास्टिक से</label></li>
-                <li><label><input type="radio" name="q33"> (D) लोहे की चादरों से</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) तारकोल की परत से</strong><br>व्याख्या: पानी के रिसाव को रोकने के लिए ईंट और
-                    प्लास्टर पर तारकोल की परत चढ़ाई गई थी।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.34 (Books and Burials): कब्रों पर बड़े-बड़े पत्थर रखे जाने की प्रथा को क्या
-                कहते हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q34"> (A) महापाषाण (Megaliths)</label></li>
-                <li><label><input type="radio" name="q34"> (B) स्तूप</label></li>
-                <li><label><input type="radio" name="q34"> (C) शिलालेख</label></li>
-                <li><label><input type="radio" name="q34"> (D) गुफा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) महापाषाण</strong><br>व्याख्या: मृतकों की कब्रों के पास बड़े पत्थर महापाषाण
-                    कहलाते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.35 (Kingdoms & Kings): प्राचीन काल में सम्राट बनने के लिए कौन सा प्रसिद्ध यज्ञ
-                किया जाता था?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q35"> (A) अश्वमेध यज्ञ (Ashwamedha Yajna)</label></li>
-                <li><label><input type="radio" name="q35"> (B) राजसूय यज्ञ</label></li>
-                <li><label><input type="radio" name="q35"> (C) सत्यनारायण व्रत</label></li>
-                <li><label><input type="radio" name="q35"> (D) गोवर्धन पूजा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) अश्वमेध यज्ञ</strong><br>व्याख्या: घोड़ा छोड़ने की इस विधि से राजाओं का प्रभाव
-                    क्षेत्र परखा जाता था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.36 (New Questions): गौतम बुद्ध को ज्ञान की प्राप्ति कहाँ हुई थी?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q36"> (A) बोधगया (बिहार)</label></li>
-                <li><label><input type="radio" name="q36"> (B) सारनाथ</label></li>
-                <li><label><input type="radio" name="q36"> (C) लुम्बिनी</label></li>
-                <li><label><input type="radio" name="q36"> (D) कुशीनगर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) बोधगया</strong><br>व्याख्या: पीपल के वृक्ष के नीचे बोधगया में बुद्ध को ज्ञान
-                    प्राप्त हुआ।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.37 (Ashoka): सम्राट अशोक ने किस युद्ध के बाद भारी रक्तपात देखकर युद्ध त्याग
-                दिया था?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q37"> (A) कलिंग का युद्ध (Kalinga War)</label></li>
-                <li><label><input type="radio" name="q37"> (B) पानीपत का युद्ध</label></li>
-                <li><label><input type="radio" name="q37"> (C) तराइन का युद्ध</label></li>
-                <li><label><input type="radio" name="q37"> (D) हल्दीघाटी का युद्ध</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) कलिंग का युद्ध</strong><br>व्याख्या: कलिंग युद्ध की हिंसा से द्रवित होकर अशोक
-                    ने बौद्ध धर्म अपनाया।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.38 (Villages & Towns): तमिल क्षेत्र में बड़े भूस्वामियों को क्या कहा जाता था?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q38"> (A) वेलार (Vellalar)</label></li>
-                <li><label><input type="radio" name="q38"> (B) ग्रामभोजक</label></li>
-                <li><label><input type="radio" name="q38"> (C) उझावर</label></li>
-                <li><label><input type="radio" name="q38"> (D) अडिमाई</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) वेलार</strong><br>व्याख्या: दक्षिण भारत में बड़े भूस्वामियों को वेलार कहा जाता
-                    था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.39 (Traders & Kings): 'रेशम मार्ग' (Silk Route) पर नियंत्रण रखने वाले प्रसिद्ध
-                शासक कौन थे?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q39"> (A) कुषाण राजवंश (Kushanas)</label></li>
-                <li><label><input type="radio" name="q39"> (B) मौर्य सम्राट</label></li>
-                <li><label><input type="radio" name="q39"> (C) गुप्त वंश</label></li>
-                <li><label><input type="radio" name="q39"> (D) चोल राजा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) कुषाण राजवंश</strong><br>व्याख्या: कनिष्क जैसे कुषाण शासकों ने रेशम मार्ग पर
-                    नियंत्रण रखा था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.40 (Buildings & Paintings): दिल्ली का महरोली लौह स्तंभ किस काल से संबंधित है?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q40"> (A) गुप्त काल (Gupta Period)</label></li>
-                <li><label><input type="radio" name="q40"> (B) मौर्य काल</label></li>
-                <li><label><input type="radio" name="q40"> (C) हड़प्पा काल</label></li>
-                <li><label><input type="radio" name="q40"> (D) मुगल काल</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) गुप्त काल</strong><br>व्याख्या: इस स्तंभ पर आज तक जंग नहीं लगी है, जो
-                    गुप्तकालीन धातु कला का प्रतीक है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.41 (Early Cities): हड़प्पा सभ्यता की खोज सबसे पहले किस वर्ष हुई थी?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q41"> (A) 1921</label></li>
-                <li><label><input type="radio" name="q41"> (B) 1947</label></li>
-                <li><label><input type="radio" name="q41"> (C) 1857</label></li>
-                <li><label><input type="radio" name="q41"> (D) 2000</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) 1921</strong><br>व्याख्या: दयाराम साहनी द्वारा 1921 में हड़प्पा की खोज की गई
-                    थी।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.42 (New Empires): समुद्रगुप्त की प्रशस्ति किस कवि द्वारा रचित है जो इलाहाबाद
-                के स्तंभ पर है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q42"> (A) हरिषेण</label></li>
-                <li><label><input type="radio" name="q42"> (B) कालिदास</label></li>
-                <li><label><input type="radio" name="q42"> (C) बणभट्ट</label></li>
-                <li><label><input type="radio" name="q42"> (D) तुलसीदास</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) हरिषेण</strong><br>व्याख्या: हरिषेण समुद्रगुप्त के दरबारी कवि थे।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.43 (Traders & Pilgrims): चीनी यात्री फाह्यान (Fa Xian) किसके शासनकाल में भारत
-                आया था?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q43"> (A) चंद्रगुप्त द्वितीय</label></li>
-                <li><label><input type="radio" name="q43"> (B) अशोक</label></li>
-                <li><label><input type="radio" name="q43"> (C) कनिष्क</label></li>
-                <li><label><input type="radio" name="q43"> (D) हर्षवर्धन</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) चंद्रगुप्त द्वितीय</strong><br>व्याख्या: फाह्यान गुप्त सम्राट चंद्रगुप्त
-                    विक्रमादित्य के काल में भारत आया था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.44 (What, Where): हमारे देश का नाम 'इंडिया' किस शब्द से निकला है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q44"> (A) इंडस (Indus / सिंधु)</label></li>
-                <li><label><input type="radio" name="q44"> (B) गंगा</label></li>
-                <li><label><input type="radio" name="q44"> (C) आर्यावर्त</label></li>
-                <li><label><input type="radio" name="q44"> (D) भारतवर्ष</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) इंडस (सिंधु)</strong><br>व्याख्या: लगभग 2500 वर्ष पूर्व उत्तर-पश्चिम से आने
-                    वाले ईरानियों और यूनानियों ने इसे इंडस या सिंधु कहा।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.45 (Buildings): स्तूप का शाब्दिक अर्थ क्या होता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q45"> (A) टीला (Tila / Mound)</label></li>
-                <li><label><input type="radio" name="q45"> (B) मंदिर</label></li>
-                <li><label><input type="radio" name="q45"> (C) महल</label></li>
-                <li><label><input type="radio" name="q45"> (D) गुफा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) टीला</strong><br>व्याख्या: स्तूप का अर्थ एक गोल टीला होता है जिसमें पवित्र
-                    अवशेष रखे जाते हैं।</p>
-            </details>
-        </div>
-
-
-        <!-- ================= SECTION 4: Class 6 Geography (Q46 - Q60) ================= -->
-        <h3>खण्ड IV: भूगोल - पृथ्वी: हमारा आवास (Class 6 Geography)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.46 (Solar System): किस ग्रह को 'पृथ्वी का जुड़वाँ' माना जाता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q46"> (A) शुक्र (Venus)</label></li>
-                <li><label><input type="radio" name="q46"> (B) मंगल</label></li>
-                <li><label><input type="radio" name="q46"> (C) बुध</label></li>
-                <li><label><input type="radio" name="q46"> (D) शनि</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) शुक्र</strong><br>व्याख्या: आकार और आकृति पृथ्वी जैसी होने के कारण शुक्र को
-                    पृथ्वी का जुड़वाँ कहते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.47 (Globes): 0° अक्षांश रेखा को किस नाम से जाना जाता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q47"> (A) विषुवत वृत्त / भूमध्य रेखा (Equator)</label></li>
-                <li><label><input type="radio" name="q47"> (B) कर्क रेखा</label></li>
-                <li><label><input type="radio" name="q47"> (C) मकर रेखा</label></li>
-                <li><label><input type="radio" name="q47"> (D) प्रधान मध्याह्न रेखा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) विषुवत वृत्त</strong><br>व्याख्या: 0° अक्षांश पृथ्वी को उत्तरी और दक्षिणी
-                    गोलार्ध में बाँटता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.48 (Motions): पृथ्वी के अपने अक्ष पर घूमने (Rotation) से क्या होता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q48"> (A) दिन और रात का होना</label></li>
-                <li><label><input type="radio" name="q48"> (B) ऋतुओं में परिवर्तन</label></li>
-                <li><label><input type="radio" name="q48"> (C) वर्ष का बदलना</label></li>
-                <li><label><input type="radio" name="q48"> (D) ज्वार-भाटा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) दिन और रात का होना</strong><br>व्याख्या: घूर्णन के कारण पृथ्वी का आधा हिस्सा
-                    सूर्य के सामने रहता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.49 (Maps): मानचित्र के तीन प्रमुख घटक कौन से हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q49"> (A) दूरी, दिशा और प्रतीक (Distance, Direction,
-                        Symbols)</label></li>
-                <li><label><input type="radio" name="q49"> (B) पर्वत, पठार, मैदान</label></li>
-                <li><label><input type="radio" name="q49"> (C) स्केल, रंग, फ्रेम</label></li>
-                <li><label><input type="radio" name="q49"> (D) अक्षांश, देशांतर, समय</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) दूरी, दिशा और प्रतीक</strong><br>व्याख्या: मानचित्र पढ़ने के लिए ये तीन मुख्य
-                    घटक होते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.50 (Major Domains): विश्व का सबसे बड़ा महाद्वीप कौन सा है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q50"> (A) एशिया (Asia)</label></li>
-                <li><label><input type="radio" name="q50"> (B) अफ्रीका</label></li>
-                <li><label><input type="radio" name="q50"> (C) उत्तरी अमेरिका</label></li>
-                <li><label><input type="radio" name="q50"> (D) अंटार्कटिका</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) एशिया</strong><br>व्याख्या: एशिया पृथ्वी का सबसे बड़ा महाद्वीप है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.51 (Landforms): भारत की उत्तर दिशा में कौन सी पर्वतमाला स्थित है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q51"> (A) हिमालय (Himalayas)</label></li>
-                <li><label><input type="radio" name="q51"> (B) अरावली</label></li>
-                <li><label><input type="radio" name="q51"> (C) विंध्याचल</label></li>
-                <li><label><input type="radio" name="q51"> (D) सतपुड़ा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) हिमालय</strong><br>व्याख्या: हिमालय एक नवीन वलित पर्वत है जो उत्तर में प्रहरी
-                    है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.52 (India): भारत का मानक याम्योत्तर (Standard Meridian) किस देशांतर को माना
-                गया है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q52"> (A) 82°30' पूर्व देशांतर</label></li>
-                <li><label><input type="radio" name="q52"> (B) 0° देशांतर</label></li>
-                <li><label><input type="radio" name="q52"> (C) 68°7' पूर्व देशांतर</label></li>
-                <li><label><input type="radio" name="q52"> (D) 97°25' पूर्व देशांतर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) 82°30' पूर्व देशांतर</strong><br>व्याख्या: मिर्जापुर (इलाहाबाद) से गुजरने वाली
-                    यह रेखा भारत का मानक समय तय करती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.53 (India Climate): क्षेत्रफल की दृष्टि से भारत का विश्व में कौन सा स्थान है?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q53"> (A) सातवाँ (7th)</label></li>
-                <li><label><input type="radio" name="q53"> (B) दूसरा</label></li>
-                <li><label><input type="radio" name="q53"> (C) पाँचवाँ</label></li>
-                <li><label><input type="radio" name="q53"> (D) दसवाँ</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) सातवाँ</strong><br>व्याख्या: रूस, कनाडा, चीन, अमेरिका, ब्राजील और ऑस्ट्रेलिया
-                    के बाद भारत सातवाँ सबसे बड़ा देश है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.54 (Vegetation): गुजरात का गिर राष्ट्रीय उद्यान किसके लिए प्रसिद्ध है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q54"> (A) एशियाई शेर (Asiatic Lions)</label></li>
-                <li><label><input type="radio" name="q54"> (B) एकसिंगे गैंडे</label></li>
-                <li><label><input type="radio" name="q54"> (C) बंगाल टाइगर</label></li>
-                <li><label><input type="radio" name="q54"> (D) हाथी</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) एशियाई शेर</strong><br>व्याख्या: गिर वन एशियाई शेरों का एकमात्र प्राकृतिक आवास
-                    है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.55 (Solar System): सूर्य के सबसे नजदीक कौन सा ग्रह है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q55"> (A) बुध (Mercury)</label></li>
-                <li><label><input type="radio" name="q55"> (B) शुक्र</label></li>
-                <li><label><input type="radio" name="q55"> (C) पृथ्वी</label></li>
-                <li><label><input type="radio" name="q55"> (D) मंगल</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) बुध</strong><br>व्याख्या: बुध सौरमंडल में सूर्य का सबसे निकटतम ग्रह है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.56 (Globes): भारत किस गोलार्ध में स्थित है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q56"> (A) उत्तरी एवं पूर्वी गोलार्ध</label></li>
-                <li><label><input type="radio" name="q56"> (B) दक्षिणी एवं पश्चिमी गोलार्ध</label></li>
-                <li><label><input type="radio" name="q56"> (C) केवल दक्षिणी गोलार्ध</label></li>
-                <li><label><input type="radio" name="q56"> (D) पश्चिमी गोलार्ध</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) उत्तरी एवं पूर्वी गोलार्ध</strong><br>व्याख्या: भूमध्य रेखा के उत्तर और प्रधान
-                    मध्याह्न रेखा के पूर्व में भारत स्थित है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.57 (Motions): 21 जून को सूर्य की किरणें किस रेखा पर सीधी पड़ती हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q57"> (A) कर्क रेखा (Tropic of Cancer)</label></li>
-                <li><label><input type="radio" name="q57"> (B) मकर रेखा</label></li>
-                <li><label><input type="radio" name="q57"> (C) विषुवत वृत्त</label></li>
-                <li><label><input type="radio" name="q57"> (D) आर्कटिक वृत्त</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) कर्क रेखा</strong><br>व्याख्या: 21 जून को उत्तरी गोलार्ध में सबसे लंबा दिन
-                    होता है जब सूर्य कर्क रेखा पर सीधा चमकता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.58 (Domains): पृथ्वी के किस भाग को 'जीवमंडल' (Biosphere) कहा जाता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q58"> (A) जहाँ थल, जल और वायु एकसाथ मिलते हैं और जीवन संभव
-                        है</label></li>
-                <li><label><input type="radio" name="q58"> (B) केवल गहरी नदियाँ</label></li>
-                <li><label><input type="radio" name="q58"> (C) केवल वायुमंडल</label></li>
-                <li><label><input type="radio" name="q58"> (D) केवल पर्वत शिखर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) जहाँ थल, जल और वायु मिलते हैं</strong><br>व्याख्या: जीवमंडल वह सीमित क्षेत्र
-                    है जहाँ जीवन मौजूद है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.59 (Landforms): पठार (Plateau) की मुख्य विशेषता क्या होती है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q59"> (A) यह उठी हुई एवं सपाट भूमि होती है (Table land)</label>
-                </li>
-                <li><label><input type="radio" name="q59"> (B) यह बहुत नुकीली होती है</label></li>
-                <li><label><input type="radio" name="q59"> (C) यह समुद्र तल से नीची होती है</label></li>
-                <li><label><input type="radio" name="q59"> (D) यहाँ केवल रेत होती है</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) उठी हुई एवं सपाट भूमि</strong><br>व्याख्या: पठार आसपास की भूमि से ऊँचा उठा
-                    होता है और ऊपर मेज की तरह सपाट होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.60 (India): लक्षद्वीप द्वीप समूह किस सागर में स्थित है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q60"> (A) अरब सागर (Arabian Sea)</label></li>
-                <li><label><input type="radio" name="q60"> (B) बंगाल की खाड़ी</label></li>
-                <li><label><input type="radio" name="q60"> (C) हिंद महासागर</label></li>
-                <li><label><input type="radio" name="q60"> (D) प्रशांत महासागर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) अरब सागर</strong><br>व्याख्या: भारत के पश्चिम में अरब सागर में लक्षद्वीप स्थित
-                    है।</p>
-            </details>
-        </div>
-
-
-        <!-- ================= SECTION 5: Class 6 Civics (Q61 - Q70) ================= -->
-        <h3>खण्ड V: नागरिक शास्त्र - सामाजिक एवं राजनीतिक जीवन (Class 6 Civics)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.61 (Diversity): भारत की विविधता को क्या माना जाता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q61"> (A) देश की ताकत / शक्ति (Strength)</label></li>
-                <li><label><input type="radio" name="q61"> (B) कमजोरी</label></li>
-                <li><label><input type="radio" name="q61"> (C) विकास में बाधा</label></li>
-                <li><label><input type="radio" name="q61"> (D) झगड़े की जड़</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) देश की ताकत</strong><br>व्याख्या: अनेकता में एकता हमारी सबसे बड़ी शक्ति है।
-                </p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.62 (Discrimination): भारतीय संविधान के निर्माण में मुख्य भूमिका किसने निभाई?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q62"> (A) डॉ. भीमराव अंबेडकर</label></li>
-                <li><label><input type="radio" name="q62"> (B) महात्मा गांधी</label></li>
-                <li><label><input type="radio" name="q62"> (C) सरदार पटेल</label></li>
-                <li><label><input type="radio" name="q62"> (D) जवाहरलाल नेहरू</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) डॉ. भीमराव अंबेडकर</strong><br>व्याख्या: वे प्रारूप समिति के अध्यक्ष थे और
-                    उन्होंने समानता का अधिकार सुनिश्चित किया।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.63 (Government): लोकतांत्रिक सरकार में कानून बनाने की असली ताकत किसके पास होती
-                है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q63"> (A) देश की जनता (चुने हुए प्रतिनिधि)</label></li>
-                <li><label><input type="radio" name="q63"> (B) केवल राजा</label></li>
-                <li><label><input type="radio" name="q63"> (C) सेना प्रमुख</label></li>
-                <li><label><input type="radio" name="q63"> (D) उद्योगपति</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) देश की जनता</strong><br>व्याख्या: लोकतंत्र जनता का शासन है जहाँ जनता अपने
-                    प्रतिनिधियों के माध्यम से सरकार चलाती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.64 (Democratic Gov): दक्षिण अफ्रीका में रंगभेद के खिलाफ किसने ऐतिहासिक संघर्ष
-                किया?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q64"> (A) नेल्सन मंडेला (Nelson Mandela)</label></li>
-                <li><label><input type="radio" name="q64"> (B) अब्राहम लिंकन</label></li>
-                <li><label><input type="radio" name="q64"> (C) मार्टिन लूथर</label></li>
-                <li><label><input type="radio" name="q64"> (D) कोफी अन्नान</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) नेल्सन मंडेला</strong><br>व्याख्या: उन्होंने नस्लीय भेदभाव के खिलाफ लंबी लड़ाई
-                    लड़ी।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.65 (Panchayati Raj): त्रिस्तरीय पंचायती राज व्यवस्था की सबसे निचली इकाई क्या
-                है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q65"> (A) ग्राम पंचायत (Gram Panchayat)</label></li>
-                <li><label><input type="radio" name="q65"> (B) जिला परिषद</label></li>
-                <li><label><input type="radio" name="q65"> (C) पंचायत समिति</label></li>
-                <li><label><input type="radio" name="q65"> (D) नगर निगम</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) ग्राम पंचायत</strong><br>व्याख्या: गाँव के स्तर पर ग्राम पंचायत स्थानीय शासन
-                    की प्रथम सीढ़ी है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.66 (Panchayat Admin): ग्राम पंचायत का सचिव (Secretary) किसके द्वारा नियुक्त
-                किया जाता है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q66"> (A) सरकार द्वारा (सरकारी कर्मचारी)</label></li>
-                <li><label><input type="radio" name="q66"> (B) जनता द्वारा सीधे चुनाव से</label></li>
-                <li><label><input type="radio" name="q66"> (C) सरपंच द्वारा</label></li>
-                <li><label><input type="radio" name="q66"> (D) जिलाधिकारी द्वारा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) सरकार द्वारा</strong><br>व्याख्या: पंचायत सचिव सरकार द्वारा नियुक्त अधिकारी
-                    होता है जो लेखा-जोखा रखता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.67 (Rural Admin): ग्रामीण क्षेत्रों में जमीन के रिकॉर्ड रखने की जिम्मेदारी
-                किसकी होती है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q67"> (A) पटवारी / लेखपाल (Patwari)</label></li>
-                <li><label><input type="radio" name="q67"> (B) सरपंच</label></li>
-                <li><label><input type="radio" name="q67"> (C) थाना प्रभारी</label></li>
-                <li><label><input type="radio" name="q67"> (D) शिक्षक</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) पटवारी</strong><br>व्याख्या: पटवारी या लेखपाल भूमि का नाप और खसरा-खतौनी का
-                    हिसाब रखता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.68 (Urban Admin): बड़े शहरों में पानी, बिजली और साफ-सफाई की जिम्मेदारी किसकी
-                होती है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q68"> (A) नगर निगम (Municipal Corporation)</label></li>
-                <li><label><input type="radio" name="q68"> (B) ग्राम पंचायत</label></li>
-                <li><label><input type="radio" name="q68"> (C) जिला अदालत</label></li>
-                <li><label><input type="radio" name="q68"> (D) डाक विभाग</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) नगर निगम</strong><br>व्याख्या: शहरी स्थानीय स्वशासन का कार्य नगर निगम संभालता
-                    है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.69 (Livelihoods): ग्रामीण क्षेत्रों में आजीविका का सबसे प्रमुख साधन क्या है?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q69"> (A) कृषि और खेती (Agriculture)</label></li>
-                <li><label><input type="radio" name="q69"> (B) बड़े कारखाने</label></li>
-                <li><label><input type="radio" name="q69"> (C) आईटी सेक्टर</label></li>
-                <li><label><input type="radio" name="q69"> (D) मॉल संस्कृति</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) कृषि और खेती</strong><br>व्याख्या: ग्रामीण आबादी मुख्य रूप से कृषि कार्यों पर
-                    निर्भर होती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.70 (Urban Livelihoods): शहरों में सड़कों के किनारे सामान बेचने वाले क्या
-                कहलाते हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q70"> (A) रेहड़ी-पटरी वाले / पथ विक्रेता (Street Vendors)</label>
-                </li>
-                <li><label><input type="radio" name="q70"> (B) बैंक प्रबंधक</label></li>
-                <li><label><input type="radio" name="q70"> (C) सरकारी अधिकारी</label></li>
-                <li><label><input type="radio" name="q70"> (D) बड़े व्यापारी</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) रेहड़ी-पटरी वाले</strong><br>व्याख्या: ये शहरी अनौपचारिक क्षेत्र के श्रमिक
-                    होते हैं।</p>
-            </details>
-        </div>
-
-
-        <!-- ================= SECTION 6: Class 6 English Literature & Grammar (Q71 - Q85) ================= -->
-        <h3>खण्ड VI: अंग्रेजी साहित्य और व्याकरण (Class 6 English)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.71 (Honeysuckle): Who actually did Patrick's homework in the story?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q71"> (A) Patrick himself</label></li>
-                <li><label><input type="radio" name="q71"> (B) The little elf</label></li>
-                <li><label><input type="radio" name="q71"> (C) His teacher</label></li>
-                <li><label><input type="radio" name="q71"> (D) His cat</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Patrick himself</strong><br>व्याख्या: बौना केवल नाटक करता था, पैट्रिक को खुद
-                    ही सारी मेहनत करनी पड़ी।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.72 (Dog's Master): Why did the dog choose the lion as his master?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q72"> (A) Because the lion was the strongest beast in the
-                        forest</label></li>
-                <li><label><input type="radio" name="q72"> (B) Because the lion gave him food</label></li>
-                <li><label><input type="radio" name="q72"> (C) Because he was friendly</label></li>
-                <li><label><input type="radio" name="q72"> (D) Because he liked his mane</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Because the lion was the strongest beast</strong><br>व्याख्या: कुत्ता सबसे
-                    शक्तिशाली जानवर को अपना मालिक बनाना चाहता था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.73 (Taro's Reward): What was special about the waterfall that Taro found?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q73"> (A) It gave delicious sake to Taro and water to
-                        others</label></li>
-                <li><label><input type="radio" name="q73"> (B) It turned water to gold</label></li>
-                <li><label><input type="radio" name="q73"> (C) It flowed with milk</label></li>
-                <li><label><input type="radio" name="q73"> (D) It was hot water</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) It gave delicious sake to Taro</strong><br>व्याख्या: तारो की माता-पिता भक्ति
-                    के कारण झरना उसे साके देता था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.74 (Space): Where was Kalpana Chawla born?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q74"> (A) Karnal, Haryana</label></li>
-                <li><label><input type="radio" name="q74"> (B) New Delhi</label></li>
-                <li><label><input type="radio" name="q74"> (C) Houston, Texas</label></li>
-                <li><label><input type="radio" name="q74"> (D) Mumbai</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Karnal, Haryana</strong><br>व्याख्या: कल्पना चावला का जन्म करनाल में हुआ था।
-                </p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.75 (A Pact with the Sun): How did the two baby birds get separated?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q75"> (A) A big storm blew them away</label></li>
-                <li><label><input type="radio" name="q75"> (B) A hunter caught them</label></li>
-                <li><label><input type="radio" name="q75"> (C) Their mother flew away</label></li>
-                <li><label><input type="radio" name="q75"> (D) They left on their own</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) A big storm blew them away</strong><br>व्याख्या: आंधी के कारण दोनों पक्षी
-                    अलग-अलग जगहों पर जा गिरे।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.76 (Grammar - Noun): Identify the Proper Noun: "<u>Delhi</u> is a capital."
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q76"> (A) Delhi</label></li>
-                <li><label><input type="radio" name="q76"> (B) city</label></li>
-                <li><label><input type="radio" name="q76"> (C) capital</label></li>
-                <li><label><input type="radio" name="q76"> (D) is</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Delhi</strong><br>व्याख्या: दिल्ली एक विशिष्ट स्थान का नाम है, अतः यह Proper
-                    Noun है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.77 (Grammar - Pronoun): Fill in: "The boys are playing football. _________ are
-                winning."</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q77"> (A) They</label></li>
-                <li><label><input type="radio" name="q77"> (B) He</label></li>
-                <li><label><input type="radio" name="q77"> (C) She</label></li>
-                <li><label><input type="radio" name="q77"> (D) It</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) They</strong><br>व्याख्या: बहुवचन संज्ञा के लिए 'They' सर्वनाम का प्रयोग होता
-                    है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.78 (Grammar - Adjective): Find the adjective: "She wore a <u>beautiful</u>
-                dress."</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q78"> (A) beautiful</label></li>
-                <li><label><input type="radio" name="q78"> (B) dress</label></li>
-                <li><label><input type="radio" name="q78"> (C) she</label></li>
-                <li><label><input type="radio" name="q78"> (D) wore</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) beautiful</strong><br>व्याख्या: 'beautiful' संज्ञा (dress) की विशेषता बता रहा
-                    है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.79 (Grammar - Preposition): The cat jumped _________ the wall.</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q79"> (A) over / onto</label></li>
-                <li><label><input type="radio" name="q79"> (B) in</label></li>
-                <li><label><input type="radio" name="q79"> (C) at</label></li>
-                <li><label><input type="radio" name="q79"> (D) under</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) over / onto</strong><br>व्याख्या: ऊपर से कूदने के लिए 'over' या 'onto' का
-                    प्रयोग होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.80 (Grammar - Tense): Identify tense: "They will visit us tomorrow."</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q80"> (A) Simple Future Tense</label></li>
-                <li><label><input type="radio" name="q80"> (B) Simple Present</label></li>
-                <li><label><input type="radio" name="q80"> (C) Past Continuous</label></li>
-                <li><label><input type="radio" name="q80"> (D) Present Perfect</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Simple Future Tense</strong><br>व्याख्या: 'will' भविष्य काल को दर्शाता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.81 (Fair Play): What was Jumman's reaction when Algu was made Head Panch?
-            </div>
-            <ul class="options">
-                <li><label><input type="radio" name="q81"> (A) He was happy because Algu was his best friend</label>
-                </li>
-                <li><label><input type="radio" name="q81"> (B) He was angry</label></li>
-                <li><label><input type="radio" name="q81"> (C) He ran away</label></li>
-                <li><label><input type="radio" name="q81"> (D) He cried</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) He was happy</strong><br>व्याख्या: जुम्मन को विश्वास था कि उसका मित्र उसका
-                    पक्ष लेगा।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.82 (Tansen): What happened when Tansen sang 'Raga Deepak'?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q82"> (A) It heated the atmosphere and set lamps ablaze</label>
-                </li>
-                <li><label><input type="radio" name="q82"> (B) It brought heavy rain</label></li>
-                <li><label><input type="radio" name="q82"> (C) Animals slept</label></li>
-                <li><label><input type="radio" name="q82"> (D) Rivers froze</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) It heated the atmosphere</strong><br>व्याख्या: राग दीपक से अत्यधिक गर्मी
-                    उत्पन्न होती है और दीपक जल उठते हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.83 (Grammar - Article): Fill in: "She reads _________ Gita every day."</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q83"> (A) the</label></li>
-                <li><label><input type="radio" name="q83"> (B) a</label></li>
-                <li><label><input type="radio" name="q83"> (C) an</label></li>
-                <li><label><input type="radio" name="q83"> (D) no article</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) the</strong><br>व्याख्या: धार्मिक ग्रंथों के नाम के पहले निश्चित आर्टिकल 'the'
-                    लगता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.84 (Grammar - Synonym): What is the synonym of 'Ancient'?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q84"> (A) Old / Historic</label></li>
-                <li><label><input type="radio" name="q84"> (B) Modern</label></li>
-                <li><label><input type="radio" name="q84"> (C) Fast</label></li>
-                <li><label><input type="radio" name="q84"> (D) Bright</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Old</strong><br>व्याख्या: एंशिएंट का अर्थ प्राचीन या पुराना होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.85 (A Pact with the Sun): How was Saeeda's mother cured?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q85"> (A) Through warm sunshine and fresh air</label></li>
-                <li><label><input type="radio" name="q85"> (B) By expensive medicine</label></li>
-                <li><label><input type="radio" name="q85"> (C) By magic</label></li>
-                <li><label><input type="radio" name="q85"> (D) By herbal tea</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) Through warm sunshine and fresh air</strong><br>व्याख्या: सूर्य की किरणों और
-                    ताजी हवा ने उसे ठीक कर दिया।</p>
-            </details>
-        </div>
-
-
-        <!-- ================= SECTION 7: Class 6 Hindi Vasant & Grammar (Q86 - Q100) ================= -->
-        <h3>खण्ड VII: हिंदी वसंत और व्याकरण (Class 6 Hindi)</h3>
-
-        <div class="question-card">
-            <div class="question-title">Q.86 (Vasant): 'वह चिड़िया जो' कविता के रचयिता कौन हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q86"> (A) केदारनाथ अग्रवाल</label></li>
-                <li><label><input type="radio" name="q86"> (B) सुभद्रा कुमारी चौहान</label></li>
-                <li><label><input type="radio" name="q86"> (C) मुंशी प्रेमचंद</label></li>
-                <li><label><input type="radio" name="q86"> (D) विष्णु प्रभाकर</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) केदारनाथ अग्रवाल</strong><br>व्याख्या: इस सुंदर कविता के कवि केदारनाथ अग्रवाल
-                    हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.87 (Vasant): नादान दोस्त कहानी के लेखक कौन हैं?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q87"> (A) मुंशी प्रेमचंद</label></li>
-                <li><label><input type="radio" name="q87"> (B) कृष्णा सोबती</label></li>
-                <li><label><input type="radio" name="q87"> (C) गुणाकर मुले</label></li>
-                <li><label><input type="radio" name="q87"> (D) नागार्जुन</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) मुंशी प्रेमचंद</strong><br>व्याख्या: केशव और श्यामा की कहानी मुंशी प्रेमचंद ने
-                    लिखी है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.88 (Vasant): सुभद्रा कुमारी चौहान की कविता 'झाँसी की रानी' में लक्ष्मीबाई के
-                बचपन का नाम क्या था?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q88"> (A) छबीली</label></li>
-                <li><label><input type="radio" name="q88"> (B) पद्मा</label></li>
-                <li><label><input type="radio" name="q88"> (C) अहिल्या</label></li>
-                <li><label><input type="radio" name="q88"> (D) मीरा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) छबीली</strong><br>व्याख्या: कविता में उल्लेख है कि उनका नाम छबीली था।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.89 (Bal Ram Katha): भगवान राम का जन्म किस नदी के तट पर हुआ था?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q89"> (A) सरयू नदी (Ayodhya)</label></li>
-                <li><label><input type="radio" name="q89"> (B) गंगा नदी</label></li>
-                <li><label><input type="radio" name="q89"> (C) यमुना नदी</label></li>
-                <li><label><input type="radio" name="q89"> (D) नर्मदा</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) सरयू नदी</strong><br>व्याख्या: अयोध्या सरयू नदी के तट पर बसी है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.90 (Bal Ram Katha): लंका विजय के बाद राम किस विमान से अयोध्या लौटे थे?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q90"> (A) पुष्पक विमान</label></li>
-                <li><label><input type="radio" name="q90"> (B) गरुड़ विमान</label></li>
-                <li><label><input type="radio" name="q90"> (C) हंस विमान</label></li>
-                <li><label><input type="radio" name="q90"> (D) मेघ विमान</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) पुष्पक विमान</strong><br>व्याख्या: रावण पर विजय के पश्चात वे पुष्पक विमान से
-                    लौटे।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.91 (Grammar - संज्ञा): 'मिठास' शब्द किस प्रकार की संज्ञा है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q91"> (A) भाववाचक संज्ञा</label></li>
-                <li><label><input type="radio" name="q91"> (B) व्यक्तिवाचक</label></li>
-                <li><label><input type="radio" name="q91"> (C) जातिवाचक</label></li>
-                <li><label><input type="radio" name="q91"> (D) द्रव्यवाचक</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) भाववाचक संज्ञा</strong><br>व्याख्या: मिठास गुण या भाव को दर्शाती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.92 (Grammar - कारक): "पेड़ से फल गिरा" में कौन सा कारक है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q92"> (A) अपादान कारक (अलगाव)</label></li>
-                <li><label><input type="radio" name="q92"> (B) करण कारक</label></li>
-                <li><label><input type="radio" name="q92"> (C) कर्म कारक</label></li>
-                <li><label><input type="radio" name="q92"> (D) संबंध कारक</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) अपादान कारक</strong><br>व्याख्या: अलग होने के भाव में अपादान कारक होता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.93 (Grammar - पर्यायवाची): 'कमल' का सही पर्यायवाची क्या है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q93"> (A) पंकज / अरविंद</label></li>
-                <li><label><input type="radio" name="q93"> (B) जलद</label></li>
-                <li><label><input type="radio" name="q93"> (C) नीरद</label></li>
-                <li><label><input type="radio" name="q93"> (D) वारिद</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) पंकज</strong><br>व्याख्या: पंकज और अरविंद कमल के पर्यायवाची हैं।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.94 (Grammar - विलोम): 'उत्साह' का विलोम शब्द क्या है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q94"> (A) निरुत्साह / उत्साहहीन</label></li>
-                <li><label><input type="radio" name="q94"> (B) प्रसन्नता</label></li>
-                <li><label><input type="radio" name="q94"> (C) ऊर्जा</label></li>
-                <li><label><input type="radio" name="q94"> (D) गति</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) निरुत्साह</strong><br>व्याख्या: उत्साह का विपरीतार्थक निरुत्साह है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.95 (Grammar - मुहावरा): "9-2 11 होना" मुहावरे का अर्थ क्या है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q95"> (A) भाग जाना</label></li>
-                <li><label><input type="radio" name="q95"> (B) गिनती करना</label></li>
-                <li><label><input type="radio" name="q95"> (C) छिप जाना</label></li>
-                <li><label><input type="radio" name="q95"> (D) लड़ना</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) भाग जाना</strong><br>व्याख्या: नौ-दो गิ्यारह होना का अर्थ तुरंत भाग जाना है।
-                </p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.96 (Grammar - वर्तनी): निम्नलिखित में से शुद्ध शब्द कौन सा है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q96"> (A) उज्ज्वल</label></li>
-                <li><label><input type="radio" name="q96"> (B) उज्जवल</label></li>
-                <li><label><input type="radio" name="q96"> (C) उज्वल</label></li>
-                <li><label><input type="radio" name="q96"> (D) उच्च्वल</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) उज्ज्वल</strong><br>व्याख्या: इसमें दोनों बार आधा 'ज' आता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.97 (Grammar - अनेक शब्द): "जो कभी न मरे" उसके लिए एक शब्द क्या है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q97"> (A) अमर</label></li>
-                <li><label><input type="radio" name="q97"> (B) नश्वर</label></li>
-                <li><label><input type="radio" name="q97"> (C) जीवित</label></li>
-                <li><label><input type="radio" name="q97"> (D) मृत</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) अमर</strong><br>व्याख्या: जो कभी न मरे वह अमर कहलाता है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.98 (Grammar - संधि): 'विद्या + आलय' की संधि से कौन सा शब्द बनेगा?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q98"> (A) विद्यालय</label></li>
-                <li><label><input type="radio" name="q98"> (B) विद्याल</label></li>
-                <li><label><input type="radio" name="q98"> (C) विधालय</label></li>
-                <li><label><input type="radio" name="q98"> (D) विद्यलय</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) विद्यालय</strong><br>व्याख्या: दीर्घ स्वर संधि के नियम से विद्यालय बनता है।
-                </p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.99 (Grammar - प्रत्यय): 'सुंदर' में 'ता' प्रत्यय लगाने पर क्या बनेगा?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q99"> (A) सुंदरता</label></li>
-                <li><label><input type="radio" name="q99"> (B) सुंदरी</label></li>
-                <li><label><input type="radio" name="q99"> (C) तासुंदर</label></li>
-                <li><label><input type="radio" name="q99"> (D) सुंदरतानी</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) सुंदरता</strong><br>व्याख्या: 'ता' प्रत्यय जुड़ने से भाववाचक संज्ञा सुंदरता
-                    बनती है।</p>
-            </details>
-        </div>
-
-        <div class="question-card">
-            <div class="question-title">Q.100 (Grammar - उपसर्ग): 'प्रसिद्ध' शब्द में कौन सा उपसर्ग है?</div>
-            <ul class="options">
-                <li><label><input type="radio" name="q100"> (A) प्र (Pra)</label></li>
-                <li><label><input type="radio" name="q100"> (B) सिद्</label></li>
-                <li><label><input type="radio" name="q100"> (C) ध</label></li>
-                <li><label><input type="radio" name="q100"> (D) सिद्ध</label></li>
-            </ul>
-            <details>
-                <summary>उत्तर और व्याख्या देखें</summary>
-                <p><strong>सही उत्तर: (A) प्र</strong><br>व्याख्या: 'प्र' उपसर्ग मूल शब्द 'सिद्ध' के आगे जुड़ा है।</p>
-            </details>
-        </div>
-
     </div>
 
+    <!-- Database & Logic Script -->
+    <script>
+        // === 150 TOPIC-WISE CLASS 1 QUESTIONS DATABASE ===
+        const questionsDB = [
+            // -------------------------------------------------------------
+            // MATHEMATICS (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Numbers & Counting (1-50)
+            {
+                id: 1, subject: 'math', topic: 'Numbers 1-50',
+                question: 'Count the stars: ⭐⭐⭐. How many stars are there?',
+                options: ['2', '3', '4', '5'],
+                answer: 1, explanation: 'Counting one by one gives 1, 2, 3 stars.',
+                image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 2, subject: 'math', topic: 'Numbers 1-50',
+                question: 'What number comes after 19?',
+                options: ['18', '20', '21', '17'],
+                answer: 1, explanation: 'When counting forward, 20 comes directly after 19.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 3, subject: 'math', topic: 'Numbers 1-50',
+                question: 'What number comes before 30?',
+                options: ['29', '31', '28', '20'],
+                answer: 0, explanation: '30 - 1 = 29 comes right before 30.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 4, subject: 'math', topic: 'Numbers 1-50',
+                question: 'Which number is bigger: 15 or 25?',
+                options: ['15', '25', 'Both are equal', 'None'],
+                answer: 1, explanation: '25 has 2 tens, which is greater than 1 ten in 15.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 5, subject: 'math', topic: 'Numbers 1-50',
+                question: 'What is the number name for 12?',
+                options: ['Ten', 'Eleven', 'Twelve', 'Thirteen'],
+                answer: 2, explanation: 'The number 12 is spelled as Twelve.',
+                image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 6, subject: 'math', topic: 'Numbers 1-50',
+                question: 'What number comes between 41 and 43?',
+                options: ['40', '42', '44', '45'],
+                answer: 1, explanation: '42 comes in between 41 and 43.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Single Digit Addition
+            {
+                id: 7, subject: 'math', topic: 'Single Digit Addition',
+                question: 'What is 3 + 4?',
+                options: ['5', '6', '7', '8'],
+                answer: 2, explanation: '3 plus 4 equals 7.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 8, subject: 'math', topic: 'Single Digit Addition',
+                question: 'If you have 5 apples and get 2 more, how many apples do you have?',
+                options: ['6', '7', '8', '9'],
+                answer: 1, explanation: '5 + 2 = 7 apples total.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 9, subject: 'math', topic: 'Single Digit Addition',
+                question: 'What is 0 + 6?',
+                options: ['0', '6', '60', '1'],
+                answer: 1, explanation: 'Adding zero to any number keeps it unchanged.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 10, subject: 'math', topic: 'Single Digit Addition',
+                question: 'What is 5 + 5?',
+                options: ['9', '10', '11', '15'],
+                answer: 1, explanation: '5 + 5 = 10.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 11, subject: 'math', topic: 'Single Digit Addition',
+                question: '2 birds + 3 birds + 1 bird = ____ birds',
+                options: ['5', '6', '7', '4'],
+                answer: 1, explanation: '2 + 3 + 1 = 6 birds.',
+                image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 12, subject: 'math', topic: 'Single Digit Addition',
+                question: 'Find the sum: 8 + 1 = ?',
+                options: ['7', '8', '9', '10'],
+                answer: 2, explanation: 'Adding 1 to 8 gives 9.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Single Digit Subtraction
+            {
+                id: 13, subject: 'math', topic: 'Single Digit Subtraction',
+                question: 'What is 9 - 3?',
+                options: ['5', '6', '7', '4'],
+                answer: 1, explanation: 'Taking away 3 from 9 leaves 6.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 14, subject: 'math', topic: 'Single Digit Subtraction',
+                question: 'You had 4 balloons, and 1 popped. How many are left?',
+                options: ['2', '3', '4', '5'],
+                answer: 1, explanation: '4 - 1 = 3 balloons remaining.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 15, subject: 'math', topic: 'Single Digit Subtraction',
+                question: 'What is 7 - 7?',
+                options: ['7', '1', '0', '14'],
+                answer: 2, explanation: 'Subtracting a number from itself results in 0.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 16, subject: 'math', topic: 'Single Digit Subtraction',
+                question: 'What is 8 - 2?',
+                options: ['5', '6', '7', '4'],
+                answer: 1, explanation: '8 take away 2 is 6.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 17, subject: 'math', topic: 'Single Digit Subtraction',
+                question: 'There were 5 fish in a bowl. 2 swam away. How many are left?',
+                options: ['2', '3', '4', '1'],
+                answer: 1, explanation: '5 - 2 = 3 fish left.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 18, subject: 'math', topic: 'Single Digit Subtraction',
+                question: 'What is 6 - 0?',
+                options: ['0', '6', '5', '1'],
+                answer: 1, explanation: 'Subtracting 0 leaves the original number 6.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Basic Shapes & Comparison
+            {
+                id: 19, subject: 'math', topic: 'Basic Shapes & Sizes',
+                question: 'Which shape is round like a ball?',
+                options: ['Square', 'Circle', 'Triangle', 'Rectangle'],
+                answer: 1, explanation: 'A circle is completely round with no sharp corners.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 20, subject: 'math', topic: 'Basic Shapes & Sizes',
+                question: 'Which shape has 3 sides?',
+                options: ['Circle', 'Square', 'Triangle', 'Star'],
+                answer: 2, explanation: 'A triangle is a closed shape with 3 straight sides.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 21, subject: 'math', topic: 'Basic Shapes & Sizes',
+                question: 'Which object is BIGGER?',
+                options: ['Elephant', 'Mouse', 'Ant', 'Cat'],
+                answer: 0, explanation: 'An elephant is much bigger than a mouse or ant.',
+                image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 22, subject: 'math', topic: 'Basic Shapes & Sizes',
+                question: 'A square has ____ equal sides.',
+                options: ['2', '3', '4', '5'],
+                answer: 2, explanation: 'A square has 4 equal straight sides.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 23, subject: 'math', topic: 'Basic Shapes & Sizes',
+                question: 'Which line is TALLER?',
+                options: ['A short pencil', 'A long ruler', 'An eraser', 'A button'],
+                answer: 1, explanation: 'A long ruler is taller than an eraser or button.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 24, subject: 'math', topic: 'Basic Shapes & Sizes',
+                question: 'Which object is HEAVY?',
+                options: ['A feather', 'A large rock', 'A piece of paper', 'A leaf'],
+                answer: 1, explanation: 'A large rock weighs more than feathers or leaves.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Simple Time & Money
+            {
+                id: 25, subject: 'math', topic: 'Time & Money Basics',
+                question: 'What do we use to buy toys and chocolates?',
+                options: ['Paper', 'Money / Coins', 'Leaves', 'Stones'],
+                answer: 1, explanation: 'Currency (coins and currency notes) is used to buy goods.',
+                image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 26, subject: 'math', topic: 'Time & Money Basics',
+                question: 'When do we see stars in the sky?',
+                options: ['Morning', 'Afternoon', 'Night', 'Noon'],
+                answer: 2, explanation: 'Stars shine in the dark night sky.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 27, subject: 'math', topic: 'Time & Money Basics',
+                question: 'Which instrument tells us the time?',
+                options: ['Scale', 'Clock', 'Thermometer', 'Book'],
+                answer: 1, explanation: 'A clock displays hours and minutes.',
+                image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 28, subject: 'math', topic: 'Time & Money Basics',
+                question: 'If you have a ₹5 coin and a ₹2 coin, how much money do you have in total?',
+                options: ['₹5', '₹6', '₹7', '₹10'],
+                answer: 2, explanation: '₹5 + ₹2 = ₹7.',
+                image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 29, subject: 'math', topic: 'Time & Money Basics',
+                question: 'What comes after Morning?',
+                options: ['Night', 'Afternoon', 'Midnight', 'Yesterday'],
+                answer: 1, explanation: 'The daytime progresses: Morning -> Afternoon -> Evening -> Night.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 30, subject: 'math', topic: 'Time & Money Basics',
+                question: 'How many days are in a weekend (Saturday & Sunday)?',
+                options: ['1 day', '2 days', '3 days', '5 days'],
+                answer: 1, explanation: 'Saturday and Sunday equal 2 weekend days.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // EVS & NATURE (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Parts of My Body
+            {
+                id: 31, subject: 'evs', topic: 'Parts of My Body',
+                question: 'Which body part helps us to see pictures?',
+                options: ['Ears', 'Eyes', 'Nose', 'Feet'],
+                answer: 1, explanation: 'Eyes are sense organs for vision.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 32, subject: 'evs', topic: 'Parts of My Body',
+                question: 'How many fingers do we have on ONE hand?',
+                options: ['4', '5', '10', '8'],
+                answer: 1, explanation: 'One human hand has 5 fingers (including the thumb).',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 33, subject: 'evs', topic: 'Parts of My Body',
+                question: 'Which organ helps us smell flowers?',
+                options: ['Nose', 'Tongue', 'Ear', 'Leg'],
+                answer: 0, explanation: 'Our nose senses fragrance and smells.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 34, subject: 'evs', topic: 'Parts of My Body',
+                question: 'We walk and run with the help of our ____.',
+                options: ['Hands', 'Legs & Feet', 'Ears', 'Hair'],
+                answer: 1, explanation: 'Legs and feet help in movement.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 35, subject: 'evs', topic: 'Parts of My Body',
+                question: 'Which sense organ is inside our mouth and tastes food?',
+                options: ['Teeth', 'Tongue', 'Lips', 'Chin'],
+                answer: 1, explanation: 'The tongue helps us taste flavours.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 36, subject: 'evs', topic: 'Parts of My Body',
+                question: 'How many total sense organs do we have?',
+                options: ['3', '4', '5', '6'],
+                answer: 2, explanation: 'We have 5 sense organs: Eyes, Ears, Nose, Tongue, and Skin.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Plants & Flowers
+            {
+                id: 37, subject: 'evs', topic: 'Plants & Flowers',
+                question: 'What color are most plant leaves?',
+                options: ['Red', 'Green', 'Blue', 'Yellow'],
+                answer: 1, explanation: 'Green chlorophyll gives leaves their green color.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 38, subject: 'evs', topic: 'Plants & Flowers',
+                question: 'Which flower always faces the Sun?',
+                options: ['Rose', 'Lotus', 'Sunflower', 'Lily'],
+                answer: 2, explanation: 'Sunflowers track the direction of the sun.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 39, subject: 'evs', topic: 'Plants & Flowers',
+                question: 'What do seeds need to grow into a plant?',
+                options: ['Water, Soil & Sunlight', 'Juice & Chocolate', 'Ice & Cold', 'Dark box'],
+                answer: 0, explanation: 'Seeds require water, nutrients from soil, and warmth from sunlight.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 40, subject: 'evs', topic: 'Plants & Flowers',
+                question: 'Which part of a rose plant has sharp points that can prick fingers?',
+                options: ['Petals', 'Thorns', 'Leaves', 'Roots'],
+                answer: 1, explanation: 'Thorns protect rose bushes from animals.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 41, subject: 'evs', topic: 'Plants & Flowers',
+                question: 'Which fruit grows on a big tree?',
+                options: ['Mango', 'Watermelon', 'Strawberry', 'Grape'],
+                answer: 0, explanation: 'Mangoes grow on large trees.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 42, subject: 'evs', topic: 'Plants & Flowers',
+                question: 'Which flower grows in water ponds?',
+                options: ['Rose', 'Lotus', 'Marigold', 'Jasmine'],
+                answer: 1, explanation: 'Lotus flowers float on water ponds.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Animals & Birds
+            {
+                id: 43, subject: 'evs', topic: 'Animals & Birds',
+                question: 'Which animal says "Meow"?',
+                options: ['Dog', 'Cat', 'Cow', 'Duck'],
+                answer: 1, explanation: 'Cats make the meow sound.',
+                image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 44, subject: 'evs', topic: 'Animals & Birds',
+                question: 'Which animal gives us milk?',
+                options: ['Dog', 'Lion', 'Cow', 'Cat'],
+                answer: 2, explanation: 'Cows give nutritious milk.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 45, subject: 'evs', topic: 'Animals & Birds',
+                question: 'Which bird has colorful feathers and dances in the rain?',
+                options: ['Crow', 'Peacock', 'Pigeon', 'Sparrow'],
+                answer: 1, explanation: 'Peacocks display vibrant feathers.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 46, subject: 'evs', topic: 'Animals & Birds',
+                question: 'Where do birds live?',
+                options: ['In a den', 'In a nest', 'In water', 'Underground'],
+                answer: 1, explanation: 'Birds build nests in trees to keep eggs safe.',
+                image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 47, subject: 'evs', topic: 'Animals & Birds',
+                question: 'Which animal is known as the "King of the Jungle"?',
+                options: ['Tiger', 'Lion', 'Elephant', 'Monkey'],
+                answer: 1, explanation: 'Lions are called the King of the Jungle.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 48, subject: 'evs', topic: 'Animals & Birds',
+                question: 'Which creature swims in water and breathes through gills?',
+                options: ['Fish', 'Bird', 'Rabbit', 'Horse'],
+                answer: 0, explanation: 'Fish are aquatic animals.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Food & Water
+            {
+                id: 49, subject: 'evs', topic: 'Food & Clean Water',
+                question: 'Why do we eat food?',
+                options: ['To get energy and grow', 'To sleep all day', 'To get dirty', 'To play games'],
+                answer: 0, explanation: 'Food gives us energy to work, play, and grow strong.',
+                image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 50, subject: 'evs', topic: 'Food & Clean Water',
+                question: 'Which of these is a HEALTHY fruit?',
+                options: ['Apple', 'Candy', 'Chips', 'Burger'],
+                answer: 0, explanation: 'Apples are nutritious natural fruits.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 51, subject: 'evs', topic: 'Food & Clean Water',
+                question: 'What should we drink when we are thirsty?',
+                options: ['Clean Water', 'Oil', 'Ketchup', 'Shampoo'],
+                answer: 0, explanation: 'Clean water quenches thirst and keeps our body healthy.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 52, subject: 'evs', topic: 'Food & Clean Water',
+                question: 'We eat ____ at night before sleeping.',
+                options: ['Breakfast', 'Lunch', 'Dinner', 'Snacks'],
+                answer: 2, explanation: 'The night meal is called Dinner.',
+                image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 53, subject: 'evs', topic: 'Food & Clean Water',
+                question: 'We should always ____ fruits before eating them.',
+                options: ['Wash', 'Throw', 'Paint', 'Cut with teeth without washing'],
+                answer: 0, explanation: 'Washing removes dirt and germs.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 54, subject: 'evs', topic: 'Food & Clean Water',
+                question: 'Which animal product do we use to make cheese and butter?',
+                options: ['Milk', 'Eggs', 'Honey', 'Wool'],
+                answer: 0, explanation: 'Cheese and butter are made from milk.',
+                image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: My Family & House
+            {
+                id: 55, subject: 'evs', topic: 'My Family & Home',
+                question: 'Who is your mother’s mother?',
+                options: ['Grandmother (Nani/Dadi)', 'Aunt', 'Sister', 'Mother'],
+                answer: 0, explanation: 'Your mother’s mother is your grandmother.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 56, subject: 'evs', topic: 'My Family & Home',
+                question: 'Where do we sleep at home?',
+                options: ['Kitchen', 'Bedroom', 'Bathroom', 'Garden'],
+                answer: 1, explanation: 'We sleep in the bedroom.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 57, subject: 'evs', topic: 'My Family & Home',
+                question: 'Where does food get cooked at home?',
+                options: ['Kitchen', 'Garage', 'Balcony', 'Bathroom'],
+                answer: 0, explanation: 'Meals are cooked in the kitchen.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 58, subject: 'evs', topic: 'My Family & Home',
+                question: 'A family with mother, father, and one or two children is a ____ family.',
+                options: ['Small / Nuclear', 'Large / Joint', 'Huge', 'Neighbourhood'],
+                answer: 0, explanation: 'Parents with 1-2 children form a small nuclear family.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 59, subject: 'evs', topic: 'My Family & Home',
+                question: 'What protects us from heat, cold, rain, and wild animals?',
+                options: ['Our House', 'Tree leaves', 'Umbrella only', 'Car'],
+                answer: 0, explanation: 'A house provides shelter and safety.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 60, subject: 'evs', topic: 'My Family & Home',
+                question: 'What should we do to keep our home clean?',
+                options: ['Put toys in proper place', 'Throw trash on floor', 'Draw on walls', 'Leave shoes on bed'],
+                answer: 0, explanation: 'Tidying up toys keeps our home neat.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // ENGLISH GRAMMAR (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Alphabet & Phonics
+            {
+                id: 61, subject: 'english', topic: 'Alphabet & Phonics',
+                question: 'Which letter comes after "M" in the English alphabet?',
+                options: ['L', 'N', 'O', 'P'],
+                answer: 1, explanation: 'Alphabet sequence: J, K, L, M, N...',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 62, subject: 'english', topic: 'Alphabet & Phonics',
+                question: 'Which of the following is a VOWEL?',
+                options: ['B', 'E', 'F', 'G'],
+                answer: 1, explanation: 'The 5 vowels are A, E, I, O, U. E is a vowel.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 63, subject: 'english', topic: 'Alphabet & Phonics',
+                question: 'How many letters are there in the English Alphabet?',
+                options: ['20', '24', '26', '30'],
+                answer: 2, explanation: 'There are 26 letters (A to Z).',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 64, subject: 'english', topic: 'Alphabet & Phonics',
+                question: 'What is the starting letter for "Elephant"?',
+                options: ['A', 'E', 'I', 'O'],
+                answer: 1, explanation: 'Elephant starts with letter E.',
+                image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 65, subject: 'english', topic: 'Alphabet & Phonics',
+                question: 'Which word rhymes with "CAT"?',
+                options: ['BAT', 'DOG', 'SUN', 'PEN'],
+                answer: 0, explanation: 'CAT and BAT share the -AT rhyming sound.',
+                image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 66, subject: 'english', topic: 'Alphabet & Phonics',
+                question: 'What is the small letter for capital "G"?',
+                options: ['g', 'q', 'p', 'j'],
+                answer: 0, explanation: 'Capital G -> lowercase g.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Naming Words (Nouns)
+            {
+                id: 67, subject: 'english', topic: 'Naming Words (Nouns)',
+                question: 'Which word is the name of an ANIMAL?',
+                options: ['Chair', 'Dog', 'Delhi', 'Doctor'],
+                answer: 1, explanation: 'Dog is the naming word for an animal.',
+                image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 68, subject: 'english', topic: 'Naming Words (Nouns)',
+                question: 'Find the name of a PLACE: "I go to school."',
+                options: ['go', 'I', 'school', 'to'],
+                answer: 2, explanation: 'School is a naming word for a place.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 69, subject: 'english', topic: 'Naming Words (Nouns)',
+                question: 'What is the naming word (noun) for a THING?',
+                options: ['Ball', 'Rohan', 'Park', 'Teacher'],
+                answer: 0, explanation: 'Ball is a non-living object/thing.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 70, subject: 'english', topic: 'Naming Words (Nouns)',
+                question: 'Plural of "Boy" is ____.',
+                options: ['Boyes', 'Boys', 'Boyies', 'Child'],
+                answer: 1, explanation: 'Add -s to form plural: Boy -> Boys.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 71, subject: 'english', topic: 'Naming Words (Nouns)',
+                question: 'Plural of "Apple" is ____.',
+                options: ['Apples', 'Appless', 'Applies', 'Apple'],
+                answer: 0, explanation: 'Add -s to form plural: Apple -> Apples.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 72, subject: 'english', topic: 'Naming Words (Nouns)',
+                question: 'Special names (Proper nouns) always start with a ____ letter.',
+                options: ['Small', 'Capital', 'Vowel', 'Number'],
+                answer: 1, explanation: 'Proper nouns (like Rahul, India) begin with a Capital letter.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Use of A / An & This / That
+            {
+                id: 73, subject: 'english', topic: 'A/An & This/That',
+                question: 'Fill with A or An: "This is _____ egg."',
+                options: ['a', 'an', 'the', 'some'],
+                answer: 1, explanation: 'Egg begins with vowel sound \'e\', so we use "an".',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 74, subject: 'english', topic: 'A/An & This/That',
+                question: 'Fill with A or An: "I have _____ cat."',
+                options: ['a', 'an', 'the', 'no article'],
+                answer: 0, explanation: 'Cat begins with consonant sound \'c\', so we use "a".',
+                image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 75, subject: 'english', topic: 'A/An & This/That',
+                question: 'We use "THIS" for an object that is ____.',
+                options: ['Far away', 'Near to us', 'Very high', 'Underground'],
+                answer: 1, explanation: '"This" points to a singular object close by.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 76, subject: 'english', topic: 'A/An & This/That',
+                question: 'We use "THAT" for an object that is ____.',
+                options: ['Near to us', 'Far away', 'In our hand', 'Under table'],
+                answer: 1, explanation: '"That" points to a singular object further away.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 77, subject: 'english', topic: 'A/An & This/That',
+                question: 'Fill in blank: "_____ is an umbrella." (pointing near)',
+                options: ['This', 'Those', 'These', 'He'],
+                answer: 0, explanation: 'Near object singular: This.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 78, subject: 'english', topic: 'A/An & This/That',
+                question: 'Fill in blank: "_____ is an owl."',
+                options: ['a', 'an', 'the', 'two'],
+                answer: 1, explanation: 'Owl begins with vowel sound \'o\', so we use "an".',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Action Words (Verbs)
+            {
+                id: 79, subject: 'english', topic: 'Action Words (Verbs)',
+                question: 'What action is the boy doing? "Rohan can ____ fast."',
+                options: ['run', 'chair', 'blue', 'apple'],
+                answer: 0, explanation: 'Run is an action verb.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 80, subject: 'english', topic: 'Action Words (Verbs)',
+                question: 'Birds ____ in the sky.',
+                options: ['fly', 'swim', 'read', 'write'],
+                answer: 0, explanation: 'Fly is the action done by birds.',
+                image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 81, subject: 'english', topic: 'Action Words (Verbs)',
+                question: 'Fish ____ in water.',
+                options: ['dance', 'swim', 'fly', 'walk'],
+                answer: 1, explanation: 'Swim is the action performed by fish.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 82, subject: 'english', topic: 'Action Words (Verbs)',
+                question: 'Find the action word: "She eats a mango."',
+                options: ['She', 'eats', 'mango', 'a'],
+                answer: 1, explanation: 'Eats is the action word (verb).',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 83, subject: 'english', topic: 'Action Words (Verbs)',
+                question: 'We use our eyes to ____.',
+                options: ['hear', 'see', 'smell', 'taste'],
+                answer: 1, explanation: 'Seeing is the function of eyes.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 84, subject: 'english', topic: 'Action Words (Verbs)',
+                question: 'We use a pencil to ____.',
+                options: ['write', 'drink', 'sleep', 'jump'],
+                answer: 0, explanation: 'Write is the action done with a pencil.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Pronouns & Opposites
+            {
+                id: 85, subject: 'english', topic: 'Pronouns & Opposites',
+                question: 'What pronoun replaces a boy’s name (like Amit)?',
+                options: ['She', 'He', 'It', 'They'],
+                answer: 1, explanation: 'He replaces singular male nouns.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 86, subject: 'english', topic: 'Pronouns & Opposites',
+                question: 'What pronoun replaces a girl’s name (like Sita)?',
+                options: ['He', 'She', 'It', 'I'],
+                answer: 1, explanation: 'She replaces singular female nouns.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 87, subject: 'english', topic: 'Pronouns & Opposites',
+                question: 'Opposite of "HAPPY" is ____.',
+                options: ['Sad', 'Big', 'Cold', 'Tall'],
+                answer: 0, explanation: 'Opposite of Happy is Sad.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 88, subject: 'english', topic: 'Pronouns & Opposites',
+                question: 'Opposite of "UP" is ____.',
+                options: ['Down', 'In', 'Out', 'Left'],
+                answer: 0, explanation: 'Opposite of Up is Down.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 89, subject: 'english', topic: 'Pronouns & Opposites',
+                question: 'Opposite of "BIG" is ____.',
+                options: ['Small', 'Tall', 'Heavy', 'Long'],
+                answer: 0, explanation: 'Opposite of Big is Small.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 90, subject: 'english', topic: 'Pronouns & Opposites',
+                question: 'Which pronoun is used for a ball or a toy?',
+                options: ['He', 'She', 'It', 'You'],
+                answer: 2, explanation: 'It is used for non-living objects and animals.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // HINDI (हिन्दी) (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: अमात्रिक शब्द (बिना मात्रा के शब्द)
+            {
+                id: 91, subject: 'hindi', topic: 'अमात्रिक शब्द',
+                question: 'बिना मात्रा वाला सही दो अक्षर का शब्द चुनिए:',
+                options: ['अनल', 'नल', 'नाला', 'नील'],
+                answer: 1, explanation: 'न + ल = नल (दो अक्षर का अमात्रिक शब्द)।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 92, subject: 'hindi', topic: 'अमात्रिक शब्द',
+                question: 'तीन अक्षर का अमात्रिक शब्द पहचानिए:',
+                options: ['कमल', 'काला', 'कीड़ा', 'कोयल'],
+                answer: 0, explanation: 'क + म + ल = कमल।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 93, subject: 'hindi', topic: 'अमात्रिक शब्द',
+                question: 'चार अक्षर का बिना मात्रा वाला शब्द कौन सा है?',
+                options: ['अजगर', 'अनार', 'आम', 'इमली'],
+                answer: 0, explanation: 'अ + ज + ग + र = अजगर।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 94, subject: 'hindi', topic: 'अमात्रिक शब्द',
+                question: '"फ + ल" मिलाकर क्या बनेगा?',
+                options: ['फूल', 'फल', 'फाल', 'फैल'],
+                answer: 1, explanation: 'फ + ल = फल।',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 95, subject: 'hindi', topic: 'अमात्रिक शब्द',
+                question: '"ब + स" मिलाकर कौन सा शब्द बनेगा?',
+                options: ['बस', 'बांस', 'बीस', 'बोसा'],
+                answer: 0, explanation: 'ब + स = बस।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 96, subject: 'hindi', topic: 'अमात्रिक शब्द',
+                question: '"म + ट + र" मिलकर क्या बनता है?',
+                options: ['मटर', 'मोटा', 'माटी', 'मीठा'],
+                answer: 0, explanation: 'म + ट + र = मटर।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: आ, इ, ई की मात्राएं
+            {
+                id: 97, subject: 'hindi', topic: 'आ, इ, ई की मात्राएं',
+                question: '"आ" (ा) की मात्रा वाला सही शब्द चुनिए:',
+                options: ['आम', 'इमली', 'उल्लू', 'ऋषि'],
+                answer: 0, explanation: 'आ + म = आम ("आ" का शब्द)।',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 98, subject: 'hindi', topic: 'आ, इ, ई की मात्राएं',
+                question: 'छोटी इ (ि) की मात्रा का सही शब्द कौन सा है?',
+                options: ['दिन', 'दीन', 'दान', 'दो'],
+                answer: 0, explanation: 'द + िफ + न = दिन (छोटी इ की मात्रा)।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 99, subject: 'hindi', topic: 'आ, इ, ई की मात्राएं',
+                question: 'बड़ी ई (ी) की मात्रा वाला शब्द पहचानिए:',
+                options: ['हाथी', 'हाथ', 'हित', 'हंस'],
+                answer: 0, explanation: 'ह + ा + थ + ी = हाथी (बड़ी ई की मात्रा)।',
+                image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 100, subject: 'hindi', topic: 'आ, इ, ई की मात्राएं',
+                question: 'शब्द "राजा" में र और ज पर कौन सी मात्रा लगी है?',
+                options: ['आ (ा)', 'इ (ि)', 'उ (ु)', 'ए (े)'],
+                answer: 0, explanation: 'र + ा + ज + ा = राजा (आ की मात्रा)।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 101, subject: 'hindi', topic: 'आ, इ, ई की मात्राएं',
+                question: 'शब्द "चिड़िया" में च और ड़ पर कौन सी मात्रा है?',
+                options: ['छोटी इ (ि)', 'बड़ी ई (ी)', 'छोटा उ (ु)', 'आ (ा)'],
+                answer: 0, explanation: 'च और ड़ पर छोटी इ (ि) की मात्रा है।',
+                image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 102, subject: 'hindi', topic: 'आ, इ, ई की मात्राएं',
+                question: '"म +  मछली" चित्र देखकर बताइए, "मछली" में ल पर कौन सी मात्रा है?',
+                options: ['बड़ी ई (ी)', 'छोटी इ (ि)', 'आ (ा)', 'कोई नहीं'],
+                answer: 0, explanation: 'म + छ + ल + ी = मछली (बड़ी ई की मात्रा)।',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: उ, ऊ, ए, ऐ की मात्राएं
+            {
+                id: 103, subject: 'hindi', topic: 'उ, ऊ, ए, ऐ की मात्राएं',
+                question: 'छोटे उ (ु) की मात्रा वाला शब्द पहचानिए:',
+                options: ['गुलाब', 'फूल', 'केला', 'पैसा'],
+                answer: 0, explanation: 'ग + ु + ल + ा + ब = गुलाब।',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 104, subject: 'hindi', topic: 'उ, ऊ, ए, ऐ की मात्राएं',
+                question: 'बड़े ऊ (ू) की मात्रा वाला सही शब्द कौन सा है?',
+                options: ['सूरज', 'सुन', 'सिर', 'सेब'],
+                answer: 0, explanation: 'स + ू + र + ज = सूरज।',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 105, subject: 'hindi', topic: 'उ, ऊ, ए, ऐ की मात्राएं',
+                question: 'ए (े) की मात्रा वाला शब्द चुनिए:',
+                options: ['केला', 'काली', 'कोयल', 'कौआ'],
+                answer: 0, explanation: 'क + े + ल + ा = केला (ए की मात्रा)।',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 106, subject: 'hindi', topic: 'उ, ऊ, ए, ऐ की मात्राएं',
+                question: 'ऐ (ै) की मात्रा वाला शब्द पहचानिए:',
+                options: ['पैसा', 'पेड़', 'पानी', 'पीला'],
+                answer: 0, explanation: 'प + ै + स + ा = पैसा।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 107, subject: 'hindi', topic: 'उ, ऊ, ए, ऐ की मात्राएं',
+                question: 'शब्द "चूहा" में च पर कौन सी मात्रा है?',
+                options: ['बड़ा ऊ (ू)', 'छोटा उ (ु)', 'ओ (ो)', 'औ (ौ)'],
+                answer: 0, explanation: 'च + ू + ह + ा = चूहा।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 108, subject: 'hindi', topic: 'उ, ऊ, ए, ऐ की मात्राएं',
+                question: 'शब्द "सेब" में स पर कौन सी मात्रा है?',
+                options: ['ए (े)', 'ऐ (ै)', 'इ (ि)', 'ई (ी)'],
+                answer: 0, explanation: 'स + े + ब = सेब।',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: फल, फूल व जानवरों के नाम
+            {
+                id: 109, subject: 'hindi', topic: 'फल, फूल व जानवर',
+                question: 'फलों का राजा किसे कहते हैं?',
+                options: ['आम', 'सेब', 'केला', 'अंगूर'],
+                answer: 0, explanation: 'आम को फलों का राजा कहा जाता है।',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 110, subject: 'hindi', topic: 'फल, फूल व जानवर',
+                question: 'हमारा राष्ट्रीय फूल कौन सा है?',
+                options: ['कमल', 'गुलाब', 'सूरजमुखी', 'गेंद'],
+                answer: 0, explanation: 'कमल भारत का राष्ट्रीय फूल है।',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 111, subject: 'hindi', topic: 'फल, फूल व जानवर',
+                question: 'कौन सा जानवर घर की रखवाली करता है?',
+                options: ['कुत्ता', 'बिल्ली', 'शेर', 'हिरण'],
+                answer: 0, explanation: 'कुत्ता एक वफादार जानवर है जो घर की रखवाली करता है।',
+                image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 112, subject: 'hindi', topic: 'फल, फूल व जानवर',
+                question: 'जंगल का राजा कौन सा जानवर है?',
+                options: ['शेर', 'हाथी', 'भालू', 'चीता'],
+                answer: 0, explanation: 'शेर जंगल का राजा कहलाता है।',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 113, subject: 'hindi', topic: 'फल, फूल व जानवर',
+                question: 'लाल रंग का फल कौन सा होता है?',
+                options: ['सेब', 'केला', 'पपीता', 'अमरूद'],
+                answer: 0, explanation: 'सेब लाल रंग का होता है।',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 114, subject: 'hindi', topic: 'फल, फूल व जानवर',
+                question: 'दूध देने वाले जानवर का नाम पहचानिए:',
+                options: ['गाय', 'शेर', 'बंदर', 'भालू'],
+                answer: 0, explanation: 'गाय हमें मीठा दूध देती है।',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: विलोम शब्द व गिनती (१-१०)
+            {
+                id: 115, subject: 'hindi', topic: 'विलोम व गिनती (१-१०)',
+                question: '"दिन" का उल्टा शब्द क्या होगा?',
+                options: ['रात', 'सुबह', 'शाम', 'दोपहर'],
+                answer: 0, explanation: 'दिन का विलोम शब्द रात होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 116, subject: 'hindi', topic: 'विलोम व गिनती (१-१०)',
+                question: '"बड़ा" का उल्टा (विलोम) शब्द क्या है?',
+                options: ['छोटा', 'लंबा', 'मोटा', 'ऊंचा'],
+                answer: 0, explanation: 'बड़ा का विलोम छोटा होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 117, subject: 'hindi', topic: 'विलोम व गिनती (१-१०)',
+                question: 'संख्या "1" को हिन्दी शब्दों में क्या लिखते हैं?',
+                options: ['एक', 'दो', 'तीन', 'चार'],
+                answer: 0, explanation: '1 = एक।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 118, subject: 'hindi', topic: 'विलोम व गिनती (१-१०)',
+                question: 'संख्या "5" को हिन्दी शब्दों में क्या कहते हैं?',
+                options: ['पाँच', 'छह', 'सात', 'आठ'],
+                answer: 0, explanation: '5 = पाँच।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 119, subject: 'hindi', topic: 'विलोम व गिनती (१-१०)',
+                question: '"अंदर" का उल्टा शब्द क्या होगा?',
+                options: ['बाहर', 'ऊपर', 'नीचे', 'आगे'],
+                answer: 0, explanation: 'अंदर का विलोम बाहर होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 120, subject: 'hindi', topic: 'विलोम व गिनती (१-१०)',
+                question: 'संख्या "10" को हिन्दी में क्या कहते हैं?',
+                options: ['दस', 'नौ', 'आठ', 'सात'],
+                answer: 0, explanation: '10 = दस।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // GENERAL KNOWLEDGE & COMPUTERS (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Colors & Rainbow
+            {
+                id: 121, subject: 'gk', topic: 'Colors & Rainbow',
+                question: 'What is the color of milk?',
+                options: ['Red', 'White', 'Black', 'Blue'],
+                answer: 1, explanation: 'Milk is white in color.',
+                image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 122, subject: 'gk', topic: 'Colors & Rainbow',
+                question: 'What color is fresh grass?',
+                options: ['Green', 'Yellow', 'Pink', 'Purple'],
+                answer: 0, explanation: 'Healthy grass is green.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 123, subject: 'gk', topic: 'Colors & Rainbow',
+                question: 'What color is a ripe banana skin?',
+                options: ['Blue', 'Yellow', 'Black', 'Red'],
+                answer: 1, explanation: 'Ripe bananas have a yellow peel.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 124, subject: 'gk', topic: 'Colors & Rainbow',
+                question: 'Where do we see a Rainbow?',
+                options: ['In the sky after rain', 'Under the water', 'On the tree', 'Inside house'],
+                answer: 0, explanation: 'Rainbows appear in the sky when sunlight passes through raindrops.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 125, subject: 'gk', topic: 'Colors & Rainbow',
+                question: 'How many colors are in a Rainbow?',
+                options: ['5', '6', '7', '10'],
+                answer: 2, explanation: 'A rainbow has 7 spectrum colors.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 126, subject: 'gk', topic: 'Colors & Rainbow',
+                question: 'What is the color of the clear sky during a sunny day?',
+                options: ['Blue', 'Green', 'Red', 'Black'],
+                answer: 0, explanation: 'The daytime sky looks blue.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Days of the Week & Months
+            {
+                id: 127, subject: 'gk', topic: 'Days & Months',
+                question: 'How many days are there in a week?',
+                options: ['5', '6', '7', '8'],
+                answer: 2, explanation: 'There are 7 days in a week.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 128, subject: 'gk', topic: 'Days & Months',
+                question: 'Which day comes after Monday?',
+                options: ['Sunday', 'Tuesday', 'Wednesday', 'Friday'],
+                answer: 1, explanation: 'Tuesday follows Monday.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 129, subject: 'gk', topic: 'Days & Months',
+                question: 'Which day is a school holiday when we rest at home?',
+                options: ['Monday', 'Wednesday', 'Friday', 'Sunday'],
+                answer: 3, explanation: 'Sunday is the weekly holiday.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 130, subject: 'gk', topic: 'Days & Months',
+                question: 'What is the FIRST month of the year?',
+                options: ['December', 'January', 'March', 'April'],
+                answer: 1, explanation: 'January is the 1st month of the year.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 131, subject: 'gk', topic: 'Days & Months',
+                question: 'How many months are in a year?',
+                options: ['10', '12', '14', '7'],
+                answer: 1, explanation: 'A year contains 12 months.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 132, subject: 'gk', topic: 'Days & Months',
+                question: 'Which month comes after December and starts a new year?',
+                options: ['February', 'January', 'November', 'July'],
+                answer: 1, explanation: 'After December, the new year starts with January.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Our Country (India)
+            {
+                id: 133, subject: 'gk', topic: 'Our Country (India)',
+                question: 'What is the name of our Country?',
+                options: ['India / Bharat', 'America', 'London', 'Japan'],
+                answer: 0, explanation: 'Our country is India (Bharat).',
+                image: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 134, subject: 'gk', topic: 'Our Country (India)',
+                question: 'Which is the National Bird of India?',
+                options: ['Crow', 'Peacock', 'Parrot', 'Duck'],
+                answer: 1, explanation: 'The Peacock is India’s national bird.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 135, subject: 'gk', topic: 'Our Country (India)',
+                question: 'Which is the National Animal of India?',
+                options: ['Tiger', 'Lion', 'Elephant', 'Camel'],
+                answer: 0, explanation: 'The Bengal Tiger is India’s national animal.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 136, subject: 'gk', topic: 'Our Country (India)',
+                question: 'How many main colors are in the Indian National Flag (Tiranga)?',
+                options: ['2', '3', '4', '5'],
+                answer: 1, explanation: '3 colors: Saffron, White, and Green.',
+                image: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 137, subject: 'gk', topic: 'Our Country (India)',
+                question: 'Which is the National Flower of India?',
+                options: ['Rose', 'Lotus', 'Sunflower', 'Lily'],
+                answer: 1, explanation: 'Lotus is the national flower.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 138, subject: 'gk', topic: 'Our Country (India)',
+                question: 'Which fruit is known as India’s National Fruit?',
+                options: ['Apple', 'Mango', 'Banana', 'Orange'],
+                answer: 1, explanation: 'Mango is the national fruit of India.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Computer Basics & Smart Devices
+            {
+                id: 139, subject: 'gk', topic: 'Computer Basics',
+                question: 'What type of machine works on electricity and helps us type & draw?',
+                options: ['Computer', 'Bicycle', 'Chair', 'Table'],
+                answer: 0, explanation: 'A computer is an electronic smart machine.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 140, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which part of the computer looks like a TV screen?',
+                options: ['Monitor', 'Keyboard', 'Mouse', 'CPU'],
+                answer: 0, explanation: 'The monitor displays graphics and text like a TV screen.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 141, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which device has many small keys with letters and numbers?',
+                options: ['Keyboard', 'Mouse', 'Printer', 'Speaker'],
+                answer: 0, explanation: 'A keyboard has keys for typing.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 142, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which small device named after an animal is used to point and click?',
+                options: ['Cat', 'Mouse', 'Dog', 'Rabbit'],
+                answer: 1, explanation: 'A computer mouse points and clicks items on screen.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 143, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which part is called the "Brain" of the computer?',
+                options: ['CPU', 'Monitor', 'Keyboard', 'Mouse'],
+                answer: 0, explanation: 'The CPU processes instructions like a brain.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 144, subject: 'gk', topic: 'Computer Basics',
+                question: 'Can a computer get tired like humans?',
+                options: ['Yes, very quickly', 'No, it can work continuously', 'Only in winter', 'Yes, it sleeps at noon'],
+                answer: 1, explanation: 'Machines like computers do not get tired.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Good Manners & Safety
+            {
+                id: 145, subject: 'gk', topic: 'Manners & Safety',
+                question: 'What do you say when someone gives you a chocolate?',
+                options: ['Thank You', 'Sorry', 'Please', 'Go away'],
+                answer: 0, explanation: 'We say "Thank You" to express gratitude.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 146, subject: 'gk', topic: 'Manners & Safety',
+                question: 'What do you say when you hurt someone by mistake?',
+                options: ['Sorry', 'Thank You', 'Welcome', 'Hi'],
+                answer: 0, explanation: 'We say "Sorry" when we make a mistake or hurt someone.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 147, subject: 'gk', topic: 'Manners & Safety',
+                question: 'Where should we cross a busy road safely?',
+                options: ['At Zebra Crossing', 'Anywhere in middle', 'Running fast', 'Behind a bus'],
+                answer: 0, explanation: 'Pedestrians should always cross at zebra crossings.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 148, subject: 'gk', topic: 'Manners & Safety',
+                question: 'Where should we throw chocolate wrappers?',
+                options: ['In the Dustbin', 'On the floor', 'Out of window', 'Under bed'],
+                answer: 0, explanation: 'Always put waste wrappers in dustbins.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 149, subject: 'gk', topic: 'Manners & Safety',
+                question: 'Is it safe to play with fire or sharp knives?',
+                options: ['Yes, always', 'No, never', 'Only when alone', 'Sometimes'],
+                answer: 1, explanation: 'Fire and sharp objects cause dangerous burns and cuts.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 150, subject: 'gk', topic: 'Manners & Safety',
+                question: 'What magic word do we use when asking for help?',
+                options: ['Please', 'Sorry', 'Bye', 'No'],
+                answer: 0, explanation: '"Please" is a polite request word.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            }
+        ];
+
+        // === APP STATE MANAGEMENT ===
+        let currentQuestions = [...questionsDB];
+        let currentIndex = 0;
+        let userAnswers = {}; // { qId: selectedIndex }
+        let appMode = 'quiz'; // 'quiz' or 'cards'
+        let currentSubjectFilter = 'all';
+
+        // === DOM ELEMENTS ===
+        const qText = document.getElementById('q-text');
+        const qImage = document.getElementById('q-image');
+        const badgeSubject = document.getElementById('badge-subject');
+        const badgeTopic = document.getElementById('badge-topic');
+        const qIdTag = document.getElementById('q-id-tag');
+        const optionsBox = document.getElementById('options-box');
+        const explanationBox = document.getElementById('explanation-box');
+        const explanationText = document.getElementById('explanation-text');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackIconBg = document.getElementById('feedback-icon-bg');
+        const progressText = document.getElementById('progress-text');
+        const progressBar = document.getElementById('progress-bar');
+        const navGrid = document.getElementById('nav-grid');
+        const scoreCounter = document.getElementById('score-counter');
+        const topicSelect = document.getElementById('topic-select');
+
+        // === INITIALIZATION ===
+        window.onload = () => {
+            lucide.createIcons();
+            populateTopicDropdown();
+            renderNavigatorGrid();
+            loadQuestion(0);
+            populatePrintView();
+        };
+
+        // Set Mode (Quiz or Flashcard)
+        function setAppMode(mode) {
+            appMode = mode;
+            const qView = document.getElementById('quiz-view');
+            const cView = document.getElementById('cards-view');
+            const qBtn = document.getElementById('mode-quiz-btn');
+            const cBtn = document.getElementById('mode-cards-btn');
+
+            if (mode === 'quiz') {
+                qView.classList.remove('hidden');
+                cView.classList.add('hidden');
+                qBtn.className = "px-3 py-1.5 rounded-lg transition bg-white text-slate-900 shadow";
+                cBtn.className = "px-3 py-1.5 rounded-lg transition text-white hover:bg-white/10";
+            } else {
+                qView.classList.add('hidden');
+                cView.classList.remove('hidden');
+                cBtn.className = "px-3 py-1.5 rounded-lg transition bg-white text-slate-900 shadow";
+                qBtn.className = "px-3 py-1.5 rounded-lg transition text-white hover:bg-white/10";
+            }
+            loadQuestion(currentIndex);
+        }
+
+        // Populate Dynamic Topic Dropdown
+        function populateTopicDropdown() {
+            const topics = [...new Set(questionsDB.map(q => q.topic))];
+            topicSelect.innerHTML = `<option value="all">All Topics (150 Questions)</option>`;
+            topics.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t;
+                opt.textContent = t;
+                topicSelect.appendChild(opt);
+            });
+        }
+
+        // Filter by Subject
+        function filterSubject(sub) {
+            currentSubjectFilter = sub;
+            const btns = document.querySelectorAll('.sub-btn');
+            btns.forEach(b => {
+                if (b.dataset.subject === sub) {
+                    b.className = "sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between bg-indigo-600 text-white shadow-md";
+                } else {
+                    b.className = "sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-slate-100";
+                }
+            });
+
+            if (sub === 'all') {
+                currentQuestions = [...questionsDB];
+            } else {
+                currentQuestions = questionsDB.filter(q => q.subject === sub);
+            }
+
+            topicSelect.value = 'all';
+            renderNavigatorGrid();
+            loadQuestion(0);
+        }
+
+        // Filter by Topic
+        function filterTopic(topic) {
+            if (topic === 'all') {
+                if (currentSubjectFilter === 'all') {
+                    currentQuestions = [...questionsDB];
+                } else {
+                    currentQuestions = questionsDB.filter(q => q.subject === currentSubjectFilter);
+                }
+            } else {
+                currentQuestions = questionsDB.filter(q => q.topic === topic);
+            }
+            renderNavigatorGrid();
+            loadQuestion(0);
+        }
+
+        // Load Single Question Card
+        function loadQuestion(idx) {
+            if (currentQuestions.length === 0) return;
+            currentIndex = idx;
+            const q = currentQuestions[currentIndex];
+
+            qText.textContent = `${idx + 1}. ${q.question}`;
+            qImage.src = q.image;
+            badgeSubject.textContent = q.subject.toUpperCase();
+            badgeTopic.textContent = q.topic;
+            qIdTag.textContent = `Q #${q.id} of 150`;
+
+            const subColors = {
+                math: 'bg-rose-100 text-rose-700 border-rose-200',
+                evs: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+                english: 'bg-sky-100 text-sky-700 border-sky-200',
+                hindi: 'bg-amber-100 text-amber-700 border-amber-200',
+                gk: 'bg-purple-100 text-purple-700 border-purple-200'
+            };
+            badgeSubject.className = `px-3 py-1 rounded-full text-xs font-bold border ${subColors[q.subject] || 'bg-slate-100 text-slate-700'}`;
+
+            progressText.textContent = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+            const pct = Math.round(((currentIndex + 1) / currentQuestions.length) * 100);
+            progressBar.style.width = `${pct}%`;
+
+            document.getElementById('btn-prev').disabled = (currentIndex === 0);
+            document.getElementById('btn-next').disabled = (currentIndex === currentQuestions.length - 1);
+
+            optionsBox.innerHTML = '';
+            const answered = userAnswers[q.id] !== undefined;
+            const userChoice = userAnswers[q.id];
+            const labels = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-2xl border-2 font-bold text-sm transition flex items-center justify-between ";
+
+                if (!answered) {
+                    btn.className += "bg-slate-50 border-slate-200 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50/50";
+                    btn.onclick = () => selectOption(q.id, optIdx);
+                } else {
+                    btn.disabled = true;
+                    if (optIdx === q.answer) {
+                        btn.className += "bg-emerald-100 border-emerald-500 text-emerald-900 shadow-sm";
+                    } else if (optIdx === userChoice) {
+                        btn.className += "bg-rose-100 border-rose-500 text-rose-900";
+                    } else {
+                        btn.className += "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
+                    }
+                }
+
+                btn.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold ${answered && optIdx === q.answer
+                        ? 'bg-emerald-600 text-white'
+                        : answered && optIdx === userChoice
+                            ? 'bg-rose-600 text-white'
+                            : 'bg-white text-slate-600 border border-slate-200'
+                    }">${labels[optIdx]}</span>
+            <span>${optText}</span>
+          </div>
+          ${answered && optIdx === q.answer
+                        ? '<i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>'
+                        : answered && optIdx === userChoice
+                            ? '<i data-lucide="x-circle" class="w-5 h-5 text-rose-600"></i>'
+                            : ''
+                    }
+        `;
+                optionsBox.appendChild(btn);
+            });
+
+            if (answered) {
+                explanationBox.classList.remove('hidden');
+                explanationText.textContent = q.explanation;
+
+                if (userChoice === q.answer) {
+                    explanationBox.className = "border-2 border-emerald-300 bg-emerald-50/70 rounded-2xl p-4";
+                    feedbackTitle.textContent = "Correct! Super Star!";
+                    feedbackTitle.className = "font-bold text-sm text-emerald-800";
+                    feedbackIconBg.className = "p-2 rounded-xl bg-emerald-500 text-white";
+                } else {
+                    explanationBox.className = "border-2 border-rose-300 bg-rose-50/70 rounded-2xl p-4";
+                    feedbackTitle.textContent = "Oops! Check the answer below.";
+                    feedbackTitle.className = "font-bold text-sm text-rose-800";
+                    feedbackIconBg.className = "p-2 rounded-xl bg-rose-500 text-white";
+                }
+            } else {
+                explanationBox.classList.add('hidden');
+            }
+
+            document.getElementById('card-badge').textContent = `${q.subject.toUpperCase()} - ${q.topic}`;
+            document.getElementById('card-q-text').textContent = q.question;
+            document.getElementById('card-answer-text').textContent = `${labels[q.answer]}) ${q.options[q.answer]}`;
+            document.getElementById('card-exp-text').textContent = q.explanation;
+            document.getElementById('card-answer-box').classList.add('hidden');
+            document.getElementById('flip-hint').classList.remove('hidden');
+
+            lucide.createIcons();
+            highlightActiveNav();
+        }
+
+        function flipCard() {
+            const box = document.getElementById('card-answer-box');
+            const hint = document.getElementById('flip-hint');
+            box.classList.toggle('hidden');
+            hint.classList.toggle('hidden');
+        }
+
+        function selectOption(qId, optIdx) {
+            userAnswers[qId] = optIdx;
+            updateScore();
+            loadQuestion(currentIndex);
+            renderNavigatorGrid();
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) loadQuestion(currentIndex - 1);
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) loadQuestion(currentIndex + 1);
+        }
+
+        function updateScore() {
+            let score = 0;
+            Object.keys(userAnswers).forEach(id => {
+                const q = questionsDB.find(item => item.id == id);
+                if (q && userAnswers[id] === q.answer) score++;
+            });
+            scoreCounter.textContent = `Score: ${score} / ${questionsDB.length}`;
+        }
+
+        function renderNavigatorGrid() {
+            navGrid.innerHTML = '';
+            currentQuestions.forEach((q, i) => {
+                const btn = document.createElement('button');
+                const isAns = userAnswers[q.id] !== undefined;
+                const isCorr = isAns && userAnswers[q.id] === q.answer;
+
+                btn.className = `h-8 text-xs font-bold rounded-xl transition border flex items-center justify-center ${i === currentIndex ? 'ring-2 ring-indigo-500 ring-offset-2' : ''
+                    } ${!isAns
+                        ? 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200'
+                        : isCorr
+                            ? 'bg-emerald-500 border-emerald-600 text-white'
+                            : 'bg-rose-500 border-rose-600 text-white'
+                    }`;
+                btn.textContent = i + 1;
+                btn.onclick = () => loadQuestion(i);
+                navGrid.appendChild(btn);
+            });
+        }
+
+        function highlightActiveNav() {
+            const children = navGrid.children;
+            for (let i = 0; i < children.length; i++) {
+                if (i === currentIndex) {
+                    children[i].classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2');
+                } else {
+                    children[i].classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2');
+                }
+            }
+        }
+
+        function populatePrintView() {
+            const pGrid = document.getElementById('print-questions-grid');
+            const pKey = document.getElementById('print-answer-key');
+
+            pGrid.innerHTML = '';
+            pKey.innerHTML = '';
+
+            questionsDB.forEach((q, idx) => {
+                const qElem = document.createElement('div');
+                qElem.className = "border-b border-slate-300 pb-3 font-sans";
+                qElem.innerHTML = `
+          <div class="font-bold text-slate-900 mb-1">Q${idx + 1}. [${q.subject.toUpperCase()} - ${q.topic}] ${q.question}</div>
+          <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm text-slate-800 ml-4">
+            <div>(A) ${q.options[0]}</div>
+            <div>(B) ${q.options[1]}</div>
+            <div>(C) ${q.options[2]}</div>
+            <div>(D) ${q.options[3]}</div>
+          </div>
+        `;
+                pGrid.appendChild(qElem);
+
+                const keyElem = document.createElement('div');
+                keyElem.className = "p-2 bg-slate-50 border rounded";
+                keyElem.innerHTML = `
+          <strong>Q${idx + 1}:</strong> (${['A', 'B', 'C', 'D'][q.answer]}) - <em>${q.explanation}</em>
+        `;
+                pKey.appendChild(keyElem);
+            });
+        }
+    </script>
 </body>
 
 </html>
