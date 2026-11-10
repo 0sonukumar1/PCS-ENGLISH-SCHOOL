@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Tense Master Quiz (50 Questions)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                            900: '#164e63',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for dark UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .print-only {
+                display: block !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-cyan-600/20 text-cyan-400 rounded-lg border border-cyan-500/30">
+                    <i data-lucide="rocket" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-tight">Grammar Master: Future Tense</h1>
+                    <p class="text-xs text-slate-400">50 Interactive Questions & Rule Explanations</p>
+                </div>
+            </div>
+
+            <!-- Quick Action Stats & Controls -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <div
+                    class="hidden md:flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/60 text-xs text-slate-300">
+                    <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+                    <span>Score: <strong id="header-score" class="text-white">0</strong>/50</span>
+                </div>
+
+                <button id="btn-export-pdf" onclick="window.print()"
+                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition flex items-center space-x-1.5">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Print Worksheet</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
+
+        <!-- Sidebar / Navigation & Filters -->
+        <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 space-y-4 no-print">
+            <!-- Category Filter -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                <h2
+                    class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between">
+                    <span>Filter Future Tense</span>
+                    <i data-lucide="filter" class="w-3.5 h-3.5 text-slate-500"></i>
+                </h2>
+                <div class="space-y-1.5" id="category-filters">
+                    <button data-cat="all"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition flex items-center justify-between bg-cyan-600 text-white shadow-lg shadow-cyan-600/20">
+                        <span>All 50 Questions</span>
+                        <span class="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full" id="count-all">50</span>
+                    </button>
+                    <button data-cat="simple"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Simple Future</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-simple">13</span>
+                    </button>
+                    <button data-cat="continuous"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Future Continuous</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-continuous">13</span>
+                    </button>
+                    <button data-cat="perfect"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Future Perfect</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-perfect">12</span>
+                    </button>
+                    <button data-cat="perfect-continuous"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Future Perfect Cont.</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-perfect-continuous">12</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Question Navigation Grid -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Question Navigator</h2>
+                    <span class="text-xs text-cyan-400" id="answered-count">0 / 50 Done</span>
+                </div>
+                <div id="question-grid" class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Rule Summary Box -->
+            <div class="bg-cyan-950/30 border border-cyan-900/50 rounded-xl p-4 text-xs space-y-2">
+                <div class="flex items-center space-x-2 text-cyan-300 font-semibold">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Grammar Tip</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed" id="sidebar-tip">
+                    Remember: <strong>Simple Future</strong> uses <em>will/shall + V1</em> for predictions, instant
+                    decisions, or spontaneous promises!
+                </p>
+            </div>
+        </aside>
+
+        <!-- Center Quiz Experience -->
+        <section class="flex-grow flex flex-col space-y-4">
+
+            <!-- Progress Bar Card -->
+            <div
+                class="bg-slate-900 border border-slate-800 rounded-xl p-4 no-print flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="w-full sm:w-2/3 space-y-1">
+                    <div class="flex justify-between text-xs font-semibold text-slate-400">
+                        <span>Overall Progress</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-cyan-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button id="btn-prev"
+                        class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-xs font-medium border border-slate-700 text-slate-200 transition flex items-center space-x-1">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        <span>Prev</span>
+                    </button>
+                    <span id="current-q-num" class="text-xs font-bold text-slate-300 px-2">Q 1 of 50</span>
+                    <button id="btn-next"
+                        class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-xs font-medium border border-slate-700 text-slate-200 transition flex items-center space-x-1">
+                        <span>Next</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Interactive Question Card -->
+            <div id="quiz-card"
+                class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+
+                <!-- Question Header & Category Badge -->
+                <div
+                    class="p-4 sm:p-6 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 bg-slate-900/50">
+                    <div class="flex items-center space-x-2">
+                        <span id="q-category-badge"
+                            class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                            Simple Future
+                        </span>
+                        <span id="q-number-tag" class="text-xs text-slate-500 font-mono">Question #1</span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-medium">Select the correct verb form</span>
+                </div>
+
+                <!-- Question Body (Image + Choices) -->
+                <div class="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+
+                    <!-- Image Box -->
+                    <div
+                        class="md:col-span-5 relative group overflow-hidden rounded-xl bg-slate-950 border border-slate-800 min-h-[180px] max-h-[260px] flex items-center justify-center">
+                        <img id="q-image" src="" alt="Future Tense contextual illustration"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Question Content & Options -->
+                    <div class="md:col-span-7 space-y-4">
+                        <h2 id="q-text" class="text-lg sm:text-xl font-semibold text-white leading-snug">
+                            Loading question...
+                        </h2>
+
+                        <!-- Options Grid -->
+                        <div id="options-container" class="space-y-2.5 pt-1">
+                            <!-- Dynamically Populated Options -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback & Explanation Footer -->
+                <div id="explanation-box"
+                    class="hidden border-t border-slate-800 p-4 sm:p-6 bg-slate-950/60 transition-all">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon" class="p-2 rounded-lg flex-shrink-0 mt-0.5">
+                            <!-- Check or Cross Icon -->
+                        </div>
+                        <div class="space-y-1">
+                            <h4 id="feedback-title" class="font-bold text-sm">Correct Answer!</h4>
+                            <p id="explanation-text" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Explanation text goes here.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Printable View Container (Hidden on web UI, visible on print) -->
+            <div id="print-section" class="hidden print-only space-y-6 p-4">
+                <h1 class="text-2xl font-bold border-b pb-2">Future Tense Complete Worksheet (50 Questions)</h1>
+                <div id="print-questions-list" class="space-y-4 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- JavaScript App Logic & Questions Database -->
+    <script>
+        // --- 50 Questions Database (Future Tense Focus) ---
+        const questionsDatabase = [
+            // === Simple Future (13 Questions) ===
+            {
+                id: 1,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "Don't worry about the heavy bags, I _____ (help) you carry them to your car.",
+                options: ["will help", "am helping", "will have helped", "helped"],
+                answer: 0,
+                explanation: "Simple Future ('will help') is used for instant decisions or spontaneous offers made at the time of speaking.",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "Scientists predict that autonomous electric vehicles _____ (dominate) city roads by 2035.",
+                options: ["will dominate", "are dominating", "have dominated", "will have been dominating"],
+                answer: 0,
+                explanation: "Simple Future ('will + V1') expresses predictions about future events based on opinions or beliefs.",
+                image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "_____ you _____ (attend) the annual developer summit next Tuesday?",
+                options: ["Will / attend", "Do / attend", "Have / attended", "Will / be attended"],
+                answer: 0,
+                explanation: "Simple Future interrogative structure: 'Will' + Subject + Base Verb V1 ('Will you attend').",
+                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "If it rains tomorrow, we _____ (not / host) the outdoor garden party.",
+                options: ["won't host", "don't host", "haven't hosted", "wouldn't host"],
+                answer: 0,
+                explanation: "First Conditional structure: 'If + Present Simple, Sub + will not (won't) + V1'.",
+                image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "I promise that I _____ (call) you as soon as I land at the airport.",
+                options: ["will call", "am calling", "called", "will have called"],
+                answer: 0,
+                explanation: "Promises and commitments are expressed using Simple Future ('will call').",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "Look at those dark clouds! It _____ (rain) very soon.",
+                options: ["is going to rain", "will have rained", "rained", "rains"],
+                answer: 0,
+                explanation: "'Be going to' is preferred over 'will' for predictions based on immediate physical evidence.",
+                image: "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "The new space mission _____ (launch) next month from Cape Canaveral.",
+                options: ["will launch", "launched", "has launched", "will be launched"],
+                answer: 0,
+                explanation: "Active Simple Future form for scheduled upcoming events ('will launch').",
+                image: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "She believes that the new government policy _____ (improve) the economy.",
+                options: ["will improve", "improves", "is improving", "will have improved"],
+                answer: 0,
+                explanation: "Verbs of thought/belief ('believe', 'think', 'hope') pair with Simple Future ('will improve').",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "We _____ (not / give up) until we find a solution to this issue.",
+                options: ["won't give up", "don't give up", "haven't given up", "didn't give up"],
+                answer: 0,
+                explanation: "Negative Simple Future uses 'will not' or contraction 'won't' + base verb ('won't give up').",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 10,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "What time _____ the train _____ (depart) tomorrow morning?",
+                options: ["will / depart", "does / depart", "is / departing", "will / be departing"],
+                answer: 1,
+                explanation: "Official fixed timetables and schedules often use Simple Present ('does ... depart') for future meaning.",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 11,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "I think I _____ (stay) at home tonight and rest.",
+                options: ["will stay", "stayed", "am staying", "have stayed"],
+                answer: 0,
+                explanation: "Spontaneous decision triggered by 'I think' requires Simple Future ('will stay').",
+                image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 12,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "The company _____ (hire) fifty new engineers in the upcoming fiscal quarter.",
+                options: ["will hire", "hired", "has hired", "will have been hiring"],
+                answer: 0,
+                explanation: "Simple Future statement about a planned organizational action ('will hire').",
+                image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 13,
+                category: "simple",
+                categoryName: "Simple Future",
+                question: "Who _____ (lead) the workshop if Mr. Davis is absent tomorrow?",
+                options: ["will lead", "leads", "is leading", "has led"],
+                answer: 0,
+                explanation: "Wh- question in simple future: 'Who' + 'will' + Base Verb ('will lead').",
+                image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Future Continuous (13 Questions) ===
+            {
+                id: 14,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "At 10 AM tomorrow, she _____ (deliver) her keynote presentation at the conference.",
+                options: ["will be delivering", "will deliver", "delivers", "will have delivered"],
+                answer: 0,
+                explanation: "Action in progress at a specific moment in the future uses Future Continuous ('will be delivering').",
+                image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 15,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "Don't call him between 1 PM and 2 PM because he _____ (have) lunch with clients.",
+                options: ["will be having", "will have", "has", "will have had"],
+                answer: 0,
+                explanation: "Ongoing continuous state during a defined future timeframe requires 'will be having'.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 16,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "This time next week, we _____ (relax) on the sunny beaches of Bali.",
+                options: ["will be relaxing", "will relax", "are relaxing", "relax"],
+                answer: 0,
+                explanation: "'This time next week' is a classic indicator for Future Continuous ('will be relaxing').",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 17,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "_____ you _____ (use) your laptop later tonight, or can I borrow it?",
+                options: ["Will / be using", "Will / use", "Do / use", "Are / using"],
+                answer: 0,
+                explanation: "Polite inquiry about someone's future plans uses Future Continuous ('Will you be using').",
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 18,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "They _____ (fly) over the Atlantic when the sun rises tomorrow.",
+                options: ["will be flying", "will fly", "fly", "will have flown"],
+                answer: 0,
+                explanation: "Action that will be ongoing when another future event occurs takes Future Continuous.",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 19,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "I _____ (not / work) this weekend, so we can go hiking together.",
+                options: ["won't be working", "won't work", "don't work", "am not working"],
+                answer: 0,
+                explanation: "Negative Future Continuous: 'will not be' (won't be) + V-ing ('won't be working').",
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 20,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "The construction crew _____ (pave) the road all afternoon tomorrow.",
+                options: ["will be paving", "will pave", "paves", "is paving"],
+                answer: 0,
+                explanation: "Duration phrase 'all afternoon tomorrow' paired with an active verb takes Future Continuous.",
+                image: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 21,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "At 8 PM, the orchestra _____ (perform) Beethoven's Fifth Symphony.",
+                options: ["will be performing", "will perform", "performs", "will have performed"],
+                answer: 0,
+                explanation: "Ongoing performance at a specified point in future time uses 'will be performing'.",
+                image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 22,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "Why _____ they _____ (hold) the meeting online instead of in person?",
+                options: ["will / be holding", "will / hold", "are / holding", "do / hold"],
+                answer: 0,
+                explanation: "Future Continuous Wh- question structure: 'Why will they be holding'.",
+                image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 23,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "We _____ (study) for our finals all evening, so please don't make noise.",
+                options: ["will be studying", "will study", "study", "are studying"],
+                answer: 0,
+                explanation: "Continuous future activity spanning across the evening -> 'will be studying'.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 24,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "He _____ (not / attending) the conference due to a scheduling conflict.",
+                options: ["won't be attending", "won't attend", "isn't attending", "doesn't attend"],
+                answer: 0,
+                explanation: "Future Continuous negative format expressing standard routine absence ('won't be attending').",
+                image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 25,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "In ten years, people _____ (drive) electric flying vehicles.",
+                options: ["will be driving", "will drive", "are driving", "drive"],
+                answer: 0,
+                explanation: "Imagining continuous lifestyle trends at a future timeframe uses Future Continuous.",
+                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 26,
+                category: "continuous",
+                categoryName: "Future Continuous",
+                question: "When you arrive at the station, I _____ (wait) for you near the main entrance.",
+                options: ["will be waiting", "will wait", "wait", "have waited"],
+                answer: 0,
+                explanation: "An action already in progress when someone arrives takes Future Continuous ('will be waiting').",
+                image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Future Perfect (12 Questions) ===
+            {
+                id: 27,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "By the end of this month, our team _____ (complete) the entire software redesign.",
+                options: ["will have completed", "will complete", "completes", "will be completing"],
+                answer: 0,
+                explanation: "Future Perfect ('will have completed') denotes an action that will be completed before a specified future time marker ('By the end of this month').",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 28,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "She _____ (finish) her medical residency before she turns thirty.",
+                options: ["will have finished", "will finish", "finishes", "is finishing"],
+                answer: 0,
+                explanation: "Completion of an event prior to a future age milestone requires Future Perfect ('will have finished').",
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 29,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "By the time the guests arrive, we _____ (prepare) all the dishes.",
+                options: ["will have prepared", "will prepare", "prepare", "are preparing"],
+                answer: 0,
+                explanation: "'By the time' + Present Simple clause is paired with Future Perfect in the main clause.",
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 30,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "They _____ (not / publish) the annual report before next Monday.",
+                options: ["won't have published", "won't publish", "don't publish", "haven't published"],
+                answer: 0,
+                explanation: "Negative Future Perfect format: 'will not have' (won't have) + V3 ('won't have published').",
+                image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 31,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "_____ you _____ (save) enough money for your trip by next summer?",
+                options: ["Will / have saved", "Will / save", "Do / save", "Have / saved"],
+                answer: 0,
+                explanation: "Interrogative Future Perfect: 'Will' + Subject + 'have' + V3 ('Will you have saved').",
+                image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 32,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "By 2030, scientists hope they _____ (discover) a cure for the disease.",
+                options: ["will have discovered", "will discover", "discover", "have discovered"],
+                answer: 0,
+                explanation: "Time target 'By 2030' denotes completion before that year -> Future Perfect ('will have discovered').",
+                image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 33,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "The movie _____ (start) by the time we reach the cinema if we don't hurry.",
+                options: ["will have started", "will start", "starts", "is starting"],
+                answer: 0,
+                explanation: "Completed event before another future moment ('by the time we reach') takes 'will have started'.",
+                image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 34,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "He _____ (read) all five volumes of the series before the author releases the next book.",
+                options: ["will have read", "will read", "reads", "has read"],
+                answer: 0,
+                explanation: "Action completed ahead of a future landmark event uses Future Perfect ('will have read').",
+                image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 35,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "How many miles _____ the car _____ (travel) by the time we reach Chicago?",
+                options: ["will / have traveled", "will / travel", "does / travel", "has / traveled"],
+                answer: 0,
+                explanation: "Future Perfect Wh- question asking about accumulated total prior to a destination.",
+                image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 36,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "The storm _____ (pass) by tomorrow morning, leaving clear skies.",
+                options: ["will have passed", "will pass", "passes", "is passing"],
+                answer: 0,
+                explanation: "'By tomorrow morning' indicates completion prior to that time -> 'will have passed'.",
+                image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 37,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "By midnight, the marathon runners _____ (cover) over forty kilometers.",
+                options: ["will have covered", "will cover", "cover", "are covering"],
+                answer: 0,
+                explanation: "Action completed before a specific hour ('By midnight') calls for Future Perfect.",
+                image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 38,
+                category: "perfect",
+                categoryName: "Future Perfect",
+                question: "I _____ (not / finish) this report by 5 PM, so I will need an extension.",
+                options: ["won't have finished", "won't finish", "don't finish", "haven't finished"],
+                answer: 0,
+                explanation: "Expressing inability to complete a task before a future deadline requires 'won't have finished'.",
+                image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Future Perfect Continuous (12 Questions) ===
+            {
+                id: 39,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By next November, Dr. Smith _____ (teach) at the university for twenty years.",
+                options: ["will have been teaching", "will teach", "will be teaching", "has been teaching"],
+                answer: 0,
+                explanation: "Future Perfect Continuous ('will have been teaching') emphasizes ongoing duration ('for twenty years') up to a future point ('By next November').",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 40,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "When he retires, he _____ (work) in the banking industry for over three decades.",
+                options: ["will have been working", "will work", "works", "has been working"],
+                answer: 0,
+                explanation: "Duration up to a future retirement moment requires Future Perfect Continuous ('will have been working').",
+                image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 41,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By 6 PM, the athletes _____ (train) continuously for five hours.",
+                options: ["will have been training", "will train", "will be training", "have been training"],
+                answer: 0,
+                explanation: "'By 6 PM' paired with duration marker 'for five hours' calls for Future Perfect Continuous.",
+                image: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 42,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "How long _____ she _____ (live) in London by the time her visa expires?",
+                options: ["will / have been living", "will / live", "is / living", "has / been living"],
+                answer: 0,
+                explanation: "Asking about continuous duration prior to a future event: 'Will she have been living'.",
+                image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 43,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By midnight, it _____ (snow) heavily for eighteen hours straight.",
+                options: ["will have been snowing", "will snow", "is snowing", "has been snowing"],
+                answer: 0,
+                explanation: "Continuous ongoing weather duration up to a future time landmark ('By midnight').",
+                image: "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 44,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "They _____ (not / practice) long enough by the time the competition begins.",
+                options: ["won't have been practicing", "won't practice", "don't practice", "haven't been practicing"],
+                answer: 0,
+                explanation: "Negative Future Perfect Continuous form: 'won't have been practicing'.",
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 45,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By the time the plane lands, the passengers _____ (fly) for twelve hours.",
+                options: ["will have been flying", "will fly", "fly", "are flying"],
+                answer: 0,
+                explanation: "Emphasizes the duration of the flight up to the point of landing in the future.",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 46,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "In July, my parents _____ (be married) for thirty years.",
+                options: ["will have been married", "will marry", "are married", "have been married"],
+                answer: 0,
+                explanation: "Stative/passive future milestone duration uses Future Perfect state structure ('will have been married').",
+                image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 47,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By next week, the engineers _____ (test) the prototype for a full month.",
+                options: ["will have been testing", "will test", "test", "have been testing"],
+                answer: 0,
+                explanation: "Ongoing testing activity across a continuous future period -> 'will have been testing'.",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 48,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "When the clock strikes five, I _____ (code) for eight consecutive hours.",
+                options: ["will have been coding", "will code", "am coding", "have been coding"],
+                answer: 0,
+                explanation: "Continuous duration of work ending at a specific future hour ('clock strikes five').",
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 49,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By the time the manager arrives, the staff _____ (discuss) the issue for an hour.",
+                options: ["will have been discussing", "will discuss", "discuss", "are discussing"],
+                answer: 0,
+                explanation: "Ongoing action with time expression ('for an hour') prior to a future arrival event.",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 50,
+                category: "perfect-continuous",
+                categoryName: "Future Perfect Continuous",
+                question: "By the end of this term, the students _____ (study) world history for two semesters.",
+                options: ["will have been studying", "will study", "study", "have been studying"],
+                answer: 0,
+                explanation: "Future Perfect Continuous denotes ongoing academic duration up to the end of the term.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- State Management ---
+        let currentFilteredList = [...questionsDatabase];
+        let currentIndex = 0;
+        let userAnswers = {}; // Map question ID -> selected option index
+        let activeFilter = 'all';
+
+        // Grammatical Tips per Filter
+        const tipsMap = {
+            'all': "Mastering Future Tenses: Simple Future (will + V1), Future Continuous (will be + V4), Future Perfect (will have + V3), Future Perfect Continuous (will have been + V4 + for/since).",
+            'simple': "Simple Future Rule: Subject + will/shall + V1. Used for predictions, promises, instant decisions, or first conditional clauses.",
+            'continuous': "Future Continuous Rule: Subject + will be + V-ing. Used for actions in progress at a specific time in the future.",
+            'perfect': "Future Perfect Rule: Subject + will have + V3. Expresses an action that will be completed before a specified point in the future.",
+            'perfect-continuous': "Future Perfect Continuous Rule: Subject + will have been + V-ing + for/since. Focuses on the continuous duration of an action up to a future point."
+        };
+
+        // --- DOM Elements ---
+        const qText = document.getElementById('q-text');
+        const qImage = document.getElementById('q-image');
+        const qCategoryBadge = document.getElementById('q-category-badge');
+        const qNumberTag = document.getElementById('q-number-tag');
+        const optionsContainer = document.getElementById('options-container');
+        const explanationBox = document.getElementById('explanation-box');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const explanationText = document.getElementById('explanation-text');
+        const currentQNum = document.getElementById('current-q-num');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const headerScore = document.getElementById('header-score');
+        const answeredCount = document.getElementById('answered-count');
+        const questionGrid = document.getElementById('question-grid');
+        const sidebarTip = document.getElementById('sidebar-tip');
+        const printQuestionsList = document.getElementById('print-questions-list');
+
+        // --- Initialization ---
+        window.onload = () => {
+            lucide.createIcons();
+            renderNavigatorGrid();
+            loadQuestion(0);
+            updateStats();
+            setupCategoryFilters();
+            populatePrintSection();
+        };
+
+        // --- Question Renderer ---
+        function loadQuestion(index) {
+            if (currentFilteredList.length === 0) return;
+            currentIndex = index;
+            const q = currentFilteredList[currentIndex];
+
+            // Update basic texts
+            qText.textContent = `${currentIndex + 1}. ${q.question}`;
+            qImage.src = q.image;
+            qCategoryBadge.textContent = q.categoryName;
+            qNumberTag.textContent = `Question #${q.id} of 50`;
+            currentQNum.textContent = `Q ${currentIndex + 1} of ${currentFilteredList.length}`;
+
+            // Update Navigation Buttons
+            document.getElementById('btn-prev').disabled = (currentIndex === 0);
+            document.getElementById('btn-next').disabled = (currentIndex === currentFilteredList.length - 1);
+
+            // Render Options
+            optionsContainer.innerHTML = '';
+            const selectedOption = userAnswers[q.id];
+            const isAnswered = selectedOption !== undefined;
+
+            const optionLabels = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-3.5 rounded-xl border font-medium text-sm transition flex items-center justify-between group `;
+
+                if (!isAnswered) {
+                    btn.className += `bg-slate-950 border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/50 text-slate-200`;
+                } else {
+                    if (optIdx === q.answer) {
+                        // Correct Answer Style
+                        btn.className += `bg-emerald-950/40 border-emerald-500/60 text-emerald-300 font-semibold`;
+                    } else if (optIdx === selectedOption) {
+                        // Wrong Selection Style
+                        btn.className += `bg-rose-950/40 border-rose-500/60 text-rose-300`;
+                    } else {
+                        // Inactive style
+                        btn.className += `bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60`;
+                    }
+                }
+
+                btn.onclick = () => handleAnswerSelect(q.id, optIdx);
+
+                btn.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${isAnswered && optIdx === q.answer
+                        ? 'bg-emerald-500 text-slate-950'
+                        : isAnswered && optIdx === selectedOption
+                            ? 'bg-rose-500 text-white'
+                            : 'bg-slate-800 text-slate-400 group-hover:bg-cyan-600 group-hover:text-white'
+                    }">${optionLabels[optIdx]}</span>
+            <span>${optText}</span>
+          </div>
+          ${isAnswered && optIdx === q.answer
+                        ? '<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>'
+                        : isAnswered && optIdx === selectedOption
+                            ? '<i data-lucide="x-circle" class="w-5 h-5 text-rose-400"></i>'
+                            : ''
+                    }
+        `;
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Render Feedback Explanation Box
+            if (isAnswered) {
+                explanationBox.classList.remove('hidden');
+                explanationText.textContent = q.explanation;
+
+                if (selectedOption === q.answer) {
+                    feedbackTitle.textContent = "Correct! Great job.";
+                    feedbackTitle.className = "font-bold text-sm text-emerald-400";
+                    feedbackIcon.className = "p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                    feedbackIcon.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+                } else {
+                    feedbackTitle.textContent = "Incorrect";
+                    feedbackTitle.className = "font-bold text-sm text-rose-400";
+                    feedbackIcon.className = "p-2 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                    feedbackIcon.innerHTML = `<i data-lucide="alert-triangle" class="w-5 h-5"></i>`;
+                }
+            } else {
+                explanationBox.classList.add('hidden');
+            }
+
+            lucide.createIcons();
+            highlightGridItem();
+        }
+
+        // --- Action Handlers ---
+        function handleAnswerSelect(questionId, selectedIdx) {
+            if (userAnswers[questionId] !== undefined) return; // Prevent changing after selection
+            userAnswers[questionId] = selectedIdx;
+
+            updateStats();
+            loadQuestion(currentIndex);
+            renderNavigatorGrid();
+        }
+
+        function updateStats() {
+            const answeredTotal = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            questionsDatabase.forEach(q => {
+                if (userAnswers[q.id] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            // Update Score Header & Progress
+            headerScore.textContent = correctCount;
+            answeredCount.textContent = `${answeredTotal} / 50 Done`;
+
+            const pct = Math.round((answeredTotal / 50) * 100);
+            progressBar.style.width = `${pct}%`;
+            progressPercent.textContent = `${pct}%`;
+        }
+
+        // --- Navigator Grid ---
+        function renderNavigatorGrid() {
+            questionGrid.innerHTML = '';
+            currentFilteredList.forEach((q, idx) => {
+                const isAnswered = userAnswers[q.id] !== undefined;
+                const isCorrect = isAnswered && userAnswers[q.id] === q.answer;
+
+                const cell = document.createElement('button');
+                cell.className = `h-9 rounded-lg text-xs font-semibold transition border flex items-center justify-center ${idx === currentIndex ? 'ring-2 ring-cyan-500 ring-offset-2 ring-offset-slate-900 ' : ''
+                    }`;
+
+                if (!isAnswered) {
+                    cell.className += ` bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700`;
+                } else if (isCorrect) {
+                    cell.className += ` bg-emerald-950 border-emerald-600 text-emerald-400`;
+                } else {
+                    cell.className += ` bg-rose-950 border-rose-600 text-rose-400`;
+                }
+
+                cell.textContent = idx + 1;
+                cell.onclick = () => loadQuestion(idx);
+                questionGrid.appendChild(cell);
+            });
+        }
+
+        function highlightGridItem() {
+            const cells = questionGrid.children;
+            for (let i = 0; i < cells.length; i++) {
+                if (i === currentIndex) {
+                    cells[i].classList.add('ring-2', 'ring-cyan-500', 'ring-offset-2', 'ring-offset-slate-900');
+                } else {
+                    cells[i].classList.remove('ring-2', 'ring-cyan-500', 'ring-offset-2', 'ring-offset-slate-900');
+                }
+            }
+        }
+
+        // --- Category Filter Logic ---
+        function setupCategoryFilters() {
+            const filterButtons = document.querySelectorAll('.cat-filter-btn');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.getAttribute('data-cat');
+                    activeFilter = cat;
+
+                    // Update active button UI
+                    filterButtons.forEach(b => {
+                        b.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between";
+                    });
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition flex items-center justify-between bg-cyan-600 text-white shadow-lg shadow-cyan-600/20";
+
+                    // Filter questions list
+                    if (cat === 'all') {
+                        currentFilteredList = [...questionsDatabase];
+                    } else {
+                        currentFilteredList = questionsDatabase.filter(q => q.category === cat);
+                    }
+
+                    sidebarTip.innerHTML = tipsMap[cat] || tipsMap['all'];
+                    renderNavigatorGrid();
+                    loadQuestion(0);
+                });
+            });
+        }
+
+        // Next / Prev listeners
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            if (currentIndex > 0) loadQuestion(currentIndex - 1);
+        });
+
+        document.getElementById('btn-next').addEventListener('click', () => {
+            if (currentIndex < currentFilteredList.length - 1) loadQuestion(currentIndex + 1);
+        });
+
+        // Populate Print/Export View
+        function populatePrintSection() {
+            printQuestionsList.innerHTML = '';
+            questionsDatabase.forEach((q, idx) => {
+                const item = document.createElement('div');
+                item.className = "p-3 border rounded border-slate-300 text-black mb-3 page-break-inside-avoid";
+                item.innerHTML = `
+          <div class="font-bold mb-1">${idx + 1}. [${q.categoryName}] ${q.question}</div>
+          <div class="grid grid-cols-2 gap-2 text-xs mb-2">
+            <div>A) ${q.options[0]}</div>
+            <div>B) ${q.options[1]}</div>
+            <div>C) ${q.options[2]}</div>
+            <div>D) ${q.options[3]}</div>
+          </div>
+          <div class="text-xs text-gray-700 italic border-t pt-1">
+            <strong>Answer:</strong> ${['A', 'B', 'C', 'D'][q.answer]} | <strong>Explanation:</strong> ${q.explanation}
+          </div>
+        `;
+                printQuestionsList.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Tense Master Quiz (50 Questions)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for dark UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .print-only {
+                display: block !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-orange-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-orange-600/20 text-orange-400 rounded-lg border border-orange-500/30">
+                    <i data-lucide="history" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-tight">Grammar Master: Past Tense</h1>
+                    <p class="text-xs text-slate-400">50 Interactive Questions & Rule Explanations</p>
+                </div>
+            </div>
+
+            <!-- Quick Action Stats & Controls -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <div
+                    class="hidden md:flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/60 text-xs text-slate-300">
+                    <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+                    <span>Score: <strong id="header-score" class="text-white">0</strong>/50</span>
+                </div>
+
+                <button id="btn-export-pdf" onclick="window.print()"
+                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition flex items-center space-x-1.5">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Print Worksheet</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
+
+        <!-- Sidebar / Navigation & Filters -->
+        <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 space-y-4 no-print">
+            <!-- Category Filter -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                <h2
+                    class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between">
+                    <span>Filter Past Tense</span>
+                    <i data-lucide="filter" class="w-3.5 h-3.5 text-slate-500"></i>
+                </h2>
+                <div class="space-y-1.5" id="category-filters">
+                    <button data-cat="all"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition flex items-center justify-between bg-orange-600 text-white shadow-lg shadow-orange-600/20">
+                        <span>All 50 Questions</span>
+                        <span class="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full" id="count-all">50</span>
+                    </button>
+                    <button data-cat="simple"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Simple Past</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-simple">13</span>
+                    </button>
+                    <button data-cat="continuous"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Past Continuous</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-continuous">13</span>
+                    </button>
+                    <button data-cat="perfect"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Past Perfect</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-perfect">12</span>
+                    </button>
+                    <button data-cat="perfect-continuous"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Past Perfect Cont.</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-perfect-continuous">12</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Question Navigation Grid -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Question Navigator</h2>
+                    <span class="text-xs text-orange-400" id="answered-count">0 / 50 Done</span>
+                </div>
+                <div id="question-grid" class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Rule Summary Box -->
+            <div class="bg-orange-950/30 border border-orange-900/50 rounded-xl p-4 text-xs space-y-2">
+                <div class="flex items-center space-x-2 text-orange-300 font-semibold">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Grammar Tip</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed" id="sidebar-tip">
+                    Remember: <strong>Simple Past</strong> uses the second form of the verb (V2) for completed actions
+                    at a specific time in the past!
+                </p>
+            </div>
+        </aside>
+
+        <!-- Center Quiz Experience -->
+        <section class="flex-grow flex flex-col space-y-4">
+
+            <!-- Progress Bar Card -->
+            <div
+                class="bg-slate-900 border border-slate-800 rounded-xl p-4 no-print flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="w-full sm:w-2/3 space-y-1">
+                    <div class="flex justify-between text-xs font-semibold text-slate-400">
+                        <span>Overall Progress</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-orange-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button id="btn-prev"
+                        class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-xs font-medium border border-slate-700 text-slate-200 transition flex items-center space-x-1">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        <span>Prev</span>
+                    </button>
+                    <span id="current-q-num" class="text-xs font-bold text-slate-300 px-2">Q 1 of 50</span>
+                    <button id="btn-next"
+                        class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-xs font-medium border border-slate-700 text-slate-200 transition flex items-center space-x-1">
+                        <span>Next</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Interactive Question Card -->
+            <div id="quiz-card"
+                class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+
+                <!-- Question Header & Category Badge -->
+                <div
+                    class="p-4 sm:p-6 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 bg-slate-900/50">
+                    <div class="flex items-center space-x-2">
+                        <span id="q-category-badge"
+                            class="px-3 py-1 rounded-full text-xs font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                            Simple Past
+                        </span>
+                        <span id="q-number-tag" class="text-xs text-slate-500 font-mono">Question #1</span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-medium">Select the correct verb form</span>
+                </div>
+
+                <!-- Question Body (Image + Choices) -->
+                <div class="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+
+                    <!-- Image Box -->
+                    <div
+                        class="md:col-span-5 relative group overflow-hidden rounded-xl bg-slate-950 border border-slate-800 min-h-[180px] max-h-[260px] flex items-center justify-center">
+                        <img id="q-image" src="" alt="Past Tense contextual illustration"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Question Content & Options -->
+                    <div class="md:col-span-7 space-y-4">
+                        <h2 id="q-text" class="text-lg sm:text-xl font-semibold text-white leading-snug">
+                            Loading question...
+                        </h2>
+
+                        <!-- Options Grid -->
+                        <div id="options-container" class="space-y-2.5 pt-1">
+                            <!-- Dynamically Populated Options -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback & Explanation Footer -->
+                <div id="explanation-box"
+                    class="hidden border-t border-slate-800 p-4 sm:p-6 bg-slate-950/60 transition-all">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon" class="p-2 rounded-lg flex-shrink-0 mt-0.5">
+                            <!-- Check or Cross Icon -->
+                        </div>
+                        <div class="space-y-1">
+                            <h4 id="feedback-title" class="font-bold text-sm">Correct Answer!</h4>
+                            <p id="explanation-text" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Explanation text goes here.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Printable View Container (Hidden on web UI, visible on print) -->
+            <div id="print-section" class="hidden print-only space-y-6 p-4">
+                <h1 class="text-2xl font-bold border-b pb-2">Past Tense Complete Worksheet (50 Questions)</h1>
+                <div id="print-questions-list" class="space-y-4 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- JavaScript App Logic & Questions Database -->
+    <script>
+        // --- 50 Questions Database (Past Tense Focus) ---
+        const questionsDatabase = [
+            // === Simple Past (13 Questions) ===
+            {
+                id: 1,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "Yesterday, she _____ (buy) a beautiful vintage coat from the local market.",
+                options: ["bought", "buys", "has bought", "was buying"],
+                answer: 0,
+                explanation: "'Yesterday' marks a completed past action. The past simple V2 form of 'buy' is 'bought'.",
+                image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "They _____ (visit) the Louvre Museum during their holiday in Paris last year.",
+                options: ["have visited", "visited", "were visiting", "had visited"],
+                answer: 1,
+                explanation: "Specific past time markers like 'last year' require Simple Past ('visited').",
+                image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "Christopher Columbus _____ (sail) across the Atlantic Ocean in 1492.",
+                options: ["was sailing", "sailed", "has sailed", "had sailed"],
+                answer: 1,
+                explanation: "Historical facts at a specific point in time in history always take Simple Past ('sailed').",
+                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "_____ you _____ (see) the total solar eclipse last night?",
+                options: ["Did / see", "Did / saw", "Have / seen", "Were / seeing"],
+                answer: 0,
+                explanation: "Interrogative simple past format: 'Did' + Subject + Base form verb ('Did you see').",
+                image: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "I _____ (not / hear) the alarm clock this morning because I was so tired.",
+                options: ["didn't heard", "don't hear", "didn't hear", "wasn't hearing"],
+                answer: 2,
+                explanation: "Negative simple past takes 'did not' (didn't) + base verb ('didn't hear').",
+                image: "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "When he was a boy, my grandfather _____ (walk) five miles to school every morning.",
+                options: ["walked", "walks", "was walking", "has walked"],
+                answer: 0,
+                explanation: "Past habits or routines that no longer occur are expressed using Simple Past ('walked').",
+                image: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "The concert _____ (start) at 8 PM sharp and finished around midnight.",
+                options: ["started", "was starting", "had started", "starts"],
+                answer: 0,
+                explanation: "Sequential finished actions in a narrative use Simple Past ('started').",
+                image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "Shakespeare _____ (write) iconic plays like Hamlet and Romeo & Juliet.",
+                options: ["writes", "wrote", "has written", "had written"],
+                answer: 1,
+                explanation: "Actions completed by people no longer alive take Simple Past V2 form ('wrote').",
+                image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "She _____ (lose) her room key on the beach two days ago.",
+                options: ["loses", "lost", "has lost", "was losing"],
+                answer: 1,
+                explanation: "Irregular past tense of 'lose' is 'lost'. Time phrase 'two days ago' reinforces Simple Past.",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 10,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "Where _____ you _____ (go) for your summer break in 2022?",
+                options: ["did / go", "did / went", "have / gone", "were / going"],
+                answer: 0,
+                explanation: "Wh- question format in simple past uses 'did' + Subject + Base Verb V1 ('did you go').",
+                image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 11,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "The company _____ (launch) its new flagship smartphone last week.",
+                options: ["launches", "launched", "was launching", "had launched"],
+                answer: 1,
+                explanation: "Regular verb past tense form adds '-ed' -> 'launched' for completed event last week.",
+                image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 12,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "We _____ (be) very surprised by the unexpected news.",
+                options: ["was", "were", "are", "been"],
+                answer: 1,
+                explanation: "Past tense of 'be' for plural subject 'We' is 'were'.",
+                image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 13,
+                category: "simple",
+                categoryName: "Simple Past",
+                question: "He _____ (catch) the last bus home just in time.",
+                options: ["catched", "caught", "was catching", "has caught"],
+                answer: 1,
+                explanation: "Irregular past form of 'catch' is 'caught' (not 'catched').",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Past Continuous (13 Questions) ===
+            {
+                id: 14,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "While I _____ (read) in the living room, the power suddenly went out.",
+                options: ["read", "was reading", "have read", "had read"],
+                answer: 1,
+                explanation: "Longer background past action interrupted by a shorter action takes Past Continuous ('was reading').",
+                image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 15,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "At 8 o'clock yesterday evening, they _____ (watch) a football match.",
+                options: ["were watching", "watched", "had watched", "are watching"],
+                answer: 0,
+                explanation: "Action in progress at a specific exact time in the past uses 'were watching' for plural 'they'.",
+                image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 16,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "She fell down while she _____ (run) for the train.",
+                options: ["ran", "was running", "had run", "has been running"],
+                answer: 1,
+                explanation: "Continuous action in progress when an interruption occurred -> 'was running'.",
+                image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 17,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "What _____ you _____ (do) when the earthquake hit the city?",
+                options: ["were / doing", "did / do", "had / done", "are / doing"],
+                answer: 0,
+                explanation: "Past continuous question structure: 'Were' + Subject ('you') + V-ing ('doing').",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 18,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "The sun _____ (shine) and birds were singing when I stepped outside.",
+                options: ["shone", "was shining", "had shone", "has shined"],
+                answer: 1,
+                explanation: "Past scene description/setting context uses Past Continuous ('was shining').",
+                image: "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 19,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "While Mary was cooking dinner, her children _____ (do) their homework.",
+                options: ["did", "were doing", "had done", "have been doing"],
+                answer: 1,
+                explanation: "Two parallel actions happening simultaneously in the past both use Past Continuous.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 20,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "I _____ (not / pay) attention when the professor gave the instructions.",
+                options: ["didn't pay", "wasn't paying", "hadn't paid", "am not paying"],
+                answer: 1,
+                explanation: "Negative ongoing action in the past takes 'was not' (wasn't) + V-ing.",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 21,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "It _____ (snow) heavily as we drove through the mountain pass.",
+                options: ["snowed", "was snowing", "had snowed", "has snowed"],
+                answer: 1,
+                explanation: "Continuous weather condition in progress alongside another past action -> 'was snowing'.",
+                image: "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 22,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "Why _____ he _____ (drive) so fast when the officer pulled him over?",
+                options: ["was / driving", "did / drive", "had / driven", "is / driving"],
+                answer: 0,
+                explanation: "Interrogative past continuous for singular subject 'he' uses 'was ... driving'.",
+                image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 23,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "The musician _____ (rehearse) his guitar solo all afternoon yesterday.",
+                options: ["rehearsed", "was rehearsing", "had rehearsed", "has rehearsed"],
+                answer: 1,
+                explanation: "'All afternoon yesterday' emphasizes the ongoing continuous effort in the past.",
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 24,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "They _____ (not / listening) to the radio when the announcement came on.",
+                options: ["were not listening", "didn't listen", "had not listened", "aren't listening"],
+                answer: 0,
+                explanation: "Plural past continuous negative form: 'were not listening'.",
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 25,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "Just as I _____ (leave) the house, the telephone rang.",
+                options: ["left", "was leaving", "had left", "have left"],
+                answer: 1,
+                explanation: "'Just as' introduces an action that was actively in progress ('was leaving').",
+                image: "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 26,
+                category: "continuous",
+                categoryName: "Past Continuous",
+                question: "The students _____ (disagree) about the project ideas all throughout the meeting.",
+                options: ["disagreed", "were disagreeing", "had disagreed", "have disagreed"],
+                answer: 1,
+                explanation: "Continuous ongoing debate during a past timeframe uses 'were disagreeing'.",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Past Perfect (12 Questions) ===
+            {
+                id: 27,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "When we arrived at the cinema, the movie _____ (already / start).",
+                options: ["already started", "was already starting", "had already started", "has already started"],
+                answer: 2,
+                explanation: "Past Perfect ('had started') indicates an action that occurred before another past event (arriving).",
+                image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 28,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "She couldn't board the flight because she _____ (forget) her passport at home.",
+                options: ["forgot", "had forgotten", "was forgetting", "has forgotten"],
+                answer: 1,
+                explanation: "Forgetting the passport happened prior to failing to board the flight, requiring 'had forgotten'.",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 29,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "After he _____ (finish) the research report, he submitted it to the manager.",
+                options: ["finished", "had finished", "was finishing", "has finished"],
+                answer: 1,
+                explanation: "The clause after 'After' takes Past Perfect ('had finished') when describing completed sequential actions.",
+                image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 30,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "They were hungry because they _____ (not / eat) anything since breakfast.",
+                options: ["didn't eat", "had not eaten", "weren't eating", "haven't eaten"],
+                answer: 1,
+                explanation: "Past state ('were hungry') caused by an earlier non-action requires 'had not eaten'.",
+                image: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 31,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "By the time the police arrived, the burglar _____ (escape).",
+                options: ["escaped", "had escaped", "was escaping", "has escaped"],
+                answer: 1,
+                explanation: "'By the time' + Simple Past is paired with Past Perfect ('had escaped') in the main clause.",
+                image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 32,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "I recognized her instantly because I _____ (see) her photo in the news before.",
+                options: ["saw", "was seeing", "had seen", "have seen"],
+                answer: 2,
+                explanation: "An earlier experience before a past moment of recognition uses 'had seen'.",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 33,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "_____ you _____ (study) Spanish before you moved to Madrid?",
+                options: ["Did / study", "Had / studied", "Were / studying", "Have / studied"],
+                answer: 1,
+                explanation: "Inquiring about an action completed prior to another past event ('moved') takes 'Had you studied'.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 34,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "He felt much better after he _____ (take) the prescribed medicine.",
+                options: ["took", "had taken", "was taking", "has taken"],
+                answer: 1,
+                explanation: "Taking medicine occurred prior to feeling better, requiring Past Perfect ('had taken').",
+                image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 35,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "The grass was completely dry because it _____ (not / rain) for weeks.",
+                options: ["didn't rain", "had not rained", "wasn't raining", "hasn't rained"],
+                answer: 1,
+                explanation: "Absence of rain prior to a past condition ('grass was dry') calls for 'had not rained'.",
+                image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 36,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "She spent the money she _____ (earn) from her summer job.",
+                options: ["earned", "had earned", "was earning", "has earned"],
+                answer: 1,
+                explanation: "Earning the money happened before spending it, requiring 'had earned'.",
+                image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 37,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "Until last month, he _____ (never / operate) such complex machinery.",
+                options: ["never operated", "had never operated", "was never operating", "has never operated"],
+                answer: 1,
+                explanation: "'Until' a past reference point with 'never' requires Past Perfect ('had never operated').",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 38,
+                category: "perfect",
+                categoryName: "Past Perfect",
+                question: "The stadium was empty because the match _____ (finish) an hour earlier.",
+                options: ["finished", "had finished", "was finishing", "has finished"],
+                answer: 1,
+                explanation: "Completion of the match prior to the stadium being observed empty uses 'had finished'.",
+                image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Past Perfect Continuous (12 Questions) ===
+            {
+                id: 39,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "They _____ (wait) at the bus stop for over an hour before the bus finally arrived.",
+                options: ["were waiting", "had been waiting", "waited", "have been waiting"],
+                answer: 1,
+                explanation: "Emphasizes duration ('for over an hour') of an action continuing up to a past event ('bus arrived').",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 40,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "Her eyes were red because she _____ (cry) for a long time.",
+                options: ["was crying", "had been crying", "cried", "has been crying"],
+                answer: 1,
+                explanation: "Past Perfect Continuous ('had been crying') explains visible evidence in the past ('red eyes').",
+                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 41,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "He was out of breath because he _____ (run) to catch the morning train.",
+                options: ["was running", "had been running", "ran", "has been running"],
+                answer: 1,
+                explanation: "Continuous past effort leading directly to a past result ('out of breath') takes 'had been running'.",
+                image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 42,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "How long _____ you _____ (work) on that proposal before the deadline was extended?",
+                options: ["were / working", "had / been working", "did / work", "have / been working"],
+                answer: 1,
+                explanation: "'How long' inquiring about continuous past duration before a past cutoff takes 'Had you been working'.",
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 43,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "The ground was soaked because it _____ (rain) non-stop all night.",
+                options: ["was raining", "had been raining", "rained", "has been raining"],
+                answer: 1,
+                explanation: "Ongoing action leading up to a past state ('ground was soaked') uses 'had been raining'.",
+                image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 44,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "She _____ (study) Chinese for three years before she moved to Beijing.",
+                options: ["was studying", "had been studying", "studied", "has been studying"],
+                answer: 1,
+                explanation: "Continuous ongoing preparation ('for three years') prior to a past event ('moved') -> 'had been studying'.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 45,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "The mechanic's hands were dirty because he _____ (repair) the engine all morning.",
+                options: ["was repairing", "had been repairing", "repaired", "has been repairing"],
+                answer: 1,
+                explanation: "Past continuous activity leaving past physical evidence requires Past Perfect Continuous.",
+                image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 46,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "We _____ (not / living) in that apartment for very long when the furnace broke.",
+                options: ["weren't living", "had not been living", "didn't live", "haven't been living"],
+                answer: 1,
+                explanation: "Negative past duration prior to a past interruption uses 'had not been living'.",
+                image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 47,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "The orchestra _____ (rehearse) for months prior to the grand premiere.",
+                options: ["was rehearsing", "had been rehearsing", "rehearsed", "has been rehearsing"],
+                answer: 1,
+                explanation: "Action in progress over a long duration prior to a past milestone takes 'had been rehearsing'.",
+                image: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 48,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "He failed the exam because he _____ (not / attend) the lectures regularly.",
+                options: ["wasn't attending", "had not been attending", "didn't attend", "hasn't been attending"],
+                answer: 1,
+                explanation: "Continuous neglect leading up to a past failure event requires 'had not been attending'.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 49,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "They _____ (argue) for twenty minutes when the manager stepped in to resolve it.",
+                options: ["were arguing", "had been arguing", "argued", "have been arguing"],
+                answer: 1,
+                explanation: "Ongoing action with time duration ('for twenty minutes') interrupted by a past intervention.",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 50,
+                category: "perfect-continuous",
+                categoryName: "Past Perfect Continuous",
+                question: "My computer _____ (make) strange noises for days before the hard drive crashed.",
+                options: ["was making", "had been making", "made", "has been making"],
+                answer: 1,
+                explanation: "Continuous indicator warning state prior to total past breakdown -> 'had been making'.",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- State Management ---
+        let currentFilteredList = [...questionsDatabase];
+        let currentIndex = 0;
+        let userAnswers = {}; // Map question ID -> selected option index
+        let activeFilter = 'all';
+
+        // Grammatical Tips per Filter
+        const tipsMap = {
+            'all': "Mastering Past Tenses: Simple Past (completed), Continuous (in progress), Perfect (happened before another past action), Perfect Continuous (duration up to a point in the past).",
+            'simple': "Simple Past Rule: Subject + V2. Use for completed actions at a definite past time, past habits, or historical events.",
+            'continuous': "Past Continuous Rule: Subject + was/were + V-ing. Use for actions in progress at a past moment or background actions interrupted by simple past.",
+            'perfect': "Past Perfect Rule: Subject + had + V3. Expresses an action completed prior to another past event or time.",
+            'perfect-continuous': "Past Perfect Continuous Rule: Subject + had + been + V-ing + for/since. Focuses on continuous duration up to a specific past milestone."
+        };
+
+        // --- DOM Elements ---
+        const qText = document.getElementById('q-text');
+        const qImage = document.getElementById('q-image');
+        const qCategoryBadge = document.getElementById('q-category-badge');
+        const qNumberTag = document.getElementById('q-number-tag');
+        const optionsContainer = document.getElementById('options-container');
+        const explanationBox = document.getElementById('explanation-box');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const explanationText = document.getElementById('explanation-text');
+        const currentQNum = document.getElementById('current-q-num');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const headerScore = document.getElementById('header-score');
+        const answeredCount = document.getElementById('answered-count');
+        const questionGrid = document.getElementById('question-grid');
+        const sidebarTip = document.getElementById('sidebar-tip');
+        const printQuestionsList = document.getElementById('print-questions-list');
+
+        // --- Initialization ---
+        window.onload = () => {
+            lucide.createIcons();
+            renderNavigatorGrid();
+            loadQuestion(0);
+            updateStats();
+            setupCategoryFilters();
+            populatePrintSection();
+        };
+
+        // --- Question Renderer ---
+        function loadQuestion(index) {
+            if (currentFilteredList.length === 0) return;
+            currentIndex = index;
+            const q = currentFilteredList[currentIndex];
+
+            // Update basic texts
+            qText.textContent = `${currentIndex + 1}. ${q.question}`;
+            qImage.src = q.image;
+            qCategoryBadge.textContent = q.categoryName;
+            qNumberTag.textContent = `Question #${q.id} of 50`;
+            currentQNum.textContent = `Q ${currentIndex + 1} of ${currentFilteredList.length}`;
+
+            // Update Navigation Buttons
+            document.getElementById('btn-prev').disabled = (currentIndex === 0);
+            document.getElementById('btn-next').disabled = (currentIndex === currentFilteredList.length - 1);
+
+            // Render Options
+            optionsContainer.innerHTML = '';
+            const selectedOption = userAnswers[q.id];
+            const isAnswered = selectedOption !== undefined;
+
+            const optionLabels = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-3.5 rounded-xl border font-medium text-sm transition flex items-center justify-between group `;
+
+                if (!isAnswered) {
+                    btn.className += `bg-slate-950 border-slate-800 hover:border-orange-500/50 hover:bg-slate-800/50 text-slate-200`;
+                } else {
+                    if (optIdx === q.answer) {
+                        // Correct Answer Style
+                        btn.className += `bg-emerald-950/40 border-emerald-500/60 text-emerald-300 font-semibold`;
+                    } else if (optIdx === selectedOption) {
+                        // Wrong Selection Style
+                        btn.className += `bg-rose-950/40 border-rose-500/60 text-rose-300`;
+                    } else {
+                        // Inactive style
+                        btn.className += `bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60`;
+                    }
+                }
+
+                btn.onclick = () => handleAnswerSelect(q.id, optIdx);
+
+                btn.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${isAnswered && optIdx === q.answer
+                        ? 'bg-emerald-500 text-slate-950'
+                        : isAnswered && optIdx === selectedOption
+                            ? 'bg-rose-500 text-white'
+                            : 'bg-slate-800 text-slate-400 group-hover:bg-orange-600 group-hover:text-white'
+                    }">${optionLabels[optIdx]}</span>
+            <span>${optText}</span>
+          </div>
+          ${isAnswered && optIdx === q.answer
+                        ? '<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>'
+                        : isAnswered && optIdx === selectedOption
+                            ? '<i data-lucide="x-circle" class="w-5 h-5 text-rose-400"></i>'
+                            : ''
+                    }
+        `;
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Render Feedback Explanation Box
+            if (isAnswered) {
+                explanationBox.classList.remove('hidden');
+                explanationText.textContent = q.explanation;
+
+                if (selectedOption === q.answer) {
+                    feedbackTitle.textContent = "Correct! Great job.";
+                    feedbackTitle.className = "font-bold text-sm text-emerald-400";
+                    feedbackIcon.className = "p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                    feedbackIcon.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+                } else {
+                    feedbackTitle.textContent = "Incorrect";
+                    feedbackTitle.className = "font-bold text-sm text-rose-400";
+                    feedbackIcon.className = "p-2 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                    feedbackIcon.innerHTML = `<i data-lucide="alert-triangle" class="w-5 h-5"></i>`;
+                }
+            } else {
+                explanationBox.classList.add('hidden');
+            }
+
+            lucide.createIcons();
+            highlightGridItem();
+        }
+
+        // --- Action Handlers ---
+        function handleAnswerSelect(questionId, selectedIdx) {
+            if (userAnswers[questionId] !== undefined) return; // Prevent changing after selection
+            userAnswers[questionId] = selectedIdx;
+
+            updateStats();
+            loadQuestion(currentIndex);
+            renderNavigatorGrid();
+        }
+
+        function updateStats() {
+            const answeredTotal = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            questionsDatabase.forEach(q => {
+                if (userAnswers[q.id] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            // Update Score Header & Progress
+            headerScore.textContent = correctCount;
+            answeredCount.textContent = `${answeredTotal} / 50 Done`;
+
+            const pct = Math.round((answeredTotal / 50) * 100);
+            progressBar.style.width = `${pct}%`;
+            progressPercent.textContent = `${pct}%`;
+        }
+
+        // --- Navigator Grid ---
+        function renderNavigatorGrid() {
+            questionGrid.innerHTML = '';
+            currentFilteredList.forEach((q, idx) => {
+                const isAnswered = userAnswers[q.id] !== undefined;
+                const isCorrect = isAnswered && userAnswers[q.id] === q.answer;
+
+                const cell = document.createElement('button');
+                cell.className = `h-9 rounded-lg text-xs font-semibold transition border flex items-center justify-center ${idx === currentIndex ? 'ring-2 ring-orange-500 ring-offset-2 ring-offset-slate-900 ' : ''
+                    }`;
+
+                if (!isAnswered) {
+                    cell.className += ` bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700`;
+                } else if (isCorrect) {
+                    cell.className += ` bg-emerald-950 border-emerald-600 text-emerald-400`;
+                } else {
+                    cell.className += ` bg-rose-950 border-rose-600 text-rose-400`;
+                }
+
+                cell.textContent = idx + 1;
+                cell.onclick = () => loadQuestion(idx);
+                questionGrid.appendChild(cell);
+            });
+        }
+
+        function highlightGridItem() {
+            const cells = questionGrid.children;
+            for (let i = 0; i < cells.length; i++) {
+                if (i === currentIndex) {
+                    cells[i].classList.add('ring-2', 'ring-orange-500', 'ring-offset-2', 'ring-offset-slate-900');
+                } else {
+                    cells[i].classList.remove('ring-2', 'ring-orange-500', 'ring-offset-2', 'ring-offset-slate-900');
+                }
+            }
+        }
+
+        // --- Category Filter Logic ---
+        function setupCategoryFilters() {
+            const filterButtons = document.querySelectorAll('.cat-filter-btn');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.getAttribute('data-cat');
+                    activeFilter = cat;
+
+                    // Update active button UI
+                    filterButtons.forEach(b => {
+                        b.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between";
+                    });
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition flex items-center justify-between bg-orange-600 text-white shadow-lg shadow-orange-600/20";
+
+                    // Filter questions list
+                    if (cat === 'all') {
+                        currentFilteredList = [...questionsDatabase];
+                    } else {
+                        currentFilteredList = questionsDatabase.filter(q => q.category === cat);
+                    }
+
+                    sidebarTip.innerHTML = tipsMap[cat] || tipsMap['all'];
+                    renderNavigatorGrid();
+                    loadQuestion(0);
+                });
+            });
+        }
+
+        // Next / Prev listeners
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            if (currentIndex > 0) loadQuestion(currentIndex - 1);
+        });
+
+        document.getElementById('btn-next').addEventListener('click', () => {
+            if (currentIndex < currentFilteredList.length - 1) loadQuestion(currentIndex + 1);
+        });
+
+        // Populate Print/Export View
+        function populatePrintSection() {
+            printQuestionsList.innerHTML = '';
+            questionsDatabase.forEach((q, idx) => {
+                const item = document.createElement('div');
+                item.className = "p-3 border rounded border-slate-300 text-black mb-3 page-break-inside-avoid";
+                item.innerHTML = `
+          <div class="font-bold mb-1">${idx + 1}. [${q.categoryName}] ${q.question}</div>
+          <div class="grid grid-cols-2 gap-2 text-xs mb-2">
+            <div>A) ${q.options[0]}</div>
+            <div>B) ${q.options[1]}</div>
+            <div>C) ${q.options[2]}</div>
+            <div>D) ${q.options[3]}</div>
+          </div>
+          <div class="text-xs text-gray-700 italic border-t pt-1">
+            <strong>Answer:</strong> ${['A', 'B', 'C', 'D'][q.answer]} | <strong>Explanation:</strong> ${q.explanation}
+          </div>
+        `;
+                printQuestionsList.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>

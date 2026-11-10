@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Present Tense Master Quiz (50 Questions)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for dark UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .print-only {
+                display: block !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-indigo-600/20 text-indigo-400 rounded-lg border border-indigo-500/30">
+                    <i data-lucide="book-open-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-white leading-tight">Grammar Master: Present Tense</h1>
+                    <p class="text-xs text-slate-400">50 Interactive Questions & Detailed Rules</p>
+                </div>
+            </div>
+
+            <!-- Quick Action Stats & Controls -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <div
+                    class="hidden md:flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700/60 text-xs text-slate-300">
+                    <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+                    <span>Score: <strong id="header-score" class="text-white">0</strong>/50</span>
+                </div>
+
+                <button id="btn-export-pdf" onclick="window.print()"
+                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition flex items-center space-x-1.5">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Print / Export</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row gap-6">
+
+        <!-- Sidebar / Navigation & Filters -->
+        <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 space-y-4 no-print">
+            <!-- Category Filter -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                <h2
+                    class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 flex items-center justify-between">
+                    <span>Filter Tense Type</span>
+                    <i data-lucide="filter" class="w-3.5 h-3.5 text-slate-500"></i>
+                </h2>
+                <div class="space-y-1.5" id="category-filters">
+                    <button data-cat="all"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition flex items-center justify-between bg-indigo-600 text-white shadow-lg shadow-indigo-600/20">
+                        <span>All 50 Questions</span>
+                        <span class="bg-white/20 text-white text-xs px-2 py-0.5 rounded-full" id="count-all">50</span>
+                    </button>
+                    <button data-cat="simple"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Simple Present</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-simple">13</span>
+                    </button>
+                    <button data-cat="continuous"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Present Continuous</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-continuous">13</span>
+                    </button>
+                    <button data-cat="perfect"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Present Perfect</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-perfect">12</span>
+                    </button>
+                    <button data-cat="perfect-continuous"
+                        class="cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between">
+                        <span>Present Perfect Cont.</span>
+                        <span class="bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded-full"
+                            id="count-perfect-continuous">12</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Question Grid Grid Navigation -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Question Navigator</h2>
+                    <span class="text-xs text-indigo-400" id="answered-count">0 / 50 Done</span>
+                </div>
+                <div id="question-grid" class="grid grid-cols-5 gap-1.5 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Rule Summary Box -->
+            <div class="bg-indigo-950/30 border border-indigo-900/50 rounded-xl p-4 text-xs space-y-2">
+                <div class="flex items-center space-x-2 text-indigo-300 font-semibold">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Grammar Tip</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed" id="sidebar-tip">
+                    Remember: <strong>Simple Present</strong> uses V1 (or s/es for third-person singular) for habitual
+                    actions & general truths!
+                </p>
+            </div>
+        </aside>
+
+        <!-- Center Quiz Experience -->
+        <section class="flex-grow flex flex-col space-y-4">
+
+            <!-- Progress Bar Card -->
+            <div
+                class="bg-slate-900 border border-slate-800 rounded-xl p-4 no-print flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="w-full sm:w-2/3 space-y-1">
+                    <div class="flex justify-between text-xs font-semibold text-slate-400">
+                        <span>Overall Progress</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-indigo-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button id="btn-prev"
+                        class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-xs font-medium border border-slate-700 text-slate-200 transition flex items-center space-x-1">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        <span>Prev</span>
+                    </button>
+                    <span id="current-q-num" class="text-xs font-bold text-slate-300 px-2">Q 1 of 50</span>
+                    <button id="btn-next"
+                        class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-lg text-xs font-medium border border-slate-700 text-slate-200 transition flex items-center space-x-1">
+                        <span>Next</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Interactive Question Card -->
+            <div id="quiz-card"
+                class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+
+                <!-- Question Header & Category Badge -->
+                <div
+                    class="p-4 sm:p-6 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2 bg-slate-900/50">
+                    <div class="flex items-center space-x-2">
+                        <span id="q-category-badge"
+                            class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                            Simple Present
+                        </span>
+                        <span id="q-number-tag" class="text-xs text-slate-500 font-mono">Question #1</span>
+                    </div>
+                    <button id="btn-bookmark" class="text-slate-500 hover:text-amber-400 transition"
+                        title="Bookmark Question">
+                        <i data-lucide="bookmark" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Question Body (Image + Choices) -->
+                <div class="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+
+                    <!-- Image Box -->
+                    <div
+                        class="md:col-span-5 relative group overflow-hidden rounded-xl bg-slate-950 border border-slate-800 min-h-[180px] max-h-[260px] flex items-center justify-center">
+                        <img id="q-image" src="" alt="Grammar context image"
+                            class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Question Content & Options -->
+                    <div class="md:col-span-7 space-y-4">
+                        <h2 id="q-text" class="text-lg sm:text-xl font-semibold text-white leading-snug">
+                            Loading question...
+                        </h2>
+
+                        <!-- Options Grid -->
+                        <div id="options-container" class="space-y-2.5 pt-1">
+                            <!-- Dynamically Populated Options -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback & Explanation Footer -->
+                <div id="explanation-box"
+                    class="hidden border-t border-slate-800 p-4 sm:p-6 bg-slate-950/60 transition-all">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon" class="p-2 rounded-lg flex-shrink-0 mt-0.5">
+                            <!-- Check or Cross Icon -->
+                        </div>
+                        <div class="space-y-1">
+                            <h4 id="feedback-title" class="font-bold text-sm">Correct Answer!</h4>
+                            <p id="explanation-text" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Explanation text goes here.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Printable View Container (Hidden in normal screen, visible on print) -->
+            <div id="print-section" class="hidden print-only space-y-6 p-4">
+                <h1 class="text-2xl font-bold border-b pb-2">Present Tense Complete Worksheet (50 Questions)</h1>
+                <div id="print-questions-list" class="space-y-4 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- JavaScript App Logic & Questions Database -->
+    <script>
+        // --- 50 Questions Database ---
+        const questionsDatabase = [
+            // === Simple Present (13) ===
+            {
+                id: 1,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "She _____ (work) at a software company in Berlin.",
+                options: ["working", "works", "is work", "has worked"],
+                answer: 1,
+                explanation: "Simple Present is used for permanent states or regular employment. Third-person singular ('she') takes 'works'.",
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "Water _____ at 100 degrees Celsius under standard atmospheric pressure.",
+                options: ["boil", "is boiling", "boils", "has boiled"],
+                answer: 2,
+                explanation: "Scientific facts and universal truths always use Simple Present Tense.",
+                image: "https://images.unsplash.com/photo-1541810270653-5241b71221f7?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "They usually _____ basketball every Saturday morning.",
+                options: ["play", "plays", "are playing", "have played"],
+                answer: 0,
+                explanation: "The frequency adverb 'usually' indicates a routine/habitual action. Plural subject 'They' takes the base verb 'play'.",
+                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "The train _____ (leave) at 09:00 AM tomorrow morning.",
+                options: ["leaves", "is leaving", "will leaving", "leave"],
+                answer: 0,
+                explanation: "Timetabled or scheduled future events are expressed using the Simple Present tense.",
+                image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "_____ he understand the rules of the game clearly?",
+                options: ["Do", "Is", "Does", "Has"],
+                answer: 2,
+                explanation: "For questions with singular subjects ('he') in simple present, use 'Does' + base verb.",
+                image: "https://images.unsplash.com/photo-1611195974226-a6a9be9dd763?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "I _____ (not / like) cold tea or bitter coffee.",
+                options: ["does not like", "am not like", "do not like", "have not like"],
+                answer: 2,
+                explanation: "Negative simple present statements with 'I' use 'do not' (don't) + base verb.",
+                image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "My father _____ (read) the newspaper during breakfast every day.",
+                options: ["reads", "is reading", "read", "has read"],
+                answer: 0,
+                explanation: "Daily habits require Simple Present. Singular subject 'My father' takes 'reads'.",
+                image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "Cats _____ high night-vision acuity compared to humans.",
+                options: ["has", "have", "are having", "having"],
+                answer: 1,
+                explanation: "General characteristics/facts about plural nouns ('Cats') use the base form 'have'.",
+                image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "The sun _____ in the East and sets in the West.",
+                options: ["is rising", "rises", "rose", "has risen"],
+                answer: 1,
+                explanation: "Universal eternal truths use simple present tense ('rises').",
+                image: "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 10,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "How often _____ you visit your grandparents in London?",
+                options: ["do", "are", "does", "have"],
+                answer: 0,
+                explanation: "Routine frequency questions with 'you' take auxiliary verb 'do'.",
+                image: "https://images.unsplash.com/photo-1581579438747-104c53d7fbc4?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 11,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "He never _____ (forget) his keys when leaving home.",
+                options: ["forgets", "forget", "is forgetting", "has forgotten"],
+                answer: 0,
+                explanation: "Adverbs of frequency like 'never' paired with singular subject 'He' require 'forgets'.",
+                image: "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 12,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "Vegetarians _____ meat or seafood products.",
+                options: ["do not eat", "are not eating", "does not eat", "have not eaten"],
+                answer: 0,
+                explanation: "General statements regarding groups (plural subject 'Vegetarians') use 'do not eat'.",
+                image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 13,
+                category: "simple",
+                categoryName: "Simple Present",
+                question: "Here _____ (come) the school bus!",
+                options: ["comes", "coming", "is coming", "come"],
+                answer: 0,
+                explanation: "Exclamatory sentences beginning with 'Here' or 'There' take Simple Present ('comes').",
+                image: "https://images.unsplash.com/photo-1557223562-6c77ef16210f?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Present Continuous (13) ===
+            {
+                id: 14,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Look! The chef _____ (prepare) a special pasta dish right now.",
+                options: ["prepares", "is preparing", "has prepared", "prepare"],
+                answer: 1,
+                explanation: "Actions happening at the exact moment of speaking require Present Continuous ('is preparing').",
+                image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 15,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Why _____ you _____ (wear) a heavy coat inside the room?",
+                options: ["do / wear", "are / wearing", "have / worn", "is / wearing"],
+                answer: 1,
+                explanation: "Temporary actions occurring around the current moment use 'are + subject + V-ing'.",
+                image: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 16,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Please be quiet; the baby _____ (sleep) peacefully upstairs.",
+                options: ["sleeps", "is sleeping", "has slept", "was sleeping"],
+                answer: 1,
+                explanation: "Ongoing action at the time of speech requires 'is sleeping'.",
+                image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 17,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "We _____ (fly) to Paris next Tuesday morning for a short vacation.",
+                options: ["are flying", "fly", "flown", "have flown"],
+                answer: 0,
+                explanation: "Definite personal plans or arrangements for the near future use Present Continuous.",
+                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 18,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Listen! Somebody _____ (play) the violin in the garden.",
+                options: ["plays", "is playing", "has played", "play"],
+                answer: 1,
+                explanation: "Imperative signals like 'Listen!' indicate an action happening right now.",
+                image: "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 19,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Global temperatures _____ (rise) steadily due to climate change.",
+                options: ["are rising", "rises", "have risen", "is rising"],
+                answer: 0,
+                explanation: "Changing or developing situations over time use Present Continuous ('are rising' for plural).",
+                image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 20,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Currently, I _____ (read) a fascinating novel by George Orwell.",
+                options: ["read", "am reading", "have read", "was reading"],
+                answer: 1,
+                explanation: "Actions happening around now (even if not at this exact second) use 'am reading'.",
+                image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 21,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "They _____ (not / work) today because of the public holiday.",
+                options: ["do not work", "are not working", "have not worked", "is not working"],
+                answer: 1,
+                explanation: "Temporary current state/exception to a routine uses Present Continuous negative.",
+                image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 22,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "He is constantly _____ (lose) his car keys, which annoys everyone.",
+                options: ["loses", "losing", "lost", "has lost"],
+                answer: 1,
+                explanation: "Present Continuous with 'constantly' or 'always' expresses frequent irritating habits.",
+                image: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 23,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "_____ your sister _____ (study) for her final exams this week?",
+                options: ["Is / studying", "Does / study", "Has / studied", "Are / studying"],
+                answer: 0,
+                explanation: "Temporary activity around the present time for singular subject 'sister' uses 'Is ... studying'.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 24,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "The children _____ (build) a sandcastle on the beach.",
+                options: ["are building", "builds", "have built", "is building"],
+                answer: 0,
+                explanation: "Plural subject ('children') doing an action right now takes 'are building'.",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 25,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "Right now, the sun _____ (shine) brightly over the city.",
+                options: ["shines", "is shining", "has shone", "shined"],
+                answer: 1,
+                explanation: "Time marker 'Right now' clearly requires Present Continuous.",
+                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 26,
+                category: "continuous",
+                categoryName: "Present Continuous",
+                question: "I _____ (understand) the lesson now. (Note: Stative Verb)",
+                options: ["am understanding", "understand", "have understood", "was understanding"],
+                answer: 1,
+                explanation: "Stative verbs (like 'understand', 'know', 'love') are generally NOT used in continuous forms; use Simple Present instead.",
+                image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Present Perfect (12) ===
+            {
+                id: 27,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "I _____ (finish) my homework, so I can go out to play now.",
+                options: ["finished", "have finished", "am finishing", "has finished"],
+                answer: 1,
+                explanation: "Present Perfect connects a past completed action with a present result ('have finished').",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 28,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "She _____ (visit) Japan three times in her life.",
+                options: ["visited", "is visiting", "has visited", "visit"],
+                answer: 2,
+                explanation: "Life experiences without a specific past time take Present Perfect ('has visited').",
+                image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 29,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "They _____ (not / arrive) at the concert hall yet.",
+                options: ["did not arrive", "have not arrived", "are not arriving", "has not arrived"],
+                answer: 1,
+                explanation: "'Yet' is commonly used with Present Perfect in negative sentences and questions.",
+                image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 30,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "_____ you ever _____ (eat) authentic Italian sushi?",
+                options: ["Did / eat", "Have / eaten", "Are / eating", "Has / eaten"],
+                answer: 1,
+                explanation: "'Ever' is used in Present Perfect questions to inquire about life experience ('Have you eaten').",
+                image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 31,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "The scientist _____ just _____ (discover) a revolutionary cure.",
+                options: ["has / discovered", "is / discovering", "did / discover", "have / discovered"],
+                answer: 0,
+                explanation: "'Just' indicates an action completed very recently; requires 'has discovered' for singular subject.",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 32,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "We _____ (know) each other since our early school days.",
+                options: ["knew", "are knowing", "have known", "have been knowing"],
+                answer: 2,
+                explanation: "Stative verb 'know' with 'since' takes Present Perfect simple ('have known'), NOT continuous.",
+                image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 33,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "Oh no! I _____ (lose) my wallet in the crowded subway station.",
+                options: ["lost", "have lost", "am losing", "was lost"],
+                answer: 1,
+                explanation: "Action in the past with strong present relevance (I don't have it now) uses Present Perfect.",
+                image: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 34,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "How many cups of coffee _____ you _____ (drink) today?",
+                options: ["did / drink", "have / drunk", "are / drinking", "have / drank"],
+                answer: 1,
+                explanation: "'Today' is an unfinished time period, requiring Present Perfect ('have ... drunk').",
+                image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 35,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "He _____ (live) in Sydney for five years now.",
+                options: ["lives", "has lived", "is living", "lived"],
+                answer: 1,
+                explanation: "States starting in the past and continuing to the present with duration ('for five years') use Present Perfect.",
+                image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 36,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "The director _____ already _____ (sign) the contract documents.",
+                options: ["has / signed", "have / signed", "did / sign", "is / signing"],
+                answer: 0,
+                explanation: "'Already' signals completion earlier than expected in Present Perfect tense.",
+                image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 37,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "She _____ (not / see) her childhood best friend for decades.",
+                options: ["didn't see", "has not seen", "is not seeing", "have not seen"],
+                answer: 1,
+                explanation: "Negation over a duration reaching present time uses 'has not seen'.",
+                image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 38,
+                category: "perfect",
+                categoryName: "Present Perfect",
+                question: "This is the best movie I _____ ever _____ (watch).",
+                options: ["have / watched", "did / watch", "am / watching", "had / watched"],
+                answer: 0,
+                explanation: "Superlative constructions ('the best...') are followed by Present Perfect.",
+                image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80"
+            },
+
+            // === Present Perfect Continuous (12) ===
+            {
+                id: 39,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "It _____ (rain) heavily for three hours, and the streets are flooded.",
+                options: ["is raining", "has been raining", "rained", "has rained"],
+                answer: 1,
+                explanation: "Emphasizes duration of an action starting in the past and continuing up to the present ('has been raining').",
+                image: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 40,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "How long _____ you _____ (learn) coding in Python?",
+                options: ["are / learning", "have / been learning", "did / learn", "do / learn"],
+                answer: 1,
+                explanation: "'How long' questions asking about continuous activity up to now require Present Perfect Continuous.",
+                image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 41,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "She is exhausted because she _____ (run) in the marathon all morning.",
+                options: ["has been running", "is running", "ran", "has run"],
+                answer: 0,
+                explanation: "Present Perfect Continuous explains a present result ('exhausted') caused by a recent continuous effort.",
+                image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 42,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "They _____ (wait) for the bus since 8 o'clock sharp.",
+                options: ["are waiting", "have been waiting", "waited", "were waiting"],
+                answer: 1,
+                explanation: "'Since 8 o'clock' indicates the starting point of an ongoing duration -> 'have been waiting'.",
+                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 43,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "He _____ (paint) the garage doors since early morning.",
+                options: ["paints", "is painting", "has been painting", "painted"],
+                answer: 2,
+                explanation: "Continuous ongoing task starting earlier today takes 'has been painting'.",
+                image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 44,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "Why are your clothes covered in flour? _____ you _____ (bake)?",
+                options: ["Have / been baking", "Are / baking", "Did / bake", "Have / baked"],
+                answer: 0,
+                explanation: "Inquires about a continuous activity that just finished, leaving visible present evidence.",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 45,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "I _____ (try) to contact customer support for hours, but no one answers.",
+                options: ["am trying", "have been trying", "tried", "was trying"],
+                answer: 1,
+                explanation: "Repeated, continuous attempts over a duration ('for hours') require Present Perfect Continuous.",
+                image: "https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 46,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "The team _____ (work) on this software update for three months.",
+                options: ["has been working", "is working", "works", "worked"],
+                answer: 0,
+                explanation: "Duration phrase ('for three months') with singular collective noun ('The team') takes 'has been working'.",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 47,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "He _____ (not / feeling) well since yesterday evening.",
+                options: ["isn't feeling", "has not been feeling", "didn't feel", "was not feeling"],
+                answer: 1,
+                explanation: "Health conditions duration starting in past uses 'has not been feeling'.",
+                image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 48,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "The gardener _____ (mow) the lawn all afternoon.",
+                options: ["has been mowing", "is mowing", "mows", "was mowing"],
+                answer: 0,
+                explanation: "'All afternoon' signifies an ongoing continuous action up to or near present moment.",
+                image: "https://images.unsplash.com/photo-1592417817098-8f3d6eb19657?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 49,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "Where have you been? I _____ (look) everywhere for you!",
+                options: ["am looking", "have been looking", "looked", "was looking"],
+                answer: 1,
+                explanation: "Action starting in the recent past that connects directly to the present encounter.",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 50,
+                category: "perfect-continuous",
+                categoryName: "Present Perfect Continuous",
+                question: "She _____ (study) Spanish since January to prepare for her trip.",
+                options: ["is studying", "has been studying", "studies", "studied"],
+                answer: 1,
+                explanation: "Action starting at a fixed point ('since January') and continuing into present uses 'has been studying'.",
+                image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- State Management ---
+        let currentFilteredList = [...questionsDatabase];
+        let currentIndex = 0;
+        let userAnswers = {}; // Map question ID -> selected option index
+        let activeFilter = 'all';
+
+        // Grammatical Tips per Filter
+        const tipsMap = {
+            'all': "Mastering Present Tenses: Simple Present (habits/facts), Continuous (now/temporary), Perfect (past linked to now), Perfect Continuous (duration up to now).",
+            'simple': "Simple Present Rule: Subject + V1(s/es). Use for general truths, habits, schedules, and routines.",
+            'continuous': "Present Continuous Rule: Subject + is/am/are + V-ing. Use for ongoing actions happening right now or temporary situations.",
+            'perfect': "Present Perfect Rule: Subject + has/have + V3. Use for past actions with present results or life experiences.",
+            'perfect-continuous': "Present Perfect Continuous Rule: Subject + has/have + been + V-ing + for/since. Focuses on the duration of an action."
+        };
+
+        // --- DOM Elements ---
+        const qText = document.getElementById('q-text');
+        const qImage = document.getElementById('q-image');
+        const qCategoryBadge = document.getElementById('q-category-badge');
+        const qNumberTag = document.getElementById('q-number-tag');
+        const optionsContainer = document.getElementById('options-container');
+        const explanationBox = document.getElementById('explanation-box');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const explanationText = document.getElementById('explanation-text');
+        const currentQNum = document.getElementById('current-q-num');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+        const headerScore = document.getElementById('header-score');
+        const answeredCount = document.getElementById('answered-count');
+        const questionGrid = document.getElementById('question-grid');
+        const sidebarTip = document.getElementById('sidebar-tip');
+        const printQuestionsList = document.getElementById('print-questions-list');
+
+        // --- Initialization ---
+        window.onload = () => {
+            lucide.createIcons();
+            renderNavigatorGrid();
+            loadQuestion(0);
+            updateStats();
+            setupCategoryFilters();
+            populatePrintSection();
+        };
+
+        // --- Question Renderer ---
+        function loadQuestion(index) {
+            if (currentFilteredList.length === 0) return;
+            currentIndex = index;
+            const q = currentFilteredList[currentIndex];
+
+            // Update basic texts
+            qText.textContent = `${currentIndex + 1}. ${q.question}`;
+            qImage.src = q.image;
+            qCategoryBadge.textContent = q.categoryName;
+            qNumberTag.textContent = `Question #${q.id} of 50`;
+            currentQNum.textContent = `Q ${currentIndex + 1} of ${currentFilteredList.length}`;
+
+            // Update Navigation Buttons
+            document.getElementById('btn-prev').disabled = (currentIndex === 0);
+            document.getElementById('btn-next').disabled = (currentIndex === currentFilteredList.length - 1);
+
+            // Render Options
+            optionsContainer.innerHTML = '';
+            const selectedOption = userAnswers[q.id];
+            const isAnswered = selectedOption !== undefined;
+
+            const optionLabels = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-3.5 rounded-xl border font-medium text-sm transition flex items-center justify-between group `;
+
+                if (!isAnswered) {
+                    btn.className += `bg-slate-950 border-slate-800 hover:border-indigo-500/50 hover:bg-slate-800/50 text-slate-200`;
+                } else {
+                    if (optIdx === q.answer) {
+                        // Correct Answer Style
+                        btn.className += `bg-emerald-950/40 border-emerald-500/60 text-emerald-300 font-semibold`;
+                    } else if (optIdx === selectedOption) {
+                        // Wrong Selection Style
+                        btn.className += `bg-rose-950/40 border-rose-500/60 text-rose-300`;
+                    } else {
+                        // Inactive style
+                        btn.className += `bg-slate-950/40 border-slate-800/60 text-slate-500 opacity-60`;
+                    }
+                }
+
+                btn.onclick = () => handleAnswerSelect(q.id, optIdx);
+
+                btn.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${isAnswered && optIdx === q.answer
+                        ? 'bg-emerald-500 text-slate-950'
+                        : isAnswered && optIdx === selectedOption
+                            ? 'bg-rose-500 text-white'
+                            : 'bg-slate-800 text-slate-400 group-hover:bg-indigo-600 group-hover:text-white'
+                    }">${optionLabels[optIdx]}</span>
+            <span>${optText}</span>
+          </div>
+          ${isAnswered && optIdx === q.answer
+                        ? '<i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>'
+                        : isAnswered && optIdx === selectedOption
+                            ? '<i data-lucide="x-circle" class="w-5 h-5 text-rose-400"></i>'
+                            : ''
+                    }
+        `;
+
+                optionsContainer.appendChild(btn);
+            });
+
+            // Render Feedback Explanation Box
+            if (isAnswered) {
+                explanationBox.classList.remove('hidden');
+                explanationText.textContent = q.explanation;
+
+                if (selectedOption === q.answer) {
+                    feedbackTitle.textContent = "Correct! Great job.";
+                    feedbackTitle.className = "font-bold text-sm text-emerald-400";
+                    feedbackIcon.className = "p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                    feedbackIcon.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+                } else {
+                    feedbackTitle.textContent = "Incorrect";
+                    feedbackTitle.className = "font-bold text-sm text-rose-400";
+                    feedbackIcon.className = "p-2 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20";
+                    feedbackIcon.innerHTML = `<i data-lucide="alert-triangle" class="w-5 h-5"></i>`;
+                }
+            } else {
+                explanationBox.classList.add('hidden');
+            }
+
+            lucide.createIcons();
+            highlightGridItem();
+        }
+
+        // --- Action Handlers ---
+        function handleAnswerSelect(questionId, selectedIdx) {
+            if (userAnswers[questionId] !== undefined) return; // Prevent changing after selection
+            userAnswers[questionId] = selectedIdx;
+
+            updateStats();
+            loadQuestion(currentIndex);
+            renderNavigatorGrid();
+        }
+
+        function updateStats() {
+            const answeredTotal = Object.keys(userAnswers).length;
+            let correctCount = 0;
+
+            questionsDatabase.forEach(q => {
+                if (userAnswers[q.id] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            // Update Score Header & Progress
+            headerScore.textContent = correctCount;
+            answeredCount.textContent = `${answeredTotal} / 50 Done`;
+
+            const pct = Math.round((answeredTotal / 50) * 100);
+            progressBar.style.width = `${pct}%`;
+            progressPercent.textContent = `${pct}%`;
+        }
+
+        // --- Navigator Grid ---
+        function renderNavigatorGrid() {
+            questionGrid.innerHTML = '';
+            currentFilteredList.forEach((q, idx) => {
+                const isAnswered = userAnswers[q.id] !== undefined;
+                const isCorrect = isAnswered && userAnswers[q.id] === q.answer;
+
+                const cell = document.createElement('button');
+                cell.className = `h-9 rounded-lg text-xs font-semibold transition border flex items-center justify-center ${idx === currentIndex ? 'ring-2 ring-indigo-500 ring-offset-2 ring-offset-slate-900 ' : ''
+                    }`;
+
+                if (!isAnswered) {
+                    cell.className += ` bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700`;
+                } else if (isCorrect) {
+                    cell.className += ` bg-emerald-950 border-emerald-600 text-emerald-400`;
+                } else {
+                    cell.className += ` bg-rose-950 border-rose-600 text-rose-400`;
+                }
+
+                cell.textContent = idx + 1;
+                cell.onclick = () => loadQuestion(idx);
+                questionGrid.appendChild(cell);
+            });
+        }
+
+        function highlightGridItem() {
+            const cells = questionGrid.children;
+            for (let i = 0; i < cells.length; i++) {
+                if (i === currentIndex) {
+                    cells[i].classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2', 'ring-offset-slate-900');
+                } else {
+                    cells[i].classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2', 'ring-offset-slate-900');
+                }
+            }
+        }
+
+        // --- Category Filter Logic ---
+        function setupCategoryFilters() {
+            const filterButtons = document.querySelectorAll('.cat-filter-btn');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.getAttribute('data-cat');
+                    activeFilter = cat;
+
+                    // Update active button UI
+                    filterButtons.forEach(b => {
+                        b.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition text-slate-400 hover:bg-slate-800 hover:text-slate-200 flex items-center justify-between";
+                    });
+                    btn.className = "cat-filter-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium transition flex items-center justify-between bg-indigo-600 text-white shadow-lg shadow-indigo-600/20";
+
+                    // Filter questions list
+                    if (cat === 'all') {
+                        currentFilteredList = [...questionsDatabase];
+                    } else {
+                        currentFilteredList = questionsDatabase.filter(q => q.category === cat);
+                    }
+
+                    sidebarTip.innerHTML = tipsMap[cat] || tipsMap['all'];
+                    renderNavigatorGrid();
+                    loadQuestion(0);
+                });
+            });
+        }
+
+        // Next / Prev listeners
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            if (currentIndex > 0) loadQuestion(currentIndex - 1);
+        });
+
+        document.getElementById('btn-next').addEventListener('click', () => {
+            if (currentIndex < currentFilteredList.length - 1) loadQuestion(currentIndex + 1);
+        });
+
+        // Populate Print/Export View
+        function populatePrintSection() {
+            printQuestionsList.innerHTML = '';
+            questionsDatabase.forEach((q, idx) => {
+                const item = document.createElement('div');
+                item.className = "p-3 border rounded border-slate-300 text-black mb-3 page-break-inside-avoid";
+                item.innerHTML = `
+          <div class="font-bold mb-1">${idx + 1}. [${q.categoryName}] ${q.question}</div>
+          <div class="grid grid-cols-2 gap-2 text-xs mb-2">
+            <div>A) ${q.options[0]}</div>
+            <div>B) ${q.options[1]}</div>
+            <div>C) ${q.options[2]}</div>
+            <div>D) ${q.options[3]}</div>
+          </div>
+          <div class="text-xs text-gray-700 italic border-t pt-1">
+            <strong>Answer:</strong> ${['A', 'B', 'C', 'D'][q.answer]} | <strong>Explanation:</strong> ${q.explanation}
+          </div>
+        `;
+                printQuestionsList.appendChild(item);
+            });
+        }
+    </script>
+</body>
+
+</html>

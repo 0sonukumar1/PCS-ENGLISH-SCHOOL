@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=337b59e7-a87d-4c52-a967-da9442318631
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Calculator</title>
+    <script src=""></script>
+    <link rel="stylesheet" hrekf="/test/calcy_input.css">
+    <style id="cube-styles">
+        /* Paste this inside the <style id="cube-styles"> tag */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: vh;
+            background-color:
+                rgba(221, 148, 13, 0.76);
+            font-family: sans-serif;
+            --p_size: 100px
+        }
+
+        .scene {
+
+            /* Sets the camera distance/depth */
+            perspective: var(--p_size);
+
+        }
+
+        .cube {
+            margin: calc(var(--p_size)/6.2);
+            width: calc(var(--p_size)/2);
+            height: calc(var(--p_size)/2);
+            position: relative;
+
+            /* Crucial: Makes children (faces) participate in the 3D space */
+            transform-style: preserve-3d;
+            /* transform: rotateX(-30deg) rotateY(45deg); Initial view */
+            /* transform: rotate(90deg); */
+            transition: transform 0.5s;
+            /* Smooth rotation changes */
+        }
+
+        .cube:hover {
+            transform: scaleX(1.1) scaleY(1.1);
+        }
+
+        .face {
+            position: absolute;
+            width: calc(var(--p_size)/2);
+            ;
+            height: calc(var(--p_size)/2);
+            ;
+            border: 0px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            opacity: 0.8;
+            /*
+border-top-left-radius: 15%;;
+border-top-right-radius: 15%;;
+border-bottom-right-radius: 15%;
+border-bottom-left-radius: 15%;     */
+
+        }
+
+        /* Define Cube Size */
+        /* const size = 100; */
+        /* Half the face size (200/2) */
+
+        /* Position the Faces in 3D Space */
+        .front {
+            background: #FF5733;
+            transform: translateZ(25px);
+            border-radius: 10%;
+            font-size: 20px;
+        }
+
+        .back {
+            background: #33C7FF;
+            transform: rotateY(180deg) translateZ(calc(var(--p_size)/4));
+
+
+
+
+
+
+        }
+
+        .right {
+            background: #33FF7A;
+            transform: rotateY(90deg) translateZ(calc(var(--p_size)/4));
+
+            border-top-left-radius: 15%;
+            ;
+            border-top-right-radius: %;
+            ;
+            border-bottom-right-radius: %;
+            border-bottom-left-radius: 15%;
+
+
+
+        }
+
+        .left {
+            background: #FF33D1;
+            transform: rotateY(-90deg) translateZ(calc(var(--p_size)/4));
+
+            border-top-left-radius: %;
+            ;
+            border-top-right-radius: 15%;
+            ;
+            border-bottom-right-radius: 15%;
+            border-bottom-left-radius: %;
+
+
+
+
+        }
+
+        .top {
+            background: #FFDA33;
+            transform: rotateX(90deg) translateZ(calc(var(--p_size)/4));
+
+
+            border-top-left-radius: %;
+            ;
+            border-top-right-radius: %;
+            ;
+            border-bottom-right-radius: 15%;
+            border-bottom-left-radius: 15%;
+        }
+
+        .bottom {
+            background: #335EFF;
+            transform: rotateX(-90deg) translateZ(calc(var(--p_size)/4));
+            border-top-left-radius: 15%;
+            ;
+            border-top-right-radius: 15%;
+            ;
+            border-bottom-right-radius: %;
+            border-bottom-left-radius: %;
+
+
+        }
+
+        .contener {
+            width: calc(var(--p_size)*3.5);
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            background-color: ;
+            rgba(221, 148, 13, 0.76);
+            justify-content: center;
+            align-items: center;
+            border: 2vh solid rgba(221, 148, 13, 0.0);
+            ;
+            rgba(41, 41, 255, 0.671);
+            ;
+            border-radius: vw;
+            border-top-left-radius: 0%;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0%;
+            ;
+
+            margin-top: vh;
+            justify-content: space-evenly;
+        }
+
+        .d5iv_before_input {
+            width: 300px;
+            height: 50px;
+            background: pink;
+            transform: rotateX(50deg);
+            transform-style: preserve-3d;
+            perspective: 400px;
+        }
+
+        input {
+            width: 320px;
+            ;
+            height: 80px;
+            background-color: white;
+            #27252C;
+            black;
+            border: none;
+            border-radius: vw;
+            text-align: right;
+            color: black;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 20px;
+            transform: rotateX(-30deg);
+            margin-bottom: 7vh;
+            margin-top: 10vh;
+            transform-style: preserve-3d;
+            outline-color: red;
+            border: 2px solid red;
+
+
+        }
+
+        .front19 {
+            background: rgb(45, 107, 187);
+            #04AA6D
+        }
+
+        .operator,
+        .⌫,
+        .C {
+            background: hotpink;
+            border-radius: ;
+        }
+
+        .cube14 .front {
+            font-family: arial:;
+        }
+
+        .cube11 .front {
+            font-size: 65px;
+            font-weight: 100;
+        }
+
+        .cube15 .front {
+            font-size: 40px;
+            font-weight: 200;
+
+        }
+
+        .cube0 .front,
+        .cube2 .front {
+            background: hotpink
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <input type="text" name="" id=""> -->
+
+    <div class="contener">
+
+    </div>
+    <script>
+        const contener = document.querySelector(".contener");
+        const btnIcon = [
+            "C",
+            "%",
+            "⌫",
+            "/",
+            7,
+            8,
+            9,
+            "*",
+            4,
+            5,
+            6,
+            "-",
+            1,
+            2,
+            3,
+            "+",
+            "00",
+            0,
+            ".",
+            "=",
+        ];
+        contener.innerHTML += `<div class="div_before_input"></div><input type="text" name="" id="" placeholder=' ' readonly autofocus>`;
+        /* 
+         contener.innerHTML+=`        
+        
+  
+      <div class="scene_input">
+     
+          <div class="cube_input">
+  
+  <div class="face_input top_input">
+      top
+      </div>
+  <div class="face_input front_input">
+  <input type="text" name="" id="" class="input_in_front_div" placeholder=" input box" readonly>
+  </div>
+  
+  <div class="face_input thirdside_input">
+      third_s
+  </div>
+          </div>
+      </div>
+      `
+        */
+
+
+
+
+
+
+
+
+
+
+
+        btnIcon.forEach((i, index) => {
+            contener.innerHTML += ` <div class="scene">
+        <div class="cube _${i} cube${index} ${i}">
+            <div class="face front front${index}">${i}</div>
+            <div class="face back"> </div>
+            <div class="face right"> </div>
+            <div class="face left"> </div>
+            <div class="face top"> </div>
+            <div class="face bottom"> </div>
+        </div>
+    </div>`
+        })
+        let input = document.querySelector("input");
+        const front = document.querySelectorAll(".front");
+
+        front.forEach((item) => {
+            const operator_array = ["+", "-", "*", "/", "%"];
+            if (operator_array.includes(item.innerText)) {
+                item.classList.add("operator")
+            }
+        });
+        ///////
+        // The NodeList of all elements with the class "operator"
+        const operator_elements = document.querySelectorAll(".operator");
+        /*
+        // Loop through each element in the NodeList and attach the listener
+        operator_elements.forEach((clicked_operator) => {
+            
+            // Attach the click event handler to the current element (clicked_operator)
+            clicked_operator.addEventListener("click", () => {
+                
+                // Check if the last character of the input value is a '+'
+                if (input.value.slice(-1) === "+") {
+                    
+                    // Loop through the SAME NodeList again to disable ALL operator elements
+                    operator_elements.forEach((el_to_disable) => {
+                        el_to_disable.disabled = true;
+                        // Optional: add a class to visually show they are disabled
+                        el_to_disable.classList.add('disabled-operator'); 
+                    });
+                }
+            });
+        });
+        
+        
+        */
+
+
+
+
+
+
+        const operator_element = document.querySelectorAll(".operator");
+        /*
+        operator_element[0].addEventListener("click",()=>{if(input.value.slice(-1) == "+")
+            operator_element[0].disabled = true
+        })
+        
+        
+        */
+
+
+        /*operator_element.forEach((el) => {
+            el.addEventListener("click",()=>{
+            
+            if (input.value.slice(-1) == "+") {
+            operator_element.forEach((el_to_disable)=>{
+                el_to_disable.disabled = true;
+                el_to_disable.classList.add('disabled-operator'); 
+            })
+            
+        }})
+            
+        })
+        */
+        /////
+
+
+
+
+        let iv;
+        contener.addEventListener("click", (e) => {
+            if (
+                e.target.innerText != "C" &&
+                e.target.innerText !== "⌫" &&
+                e.target.innerText != "=" &&
+                e.target.getAttribute("class") != "contener"
+                //   && input.value.substring(input.value.length-1,input.value.length)!=="+"
+                //   && input.value.substring(input.value.length-1,input.value.length)!=="-"
+                //   && input.value.substring(input.value.length-1,input.value.length)!=="*"
+                //   && input.value.substring(input.value.length-1,input.value.length)!=="/"
+                //   && input.value.substring(input.value.length-1,input.value.length)!=="%"
+            ) {
+
+
+
+
+
+                if (input.value.slice(-1) === "%") {
+                    e.target.disabled = true;
+                    console.log(input.value.slice(-1), e.target)
+                }
+
+
+
+
+                input.value += e.target.innerText;
+                iv = `${input.value}`;
+                e.target.style.color = ''
+            }
+
+            if (e.target.getAttribute("class") !== "container" && e.target.tagName !== "body") {
+
+                //console.log(eval(input.value));
+                if (e.target.innerText == "=") {
+                    iv = eval(input.value);
+                    input.value = `   ${iv}`;
+                    console.log("seven")
+                    input.style.color = "";
+                    input.style.fontSize = '50px'
+                }
+
+
+                if (e.target.innerText !== "=") {
+                    //input.style.color = 'white';
+                    input.style.fontSize = '40px'
+                }
+
+
+
+                if (e.target.innerText === "⌫") {
+
+                    input.value = `${input.value.substring(0, input.value.length - 1)}`
+                }
+
+
+
+
+                if (e.target.innerText === "C") { input.value = "" }
+
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

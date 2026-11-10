@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 3 All Subjects 150+ Topic-Wise Question Bank</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        sans: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        math: { light: '#fee2e2', main: '#ef4444', dark: '#b91c1c' },
+                        evs: { light: '#dcfce7', main: '#22c55e', dark: '#15803d' },
+                        english: { light: '#e0f2fe', main: '#0284c7', dark: '#0369a1' },
+                        hindi: { light: '#fef3c7', main: '#d97706', dark: '#b45309' },
+                        gk: { light: '#f3e8ff', main: '#9333ea', dark: '#6b21a8' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            .print-only {
+                display: block !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt;
+            }
+
+            .page-break {
+                page-break-after: always;
+            }
+        }
+
+        .print-only {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col text-slate-800 antialiased selection:bg-amber-200">
+
+    <!-- Header Banner -->
+    <header
+        class="bg-gradient-to-r from-amber-400 via-rose-400 to-indigo-500 text-white shadow-lg sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="p-2.5 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 shadow-inner">
+                    <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide drop-shadow-sm">Class 3 Master Question Bank
+                    </h1>
+                    <p class="text-xs sm:text-sm text-amber-100 font-medium">150 Topic-Wise Interactive Questions &
+                        Worksheets</p>
+                </div>
+            </div>
+
+            <!-- Mode Selector & Print Action -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <div
+                    class="bg-black/20 p-1 rounded-xl flex items-center space-x-1 border border-white/20 text-xs font-semibold">
+                    <button id="mode-quiz-btn" onclick="setAppMode('quiz')"
+                        class="px-3 py-1.5 rounded-lg transition bg-white text-slate-900 shadow">
+                        <i data-lucide="gamepad-2" class="w-3.5 h-3.5 inline mr-1"></i>Quiz Mode
+                    </button>
+                    <button id="mode-cards-btn" onclick="setAppMode('cards')"
+                        class="px-3 py-1.5 rounded-lg transition text-white hover:bg-white/10">
+                        <i data-lucide="layers" class="w-3.5 h-3.5 inline mr-1"></i>Flashcards
+                    </button>
+                </div>
+
+                <button onclick="window.print()"
+                    class="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shadow-md transition flex items-center space-x-1.5 border border-emerald-400">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Print Worksheets</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Layout -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 flex-grow flex flex-col md:flex-row gap-6 no-print">
+
+        <!-- Sidebar Filters -->
+        <aside class="w-full md:w-72 flex-shrink-0 space-y-5">
+
+            <!-- Subject Filter Card -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm space-y-3">
+                <h2
+                    class="text-xs font-bold uppercase tracking-wider text-slate-400 px-2 flex items-center justify-between">
+                    <span>Subjects (150 Qs)</span>
+                    <i data-lucide="book-open" class="w-4 h-4 text-slate-400"></i>
+                </h2>
+
+                <div class="space-y-1.5" id="subject-buttons">
+                    <button onclick="filterSubject('all')" data-subject="all"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between bg-indigo-600 text-white shadow-md">
+                        <span class="flex items-center"><i data-lucide="sparkles" class="w-4 h-4 mr-2"></i> All
+                            Subjects</span>
+                        <span class="bg-white/20 text-xs px-2 py-0.5 rounded-full">150</span>
+                    </button>
+                    <button onclick="filterSubject('math')" data-subject="math"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-rose-50 hover:text-rose-600">
+                        <span class="flex items-center"><i data-lucide="calculator"
+                                class="w-4 h-4 mr-2 text-rose-500"></i> Mathematics</span>
+                        <span class="bg-rose-100 text-rose-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('evs')" data-subject="evs"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-emerald-50 hover:text-emerald-600">
+                        <span class="flex items-center"><i data-lucide="leaf" class="w-4 h-4 mr-2 text-emerald-500"></i>
+                            EVS & Science</span>
+                        <span
+                            class="bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('english')" data-subject="english"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-sky-50 hover:text-sky-600">
+                        <span class="flex items-center"><i data-lucide="languages"
+                                class="w-4 h-4 mr-2 text-sky-500"></i> English Grammar</span>
+                        <span class="bg-sky-100 text-sky-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('hindi')" data-subject="hindi"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-amber-50 hover:text-amber-600">
+                        <span class="flex items-center"><i data-lucide="book-marked"
+                                class="w-4 h-4 mr-2 text-amber-500"></i> हिन्दी (Hindi)</span>
+                        <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                    <button onclick="filterSubject('gk')" data-subject="gk"
+                        class="sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-purple-50 hover:text-purple-600">
+                        <span class="flex items-center"><i data-lucide="monitor"
+                                class="w-4 h-4 mr-2 text-purple-500"></i> GK & Computer</span>
+                        <span class="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full font-bold">30</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Topic Dropdown Filter -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm space-y-2">
+                <label class="text-xs font-bold uppercase tracking-wider text-slate-400 block px-1">Specific Topic
+                    Filter</label>
+                <select id="topic-select" onchange="filterTopic(this.value)"
+                    class="w-full bg-slate-50 border-2 border-slate-200 text-slate-700 text-sm font-semibold rounded-xl p-2.5 outline-none focus:border-indigo-500">
+                    <option value="all">All Topics (150 Questions)</option>
+                </select>
+            </div>
+
+            <!-- Quick Navigator Grid -->
+            <div class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Quick Navigator</span>
+                    <span id="score-counter"
+                        class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Score:
+                        0</span>
+                </div>
+                <div id="nav-grid" class="grid grid-cols-6 gap-1.5 max-h-56 overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Main Quiz / Flashcard Workspace -->
+        <section class="flex-grow space-y-4">
+
+            <!-- Progress & Nav Header -->
+            <div
+                class="bg-white border-2 border-slate-200 rounded-3xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="w-full sm:w-1/2 space-y-1">
+                    <div class="flex justify-between text-xs font-bold text-slate-500">
+                        <span>Overall Progress</span>
+                        <span id="progress-text">Question 1 of 150</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden p-0.5 border border-slate-200">
+                        <div id="progress-bar"
+                            class="bg-gradient-to-r from-amber-400 to-emerald-500 h-full rounded-full transition-all duration-300 w-0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button id="btn-prev" onclick="prevQuestion()"
+                        class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition flex items-center space-x-1 border border-slate-200">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i><span>Prev</span>
+                    </button>
+                    <button id="btn-next" onclick="nextQuestion()"
+                        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs transition flex items-center space-x-1 shadow-md">
+                        <span>Next</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Question Card View -->
+            <div id="quiz-view" class="bg-white border-2 border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-6">
+
+                <!-- Question Badge & Meta -->
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                    <div class="flex items-center space-x-2">
+                        <span id="badge-subject"
+                            class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700 border border-rose-200">
+                            Mathematics
+                        </span>
+                        <span id="badge-topic"
+                            class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                            Place Value
+                        </span>
+                    </div>
+                    <span id="q-id-tag" class="text-xs font-mono text-slate-400 font-bold">Q #1 of 150</span>
+                </div>
+
+                <!-- Question Body (Image & Text) -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div class="md:col-span-4 flex justify-center">
+                        <div
+                            class="w-full h-44 rounded-2xl overflow-hidden bg-slate-50 border-2 border-slate-100 relative shadow-inner flex items-center justify-center p-2">
+                            <img id="q-image" src="" alt="Question Illustration"
+                                class="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105">
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 space-y-4">
+                        <h2 id="q-text" class="text-lg sm:text-xl font-bold text-slate-800 leading-snug">
+                            Loading Question...
+                        </h2>
+                        <div id="options-box" class="grid grid-cols-1 gap-2.5">
+                            <!-- Dynamically populated options -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation Footer -->
+                <div id="explanation-box" class="hidden border-2 border-dashed rounded-2xl p-4 transition-all">
+                    <div class="flex items-start space-x-3">
+                        <div id="feedback-icon-bg" class="p-2 rounded-xl text-white flex-shrink-0">
+                            <i id="feedback-icon" data-lucide="check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 id="feedback-title" class="font-bold text-sm">Correct Answer!</h4>
+                            <p id="explanation-text" class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Flashcards View (Hidden by Default) -->
+            <div id="cards-view"
+                class="hidden bg-white border-2 border-slate-200 rounded-3xl p-6 shadow-sm min-h-[350px] flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <span id="card-badge"
+                        class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">Topic</span>
+                    <span class="text-xs font-bold text-slate-400">Flashcard Mode</span>
+                </div>
+                <div class="py-8 text-center space-y-6 cursor-pointer" onclick="flipCard()">
+                    <p id="card-q-text" class="text-xl font-bold text-slate-800 px-4"></p>
+                    <div id="card-answer-box"
+                        class="hidden bg-emerald-50 border-2 border-emerald-200 text-emerald-800 p-4 rounded-2xl max-w-lg mx-auto">
+                        <span class="text-xs font-bold text-emerald-600 block uppercase mb-1">Answer</span>
+                        <p id="card-answer-text" class="font-bold text-lg"></p>
+                        <p id="card-exp-text" class="text-xs text-emerald-700 mt-2 italic"></p>
+                    </div>
+                    <p id="flip-hint" class="text-xs font-bold text-indigo-500 animate-pulse">💡 Click anywhere to
+                        reveal answer</p>
+                </div>
+                <div class="flex justify-between items-center border-t pt-3">
+                    <button onclick="prevQuestion()"
+                        class="px-3 py-1.5 bg-slate-100 rounded-xl text-xs font-bold">Previous</button>
+                    <button onclick="nextQuestion()"
+                        class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold">Next Card</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Printable Worksheet Container (Visible only during Print) -->
+    <div class="print-only max-w-4xl mx-auto p-6 space-y-6">
+        <div class="text-center border-b-2 border-slate-900 pb-4">
+            <h1 class="text-3xl font-bold text-slate-900">PCS English School & Academy</h1>
+            <h2 class="text-xl font-semibold text-slate-700">Class 3 Topic-Wise Master Question Paper</h2>
+            <div class="flex justify-between text-sm mt-4 font-semibold text-slate-600">
+                <span>Student Name: _______________________</span>
+                <span>Roll No: __________</span>
+                <span>Date: ____________</span>
+            </div>
+        </div>
+
+        <div id="print-questions-grid" class="space-y-4">
+            <!-- Populated dynamically by JS for pristine printable format -->
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="pt-6">
+            <h3 class="text-xl font-bold border-b pb-2 mb-4">Teacher's Answer Key & Explanations</h3>
+            <div id="print-answer-key" class="grid grid-cols-2 gap-4 text-xs">
+                <!-- Answer key populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Database & Logic Script -->
+    <script>
+        // === 150 TOPIC-WISE CLASS 3 QUESTIONS DATABASE ===
+        const questionsDB = [
+            // -------------------------------------------------------------
+            // MATHEMATICS (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Place Value & Numbers
+            {
+                id: 1, subject: 'math', topic: 'Place Value & Numbers',
+                question: 'What is the place value of digit 7 in the number 4,752?',
+                options: ['7 Ones', '7 Tens', '7 Hundreds', '7 Thousands'],
+                answer: 2, explanation: 'In 4,752: 2 is in Ones place, 5 in Tens, 7 in Hundreds, and 4 in Thousands.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 2, subject: 'math', topic: 'Place Value & Numbers',
+                question: 'Which of the following represents the expanded form of 3,048?',
+                options: ['3000 + 40 + 8', '3000 + 400 + 8', '300 + 40 + 8', '3000 + 4 + 8'],
+                answer: 0, explanation: '3,048 = 3 Thousands (3000) + 0 Hundreds + 4 Tens (40) + 8 Ones (8).',
+                image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 3, subject: 'math', topic: 'Place Value & Numbers',
+                question: 'What is the smallest 4-digit number formed using digits 5, 0, 2, 8 without repeating?',
+                options: ['0258', '2058', '2508', '8520'],
+                answer: 1, explanation: 'A number cannot start with 0. So place 2 first, followed by 0, then 5, then 8 = 2058.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 4, subject: 'math', topic: 'Place Value & Numbers',
+                question: 'What comes immediately before 5,000?',
+                options: ['4,990', '4,999', '5,001', '4,900'],
+                answer: 1, explanation: 'The predecessor of 5,000 is 5,000 - 1 = 4,999.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 5, subject: 'math', topic: 'Place Value & Numbers',
+                question: 'Which symbol correctly compares: 6,432 ____ 6,423?',
+                options: ['<', '>', '=', '+'],
+                answer: 1, explanation: 'Comparing tens digit: 3 tens is greater than 2 tens, so 6,432 > 6,423.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 6, subject: 'math', topic: 'Place Value & Numbers',
+                question: 'Round 467 to the nearest hundred.',
+                options: ['400', '450', '500', '470'],
+                answer: 2, explanation: 'Since the tens digit is 6 (5 or greater), we round up to 500.',
+                image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Addition & Subtraction
+            {
+                id: 7, subject: 'math', topic: 'Addition & Subtraction',
+                question: 'Calculate: 3,456 + 2,138 = ?',
+                options: ['5,594', '5,584', '5,494', '5,604'],
+                answer: 0, explanation: '6+8=14 (carry 1), 5+3+1=9, 4+1=5, 3+2=5. Total = 5,594.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 8, subject: 'math', topic: 'Addition & Subtraction',
+                question: 'Rohan has 850 marbles. He gave 375 marbles to his friend. How many marbles are left?',
+                options: ['475', '485', '525', '465'],
+                answer: 0, explanation: '850 - 375 = 475 marbles.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 9, subject: 'math', topic: 'Addition & Subtraction',
+                question: 'What number must be added to 420 to get 1,000?',
+                options: ['580', '680', '520', '620'],
+                answer: 0, explanation: '1,000 - 420 = 580.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 10, subject: 'math', topic: 'Addition & Subtraction',
+                question: 'Solve: 9,000 - 4,532 = ?',
+                options: ['4,468', '4,568', '4,478', '5,468'],
+                answer: 0, explanation: 'Subtracting across zeros gives 4,468.',
+                image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 11, subject: 'math', topic: 'Addition & Subtraction',
+                question: 'A library has 1,240 storybooks and 860 science books. What is the total number of books?',
+                options: ['2,000', '2,100', '2,050', '2,200'],
+                answer: 1, explanation: '1,240 + 860 = 2,100 total books.',
+                image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 12, subject: 'math', topic: 'Addition & Subtraction',
+                question: 'What is the sum of the largest 3-digit number and the smallest 2-digit number?',
+                options: ['1,008', '1,009', '1,010', '999'],
+                answer: 1, explanation: 'Largest 3-digit number (999) + smallest 2-digit number (10) = 1,009.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Multiplication & Division
+            {
+                id: 13, subject: 'math', topic: 'Multiplication & Division',
+                question: 'A bicycle has 2 wheels. How many wheels do 15 bicycles have?',
+                options: ['25', '30', '35', '28'],
+                answer: 1, explanation: '15 × 2 = 30 wheels.',
+                image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 14, subject: 'math', topic: 'Multiplication & Division',
+                question: 'Any number multiplied by zero is always equal to ____.',
+                options: ['The number itself', 'One', 'Zero', 'Ten'],
+                answer: 2, explanation: 'The zero property of multiplication states n × 0 = 0.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 15, subject: 'math', topic: 'Multiplication & Division',
+                question: 'Share 48 apples equally among 6 children. How many apples does each child get?',
+                options: ['6', '7', '8', '9'],
+                answer: 2, explanation: '48 ÷ 6 = 8 apples per child.',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 16, subject: 'math', topic: 'Multiplication & Division',
+                question: 'What is the quotient when 72 is divided by 9?',
+                options: ['8', '7', '9', '6'],
+                answer: 0, explanation: '72 ÷ 9 = 8.',
+                image: 'https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 17, subject: 'math', topic: 'Multiplication & Division',
+                question: 'If 1 box contains 12 pencils, how many pencils are in 8 boxes?',
+                options: ['84', '96', '108', '92'],
+                answer: 1, explanation: '12 × 8 = 96 pencils.',
+                image: 'https://images.unsplash.com/photo-1585336261026-61e778f29282?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 18, subject: 'math', topic: 'Multiplication & Division',
+                question: 'What is the remainder when 37 is divided by 5?',
+                options: ['1', '2', '3', '4'],
+                answer: 1, explanation: '37 = (5 × 7) + 2. Remainder is 2.',
+                image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Geometry & Shapes
+            {
+                id: 19, subject: 'math', topic: 'Geometry & Shapes',
+                question: 'How many vertices (corners) does a cube have?',
+                options: ['6', '8', '12', '4'],
+                answer: 1, explanation: 'A 3D cube has 6 faces, 12 edges, and 8 vertices (corners).',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 20, subject: 'math', topic: 'Geometry & Shapes',
+                question: 'A 2D shape with 3 straight sides and 3 angles is called a ____.',
+                options: ['Square', 'Rectangle', 'Triangle', 'Circle'],
+                answer: 2, explanation: 'A triangle is a 3-sided polygon.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 21, subject: 'math', topic: 'Geometry & Shapes',
+                question: 'Which 3D shape looks like a football or marble?',
+                options: ['Cylinder', 'Cone', 'Sphere', 'Cube'],
+                answer: 2, explanation: 'A sphere is a perfectly round 3D geometrical object.',
+                image: 'https://images.unsplash.com/photo-1614680376593-902f749f7b6c?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 22, subject: 'math', topic: 'Geometry & Shapes',
+                question: 'How many line segments form a rectangle?',
+                options: ['2', '3', '4', '5'],
+                answer: 2, explanation: 'A rectangle has 4 straight sides (line segments).',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 23, subject: 'math', topic: 'Geometry & Shapes',
+                question: 'A cylinder has how many flat faces?',
+                options: ['0', '1', '2', '3'],
+                answer: 2, explanation: 'A cylinder has 2 flat circular faces (top and bottom) and 1 curved surface.',
+                image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 24, subject: 'math', topic: 'Geometry & Shapes',
+                question: 'Which shape has all 4 sides equal in length?',
+                options: ['Rectangle', 'Square', 'Triangle', 'Oval'],
+                answer: 1, explanation: 'A square is a 4-sided polygon with all equal sides.',
+                image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Time & Money
+            {
+                id: 25, subject: 'math', topic: 'Time & Money',
+                question: 'How many minutes are there in 2 hours?',
+                options: ['60 minutes', '100 minutes', '120 minutes', '150 minutes'],
+                answer: 2, explanation: '1 hour = 60 minutes. Therefore, 2 hours = 2 × 60 = 120 minutes.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 26, subject: 'math', topic: 'Time & Money',
+                question: 'If the short hour hand is at 4 and long minute hand is at 12, what time is it?',
+                options: ['4:30', '4:00', '12:04', '4:12'],
+                answer: 1, explanation: 'When minute hand points to 12, it shows the exact hour (4 o\'clock).',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 27, subject: 'math', topic: 'Time & Money',
+                question: 'Convert 5 rupees into paise.',
+                options: ['50 paise', '500 paise', '5000 paise', '5 paise'],
+                answer: 1, explanation: '₹1 = 100 paise. So ₹5 = 5 × 100 = 500 paise.',
+                image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 28, subject: 'math', topic: 'Time & Money',
+                question: 'A book costs ₹45. You give a ₹100 note. How much change should you get back?',
+                options: ['₹45', '₹55', '₹65', '₹50'],
+                answer: 1, explanation: '100 - 45 = ₹55 change.',
+                image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 29, subject: 'math', topic: 'Time & Money',
+                question: 'How many days are there in a Leap Year?',
+                options: ['365', '366', '364', '360'],
+                answer: 1, explanation: 'A leap year has 366 days because February has 29 days.',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 30, subject: 'math', topic: 'Time & Money',
+                question: 'Quarter past 7 in digital clock format is written as ____.',
+                options: ['7:15', '7:30', '7:45', '7:05'],
+                answer: 0, explanation: 'Quarter past means 15 minutes past the hour (7:15).',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // EVS & SCIENCE (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Plants & Animals
+            {
+                id: 31, subject: 'evs', topic: 'Plants & Animals',
+                question: 'Green leaves prepare food for the plant through which process?',
+                options: ['Respiration', 'Photosynthesis', 'Transpiration', 'Germination'],
+                answer: 1, explanation: 'Photosynthesis is the process where plants use sunlight, water, and CO2 to make food.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 32, subject: 'evs', topic: 'Plants & Animals',
+                question: 'Which part of the plant absorbs water and mineral salts from the soil?',
+                options: ['Stem', 'Leaf', 'Root', 'Flower'],
+                answer: 2, explanation: 'Roots anchor the plant and absorb water and nutrients from the soil.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 33, subject: 'evs', topic: 'Plants & Animals',
+                question: 'Animals that eat only plants and plant products are called ____.',
+                options: ['Carnivores', 'Herbivores', 'Omnivores', 'Parasites'],
+                answer: 1, explanation: 'Herbivores (like cows, deer) eat only plants.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 34, subject: 'evs', topic: 'Plants & Animals',
+                question: 'Which bird cannot fly and is the largest bird in the world?',
+                options: ['Penguin', 'Ostrich', 'Peacock', 'Eagle'],
+                answer: 1, explanation: 'The ostrich is a flightless bird and the largest living bird species.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 35, subject: 'evs', topic: 'Plants & Animals',
+                question: 'What do webbed feet help ducks do?',
+                options: ['Climb trees', 'Swim in water', 'Run fast', 'Catch prey'],
+                answer: 1, explanation: 'Webbed feet act like paddles to help aquatic birds swim.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 36, subject: 'evs', topic: 'Plants & Animals',
+                question: 'Plants that need support to climb up because of weak stems are called ____.',
+                options: ['Trees', 'Shrubs', 'Climbers', 'Herbs'],
+                answer: 2, explanation: 'Climbers (like pea plants, money plant) have weak stems and take support.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Human Body & Health
+            {
+                id: 37, subject: 'evs', topic: 'Human Body & Health',
+                question: 'Which internal organ pumps blood to all parts of our body?',
+                options: ['Lungs', 'Brain', 'Heart', 'Stomach'],
+                answer: 2, explanation: 'The heart is a muscular organ that pumps blood continuously.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 38, subject: 'evs', topic: 'Human Body & Health',
+                question: 'How many sense organs do humans have?',
+                options: ['3', '4', '5', '6'],
+                answer: 2, explanation: 'We have 5 sense organs: Eyes, Ears, Nose, Tongue, and Skin.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 39, subject: 'evs', topic: 'Human Body & Health',
+                question: 'Which organ helps us breathe in oxygen and give out carbon dioxide?',
+                options: ['Lungs', 'Kidneys', 'Liver', 'Heart'],
+                answer: 0, explanation: 'Lungs are the respiratory organs in the chest.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 40, subject: 'evs', topic: 'Human Body & Health',
+                question: 'Which nutrient builds our muscles and helps our body grow?',
+                options: ['Carbohydrates', 'Proteins', 'Fats', 'Roughage'],
+                answer: 1, explanation: 'Proteins (pulses, milk, eggs) are body-building foods.',
+                image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 41, subject: 'evs', topic: 'Human Body & Health',
+                question: 'How many bones are there in an adult human skeleton?',
+                options: ['106', '206', '306', '150'],
+                answer: 1, explanation: 'An adult human body has 206 bones.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 42, subject: 'evs', topic: 'Human Body & Health',
+                question: 'We should brush our teeth at least ____ times a day.',
+                options: ['One', 'Two', 'Three', 'Four'],
+                answer: 1, explanation: 'Brushing twice a day (morning and before bedtime) keeps teeth healthy.',
+                image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Water & Air
+            {
+                id: 43, subject: 'evs', topic: 'Water & Air',
+                question: 'What is the gaseous form of water called when it boils?',
+                options: ['Ice', 'Water Vapor (Steam)', 'Dew', 'Frost'],
+                answer: 1, explanation: 'Water boils and turns into water vapor (gas).',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 44, subject: 'evs', topic: 'Water & Air',
+                question: 'Which process changes water vapor back into water droplets upon cooling?',
+                options: ['Evaporation', 'Condensation', 'Melting', 'Freezing'],
+                answer: 1, explanation: 'Condensation forms clouds and water drops when steam cools.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 45, subject: 'evs', topic: 'Water & Air',
+                question: 'Moving air is called ____.',
+                options: ['Storm', 'Wind', 'Breeze', 'Gale'],
+                answer: 1, explanation: 'Air in motion is known as wind.',
+                image: 'https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 46, subject: 'evs', topic: 'Water & Air',
+                question: 'What gas do humans and animals take in while breathing?',
+                options: ['Carbon Dioxide', 'Oxygen', 'Nitrogen', 'Helium'],
+                answer: 1, explanation: 'We breathe in oxygen to stay alive.',
+                image: 'https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 47, subject: 'evs', topic: 'Water & Air',
+                question: 'Which of these is the purest natural source of fresh water?',
+                options: ['Sea Water', 'Rainwater', 'Drainage Water', 'Pond Water'],
+                answer: 1, explanation: 'Rainwater is considered the purest form of natural water.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 48, subject: 'evs', topic: 'Water & Air',
+                question: 'Boiling water for at least 10-15 minutes helps to ____.',
+                options: ['Make it cold', 'Kill germs', 'Change its color', 'Make it salty'],
+                answer: 1, explanation: 'Boiling kills harmful disease-causing germs in drinking water.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Family & Shelter
+            {
+                id: 49, subject: 'evs', topic: 'Family & Shelter',
+                question: 'A family with grandparents, parents, uncles, aunts, and cousins living together is called a ____.',
+                options: ['Nuclear Family', 'Joint Family', 'Small Family', 'Single Parent Family'],
+                answer: 1, explanation: 'A joint family consists of multiple generations living in one house.',
+                image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 50, subject: 'evs', topic: 'Family & Shelter',
+                question: 'Houses made of snow built by Eskimos in polar regions are called ____.',
+                options: ['Stilt Houses', 'Igloos', 'Caravans', 'Houseboats'],
+                answer: 1, explanation: 'Igloos are dome-shaped shelters made from blocks of hard snow.',
+                image: 'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 51, subject: 'evs', topic: 'Family & Shelter',
+                question: 'A house on wheels that can move from one place to another is called a ____.',
+                options: ['Tent', 'Caravan', 'Kutcha House', 'Bungalow'],
+                answer: 1, explanation: 'A caravan is a mobile house built on a vehicle chassis.',
+                image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 52, subject: 'evs', topic: 'Family & Shelter',
+                question: 'What are houses built on wooden pillars in heavy rainfall areas called?',
+                options: ['Pucca Houses', 'Flats', 'Stilt Houses', 'Houseboats'],
+                answer: 2, explanation: 'Stilt houses are raised above the ground to protect against flood water.',
+                image: 'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 53, subject: 'evs', topic: 'Family & Shelter',
+                question: 'Your mother\'s or father\'s brother is your ____.',
+                options: ['Nephew', 'Uncle', 'Cousin', 'Grandfather'],
+                answer: 1, explanation: 'Brothers of parents are called uncles.',
+                image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 54, subject: 'evs', topic: 'Family & Shelter',
+                question: 'Houses made of mud, straw, and thatch in villages are called ____.',
+                options: ['Pucca Houses', 'Kutcha Houses', 'Skyscrapers', 'Apartments'],
+                answer: 1, explanation: 'Kutcha houses are temporary structures made of natural materials.',
+                image: 'https://images.unsplash.com/photo-1517824806704-9040b037703b?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Our Environment & Transport
+            {
+                id: 55, subject: 'evs', topic: 'Our Environment & Transport',
+                question: 'Which mode of transport is the fastest to travel across long distances or oceans?',
+                options: ['Train', 'Ship', 'Aeroplane', 'Bus'],
+                answer: 2, explanation: 'Air transport (aeroplanes, jets) is the fastest mode of travel.',
+                image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 56, subject: 'evs', topic: 'Our Environment & Transport',
+                question: 'What color traffic light signals vehicles to STOP immediately?',
+                options: ['Green', 'Yellow', 'Red', 'Blue'],
+                answer: 2, explanation: 'Red light means Stop, Yellow means Wait/Slow down, Green means Go.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 57, subject: 'evs', topic: 'Our Environment & Transport',
+                question: 'Pedestrians should always cross the road using the ____.',
+                options: ['Flyover', 'Zebra Crossing', 'Middle of the road', 'Dividers'],
+                answer: 1, explanation: 'Zebra crossings are painted white stripes for safe pedestrian crossing.',
+                image: 'https://images.unsplash.com/photo-1508873696983-2df515122519?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 58, subject: 'evs', topic: 'Our Environment & Transport',
+                question: 'Which of the following causes air pollution?',
+                options: ['Planting trees', 'Riding bicycles', 'Smoke from factories & vehicles', 'Solar energy'],
+                answer: 2, explanation: 'Harmful fumes and smoke pollute the clean air.',
+                image: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 59, subject: 'evs', topic: 'Our Environment & Transport',
+                question: 'Throwing garbage into rivers causes ____.',
+                options: ['Air Pollution', 'Water Pollution', 'Noise Pollution', 'Soil Fertility'],
+                answer: 1, explanation: 'Dumping waste in water bodies results in water pollution.',
+                image: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 60, subject: 'evs', topic: 'Our Environment & Transport',
+                question: 'World Environment Day is celebrated every year on ____.',
+                options: ['5th June', '15th August', '26th January', '2nd October'],
+                answer: 0, explanation: 'June 5th is designated globally as World Environment Day.',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // ENGLISH GRAMMAR & COMPREHENSION (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: Nouns & Pronouns
+            {
+                id: 61, subject: 'english', topic: 'Nouns & Pronouns',
+                question: 'Identify the Proper Noun in the sentence: "Anita went to Taj Mahal in Agra."',
+                options: ['went', 'Anita', 'girl', 'city'],
+                answer: 1, explanation: 'Anita, Taj Mahal, and Agra are specific Proper Nouns starting with capital letters.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 62, subject: 'english', topic: 'Nouns & Pronouns',
+                question: 'Replace the underlined word with a Pronoun: "Rohan is absent because Rohan is sick."',
+                options: ['She', 'He', 'They', 'It'],
+                answer: 1, explanation: 'Since Rohan is a singular male, the pronoun "He" replaces Rohan.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 63, subject: 'english', topic: 'Nouns & Pronouns',
+                question: 'Which of the following is a Collective Noun?',
+                options: ['Flock of birds', 'Single bird', 'Flying', 'Tree'],
+                answer: 0, explanation: '"Flock" is a collective noun representing a group of birds.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 64, subject: 'english', topic: 'Nouns & Pronouns',
+                question: 'What is the plural form of the noun "Child"?',
+                options: ['Childs', 'Children', 'Childrens', 'Childies'],
+                answer: 1, explanation: 'The irregular plural of child is children.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 65, subject: 'english', topic: 'Nouns & Pronouns',
+                question: 'Select the Abstract Noun (feeling/quality) from the choices.',
+                options: ['Table', 'Honesty', 'Doctor', 'Apple'],
+                answer: 1, explanation: 'Honesty is a quality that cannot be touched or seen directly (Abstract Noun).',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 66, subject: 'english', topic: 'Nouns & Pronouns',
+                question: 'Identify the possessive pronoun: "This blue school bag is ____."',
+                options: ['mine', 'me', 'I', 'my'],
+                answer: 0, explanation: '"Mine" is a possessive pronoun indicating ownership.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Verbs & Tenses
+            {
+                id: 67, subject: 'english', topic: 'Verbs & Tenses',
+                question: 'Choose the correct action verb: "The sun _____ brightly in the summer sky."',
+                options: ['shines', 'shined', 'shining', 'shine'],
+                answer: 0, explanation: 'Simple Present Tense for singular subject "sun" takes "shines".',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 68, subject: 'english', topic: 'Verbs & Tenses',
+                question: 'Fill in the blank with Present Continuous Tense: "Listen! The birds ____ in the garden."',
+                options: ['are singing', 'sing', 'sang', 'were singing'],
+                answer: 0, explanation: 'Present Continuous for plural birds = "are singing".',
+                image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 69, subject: 'english', topic: 'Verbs & Tenses',
+                question: 'What is the past tense form of the irregular verb "Write"?',
+                options: ['Writed', 'Wrote', 'Written', 'Writing'],
+                answer: 1, explanation: 'Write (V1) -> Wrote (V2) -> Written (V3).',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 70, subject: 'english', topic: 'Verbs & Tenses',
+                question: 'Complete in Simple Future: "We _____ (visit) our grandparents next Sunday."',
+                options: ['will visit', 'visited', 'are visiting', 'visits'],
+                answer: 0, explanation: 'Simple future structure = will + base verb (will visit).',
+                image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 71, subject: 'english', topic: 'Verbs & Tenses',
+                question: 'Which helping verb completes: "She _____ finished her homework already."',
+                options: ['have', 'has', 'is', 'are'],
+                answer: 1, explanation: 'Singular subject "She" takes auxiliary verb "has" in Present Perfect Tense.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 72, subject: 'english', topic: 'Verbs & Tenses',
+                question: 'Identify the past continuous verb in: "They were playing football when it rained."',
+                options: ['played', 'were playing', 'rained', 'football'],
+                answer: 1, explanation: '"Were playing" is Past Continuous (were + V-ing).',
+                image: 'https://images.unsplash.com/photo-1517649763962-0c623266010b?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Adjectives & Adverbs
+            {
+                id: 73, subject: 'english', topic: 'Adjectives & Adverbs',
+                question: 'Identify the Adjective describing size: "An elephant is a huge animal."',
+                options: ['elephant', 'huge', 'animal', 'is'],
+                answer: 1, explanation: '"Huge" describes the size of the noun animal (Adjective).',
+                image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 74, subject: 'english', topic: 'Adjectives & Adverbs',
+                question: 'What is the comparative degree of the adjective "Fast"?',
+                options: ['Fast', 'Faster', 'Fastest', 'More fast'],
+                answer: 1, explanation: 'Fast (Positive) -> Faster (Comparative) -> Fastest (Superlative).',
+                image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 75, subject: 'english', topic: 'Adjectives & Adverbs',
+                question: 'Find the Adverb of Manner: "The cheetah runs very quickly."',
+                options: ['cheetah', 'runs', 'quickly', 'very'],
+                answer: 2, explanation: '"Quickly" tells HOW the action (runs) is performed.',
+                image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 76, subject: 'english', topic: 'Adjectives & Adverbs',
+                question: 'Complete with Superlative adjective: "Mount Everest is the _____ mountain peak."',
+                options: ['high', 'higher', 'highest', 'most high'],
+                answer: 2, explanation: 'The article "the" precedes the superlative form "highest".',
+                image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 77, subject: 'english', topic: 'Adjectives & Adverbs',
+                question: 'Which of the following is an Adverb of Place?',
+                options: ['Yesterday', 'Here', 'Loudly', 'Always'],
+                answer: 1, explanation: '"Here" indicates location/place.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 78, subject: 'english', topic: 'Adjectives & Adverbs',
+                question: 'In "She sang a sweet song", the word "sweet" is a/an ____.',
+                options: ['Verb', 'Adjective', 'Adverb', 'Noun'],
+                answer: 1, explanation: '"Sweet" describes the noun song.',
+                image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Prepositions & Conjunctions
+            {
+                id: 79, subject: 'english', topic: 'Prepositions & Conjunctions',
+                question: 'Choose the correct preposition: "The cat is sleeping _____ the table."',
+                options: ['under', 'between', 'into', 'at'],
+                answer: 0, explanation: '"Under" shows the position of the cat beneath the table surface.',
+                image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 80, subject: 'english', topic: 'Prepositions & Conjunctions',
+                question: 'Fill in the blank with appropriate preposition: "We go to school ____ 8:00 AM."',
+                options: ['in', 'on', 'at', 'for'],
+                answer: 2, explanation: 'Specific times on the clock take the preposition "at".',
+                image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 81, subject: 'english', topic: 'Prepositions & Conjunctions',
+                question: 'Combine sentences using Conjunction: "Riya worked hard. She passed the exam."',
+                options: ['Riya worked hard so she passed the exam.', 'Riya worked hard but she failed.', 'Riya worked hard or passed.', 'Riya worked hard because passed.'],
+                answer: 0, explanation: '"So" shows result/consequence.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 82, subject: 'english', topic: 'Prepositions & Conjunctions',
+                question: 'Which preposition shows movement inside: "The frog jumped _____ the pond."',
+                options: ['into', 'on', 'above', 'at'],
+                answer: 0, explanation: '"Into" expresses motion towards the inside of something.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 83, subject: 'english', topic: 'Prepositions & Conjunctions',
+                question: 'Use conjunction to show choice: "Would you like tea _____ coffee?"',
+                options: ['and', 'or', 'but', 'because'],
+                answer: 1, explanation: '"Or" presents an alternative choice.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 84, subject: 'english', topic: 'Prepositions & Conjunctions',
+                question: 'Complete: "Independent Day is celebrated ____ 15th August."',
+                options: ['at', 'in', 'on', 'by'],
+                answer: 2, explanation: 'Specific dates and days take the preposition "on".',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Sentence & Punctuation
+            {
+                id: 85, subject: 'english', topic: 'Sentence & Punctuation',
+                question: 'Which punctuation mark ends an Interrogative question sentence?',
+                options: ['Full Stop (.)', 'Exclamation Mark (!)', 'Question Mark (?)', 'Comma (,)'],
+                answer: 2, explanation: 'Questions always end with a Question Mark (?).',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 86, subject: 'english', topic: 'Sentence & Punctuation',
+                question: 'Identify the Subject in sentence: "The little brown puppy barked loudly."',
+                options: ['The little brown puppy', 'barked', 'loudly', 'puppy barked'],
+                answer: 0, explanation: 'The complete subject doing the action is "The little brown puppy".',
+                image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 87, subject: 'english', topic: 'Sentence & Punctuation',
+                question: 'Reorder into a meaningful sentence: "likes / ice cream / Rahul / eating"',
+                options: ['Rahul likes eating ice cream.', 'Eating likes Rahul ice cream.', 'Ice cream Rahul likes eating.', 'Likes Rahul eating ice cream.'],
+                answer: 0, explanation: 'Subject (Rahul) + Verb (likes eating) + Object (ice cream).',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 88, subject: 'english', topic: 'Sentence & Punctuation',
+                question: 'Which sentence has correct capitalization?',
+                options: ['my friend lives in delhi.', 'My friend lives in Delhi.', 'my Friend Lives in delhi.', 'My friend Lives In delhi.'],
+                answer: 1, explanation: 'Sentences start with capital letters and proper nouns (Delhi) are capitalized.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 89, subject: 'english', topic: 'Sentence & Punctuation',
+                question: 'What type of sentence expresses strong emotion: "What a beautiful painting!"',
+                options: ['Declarative', 'Exclamatory', 'Imperative', 'Interrogative'],
+                answer: 1, explanation: 'Exclamatory sentences express strong sudden feelings.',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 90, subject: 'english', topic: 'Sentence & Punctuation',
+                question: 'Find the article error: "He ate a apple for breakfast."',
+                options: ['a -> an', 'ate -> eat', 'apple -> apples', 'for -> in'],
+                answer: 0, explanation: 'Words starting with vowel sound "apple" take article "an".',
+                image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // HINDI (हिन्दी) (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: संज्ञा एवं सर्वनाम
+            {
+                id: 91, subject: 'hindi', topic: 'संज्ञा एवं सर्वनाम',
+                question: 'निम्न वाक्यों में से "व्यक्तिवाचक संज्ञा" शब्द चुनिए: "हिमालय भारत का सबसे ऊंचा पर्वत है।"',
+                options: ['हिमालय', 'पर्वत', 'ऊंचा', 'है'],
+                answer: 0, explanation: 'हिमालय एक विशेष पर्वत का नाम है, इसलिए यह व्यक्तिवाचक संज्ञा है।',
+                image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 92, subject: 'hindi', topic: 'संज्ञा एवं सर्वनाम',
+                question: 'संज्ञा के स्थान पर प्रयोग होने वाले शब्दों को क्या कहते हैं?',
+                options: ['विशेषण', 'सर्वनाम', 'क्रिया', 'अव्यय'],
+                answer: 1, explanation: 'जो शब्द संज्ञा की जगह बोले या लिखे जाते हैं, उन्हें सर्वनाम (उदा. वह, तुम, मैं) कहते हैं।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 93, subject: 'hindi', topic: 'संज्ञा एवं सर्वनाम',
+                question: 'वाक्य में सर्वनाम शब्द पहचानिए: "वह प्रतिदिन सुबह दौड़ने जाता है।"',
+                options: ['प्रतिदिन', 'वह', 'सुबह', 'दौड़ने'],
+                answer: 1, explanation: '"वह" पुरुषवाचक सर्वनाम शब्द है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 94, subject: 'hindi', topic: 'संज्ञा एवं सर्वनाम',
+                question: 'भाववाचक संज्ञा शब्द का चयन कीजिए जो अनुभव किया जाता है:',
+                options: ['मिठास', 'अंगूर', 'लड़का', 'पेड़'],
+                answer: 0, explanation: 'मिठास गुण या भाव को दर्शाता है (भाववाचक संज्ञा)।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 95, subject: 'hindi', topic: 'संज्ञा एवं सर्वनाम',
+                question: 'जातिवाचक संज्ञा शब्द कौन सा है?',
+                options: ['राम', 'पुस्तक', 'गंगा', 'जयपुर'],
+                answer: 1, explanation: '"पुस्तक" पूरी जाति या वर्ग का बोध कराती है।',
+                image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 96, subject: 'hindi', topic: 'संज्ञा एवं सर्वनाम',
+                question: 'निजवाचक सर्वनाम चुनिए: "मैं अपना काम _____ करूंगा।"',
+                options: ['खुद', 'उसका', 'वे', 'कौन'],
+                answer: 0, explanation: 'स्वयं या "खुद" निजता का बोध कराता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: विशेषण एवं क्रिया
+            {
+                id: 97, subject: 'hindi', topic: 'विशेषण एवं क्रिया',
+                question: 'वाक्य में विशेषण शब्द क्या है? "रोहन के पास चार लाल पतंगें हैं।"',
+                options: ['रोहन', 'चार / लाल', 'पतंगें', 'हैं'],
+                answer: 1, explanation: 'संज्ञा की संख्या (चार) और रंग (लाल) बताने वाले शब्द विशेषण हैं।',
+                image: 'https://images.unsplash.com/photo-1531564701487-f238224b7ce3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 98, subject: 'hindi', topic: 'विशेषण एवं क्रिया',
+                question: 'काम के होने या करने का बोध कराने वाले शब्द क्या कहलाते हैं?',
+                options: ['संज्ञा', 'सर्वनाम', 'क्रिया', 'लिंग'],
+                answer: 2, explanation: 'जिस शब्द से किसी कार्य के करने या होने का पता चले उसे क्रिया कहते हैं।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 99, subject: 'hindi', topic: 'विशेषण एवं क्रिया',
+                question: 'निम्न में से क्रिया शब्द कौन सा है?',
+                options: ['सफ़ेद', 'पढ़ना', 'सुंदर', 'चतुर'],
+                answer: 1, explanation: 'पढ़ना एक कार्य/क्रिया है, जबकि अन्य शब्द विशेषण हैं।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 100, subject: 'hindi', topic: 'विशेषण एवं क्रिया',
+                question: '"गरम चाय" में "गरम" किस प्रकार का विशेषण है?',
+                options: ['गुणवाचक', 'संख्यावाचक', 'परिमाणवाचक', 'सार्वनामिक'],
+                answer: 0, explanation: 'गरम चाय के गुण/अवस्था को दर्शाने वाला गुणवाचक विशेषण है।',
+                image: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 101, subject: 'hindi', topic: 'विशेषण एवं क्रिया',
+                question: 'सकर्मक क्रिया का उदाहरण चुनिए (जिसमें कर्म होता है):',
+                options: ['हंसना', 'सोना', 'पत्र लिखना', 'रोना'],
+                answer: 2, explanation: '"पत्र लिखना" में पत्र कर्म है, इसलिए यह सकर्मक क्रिया है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 102, subject: 'hindi', topic: 'विशेषण एवं क्रिया',
+                question: 'विशेषण शब्द "सुंदर" का सही भाववाचक संज्ञा रूप क्या होगा?',
+                options: ['सुंदरता', 'सुंदरि', 'सुंदरा', 'सुंदरतम'],
+                answer: 0, explanation: 'सुंदर (विशेषण) से सुंदरता (भाववाचक संज्ञा) बनती है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: लिंग एवं वचन
+            {
+                id: 103, subject: 'hindi', topic: 'लिंग एवं वचन',
+                question: 'शब्द "कवि" का स्त्रीलिंग रूप क्या होगा?',
+                options: ['कवियत्री', 'कवयित्री', 'कविआइन', 'कवियित्री'],
+                answer: 1, explanation: 'कवि का शुद्ध स्त्रीलिंग रूप "कवयित्री" होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 104, subject: 'hindi', topic: 'लिंग एवं वचन',
+                question: 'शब्द "चिड़िया" का बहुवचन रूप चुनिए:',
+                options: ['चिड़ियाँ', 'चिड़ियों', 'चिड़ियाएं', 'चिड़ियाओं'],
+                answer: 0, explanation: 'या अंत वाली स्त्रीलिंग संज्ञाओं का बहुवचन बनाने के लिए चंद्रबिंदु (याँ) लगाते हैं = चिड़ियाँ।',
+                image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 105, subject: 'hindi', topic: 'लिंग एवं वचन',
+                question: 'कौन सा शब्द सदैव बहुवचन में ही प्रयोग होता है?',
+                options: ['पानी', 'प्राण', 'दूध', 'सोना'],
+                answer: 1, explanation: 'प्राण, दर्शन, हस्ताक्षर, आंसू आदि शब्द सदा बहुवचन में आते हैं।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 106, subject: 'hindi', topic: 'लिंग एवं वचन',
+                question: '"अध्यापक" शब्द का सही स्त्रीलिंग रूप क्या है?',
+                options: ['अध्यापकी', 'अध्यापिका', 'अध्यापकैन', 'अध्यापिकानी'],
+                answer: 1, explanation: 'अध्यापक + इका = अध्यापिका।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 107, subject: 'hindi', topic: 'लिंग एवं वचन',
+                question: 'शब्द "पत्ता" का बहुवचन रूप क्या है?',
+                options: ['पत्तियों', 'पत्तों', 'पत्ते', 'पत्तियां'],
+                answer: 2, explanation: 'आकारांत पुल्लिंग शब्द "पत्ता" का बहुवचन "पत्ते" होता है।',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 108, subject: 'hindi', topic: 'लिंग एवं वचन',
+                question: 'निम्नलिखित में से पुल्लिंग शब्द छांटिए:',
+                options: ['नदी', 'राजा', 'रात', 'पुस्तक'],
+                answer: 1, explanation: 'राजा पुरुष जाति का बोध कराता है (पुल्लिंग)।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: विलोम एवं पर्यायवाची
+            {
+                id: 109, subject: 'hindi', topic: 'विलोम एवं पर्यायवाची',
+                question: 'शब्द "अमृत" का सही विलोम (उल्टा) शब्द क्या है?',
+                options: ['विष', 'जल', 'दूध', 'सुधा'],
+                answer: 0, explanation: 'अमृत का विपरीतार्थक शब्द विष (ज़हर) होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 110, subject: 'hindi', topic: 'विलोम एवं पर्यायवाची',
+                question: 'सूर्य का पर्यायवाची शब्द कौन सा नहीं है?',
+                options: ['दिनकर', 'रवि', 'भास्कर', 'शशांक'],
+                answer: 3, explanation: 'शशांक चंद्रमा का पर्यायवाची है, सूर्य का नहीं।',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 111, subject: 'hindi', topic: 'विलोम एवं पर्यायवाची',
+                question: '"आकाश" शब्द का विलोम शब्द पहचानिए:',
+                options: ['पाताल', 'धरती', 'गगन', 'अंबर'],
+                answer: 0, explanation: 'आकाश का सटीक विलोम पाताल होता है।',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 112, subject: 'hindi', topic: 'विलोम एवं पर्यायवाची',
+                question: 'कमल शब्द का पर्यायवाची रूप क्या है?',
+                options: ['पंकज', 'नीरज', 'सरोज', 'उपर्युक्त सभी'],
+                answer: 3, explanation: 'पंकज, नीरज और सरोज तीनों ही कमल के पर्यायवाची हैं।',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 113, subject: 'hindi', topic: 'विलोम एवं पर्यायवाची',
+                question: '"सत्य" शब्द का सही विलोम शब्द क्या है?',
+                options: ['झूठ', 'असत्य', 'गलत', 'कपट'],
+                answer: 1, explanation: 'सत्य का तत्सम विलोम "असत्य" होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 114, subject: 'hindi', topic: 'विलोम एवं पर्यायवाची',
+                question: 'हवा/वायु का पर्यायवाची शब्द कौन सा है?',
+                options: ['पवन', 'समीर', 'अनिल', 'ये सभी'],
+                answer: 3, explanation: 'पवन, समीर और अनिल तीनों ही हवा के पर्यायवाची हैं।',
+                image: 'https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: वाक्य रचना एवं शुद्धिकरण
+            {
+                id: 115, subject: 'hindi', topic: 'वाक्य रचना एवं शुद्धिकरण',
+                question: 'शुद्ध वर्तनी (Correct Spelling) वाला शब्द चुनिए:',
+                options: ['उज्वल', 'उज्ज्वल', 'उजवल', 'ऊज्वल'],
+                answer: 1, explanation: 'शुद्ध शब्द "उज्ज्वल" है जिसमें दो बार आधा "ज" आता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 116, subject: 'hindi', topic: 'वाक्य रचना एवं शुद्धिकरण',
+                question: 'सही क्रम में शुद्ध वाक्य का चयन करें:',
+                options: ['हैं खिलते फूल में बगीचे।', 'बगीचे में सुंदर फूल खिलते हैं।', 'फूल बगीचे सुंदर खिलते हैं।', 'खिलते सुंदर हैं बगीचे में फूल।'],
+                answer: 1, explanation: 'व्याकरण के नियम अनुसार सही क्रम: "बगीचे में सुंदर फूल खिलते हैं।"',
+                image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 117, subject: 'hindi', topic: 'वाक्य रचना एवं शुद्धिकरण',
+                question: 'प्रश्नवाचक वाक्य के अंत में किस विराम चिह्न का प्रयोग होता है?',
+                options: ['पूर्ण विराम (|)', 'अल्पविराम (,)', 'प्रश्नवाचक चिन्ह (?)', 'विस्मयादिबोधक (!)'],
+                answer: 2, explanation: 'प्रश्नवाचक वाक्यों के अंत में (?) चिह्न लगाते हैं।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 118, subject: 'hindi', topic: 'वाक्य रचना एवं शुद्धिकरण',
+                question: 'अशुद्ध वाक्य छांटिए:',
+                options: ['मैं कल दिल्ली जाऊंगा।', 'मेरे को भूख लगी है।', 'वह पुस्तक पढ़ रहा है।', 'बच्चे खेल रहे हैं।'],
+                answer: 1, explanation: '"मेरे को" अशुद्ध प्रयोग है। शुद्ध रूप "मुझे भूख लगी है" होना चाहिए।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 119, subject: 'hindi', topic: 'वाक्य रचना एवं शुद्धिकरण',
+                question: 'वाक्यांश के लिए एक शब्द: "जो कभी न मरे"',
+                options: ['अमर', 'अजर', 'अमरत्व', 'अक्षय'],
+                answer: 0, explanation: 'जो कभी न मरे उसे "अमर" कहते हैं।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 120, subject: 'hindi', topic: 'वाक्य रचना एवं शुद्धिकरण',
+                question: 'मुहावरे का अर्थ बताइए: "नौ दो ग्यारह होना"',
+                options: ['भाग जाना', 'गिनती करना', 'मिल जाना', 'सो जाना'],
+                answer: 0, explanation: '"नौ दो ग्यारह होना" का प्रसिद्ध अर्थ चुपके से भाग जाना होता है।',
+                image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // -------------------------------------------------------------
+            // GENERAL KNOWLEDGE & COMPUTERS (30 Questions: 5 Topics x 6 Qs)
+            // -------------------------------------------------------------
+            // Topic: India & Landmarks
+            {
+                id: 121, subject: 'gk', topic: 'India & Landmarks',
+                question: 'Which is the national river of India?',
+                options: ['Yamuna', 'Ganga', 'Godavari', 'Narmada'],
+                answer: 1, explanation: 'The Ganga is declared as the national river of India.',
+                image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 122, subject: 'gk', topic: 'India & Landmarks',
+                question: 'Which famous monument is located in Agra, Uttar Pradesh?',
+                options: ['Red Fort', 'Taj Mahal', 'Gateway of India', 'Qutub Minar'],
+                answer: 1, explanation: 'The ivory-white marble Taj Mahal is in Agra.',
+                image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 123, subject: 'gk', topic: 'India & Landmarks',
+                question: 'Who is known as the "Father of the Nation" in India?',
+                options: ['Jawaharlal Nehru', 'Mahatma Gandhi', 'Subhas Chandra Bose', 'Bhagat Singh'],
+                answer: 1, explanation: 'Mahatma Gandhi is respectfully referred to as Bapu or Father of the Nation.',
+                image: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 124, subject: 'gk', topic: 'India & Landmarks',
+                question: 'What is the capital city of India?',
+                options: ['Mumbai', 'Kolkata', 'New Delhi', 'Chennai'],
+                answer: 2, explanation: 'New Delhi is the national capital of India.',
+                image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 125, subject: 'gk', topic: 'India & Landmarks',
+                question: 'Which state in India is known as the "Land of Five Rivers"?',
+                options: ['Punjab', 'Haryana', 'Kerala', 'Gujarat'],
+                answer: 0, explanation: 'Punjab means land of five rivers (Sutlej, Beas, Ravi, Chenab, Jhelum).',
+                image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 126, subject: 'gk', topic: 'India & Landmarks',
+                question: 'How many spokes are there in the Ashoka Chakra on India\'s National Flag?',
+                options: ['12', '24', '36', '48'],
+                answer: 1, explanation: 'The Ashoka Chakra has 24 spokes in navy blue color.',
+                image: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Nature & Earth Facts
+            {
+                id: 127, subject: 'gk', topic: 'Nature & Earth Facts',
+                question: 'Which is the largest continent on Earth by land size and population?',
+                options: ['Africa', 'Asia', 'Europe', 'North America'],
+                answer: 1, explanation: 'Asia is the largest continent.',
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 128, subject: 'gk', topic: 'Nature & Earth Facts',
+                question: 'Which planet is known as the "Red Planet"?',
+                options: ['Venus', 'Jupiter', 'Mars', 'Saturn'],
+                answer: 2, explanation: 'Mars appears red due to iron oxide (rust) on its surface.',
+                image: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 129, subject: 'gk', topic: 'Nature & Earth Facts',
+                question: 'Which is the largest and deepest ocean on Earth?',
+                options: ['Atlantic Ocean', 'Indian Ocean', 'Pacific Ocean', 'Arctic Ocean'],
+                answer: 2, explanation: 'The Pacific Ocean covers more than 30% of Earth\'s surface.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 130, subject: 'gk', topic: 'Nature & Earth Facts',
+                question: 'What is the closest star to Planet Earth?',
+                options: ['Pole Star', 'Sun', 'Alpha Centauri', 'Sirius'],
+                answer: 1, explanation: 'The Sun is a star situated at the center of our Solar System.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 131, subject: 'gk', topic: 'Nature & Earth Facts',
+                question: 'Which is the largest animal currently living on Earth?',
+                options: ['African Elephant', 'Blue Whale', 'Giraffe', 'Hippopotamus'],
+                answer: 1, explanation: 'The Blue Whale is the largest mammal/animal ever known to exist.',
+                image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 132, subject: 'gk', topic: 'Nature & Earth Facts',
+                question: 'How long does it take for Earth to complete ONE rotation around its axis?',
+                options: ['365 days', '24 hours', '12 hours', '30 days'],
+                answer: 1, explanation: 'Earth rotates once on its axis every 24 hours (causing day and night).',
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Computer Hardware & Software
+            {
+                id: 133, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which part of the computer is known as its "Brain"?',
+                options: ['Monitor', 'Keyboard', 'CPU', 'Mouse'],
+                answer: 2, explanation: 'CPU (Central Processing Unit) performs all processing tasks.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 134, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which device is used to enter text, numbers, and commands into a computer?',
+                options: ['Printer', 'Keyboard', 'Speaker', 'Monitor'],
+                answer: 1, explanation: 'Keyboard is a primary text input device.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 135, subject: 'gk', topic: 'Computer Basics',
+                question: 'Is a Computer Monitor an Input device or Output device?',
+                options: ['Input Device', 'Output Device', 'Storage Device', 'Processing Unit'],
+                answer: 1, explanation: 'A monitor displays output (visual information) to the user.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 136, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which computer key is used to erase letters to the left of the cursor?',
+                options: ['Enter Key', 'Spacebar', 'Backspace Key', 'Shift Key'],
+                answer: 2, explanation: 'Backspace deletes characters to the left of insertion point.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 137, subject: 'gk', topic: 'Computer Basics',
+                question: 'Which of the following is a physical HARDWARE component?',
+                options: ['MS Paint', 'Windows 11', 'Mouse', 'Google Chrome'],
+                answer: 2, explanation: 'Mouse is physical hardware; others are software programs.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 138, subject: 'gk', topic: 'Computer Basics',
+                question: 'What is the longest key on a standard QWERTY computer keyboard?',
+                options: ['Enter', 'Spacebar', 'Shift', 'Tab'],
+                answer: 1, explanation: 'The Spacebar at the bottom is the longest key.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: Computer Abbreviations
+            {
+                id: 139, subject: 'gk', topic: 'Computer Abbreviations',
+                question: 'What does CPU stand for?',
+                options: ['Central Power Unit', 'Central Processing Unit', 'Computer Processing Unit', 'Control Power Usage'],
+                answer: 1, explanation: 'CPU = Central Processing Unit.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 140, subject: 'gk', topic: 'Computer Abbreviations',
+                question: 'What is the full form of RAM in computers?',
+                options: ['Read Access Memory', 'Random Access Memory', 'Rapid Action Memory', 'Real Audio Media'],
+                answer: 1, explanation: 'RAM stands for Random Access Memory (temporary memory).',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 141, subject: 'gk', topic: 'Computer Abbreviations',
+                question: 'What does WWW stand for in a website address?',
+                options: ['World Wide Web', 'World Wide Work', 'Web World Wide', 'World Windows Web'],
+                answer: 0, explanation: 'WWW = World Wide Web.',
+                image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 142, subject: 'gk', topic: 'Computer Abbreviations',
+                question: 'What is the keyboard shortcut for COPYing selected text in Windows?',
+                options: ['Ctrl + V', 'Ctrl + C', 'Ctrl + X', 'Ctrl + Z'],
+                answer: 1, explanation: 'Ctrl + C is the universal shortcut for Copy.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 143, subject: 'gk', topic: 'Computer Abbreviations',
+                question: 'What is the shortcut key to PASTE copied text?',
+                options: ['Ctrl + P', 'Ctrl + V', 'Ctrl + S', 'Ctrl + A'],
+                answer: 1, explanation: 'Ctrl + V pastes the copied clipboard data.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 144, subject: 'gk', topic: 'Computer Abbreviations',
+                question: 'What does ALU inside CPU stand for?',
+                options: ['Arithmetic Logic Unit', 'Automatic Line Unit', 'Array Logic Utility', 'Analog Level Unit'],
+                answer: 0, explanation: 'ALU = Arithmetic Logic Unit (handles math calculations).',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+
+            // Topic: World Wonders & Inventions
+            {
+                id: 145, subject: 'gk', topic: 'World Facts',
+                question: 'Who invented the light bulb?',
+                options: ['Alexander Graham Bell', 'Thomas Edison', 'Wright Brothers', 'Isaac Newton'],
+                answer: 1, explanation: 'Thomas Alva Edison invented the practical electric light bulb.',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 146, subject: 'gk', topic: 'World Facts',
+                question: 'Who invented the Aeroplane?',
+                options: ['Orville & Wilbur Wright', 'Charles Babbage', 'Galileo', 'Albert Einstein'],
+                answer: 0, explanation: 'The Wright Brothers designed and flew the first successful airplane in 1903.',
+                image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 147, subject: 'gk', topic: 'World Facts',
+                question: 'Which is the tallest land animal in the world?',
+                options: ['Elephant', 'Giraffe', 'Camel', 'Kangaroo'],
+                answer: 1, explanation: 'Giraffes are the tallest living terrestrial animals.',
+                image: 'https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 148, subject: 'gk', topic: 'World Facts',
+                question: 'Who is known as the "Father of Computers"?',
+                options: ['Bill Gates', 'Steve Jobs', 'Charles Babbage', 'Alan Turing'],
+                answer: 2, explanation: 'Charles Babbage originated the concept of a programmable computer.',
+                image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 149, subject: 'gk', topic: 'World Facts',
+                question: 'Which country is famous for the Great Pyramids of Giza?',
+                options: ['Italy', 'Egypt', 'Greece', 'France'],
+                answer: 1, explanation: 'The ancient pyramids of Giza are located in Egypt.',
+                image: 'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=400&auto=format&fit=crop&q=80'
+            },
+            {
+                id: 150, subject: 'gk', topic: 'World Facts',
+                question: 'What is the hardest natural substance on Earth?',
+                options: ['Gold', 'Iron', 'Diamond', 'Granite'],
+                answer: 2, explanation: 'Diamond is the hardest naturally occurring mineral.',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80'
+            }
+        ];
+
+        // === APP STATE MANAGEMENT ===
+        let currentQuestions = [...questionsDB];
+        let currentIndex = 0;
+        let userAnswers = {}; // { qId: selectedIndex }
+        let appMode = 'quiz'; // 'quiz' or 'cards'
+        let currentSubjectFilter = 'all';
+
+        // === DOM ELEMENTS ===
+        const qText = document.getElementById('q-text');
+        const qImage = document.getElementById('q-image');
+        const badgeSubject = document.getElementById('badge-subject');
+        const badgeTopic = document.getElementById('badge-topic');
+        const qIdTag = document.getElementById('q-id-tag');
+        const optionsBox = document.getElementById('options-box');
+        const explanationBox = document.getElementById('explanation-box');
+        const explanationText = document.getElementById('explanation-text');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackIconBg = document.getElementById('feedback-icon-bg');
+        const progressText = document.getElementById('progress-text');
+        const progressBar = document.getElementById('progress-bar');
+        const navGrid = document.getElementById('nav-grid');
+        const scoreCounter = document.getElementById('score-counter');
+        const topicSelect = document.getElementById('topic-select');
+
+        // === INITIALIZATION ===
+        window.onload = () => {
+            lucide.createIcons();
+            populateTopicDropdown();
+            renderNavigatorGrid();
+            loadQuestion(0);
+            populatePrintView();
+        };
+
+        // Set Mode (Quiz or Flashcard)
+        function setAppMode(mode) {
+            appMode = mode;
+            const qView = document.getElementById('quiz-view');
+            const cView = document.getElementById('cards-view');
+            const qBtn = document.getElementById('mode-quiz-btn');
+            const cBtn = document.getElementById('mode-cards-btn');
+
+            if (mode === 'quiz') {
+                qView.classList.remove('hidden');
+                cView.classList.add('hidden');
+                qBtn.className = "px-3 py-1.5 rounded-lg transition bg-white text-slate-900 shadow";
+                cBtn.className = "px-3 py-1.5 rounded-lg transition text-white hover:bg-white/10";
+            } else {
+                qView.classList.add('hidden');
+                cView.classList.remove('hidden');
+                cBtn.className = "px-3 py-1.5 rounded-lg transition bg-white text-slate-900 shadow";
+                qBtn.className = "px-3 py-1.5 rounded-lg transition text-white hover:bg-white/10";
+            }
+            loadQuestion(currentIndex);
+        }
+
+        // Populate Dynamic Topic Dropdown
+        function populateTopicDropdown() {
+            const topics = [...new Set(questionsDB.map(q => q.topic))];
+            topicSelect.innerHTML = `<option value="all">All Topics (150 Questions)</option>`;
+            topics.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t;
+                opt.textContent = t;
+                topicSelect.appendChild(opt);
+            });
+        }
+
+        // Filter by Subject
+        function filterSubject(sub) {
+            currentSubjectFilter = sub;
+            const btns = document.querySelectorAll('.sub-btn');
+            btns.forEach(b => {
+                if (b.dataset.subject === sub) {
+                    b.className = "sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between bg-indigo-600 text-white shadow-md";
+                } else {
+                    b.className = "sub-btn w-full text-left px-3.5 py-2.5 rounded-2xl font-bold text-sm transition flex items-center justify-between text-slate-700 hover:bg-slate-100";
+                }
+            });
+
+            if (sub === 'all') {
+                currentQuestions = [...questionsDB];
+            } else {
+                currentQuestions = questionsDB.filter(q => q.subject === sub);
+            }
+
+            // Reset topic select
+            topicSelect.value = 'all';
+            renderNavigatorGrid();
+            loadQuestion(0);
+        }
+
+        // Filter by Topic
+        function filterTopic(topic) {
+            if (topic === 'all') {
+                if (currentSubjectFilter === 'all') {
+                    currentQuestions = [...questionsDB];
+                } else {
+                    currentQuestions = questionsDB.filter(q => q.subject === currentSubjectFilter);
+                }
+            } else {
+                currentQuestions = questionsDB.filter(q => q.topic === topic);
+            }
+            renderNavigatorGrid();
+            loadQuestion(0);
+        }
+
+        // Load Single Question Card
+        function loadQuestion(idx) {
+            if (currentQuestions.length === 0) return;
+            currentIndex = idx;
+            const q = currentQuestions[currentIndex];
+
+            // Update Quiz View elements
+            qText.textContent = `${idx + 1}. ${q.question}`;
+            qImage.src = q.image;
+            badgeSubject.textContent = q.subject.toUpperCase();
+            badgeTopic.textContent = q.topic;
+            qIdTag.textContent = `Q #${q.id} of 150`;
+
+            // Subject badge color styling
+            const subColors = {
+                math: 'bg-rose-100 text-rose-700 border-rose-200',
+                evs: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+                english: 'bg-sky-100 text-sky-700 border-sky-200',
+                hindi: 'bg-amber-100 text-amber-700 border-amber-200',
+                gk: 'bg-purple-100 text-purple-700 border-purple-200'
+            };
+            badgeSubject.className = `px-3 py-1 rounded-full text-xs font-bold border ${subColors[q.subject] || 'bg-slate-100 text-slate-700'}`;
+
+            // Progress Updates
+            progressText.textContent = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+            const pct = Math.round(((currentIndex + 1) / currentQuestions.length) * 100);
+            progressBar.style.width = `${pct}%`;
+
+            // Next / Prev button states
+            document.getElementById('btn-prev').disabled = (currentIndex === 0);
+            document.getElementById('btn-next').disabled = (currentIndex === currentQuestions.length - 1);
+
+            // Options Rendering
+            optionsBox.innerHTML = '';
+            const answered = userAnswers[q.id] !== undefined;
+            const userChoice = userAnswers[q.id];
+            const labels = ['A', 'B', 'C', 'D'];
+
+            q.options.forEach((optText, optIdx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-2xl border-2 font-bold text-sm transition flex items-center justify-between ";
+
+                if (!answered) {
+                    btn.className += "bg-slate-50 border-slate-200 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50/50";
+                    btn.onclick = () => selectOption(q.id, optIdx);
+                } else {
+                    btn.disabled = true;
+                    if (optIdx === q.answer) {
+                        btn.className += "bg-emerald-100 border-emerald-500 text-emerald-900 shadow-sm";
+                    } else if (optIdx === userChoice) {
+                        btn.className += "bg-rose-100 border-rose-500 text-rose-900";
+                    } else {
+                        btn.className += "bg-slate-50 border-slate-100 text-slate-400 opacity-60";
+                    }
+                }
+
+                btn.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold ${answered && optIdx === q.answer
+                        ? 'bg-emerald-600 text-white'
+                        : answered && optIdx === userChoice
+                            ? 'bg-rose-600 text-white'
+                            : 'bg-white text-slate-600 border border-slate-200'
+                    }">${labels[optIdx]}</span>
+            <span>${optText}</span>
+          </div>
+          ${answered && optIdx === q.answer
+                        ? '<i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>'
+                        : answered && optIdx === userChoice
+                            ? '<i data-lucide="x-circle" class="w-5 h-5 text-rose-600"></i>'
+                            : ''
+                    }
+        `;
+                optionsBox.appendChild(btn);
+            });
+
+            // Explanation Box Rendering
+            if (answered) {
+                explanationBox.classList.remove('hidden');
+                explanationText.textContent = q.explanation;
+
+                if (userChoice === q.answer) {
+                    explanationBox.className = "border-2 border-emerald-300 bg-emerald-50/70 rounded-2xl p-4";
+                    feedbackTitle.textContent = "Correct! Well done!";
+                    feedbackTitle.className = "font-bold text-sm text-emerald-800";
+                    feedbackIconBg.className = "p-2 rounded-xl bg-emerald-500 text-white";
+                } else {
+                    explanationBox.className = "border-2 border-rose-300 bg-rose-50/70 rounded-2xl p-4";
+                    feedbackTitle.textContent = "Oops! That's incorrect.";
+                    feedbackTitle.className = "font-bold text-sm text-rose-800";
+                    feedbackIconBg.className = "p-2 rounded-xl bg-rose-500 text-white";
+                }
+            } else {
+                explanationBox.classList.add('hidden');
+            }
+
+            // Flashcard view sync
+            document.getElementById('card-badge').textContent = `${q.subject.toUpperCase()} - ${q.topic}`;
+            document.getElementById('card-q-text').textContent = q.question;
+            document.getElementById('card-answer-text').textContent = `${labels[q.answer]}) ${q.options[q.answer]}`;
+            document.getElementById('card-exp-text').textContent = q.explanation;
+            document.getElementById('card-answer-box').classList.add('hidden');
+            document.getElementById('flip-hint').classList.remove('hidden');
+
+            lucide.createIcons();
+            highlightActiveNav();
+        }
+
+        function flipCard() {
+            const box = document.getElementById('card-answer-box');
+            const hint = document.getElementById('flip-hint');
+            box.classList.toggle('hidden');
+            hint.classList.toggle('hidden');
+        }
+
+        function selectOption(qId, optIdx) {
+            userAnswers[qId] = optIdx;
+            updateScore();
+            loadQuestion(currentIndex);
+            renderNavigatorGrid();
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) loadQuestion(currentIndex - 1);
+        }
+
+        function nextQuestion() {
+            if (currentIndex < currentQuestions.length - 1) loadQuestion(currentIndex + 1);
+        }
+
+        function updateScore() {
+            let score = 0;
+            Object.keys(userAnswers).forEach(id => {
+                const q = questionsDB.find(item => item.id == id);
+                if (q && userAnswers[id] === q.answer) score++;
+            });
+            scoreCounter.textContent = `Score: ${score} / ${questionsDB.length}`;
+        }
+
+        // Render Navigator Buttons Grid
+        function renderNavigatorGrid() {
+            navGrid.innerHTML = '';
+            currentQuestions.forEach((q, i) => {
+                const btn = document.createElement('button');
+                const isAns = userAnswers[q.id] !== undefined;
+                const isCorr = isAns && userAnswers[q.id] === q.answer;
+
+                btn.className = `h-8 text-xs font-bold rounded-xl transition border flex items-center justify-center ${i === currentIndex ? 'ring-2 ring-indigo-500 ring-offset-2' : ''
+                    } ${!isAns
+                        ? 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200'
+                        : isCorr
+                            ? 'bg-emerald-500 border-emerald-600 text-white'
+                            : 'bg-rose-500 border-rose-600 text-white'
+                    }`;
+                btn.textContent = i + 1;
+                btn.onclick = () => loadQuestion(i);
+                navGrid.appendChild(btn);
+            });
+        }
+
+        function highlightActiveNav() {
+            const children = navGrid.children;
+            for (let i = 0; i < children.length; i++) {
+                if (i === currentIndex) {
+                    children[i].classList.add('ring-2', 'ring-indigo-500', 'ring-offset-2');
+                } else {
+                    children[i].classList.remove('ring-2', 'ring-indigo-500', 'ring-offset-2');
+                }
+            }
+        }
+
+        // Populate Print View
+        function populatePrintView() {
+            const pGrid = document.getElementById('print-questions-grid');
+            const pKey = document.getElementById('print-answer-key');
+
+            pGrid.innerHTML = '';
+            pKey.innerHTML = '';
+
+            questionsDB.forEach((q, idx) => {
+                // Question item
+                const qElem = document.createElement('div');
+                qElem.className = "border-b border-slate-300 pb-3 font-sans";
+                qElem.innerHTML = `
+          <div class="font-bold text-slate-900 mb-1">Q${idx + 1}. [${q.subject.toUpperCase()} - ${q.topic}] ${q.question}</div>
+          <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm text-slate-800 ml-4">
+            <div>(A) ${q.options[0]}</div>
+            <div>(B) ${q.options[1]}</div>
+            <div>(C) ${q.options[2]}</div>
+            <div>(D) ${q.options[3]}</div>
+          </div>
+        `;
+                pGrid.appendChild(qElem);
+
+                // Key item
+                const keyElem = document.createElement('div');
+                keyElem.className = "p-2 bg-slate-50 border rounded";
+                keyElem.innerHTML = `
+          <strong>Q${idx + 1}:</strong> (${['A', 'B', 'C', 'D'][q.answer]}) - <em>${q.explanation}</em>
+        `;
+                pKey.appendChild(keyElem);
+            });
+        }
+    </script>
+</body>
+
+</html>
