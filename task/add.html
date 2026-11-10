@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* @media screen and (max-width:1800px){ */
+
+
+
+
+    *{box-sizing: border-box;padding: 0%;margin: 0%;font-size:16px}
+
+            body{background-color:rgb(250, 249, 247);}
+            input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+            .heading_addition{display: flex;justify-content: center;align-items: center;padding: 1rem;background-color: beige;font-family: cursive;font-size: 2rem;}
+            .r_c_hm{border: 0px solid red;display: flex;flex-wrap: wrap;}
+            input{padding:1rem;width: 45vw;display: inline-block;font-size: 2rem;font-weight: 500;border: 0.0px solid gray;margin-right:0rem;border-right: 1px solid gray;border-bottom: 1px solid gray;}
+            .how_many{border-bottom: 0 solid;border-right: 0 solid;}
+
+.add_container{border: 0px solid pink;background-color: rgb(215, 216, 218) ;display: flex;justify-content: center;align-items: center;flex-wrap: wrap; padding-bottom: 10vh;}
+.mini_container{ margin:1rem; border: 1px solid green;display: inline-block;padding:0 0.5rem 1.5rem 1.5rem;border-radius: 0.3pc;background-color: whitesmoke;}
+
+
+.col_num{ letter-spacing: 1rem;font-size:1.5rem; font-family: cursive; }
+.sln{ border: 0px solid red;border-radius: 8.5pc;display: inline-block; color: gray;transform: translateX(-0.3rem);}; 
+ 
+button{min-width: 25vw;border: 1px solid gray;};
+
+  
+  .btn_eq{ }
+ .btn_eq{font-size: 2.5rem; border: 1px solid gray;  width: 45vw ;border-top: 0px solid gray;border-bottom: 0 solid;}
+ .refresh{
+     width: 95vw;height:2rem;margin-top: 1rem;
+};
+ .col_num_last::before{  }
+
+.add{transform: translateX(-1.6rem);}
+.add::before{content: "+";color: black; font-size: 1.5rem;font-weight: 400;  
+
+
+
+}
+
+
+            
+        /* } */
+    </style>
+</head>
+<body><h1 class="heading_addition">Addition ( + )</h1>
+    <div class="r_c_hm">
+         
+<input type="number" name="" id="" class="row" autofocus placeholder="row">
+<input type="number" name="" id=""class="col" autofocus  placeholder="col">
+<input type="number" name=""  id=""class="how_many" value="" autofocus  placeholder="how-many">
+
+<button class="btn_eq"> = </button>
+<button class="refresh">Refresh</button>
+    </div>
+    <hr>
+    
+    <div class="add_container">
+
+    </div>
+    <script>
+           function getRandomRgbColor() {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+                const a = Math.random() ;
+                return `rgba(${r}, ${g}, ${b},${a})`;
+              };
+    const r_c_hm=document.querySelector(".r_c_hm");
+    const row = document.querySelector(".row");
+     const col = document.querySelector(".col");
+     const btn_eq=document.querySelector(".btn_eq");
+     const how_many = document.querySelector(".how_many");
+     const add_container=document.querySelector(".add_container");
+     const refresh=document.querySelector(".refresh");
+       
+     refresh.addEventListener("click",()=>{ add_container.innerHTML=""; how_many.value="";row.value="";col.value="";})
+     btn_eq.addEventListener("click",()=>{
+        
+     for(let howMany =1; howMany<= +how_many.value;howMany++){const mini_container=document.createElement("div");
+        mini_container.classList.add("mini_container");
+   mini_container.style.border = `0.0px solid ${getRandomRgbColor()}`;
+      add_container.appendChild(mini_container);
+          {  const sln=document.createElement("span");
+              sln.classList.add("sln");
+              mini_container.prepend(sln);
+              sln.innerHTML=`Q${howMany}.`;
+            }
+
+         for (let howManyCol = 1; howManyCol <= +col.value; howManyCol++) {
+             //console.log(col.value);
+             const col_num = document.createElement("div");
+             col_num.classList.add("col_num");
+             mini_container.appendChild(col_num);
+             
+             if(col.value==howManyCol){     
+                 col_num.classList.add("col_num_last");  
+    const col_num_last=document.querySelectorAll(".col_num_last");
+ col_num_last.forEach((el,index)=>{el.classList.add("add")})
+           
+          
+         
+                           
+           const hr=document.createElement("hr"); 
+         mini_container.append(hr);
+         }
+           
+
+              const randomNum= Math.floor(Math.random()*(10**row.value)); 
+         col_num.innerText = randomNum;
+     //console.log(randomNum.toString().length);
+     if(randomNum.toString().length!==row.value) {
+         
+        const diff= +row.value - +randomNum.toString().length;
+
+        for(let addZero =1;addZero <=diff;addZero++){
+             col_num.innerText+=0
+             console.log("diff", diff);
+        }
+          
+        // if (randomNum.toString().length == row.value) {
+        }
+            
+            
+
+
+             //for (let howManyRow
+           
+         }
+          
+//for(let howMany
+     }
+    
+
+
+        
+         
+        // btn_eq.addEventListener
+     })
+
+
+
+    </script>
+</body>
+</html>
