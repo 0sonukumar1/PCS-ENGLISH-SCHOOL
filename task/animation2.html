@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <style>
+      * {
+          box-sizing: border-box;
+          margin: 0%;
+          padding: 0%;
+          font-size: 16px;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+
+      button,
+      input {
+          width: 30vw;
+          height: 2rem;
+          font-size: 1.5rem;
+          padding: 1rem;
+          
+          margin: 30px;
+
+      }
+
+      body {
+          background-color: bolac;
+          margin-top: 50px;
+          background: black;
+ 
+      }
+
+      button {
+          display: flex;
+          justify-content: center;
+          align-items: center
+      }
+
+      .table_container {
+          width: 100%;
+          height: 50%;
+          border: 0px solid red;
+          display: flex;
+          flex-wrap: wrap;
+          -reverse;
+          background-color: black;
+         
+      }
+
+      .div_upto_input_value { 
+          margin-bottom: 0px;
+          border: 0.0px solid green;
+      }
+
+      .ten_div_in_each_div { 
+          border: 0px solid rgb(0, 0, 0);
+          ;
+          font-weight: 700;
+          padding: 0.5rem;
+          color: blue;
+          border-left: 0px solid red;
+          background-color: greuen;
+          margin-bottom: 0px;
+          border-radius: 0%;
+          width: 5px;
+          height: 5px;
+          font-size: 1.0rem;
+          border-radius: 5pc;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .ten_div_in_each_div:hover {
+          width: 200px;
+
+
+          height: 200px;
+          border-radius: 50%;
+
+      }
+
+      .t888diev {
+          height: 0;
+      }
+
+      @keyframes spinzr {
+          from {
+              transform: rotateZ(0deg);
+          }
+
+          to {
+              transform: rotateZ(calc(360deg));
+          }
+      }
+
+      @keyframes spinzw {
+          from {
+              transform: rotateZ(0deg);
+          }
+
+          to {
+              transform: rotateZ(calc(360deg));
+          }
+      }
+
+      @keyframes spinz {
+
+         0% {
+               
+              scale: 0
+          }
+
+          50% {
+              rotate: 1turn;
+              scale: 1.0;
+              margin:1rem
+          }
+          100% {rotate: 1turn;
+              scale: 0.3; margin:2rem
+          }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="equal_input">
+      <input type="number" placeholder=" पहाड़ा संख्या दर्ज करें" autofocus />
+      <button>=</button>
+    </div>
+    <div class="table_container"></div>
+    <script>
+        const body=document.querySelector("body");
+
+      const equal_input = document.querySelector(".equal_input");
+      function getRandomRgbColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+
+        return `rgb(${r}, ${g}, ${b})`;
+      }
+
+      const colorArray = ["red", "blue", "green", "pink", "yellow"];
+
+      for (let k = 0; k <= colorArray.length; k++) {}
+
+      // const ten_div_in_each_div=document.querySelectorAll(".ten_div_in_each_div");
+
+      const table_container = document.querySelector(".table_container");
+      // table_container.style.background="conic-gradient(pink,gray,green)";
+      setInterval(() => {
+        // table_container.style.background=`${getRandomRgbColor()}`;
+      }, 1000);
+      const input = document.querySelector("input");
+      const btn = document.querySelector("button");
+
+      btn.addEventListener("click", () => {
+        equal_input.style.display = "none";
+        body.style.margin="0px"
+        const time = 0;
+        // function div_upto_input_value_f(){
+        /////////////////////div_upto_input_value
+        for (let i = 1; i <= +input.value; i++) {
+          setTimeout(
+            () => {
+              const div_upto_input_value = document.createElement("div");
+              div_upto_input_value.classList.add(`div_upto_input_value`);
+              div_upto_input_value.classList.add(`i_${i}`);
+              table_container.appendChild(div_upto_input_value);
+              ////////////////////////ten_div_in_each_div
+              for (let j = 1; j <= 10; j++) {
+                setTimeout(() => {
+                  const ten_div_in_each_div = document.createElement("div");
+                  ten_div_in_each_div.classList.add(`ten_div_in_each_div`);
+                  // Run this inside or after your button click event:
+                  const allTenDivs = document.querySelectorAll(
+                    ".ten_div_in_each_div",
+                  );
+
+                  // Loop through them using standard array methods like .forEach()
+
+                  setInterval(() => {
+                     ten_div_in_each_div.style.border = `2px solid ${getRandomRgbColor()}`;
+
+                    ten_div_in_each_div.style.borderLeft = `2px solid ${getRandomRgbColor()}`;
+
+                    // ten_div_in_each_div.style.background=`${getRandomRgbColor()}`;
+
+                    //  ten_div_in_each_div[0].style.fontSize="80px";
+                    allTenDivs.forEach((div, index) => {
+                      if (index % 2 === 0) {
+                        div.style.backgroundColor = "black";
+
+                        //div.style.animation=`spinzr 3s linear infinite`
+                      } else {
+                        div.style.backgroundColor = "whiteo";
+                        // div.style.animation=`spinzw 3s linear infinite`;
+                      }
+                    });
+                    ten_div_in_each_div.style.animation = `spinz 3s linear infinite,spiny 3s linear infinite,spinx 3s linear infinite`;
+                  }, 1000);
+
+                  ten_div_in_each_div.classList.add(`j_${j}`, "tdiev");
+                  div_upto_input_value.appendChild(ten_div_in_each_div);
+
+                  //ten_div_in_each_div.innerHTML=`${i*j}`;
+                }, time * j);
+              }
+            },
+            10 * time * i,
+          );
+        }
+
+        //btn.addEventListener(     }) UP
+      });
+
+      //ten_div_in_each_div[i].backgroundColor=`getRandomRgbColor()`
+
+      //console.log(getRandomRgbColor()); // Example output: rgb(123, 45, 200)
+
+      const ten_each_div = document.querySelector(".ten_div_in_each_div");
+    </script>
+  </body>
+</html>

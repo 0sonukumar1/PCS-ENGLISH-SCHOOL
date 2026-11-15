@@ -1,163 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        /* @media screen and (max-width:1800px){ */
+      
 
+      * {
+        box-sizing: border-box;
+        padding: 0%;
+        margin: 0%;
+        font-size: 16px;
+      }
 
+      body {
+        background-color: rgb(250, 249, 247);
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .heading_addition {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: beige;
+        font-family: cursive;
+        font-size: 2rem;
+      }
+      .r_c_hm {
+        border: 0px solid red;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .row,
+      .col,
+      .how_many {
+        padding: 1rem;
+        width: 45vw;
+        display: inline-block;
+        font-size: 2rem;
+        font-weight: 500;
+        border: 0px solid gray;
+        margin-right: 0rem;
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+      }
+      .how_many {
+        border-bottom: 0 solid;
+        border-right: 0 solid;
+      }
 
+      .add_container {
+        border: 0px solid pink;
+        background-color: rgb(215, 216, 218);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding-bottom: 10vh;
+      }
+      .mini_container {
+        margin: 1rem;
+        border: 0px solid green;
+        display: inline-block;
+        padding: 0 0.5rem 1.5rem 1.5rem;
+        border-radius: 0.3pc;
+        background-color: whitesmoke;
+      }
 
-    *{box-sizing: border-box;padding: 0%;margin: 0%;font-size:16px}
+      .col_num {
+        letter-spacing: 1rem;
+        font-size: 1.5rem;
+        font-family: "Times New Roman", Times, serif;
+      }
+      .sln {
+        border: 0px solid red;
+        border-radius: 8.5pc;
+        display: inline-block;
+        color: gray;
+        transform: translateX(-0.3rem);
+      }
 
-            body{background-color:rgb(250, 249, 247);}
-            input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-            .heading_addition{display: flex;justify-content: center;align-items: center;padding: 1rem;background-color: beige;font-family: cursive;font-size: 2rem;}
-            .r_c_hm{border: 0px solid red;display: flex;flex-wrap: wrap;}
-            input{padding:1rem;width: 45vw;display: inline-block;font-size: 2rem;font-weight: 500;border: 0.0px solid gray;margin-right:0rem;border-right: 1px solid gray;border-bottom: 1px solid gray;}
-            .how_many{border-bottom: 0 solid;border-right: 0 solid;}
+      button {
+        min-width: 25vw;
+        border: 1px solid gray;
+      }
 
-.add_container{border: 0px solid pink;background-color: rgb(215, 216, 218) ;display: flex;justify-content: center;align-items: center;flex-wrap: wrap; padding-bottom: 10vh;}
-.mini_container{ margin:1rem; border: 1px solid green;display: inline-block;padding:0 0.5rem 1.5rem 1.5rem;border-radius: 0.3pc;background-color: whitesmoke;}
+      .btn_eq {
+      }
+      .btn_eq {
+        font-size: 2.5rem;
+        border: 1px solid gray;
+        width: 45vw;
+        border-top: 0px solid gray;
+        border-bottom: 0 solid;
+      }
+      .refresh {
+        width: 95vw;
+        height: 2rem;
+        margin-top: 1rem;
+      }
+      .col_num_last::before {
+      }
+      .col_num {
+        transform: translateX(1rem);
+      }
 
+      .add {
+        transform: translateX(-0.9rem);
+      }
+      .add::before {
+        content: "+";
+        font-size: 1.5rem;
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .input_sum {
+        width: 80vw;
+        height: 2rem;
+        color: red;
+      }
+      .input_sum {
+        min-width: 1vw;
+        height: 2.5rem;
+        color: blue;
+        border: 1px solid rgb(88, 87, 87);
+        border-top: none;
+        padding-left: 1rem;
+        letter-spacing: 1rem;
+        font-size: 1.3rem;
+        text-align: left;
 
-.col_num{ letter-spacing: 1rem;font-size:1.5rem; font-family:'Times New Roman', Times, serif }
-.sln{ border: 0px solid red;border-radius: 8.5pc;display: inline-block; color: gray;transform: translateX(-0.3rem);}; 
+      }
+
  
-button{min-width: 25vw;border: 1px solid gray;};
-
-  
-  .btn_eq{ }
- .btn_eq{font-size: 2.5rem; border: 1px solid gray;  width: 45vw ;border-top: 0px solid gray;border-bottom: 0 solid;}
- .refresh{
-     width: 95vw;height:2rem;margin-top: 1rem;
-};
- .col_num_last::before{  }
-.col_num{transform: translateX(1rem);}
-
-.add{transform: translateX(-0.9rem);}
-.add::before{content: "+";
-font-size: 1.5rem;font-weight: 300; font-family: Arial, Helvetica, sans-serif;
-
-
-
-}
-
-  /* @media screen and (max-width:360px){ 
-     .col_num_last::before{  }
-.col_num{transform: translateX(1rem);}
-
-.add{transform: translateX(-0.9rem);"🞢"}
-.add::before{content: "+";color: black; font-size: 1.5rem;font-weight: 300; background-color: rwebeccapurple;text-align: right; padding:0px;margin: 0px;box-sizing: border-box;
- }
-  } */
-            
-        /* } */
     </style>
-</head>
-<body><h1 class="heading_addition">Addition ( + )</h1>
+  </head>
+  <body>
+    <h1 class="heading_addition">Addition ( + )</h1>
+
     <div class="r_c_hm">
-         
-<input type="number" name="" id="" class="row" autofocus placeholder="row">
-<input type="number" name="" id=""class="col" autofocus  placeholder="col">
-<input type="number" name=""  id=""class="how_many" value="" autofocus  placeholder="how-many">
+      <input
+        type="number"
+        name=""
+        id=""
+        class="row"
+        autofocus
+        placeholder="row"
+      />
+      <input
+        type="number"
+        name=""
+        id=""
+        class="col"
+        autofocus
+        placeholder="col"
+      />
+      <input
+        type="number"
+        name=""
+        id=""
+        class="how_many"
+        value=""
+        autofocus
+        placeholder="how-many"
+      />
 
-<button class="btn_eq"> = </button>
-<button class="refresh">Refresh</button>
+      <button class="btn_eq">=</button>
+      <button class="refresh">Refresh</button>
     </div>
-    <hr>
-    
-    <div class="add_container">
+    <hr />
 
-    </div>
+    <div class="add_container"></div>
     <script>
-           function getRandomRgbColor() {
-                const r = Math.floor(Math.random() * 256);
-                const g = Math.floor(Math.random() * 256);
-                const b = Math.floor(Math.random() * 256);
-                const a = Math.random() ;
-                return `rgba(${r}, ${g}, ${b},${a})`;
-              };
-    const r_c_hm=document.querySelector(".r_c_hm");
-    const row = document.querySelector(".row");
-     const col = document.querySelector(".col");
-     const btn_eq=document.querySelector(".btn_eq");
-     const how_many = document.querySelector(".how_many");
-     const add_container=document.querySelector(".add_container");
-     const refresh=document.querySelector(".refresh");
-       
-     refresh.addEventListener("click",()=>{ add_container.innerHTML=""; how_many.value="";row.value="";col.value="";})
-     btn_eq.addEventListener("click",()=>{
-        
-     for(let howMany =1; howMany<= +how_many.value;howMany++){const mini_container=document.createElement("div");
-        mini_container.classList.add("mini_container");
-   mini_container.style.border = `0.0px solid ${getRandomRgbColor()}`;
+     
+  const row = document.querySelector(".row");
+  const col = document.querySelector(".col");
+  const btn_eq = document.querySelector(".btn_eq");
+  const how_many = document.querySelector(".how_many");
+  const add_container = document.querySelector(".add_container");
+  const refresh = document.querySelector(".refresh");
+
+  refresh.addEventListener("click", () => {
+    add_container.innerHTML = "";
+    how_many.value = "";
+    row.value = "";
+    col.value = "";
+  });
+
+  btn_eq.addEventListener("click", () => {
+    // Optional: Clear previous questions before generating new ones
+    add_container.innerHTML = "";
+
+    const digits = +row.value;
+    const numCount = +col.value;
+    const questionCount = +how_many.value;
+
+    for (let howMany = 1; howMany <= questionCount; howMany++) {
+      // 1. Reset totalsum for each new question
+      let totalsum = 0;
+
+      const mini_container = document.createElement("div");
+      mini_container.classList.add("mini_container");
       add_container.appendChild(mini_container);
-          {  const sln=document.createElement("span");
-              sln.classList.add("sln");
-              mini_container.prepend(sln);
-              sln.innerHTML=`Q${howMany}.`;
+
+      const sln = document.createElement("span");
+      sln.classList.add("sln");
+      sln.innerText = `Q${howMany}.`;
+      mini_container.prepend(sln);
+
+      for (let howManyCol = 1; howManyCol <= numCount; howManyCol++) {
+        const col_num = document.createElement("div");
+        col_num.classList.add("col_num");
+
+        // Generate random number and pad with trailing zeros to match digit length
+        const randomNum = Math.floor(Math.random() * 10 ** digits);
+        const formattedNum = randomNum.toString().padEnd(digits, "0");
+
+        col_num.innerText = formattedNum;
+        mini_container.appendChild(col_num);
+
+        // 2. Add the generated number once to totalsum
+        totalsum += +formattedNum;
+
+        // Add the '+' sign and answer box on the last number
+        if (howManyCol === numCount) {
+          col_num.classList.add("col_num_last", "add");
+
+          const hr = document.createElement("hr");
+          mini_container.append(hr);
+
+          const input_sum = document.createElement("input");
+          input_sum.classList.add("input_sum");
+          input_sum.setAttribute("type", "number");
+          
+          // 3. Assign the calculated sum directly to this card's input
+          // (Remove the line below if you want the user to type the answer themselves)
+       input_sum.addEventListener("keyup", () => {
+        if (+input_sum.value === 1.11) {
+           input_sum.value = totalsum;
+           input_sum.style.border = "2px solid green";
+         }
+            if (+input_sum.value === totalsum) {
+              input_sum.style.border = "2px solid green";
+              input_sum.style.backgroundColor = "#90EE90";
+              //#e6f4ea"; // Optional: subtle success background
+            } else {
+              input_sum.style.border = "1px solid rgb(88, 87, 87)"; // Reset border
+              input_sum.style.backgroundColor = ""; // Reset background
             }
-
-         for (let howManyCol = 1; howManyCol <= +col.value; howManyCol++) {
-             //console.log(col.value);
-             const col_num = document.createElement("div");
-             col_num.classList.add("col_num");
-             mini_container.appendChild(col_num);
-             
-             if(col.value==howManyCol){     
-                 col_num.classList.add("col_num_last");  
-    const col_num_last=document.querySelectorAll(".col_num_last");
- col_num_last.forEach((el,index)=>{el.classList.add("add")})
-           
+          });
           
-         
-                           
-           const hr=document.createElement("hr"); 
-         mini_container.append(hr);
-         }
-           
+          
 
-              const randomNum= Math.floor(Math.random()*(10**row.value)); 
-         col_num.innerText = randomNum;
-     //console.log(randomNum.toString().length);
-     if(randomNum.toString().length!==row.value) {
-         
-        const diff= +row.value - +randomNum.toString().length;
-
-        for(let addZero =1;addZero <=diff;addZero++){
-             col_num.innerText+=0
-             console.log("diff", diff);
+          mini_container.append(input_sum);
         }
-          
-        // if (randomNum.toString().length == row.value) {
-        }
-            
-            
-
-
-             //for (let howManyRow
-           
-         }
-          
-//for(let howMany
-     }
-    
-
-
-        
-         
-        // btn_eq.addEventListener
-     })
-
-
-
+      }
+    }
+  });
+ 
     </script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pcs animation1</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+
+        .div_container {
+            
+             display: flex; flex-wrap: wrap;
+             
+        }
+
+
+        .div {
+            width: 10px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0%;
+            box-sizing: border-box;
+            
+         
+            transform: rotateZ(65deg);
+            animation: rotaterect 50s linear infinite;
+           
+        }
+        @media screen and (max-width:600px) {
+          .div{width: 10px;
+            height: 150px;background:  ;}  
+        }
+        
+
+        @keyframes rotaterect {
+            from {
+                transform: rotateZ(0);
+                border-radius: 1pc;
+            
+            }
+
+            to {
+                transform: rotateZ(360);
+                border-radius: 1pc;
+               
+            }
+        }
+
+       
+    </style>
+
+</head>
+
+<body>
+     
+    <div class="div_container"></div>
+
+    <script>
+        function getRandomRgbColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            const a = Math.random();
+            return `rgb(${r}, ${g}, ${b} )`;
+        };
+        const div_container = document.querySelector(".div_container");
+
+        for (let i = 1; i <= 900; i++) { div_container.innerHTML += `<div class="up_div">  <div class="div"></div></div>` }
+        const divs = document.querySelectorAll(".div");
+        div_container.style.borderRadius = "50%"
+
+        divs.forEach((el, index) => {
+        { 
+            el.style.margin = "6px";
+            if (index % 2 == 0) { el.style.transform = "rotateZ(600deg )"; } if (index % 2 !== 0) { el.style.transform = "rotateZ(3600deg)"; }
+            }
+            setInterval(()=>{
+     el.style.border = `2px solid ${getRandomRgbColor()} `
+
+            },1);
+            el.style.border = `2px solid ${getRandomRgbColor()} `
+
+            setInterval(() => {
+           if (index % 2 == 0) {    el.style.transform = "rotateZ(600deg )"; } if (index % 2 !== 0) {  el.style.transform = "rotateZ(3600deg)"; }
+                 
+            }, 3000);
+         });
+
+ 
+    </script>
+</body>
+
+</html>
+  
