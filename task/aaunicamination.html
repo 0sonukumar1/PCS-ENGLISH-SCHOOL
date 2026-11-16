@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .divUnderDiv_container{border: 2px solid green;}
+        .addadiv{width: 100px;height: 50px;border: 2px solid red;}
+        .yy{margin: 10px;width: 100px;height: 10rem;border: 2px solid darkblue;}
+    </style>
+</head>
+<body>
+    <div class="eq_input">
+
+        <input type="number" name="" id=""class="input">
+        <button class="eq">=</button>
+
+    </div>
+    <div class="divUnderDiv_container">
+
+    </div>
+    <script>
+        const eq_input=document.querySelector(".eq_input");
+        const input=document.querySelector(".input");
+        const eq=document.querySelector(".eq");
+
+        
+   const divUnderDiv_container=document.querySelector(".divUnderDiv_container");
+   divUnderDiv_container.innerHTML='';
+eq.addEventListener("click",()=>{
+ 
+for(let ndiv=1;ndiv<=+input.value;ndiv++){
+    const addadiv=document.createElement("div");
+    addadiv.classList.add("addadiv");
+    divUnderDiv_container.innerHTML=` <div class="yy">
+
+    </div>`
+ let totaldiv=`<div class="yy"></div>`
+ setTimeout(()=>{
+
+    
+    
+    addadiv.style.width=`${(+input.value - ndiv)*10}px`;
+    addadiv.style.height = `${(+input.value - ndiv) * 10}px`;
+     divUnderDiv_container.appendChild(addadiv);
+    console.log(ndiv)
+},1000*ndiv)
+  
+}
+
+    
+//eq.addEventListener(()=>{
+})
+
+
+
+    </script>
+</body>
+</html>

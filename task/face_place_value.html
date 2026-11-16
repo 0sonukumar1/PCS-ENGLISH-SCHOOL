@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Place Value & Face Value | स्थानीय मान और अंकित मान</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0%;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: rgb(250, 249, 247);
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .heading_main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: #e3f2fd;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;
+            font-size: 2rem;
+            color: #0d47a1;
+        }
+
+        .r_c_hm {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .digits,
+        .how_many {
+            padding: 1rem;
+            width: 47.5vw;
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 500;
+            border: 0px solid gray;
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .how_many {
+            border-right: 0 solid;
+        }
+
+        .sub_container {
+            background-color: rgb(215, 216, 218);
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 10vh;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .mini_container {
+            margin: 0.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            background-color: whitesmoke;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
+            flex: 1 1 300px;
+        }
+
+        .sln {
+            display: block;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .number_display {
+            font-size: 2rem;
+            letter-spacing: 0.3rem;
+            font-family: "Times New Roman", Times, serif;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #fff;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .highlight {
+            color: #d32f2f;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .input_group {
+            margin-top: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .input_group label {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .input_val {
+            height: 2.2rem;
+            color: blue;
+            border: 1px solid rgb(88, 87, 87);
+            padding-left: 0.5rem;
+            font-size: 1.2rem;
+            border-radius: 3px;
+        }
+
+        button {
+            min-width: 25vw;
+            border: 1px solid gray;
+        }
+
+        .btn_eq {
+            font-size: 2.5rem;
+            border: 1px solid gray;
+            width: 95vw;
+            border-top: 0px solid gray;
+            border-bottom: 0 solid;
+            cursor: pointer;
+            background-color: #bbdefb;
+        }
+
+        .btn_eq:hover {
+            background-color: #90caf9;
+        }
+
+        .refresh {
+            width: 95vw;
+            height: 2.5rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #ffcdd2;
+            border: 1px solid #e57373;
+            border-radius: 4px;
+        }
+
+        .refresh:hover {
+            background-color: #ef9a9a;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="heading_main">Place Value & Face Value</h1>
+
+    <div class="r_c_hm">
+        <input type="number" class="digits" autofocus placeholder="Digits (e.g., 4 or 5)" value="4" />
+        <input type="number" class="how_many" placeholder="How many questions" value="6" />
+
+        <button class="btn_eq">=</button>
+        <button class="refresh">Refresh / रीसेट करें</button>
+    </div>
+    <hr />
+
+    <div class="sub_container"></div>
+
+    <script>
+        const digitsInput = document.querySelector(".digits");
+        const howManyInput = document.querySelector(".how_many");
+        const btnEq = document.querySelector(".btn_eq");
+        const subContainer = document.querySelector(".sub_container");
+        const refreshBtn = document.querySelector(".refresh");
+
+        refreshBtn.addEventListener("click", () => {
+            subContainer.innerHTML = "";
+            howManyInput.value = "";
+            digitsInput.value = "";
+        });
+
+        btnEq.addEventListener("click", () => {
+            subContainer.innerHTML = "";
+
+            const digitLen = +digitsInput.value;
+            const questionCount = +howManyInput.value;
+
+            if (digitLen <= 0 || questionCount <= 0) return;
+
+            for (let q = 1; q <= questionCount; q++) {
+                const miniContainer = document.createElement("div");
+                miniContainer.classList.add("mini_container");
+                subContainer.appendChild(miniContainer);
+
+                // Generate random N-digit number (ensuring first digit is not 0)
+                let min = 10 ** (digitLen - 1);
+                let max = (10 ** digitLen) - 1;
+                const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+                const numStr = randomNum.toString();
+
+                // Pick a random index to target for place value / face value
+                const targetIndex = Math.floor(Math.random() * numStr.length);
+                const targetDigit = numStr[targetIndex];
+
+                // Calculate answers
+                const faceValue = +targetDigit;
+                const placeValue = +targetDigit * (10 ** (numStr.length - 1 - targetIndex));
+
+                // Question label (Hindi & English)
+                const sln = document.createElement("span");
+                sln.classList.add("sln");
+                sln.innerHTML = `[Q${q}] संख्या <b>${numStr}</b> में रेखांकित अंक का मान बताएँ:`;
+                miniContainer.appendChild(sln);
+
+                // Render number with highlighted target digit
+                const numDisplay = document.createElement("div");
+                numDisplay.classList.add("number_display");
+
+                let formattedHtml = "";
+                for (let i = 0; i < numStr.length; i++) {
+                    if (i === targetIndex) {
+                        formattedHtml += `<span class="highlight">${numStr[i]}</span>`;
+                    } else {
+                        formattedHtml += numStr[i];
+                    }
+                }
+                numDisplay.innerHTML = formattedHtml;
+                miniContainer.appendChild(numDisplay);
+
+                // Input for Place Value (स्थानीय मान)
+                const pvGroup = document.createElement("div");
+                pvGroup.classList.add("input_group");
+                pvGroup.innerHTML = `<label>स्थानीय मान (Place Value):</label>`;
+
+                const inputPV = document.createElement("input");
+                inputPV.classList.add("input_val");
+                inputPV.setAttribute("type", "number");
+                if (q === 1) inputPV.autofocus = true;
+
+                inputPV.addEventListener("keyup", () => {
+                    if (+inputPV.value === placeValue) {
+                        inputPV.style.border = "2px solid green";
+                        inputPV.style.backgroundColor = "#90EE90";
+                    } else {
+                        inputPV.style.border = "1px solid rgb(88, 87, 87)";
+                        inputPV.style.backgroundColor = "";
+                    }
+                });
+                pvGroup.appendChild(inputPV);
+                miniContainer.appendChild(pvGroup);
+
+                // Input for Face Value (अंकित मान)
+                const fvGroup = document.createElement("div");
+                fvGroup.classList.add("input_group");
+                fvGroup.innerHTML = `<label>अंकित मान (Face Value):</label>`;
+
+                const inputFV = document.createElement("input");
+                inputFV.classList.add("input_val");
+                inputFV.setAttribute("type", "number");
+
+                inputFV.addEventListener("keyup", () => {
+                    if (+inputFV.value === faceValue) {
+                        inputFV.style.border = "2px solid green";
+                        inputFV.style.backgroundColor = "#90EE90";
+                    } else {
+                        inputFV.style.border = "1px solid rgb(88, 87, 87)";
+                        inputFV.style.backgroundColor = "";
+                    }
+                });
+                fvGroup.appendChild(inputFV);
+                miniContainer.appendChild(fvGroup);
+            }
+        });
+    </script>
+</body>
+
+</html>
