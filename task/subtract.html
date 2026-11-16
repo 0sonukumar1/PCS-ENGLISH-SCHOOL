@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subtract ( - )</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0%;
+        margin: 0%;
+        font-size: 16px;
+      }
+
+      body {
+        background-color: rgb(250, 249, 247);
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .heading_subtraction {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: beige;
+        font-family: cursive;
+        font-size: 2rem;
+      }
+
+      .r_c_hm {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .row,
+      .col,
+      .how_many {
+        padding: 1rem;
+        width: 45vw;
+        display: inline-block;
+        font-size: 2rem;
+        font-weight: 500;
+        border: 0px solid gray;
+        margin-right: 0rem;
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+      }
+
+      .how_many {
+        border-bottom: 0 solid;
+        border-right: 0 solid;
+      }
+
+      .sub_container {
+        background-color: rgb(215, 216, 218);
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 10vh;
+      }
+
+      .mini_container {
+        margin: 1rem;
+        display: inline-block;
+        padding: 0 0.5rem 1.5rem 1.5rem;
+        border-radius: 0.3pc;
+        background-color: whitesmoke;
+      }
+
+      .col_num {
+        letter-spacing: 1rem;
+        font-size: 1.5rem;
+        font-family: "Times New Roman", Times, serif;
+        transform: translateX(1rem);
+      }
+
+      .sln {
+        display: inline-block;
+        color: gray;
+        transform: translateX(-0.3rem);
+      }
+
+      button {
+        min-width: 25vw;
+        border: 1px solid gray;
+      }
+
+      .btn_eq {
+        font-size: 2.5rem;
+        border: 1px solid gray;
+        width: 45vw;
+        border-top: 0px solid gray;
+        border-bottom: 0 solid;
+        cursor: pointer;
+      }
+
+      .refresh {
+        width: 95vw;
+        height: 2rem;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+
+      .sub {
+        transform: translateX(-0.6rem);
+      }
+
+      .sub::before {
+        content: "-";
+        font-size: 1.5rem;
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .input_diff {
+        min-width: 1vw;
+        height: 2.5rem;
+        color: blue;
+        border: 1px solid rgb(88, 87, 87);
+        border-top: none;
+        padding-left: 1rem;
+        letter-spacing: 1rem;
+        font-size: 1.3rem;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="heading_subtraction">Subtraction ( - )</h1>
+
+    <div class="r_c_hm">
+      <input type="number" class="row" autofocus placeholder="row (digits)" value=""/>
+      <input type="number" class="col" placeholder="col (numbers)" value="2"/>
+      <input type="number" class="how_many" placeholder="how-many" value="10"/>
+
+      <button class="btn_eq">=</button>
+      <button class="refresh">Refresh</button>
+    </div>
+    <hr />
+
+    <div class="sub_container"></div>
+
+    <script>
+      const row = document.querySelector(".row");
+      const col = document.querySelector(".col");
+      const btn_eq = document.querySelector(".btn_eq");
+      const how_many = document.querySelector(".how_many");
+      const sub_container = document.querySelector(".sub_container");
+      const refresh = document.querySelector(".refresh");
+
+      refresh.addEventListener("click", () => {
+        sub_container.innerHTML = "";
+        how_many.value = "";
+        row.value = "";
+        col.value = "";
+      });
+
+      btn_eq.addEventListener("click", () => {
+        sub_container.innerHTML = "";
+
+        const digits = +row.value;
+        const numCount = +col.value || 2; // Defaults to 2 numbers if left blank
+        const questionCount = +how_many.value;
+
+        if (digits <= 0 || numCount <= 0 || questionCount <= 0) return;
+
+        for (let howMany = 1; howMany <= questionCount; howMany++) {
+          const mini_container = document.createElement("div");
+          mini_container.classList.add("mini_container");
+          sub_container.appendChild(mini_container);
+
+          const sln = document.createElement("span");
+          sln.classList.add("sln");
+          sln.innerText = `[Q${howMany}]निम्नलिखित संख्याओं को घटाएँ।`;
+          mini_container.prepend(sln);
+
+          // Generate numbers and sort descending so the largest number is on top
+          let nums = [];
+          for (let i = 0; i < numCount; i++) {
+            const randomNum = Math.floor(Math.random() * 10 ** digits);
+            const formattedNum = randomNum.toString().padEnd(digits, "0");
+            nums.push(formattedNum);
+          }
+          nums.sort((a, b) => +b - +a);
+
+          // Calculate total difference (first number minus all subsequent numbers)
+          let totalDiff = +nums[0];
+          for (let i = 1; i < nums.length; i++) {
+            totalDiff -= +nums[i];
+          }
+
+          nums.forEach((numStr, index) => {
+            const col_num = document.createElement("div");
+            col_num.classList.add("col_num");
+            col_num.innerText = numStr;
+            mini_container.appendChild(col_num);
+
+            // Add the '-' sign and answer box on the last number
+            if (index === nums.length - 1) {
+              col_num.classList.add("col_num_last", "sub");
+
+              const hr = document.createElement("hr");
+              mini_container.append(hr);
+
+              const input_diff = document.createElement("input");
+              input_diff.classList.add("input_diff");
+              input_diff.setAttribute("type", "number");
+              if (howMany === 1) input_diff.autofocus = true;
+
+              // Live validation + 1.11 cheat code
+              input_diff.addEventListener("keyup", () => {
+                if (+input_diff.value === 1.11) {
+                  input_diff.value = totalDiff;
+                }
+
+                if (
+                  input_diff.value !== "" &&
+                  +input_diff.value === totalDiff
+                ) {
+                  input_diff.style.border = "2px solid green";
+                  input_diff.style.backgroundColor = "#90EE90";
+                } else {
+                  input_diff.style.border = "1px solid rgb(88, 87, 87)";
+                  input_diff.style.backgroundColor = "";
+                }
+              });
+
+              mini_container.append(input_diff);
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

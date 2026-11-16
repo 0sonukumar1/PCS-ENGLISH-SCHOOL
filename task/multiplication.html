@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplication Practice</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0%;
+        margin: 0%;
+        font-size: 16px;
+      }
+
+      body {
+        background-color: rgb(250, 249, 247);
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .heading_multiplication {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: beige;
+        font-family: cursive;
+        font-size: 2rem;
+      }
+
+      .r_c_hm {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .row,
+      .col,
+      .how_many {
+        padding: 1rem;
+        width: 45vw;
+        display: inline-block;
+        font-size: 2rem;
+        font-weight: 500;
+        border: 0px solid gray;
+        margin-right: 0rem;
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+      }
+
+      .how_many {
+        border-bottom: 0 solid;
+        border-right: 0 solid;
+      }
+
+      .multiplication_container {
+        background-color: rgb(215, 216, 218);
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 10vh;
+      }
+
+      .mini_container {
+        margin: 1rem;
+        display: inline-block;
+        padding: 0 0.5rem 1.5rem 1.5rem;
+        border-radius: 0.3pc;
+        background-color: whitesmoke;
+      }
+
+      .col_num {
+        letter-spacing: 1rem;
+        font-size: 1.5rem;
+        font-family: "Times New Roman", Times, serif;
+        transform: translateX(1rem);
+      }
+
+      .sln {
+        color: gray;
+        transform: translateX(-0.3rem);
+        display: inline-block;
+      }
+
+      button {
+        min-width: 25vw;
+        border: 1px solid gray;
+      }
+
+      .btn_eq {
+        font-size: 2.5rem;
+        border: 1px solid gray;
+        width: 45vw;
+        border-top: 0px solid gray;
+        border-bottom: 0 solid;
+        cursor: pointer;
+      }
+
+      .refresh {
+        width: 95vw;
+        height: 2rem;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+
+      .add {
+        transform: translateX(-0.9rem);
+      }
+
+      .add::before {
+        content: "×";
+        font-size: 1.5rem;
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .input_product {
+        min-width: 1vw;
+        height: 2.5rem;
+        color: blue;
+        border: 1px solid rgb(88, 87, 87);
+        border-top: none;
+        padding-left: 1rem;
+        letter-spacing: 1rem;
+        font-size: 1.3rem;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="heading_multiplication">Multiplication ( × )</h1>
+
+    <div class="r_c_hm">
+      <input type="number" class="row" autofocus placeholder="row (digits)" />
+      <input type="number" class="col" autofocus placeholder="col (factors)" />
+      <input type="number" class="how_many" placeholder="how-many questions" />
+
+      <button class="btn_eq">=</button>
+      <button class="refresh">Refresh</button>
+    </div>
+    <hr />
+
+    <div class="multiplication_container"></div>
+
+    <script>
+      const row = document.querySelector(".row");
+      const col = document.querySelector(".col");
+      const btn_eq = document.querySelector(".btn_eq");
+      const how_many = document.querySelector(".how_many");
+      const multiplication_container = document.querySelector(
+        ".multiplication_container",
+      );
+      const refresh = document.querySelector(".refresh");
+
+      refresh.addEventListener("click", () => {
+        multiplication_container.innerHTML = "";
+        how_many.value = "";
+        row.value = "";
+        col.value = "";
+      });
+
+      btn_eq.addEventListener("click", () => {
+        multiplication_container.innerHTML = "";
+
+        const digits = +row.value;
+        const numCount = +col.value;
+        const questionCount = +how_many.value;
+
+        if (digits <= 0 || numCount <= 0 || questionCount <= 0) return;
+
+        for (let howMany = 1; howMany <= questionCount; howMany++) {
+          let totalProduct = 1;
+
+          const mini_container = document.createElement("div");
+          mini_container.classList.add("mini_container");
+          multiplication_container.appendChild(mini_container);
+
+          const sln = document.createElement("span");
+          sln.classList.add("sln");
+          sln.innerText = `Q${howMany}.Find the multiplication of follwing numbers`;
+          mini_container.prepend(sln);
+
+          for (let howManyCol = 1; howManyCol <= numCount; howManyCol++) {
+            const col_num = document.createElement("div");
+            col_num.classList.add("col_num");
+
+            // Generate random number and pad with trailing zeros
+            const randomNum = Math.floor(Math.random() * 10 ** digits);
+            const formattedNum = randomNum.toString().padEnd(digits, "0");
+
+            col_num.innerText = formattedNum;
+            mini_container.appendChild(col_num);
+
+            // Multiply the numbers together
+            totalProduct *= +formattedNum;
+
+            // Add multiplication sign and input box on the last factor
+            if (howManyCol === numCount) {
+              col_num.classList.add("col_num_last", "add");
+
+              const hr = document.createElement("hr");
+              mini_container.append(hr);
+
+              const input_product = document.createElement("input");
+              input_product.classList.add("input_product");
+              input_product.setAttribute("type", "number");
+
+              // Live validation + 1.11 cheat code
+              input_product.addEventListener("keyup", () => {
+                if (+input_product.value === 1.11) {
+                  input_product.value = totalProduct;
+                }
+
+                if (+input_product.value === totalProduct) {
+                  input_product.style.border = "2px solid green";
+                  input_product.style.backgroundColor = "#90EE90";
+                } else {
+                  input_product.style.border = "1px solid rgb(88, 87, 87)";
+                  input_product.style.backgroundColor = "";
+                }
+              });
+
+              mini_container.append(input_product);
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

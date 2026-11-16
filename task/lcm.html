@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCM Practice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0%;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: rgb(250, 249, 247);
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .heading_lcm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: beige;
+            font-family: cursive;
+            font-size: 2rem;
+        }
+
+        .r_c_hm {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .digits,
+        .count,
+        .how_many {
+            padding: 1rem;
+            width: 45vw;
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 500;
+            border: 0px solid gray;
+            margin-right: 0rem;
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .how_many {
+            border-bottom: 0 solid;
+            border-right: 0 solid;
+        }
+
+        .lcm_container {
+            background-color: rgb(215, 216, 218);
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 10vh;
+        }
+
+        .mini_container {
+            margin: 1rem;
+            display: inline-block;
+            padding: 0.8rem 1.2rem 1.5rem 1.2rem;
+            border-radius: 0.3pc;
+            background-color: whitesmoke;
+            min-width: 220px;
+        }
+
+        .sln {
+            display: block;
+            color: gray;
+            margin-bottom: 0.5rem;
+        }
+
+        .numbers_row {
+            font-size: 1.5rem;
+            font-family: "Times New Roman", Times, serif;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1rem;
+            font-weight: bold;
+        }
+
+        button {
+            min-width: 25vw;
+            border: 1px solid gray;
+        }
+
+        .btn_eq {
+            font-size: 2.5rem;
+            border: 1px solid gray;
+            width: 45vw;
+            border-top: 0px solid gray;
+            border-bottom: 0 solid;
+            cursor: pointer;
+        }
+
+        .refresh {
+            width: 95vw;
+            height: 2rem;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+
+        .input_lcm {
+            width: 100%;
+            height: 2.5rem;
+            color: blue;
+            border: 1px solid rgb(88, 87, 87);
+            margin-top: 0.5rem;
+            padding-left: 0.6rem;
+            letter-spacing: 0.2rem;
+            font-size: 1.3rem;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="heading_lcm">LCM ( Least Common Multiple )</h1>
+
+    <div class="r_c_hm">
+        <input type="number" class="digits" autofocus placeholder="digits (e.g. 2)" />
+        <input type="number" class="count" placeholder="how many nums (e.g. 3)" />
+        <input type="number" class="how_many" placeholder="how many questions" />
+
+        <button class="btn_eq">=</button>
+        <button class="refresh">Refresh</button>
+    </div>
+    <hr />
+
+    <div class="lcm_container"></div>
+
+    <script>
+        const digitsInput = document.querySelector(".digits");
+        const countInput = document.querySelector(".count");
+        const howManyInput = document.querySelector(".how_many");
+        const btn_eq = document.querySelector(".btn_eq");
+        const lcm_container = document.querySelector(".lcm_container");
+        const refresh = document.querySelector(".refresh");
+
+        // Helper function: Greatest Common Divisor (Euclidean Algorithm)
+        function getGCD(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        // Helper function: Least Common Multiple
+        function getLCM(a, b) {
+            if (a === 0 || b === 0) return 0;
+            return Math.abs(a * b) / getGCD(a, b);
+        }
+
+        refresh.addEventListener("click", () => {
+            lcm_container.innerHTML = "";
+            howManyInput.value = "";
+            digitsInput.value = "";
+            countInput.value = "";
+        });
+
+        btn_eq.addEventListener("click", () => {
+            lcm_container.innerHTML = "";
+
+            const digits = +digitsInput.value;
+            const numCount = +countInput.value;
+            const questionCount = +howManyInput.value;
+
+            if (digits <= 0 || numCount <= 0 || questionCount <= 0) return;
+
+            // Calculate min and max range based on digit count (e.g., 2 digits -> 10 to 99)
+            const min = digits === 1 ? 2 : 10 ** (digits - 1);
+            const max = 10 ** digits - 1;
+
+            for (let q = 1; q <= questionCount; q++) {
+                const mini_container = document.createElement("div");
+                mini_container.classList.add("mini_container");
+                lcm_container.appendChild(mini_container);
+
+                const sln = document.createElement("span");
+                sln.classList.add("sln");
+                sln.innerText = `Q${q}. Find LCM of:`;
+                mini_container.appendChild(sln);
+
+                let numsArray = [];
+                let currentLCM = 1;
+
+                for (let i = 1; i <= numCount; i++) {
+                    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+                    numsArray.push(randomNum);
+
+                    // Calculate running LCM across all numbers in this question
+                    currentLCM = i === 1 ? randomNum : getLCM(currentLCM, randomNum);
+                }
+
+                const numbers_row = document.createElement("div");
+                numbers_row.classList.add("numbers_row");
+                numbers_row.innerText = numsArray.join(", ");
+                mini_container.appendChild(numbers_row);
+
+                const hr = document.createElement("hr");
+                mini_container.appendChild(hr);
+
+                const input_lcm = document.createElement("input");
+                input_lcm.classList.add("input_lcm");
+                input_lcm.setAttribute("type", "number");
+                input_lcm.setAttribute("placeholder", "Answer...");
+                if (q === 1) input_lcm.autofocus = true;
+
+                // Live validation + 1.11 cheat code
+                input_lcm.addEventListener("keyup", () => {
+                    if (+input_lcm.value === 1.11) {
+                        input_lcm.value = currentLCM;
+                    }
+
+                    if (+input_lcm.value === currentLCM) {
+                        input_lcm.style.border = "2px solid green";
+                        input_lcm.style.backgroundColor = "#90EE90";
+                    } else {
+                        input_lcm.style.border = "1px solid rgb(88, 87, 87)";
+                        input_lcm.style.backgroundColor = "";
+                    }
+                });
+
+                mini_container.appendChild(input_lcm);
+            }
+        });
+    </script>
+</body>
+
+</html>

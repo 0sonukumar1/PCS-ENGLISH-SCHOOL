@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Division ( ÷ ) - Exact Whole Numbers</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0%;
+        margin: 0%;
+        font-size: 16px;
+      }
+
+      body {
+        background-color: rgb(250, 249, 247);
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      .heading_division {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: beige;
+        font-family: cursive;
+        font-size: 2rem;
+      }
+
+      .r_c_hm {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .row,
+      .col,
+      .how_many {
+        padding: 1rem;
+        width: 45vw;
+        display: inline-block;
+        font-size: 2rem;
+        font-weight: 500;
+        border: 0px solid gray;
+        margin-right: 0rem;
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+      }
+
+      .how_many {
+        border-bottom: 0 solid;
+        border-right: 0 solid;
+      }
+
+      .div_container {
+        background-color: rgb(215, 216, 218);
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 10vh;
+      }
+
+      .mini_container {
+        margin: 1rem;
+        display: inline-block;
+        padding: 0.8rem 1.2rem 1.5rem 1.2rem;
+        border-radius: 0.3pc;
+        background-color: whitesmoke;
+        min-width: 240px;
+      }
+
+      .sln {
+        color: gray;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .equation_row {
+        font-size: 1.6rem;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+        letter-spacing: 0.15rem;
+        margin: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .input_div {
+        width: 110px;
+        height: 2.4rem;
+        color: blue;
+        border: 1px solid rgb(88, 87, 87);
+        padding-left: 0.6rem;
+        letter-spacing: 0.15rem;
+        font-size: 1.3rem;
+        text-align: left;
+      }
+
+      button {
+        min-width: 25vw;
+        border: 1px solid gray;
+      }
+
+      .btn_eq {
+        font-size: 2.5rem;
+        border: 1px solid gray;
+        width: 45vw;
+        border-top: 0px solid gray;
+        border-bottom: 0 solid;
+        cursor: pointer;
+      }
+
+      .refresh {
+        width: 95vw;
+        height: 2rem;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="heading_division">Division ( ÷ )</h1>
+
+    <div class="r_c_hm">
+      <input
+        type="number"
+        class="row"
+        autofocus
+        placeholder="dividend digits"
+      />
+      <input type="number" class="col" placeholder="divisor digits" />
+      <input type="number" class="how_many" placeholder="how-many" />
+
+      <button class="btn_eq">=</button>
+      <button class="refresh">Refresh</button>
+    </div>
+    <hr />
+
+    <div class="div_container"></div>
+
+    <script>
+      const row = document.querySelector(".row");
+      const col = document.querySelector(".col");
+      const btn_eq = document.querySelector(".btn_eq");
+      const how_many = document.querySelector(".how_many");
+      const div_container = document.querySelector(".div_container");
+      const refresh = document.querySelector(".refresh");
+
+      refresh.addEventListener("click", () => {
+        div_container.innerHTML = "";
+        how_many.value = "";
+        row.value = "";
+        col.value = "";
+      });
+
+      btn_eq.addEventListener("click", () => {
+        div_container.innerHTML = "";
+
+        const dividendDigits = +row.value;
+        const divisorDigits = +col.value;
+        const questionCount = +how_many.value;
+
+        if (dividendDigits <= 0 || divisorDigits <= 0 || questionCount <= 0)
+          return;
+
+        const minDivisor = divisorDigits === 1 ? 2 : 10 ** (divisorDigits - 1);
+        const maxDivisor = 10 ** divisorDigits - 1;
+
+        const minDividend = 10 ** (dividendDigits - 1);
+        const maxDividend = 10 ** dividendDigits - 1;
+
+        for (let q = 1; q <= questionCount; q++) {
+          const mini_container = document.createElement("div");
+          mini_container.classList.add("mini_container");
+          div_container.appendChild(mini_container);
+
+          const sln = document.createElement("span");
+          sln.classList.add("sln");
+          sln.innerText = `Q${q} Divide the following numbers.`;
+          mini_container.appendChild(sln);
+
+          const divisor =
+            Math.floor(Math.random() * (maxDivisor - minDivisor + 1)) +
+            minDivisor;
+          const minQ = Math.max(1, Math.ceil(minDividend / divisor));
+          const maxQ = Math.max(minQ, Math.floor(maxDividend / divisor));
+          const correctAnswer =
+            Math.floor(Math.random() * (maxQ - minQ + 1)) + minQ;
+          const dividend = divisor * correctAnswer;
+
+          const equation_row = document.createElement("div");
+          equation_row.classList.add("equation_row");
+          equation_row.innerText = `${dividend} ÷ ${divisor} =`;
+
+          const input_div = document.createElement("input");
+          input_div.classList.add("input_div");
+          input_div.setAttribute("type", "number");
+          input_div.setAttribute("placeholder", "Ans");
+          if (q === 1) input_div.autofocus = true;
+
+          // Live validation + 1.11 cheat code
+          input_div.addEventListener("keyup", () => {
+            if (+input_div.value === 1.11) {
+              input_div.value = correctAnswer;
+            }
+
+            if (input_div.value !== "" && +input_div.value === correctAnswer) {
+              input_div.style.border = "2px solid green";
+              input_div.style.backgroundColor = "#90EE90";
+            } else {
+              input_div.style.border = "1px solid rgb(88, 87, 87)";
+              input_div.style.backgroundColor = "";
+            }
+          });
+
+          equation_row.appendChild(input_div);
+          mini_container.appendChild(equation_row);
+        }
+      });
+    </script>
+  </body>
+</html>

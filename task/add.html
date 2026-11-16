@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Add(+)</title>
     <style>
       
 
@@ -58,8 +58,7 @@
         border: 0px solid pink;
         background-color: rgb(215, 216, 218);
         display: flex;
-        justify-content: center;
-        align-items: center;
+         
         flex-wrap: wrap;
         padding-bottom: 10vh;
       }
@@ -210,7 +209,7 @@
 
       const sln = document.createElement("span");
       sln.classList.add("sln");
-      sln.innerText = `Q${howMany}.`;
+      sln.innerText = `Q${howMany} Add the following numbers.`;
       mini_container.prepend(sln);
 
       for (let howManyCol = 1; howManyCol <= numCount; howManyCol++) {
@@ -237,6 +236,8 @@
           const input_sum = document.createElement("input");
           input_sum.classList.add("input_sum");
           input_sum.setAttribute("type", "number");
+          input_sum.setAttribute("placeholder", "?...");
+          input_sum.autofocus=true;
           
           // 3. Assign the calculated sum directly to this card's input
           // (Remove the line below if you want the user to type the answer themselves)

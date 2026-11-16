@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Table</title>
+    <title>animation2</title>
+    <link rel="shortcut icon" href="/task/pcslogoimage.svg" type="image/x-icon">
     <style>
       * {
           box-sizing: border-box;
@@ -19,7 +20,7 @@
           height: 2rem;
           font-size: 1.5rem;
           padding: 1rem;
-          
+
           margin: 30px;
 
       }
@@ -28,7 +29,7 @@
           background-color: bolac;
           margin-top: 50px;
           background: black;
- 
+
       }
 
       button {
@@ -45,15 +46,15 @@
           flex-wrap: wrap;
           -reverse;
           background-color: black;
-         
+
       }
 
-      .div_upto_input_value { 
+      .div_upto_input_value {
           margin-bottom: 0px;
           border: 0.0px solid green;
       }
 
-      .ten_div_in_each_div { 
+      .ten_div_in_each_div {
           border: 0px solid rgb(0, 0, 0);
           ;
           font-weight: 700;
@@ -108,7 +109,7 @@
       @keyframes spinz {
 
          0% {
-               
+
               scale: 0
           }
 
@@ -126,12 +127,17 @@
 
   <body>
     <div class="equal_input">
-      <input type="number" placeholder=" पहाड़ा संख्या दर्ज करें" autofocus />
+      <input
+        type="number"
+        placeholder=" पहाड़ा संख्या दर्ज करें"
+        autofocus
+        value="50"
+      />
       <button>=</button>
     </div>
     <div class="table_container"></div>
     <script>
-        const body=document.querySelector("body");
+      const body = document.querySelector("body");
 
       const equal_input = document.querySelector(".equal_input");
       function getRandomRgbColor() {
@@ -156,9 +162,11 @@
       const input = document.querySelector("input");
       const btn = document.querySelector("button");
 
-      btn.addEventListener("click", () => {
+      ////btn.addEventListener("click", () => {
+  window.addEventListener("DOMContentLoaded", (event) => {
+    console.log("HTML DOM पूरी तरह लोड हो चुका है!");
         equal_input.style.display = "none";
-        body.style.margin="0px"
+        body.style.margin = "0px";
         const time = 0;
         // function div_upto_input_value_f(){
         /////////////////////div_upto_input_value
@@ -182,7 +190,7 @@
                   // Loop through them using standard array methods like .forEach()
 
                   setInterval(() => {
-                     ten_div_in_each_div.style.border = `2px solid ${getRandomRgbColor()}`;
+                    ten_div_in_each_div.style.border = `2px solid ${getRandomRgbColor()}`;
 
                     ten_div_in_each_div.style.borderLeft = `2px solid ${getRandomRgbColor()}`;
 
@@ -214,13 +222,11 @@
         }
 
         //btn.addEventListener(     }) UP
-      });
+      
+  });
+        ////});
 
-      //ten_div_in_each_div[i].backgroundColor=`getRandomRgbColor()`
-
-      //console.log(getRandomRgbColor()); // Example output: rgb(123, 45, 200)
-
-      const ten_each_div = document.querySelector(".ten_div_in_each_div");
+  
     </script>
   </body>
 </html>

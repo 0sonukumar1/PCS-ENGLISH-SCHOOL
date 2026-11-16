@@ -68,7 +68,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: cursive;
+            font-family : "Times New Roman", Times, serif;
         }
 
         .ten_div_in_each_div:hover {
@@ -180,6 +180,8 @@ input[type=number]::-webkit-inner-spin-button,
                 setTimeout(() => {
                     const div_upto_input_value = document.createElement("div");
                     div_upto_input_value.classList.add(`div_upto_input_value`);
+                    // setInterval(()=>{ div_upto_input_value.style.borderColor = getRandomRgbColor(); },1000)
+                   
                     div_upto_input_value.classList.add(`i_${i}`);
                     table_container.appendChild(div_upto_input_value);
                     ////////////////////////ten_div_in_each_div
