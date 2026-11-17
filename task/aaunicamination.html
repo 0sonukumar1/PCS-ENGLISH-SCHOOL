@@ -1,60 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Divs</title>
     <style>
-        .divUnderDiv_container{border: 2px solid green;}
-        .addadiv{width: 100px;height: 50px;border: 2px solid red;}
-        .yy{margin: 10px;width: 100px;height: 10rem;border: 2px solid darkblue;}
+        body{display: flex;justify-content: center;align-items: center;width: 100vw;height: 100vh;}
+      .sdiv {
+        border: 2px solid lightblue;
+        padding: 15px;
+        margin: 5px;
+        border-radius: 50%;
+        background-color: rgba(0, 123, 255, 0.08);
+        display: flexr;
+         animation: change 5s linear infinite;
+         
+      }
+      .divUnderDiv_container{display: flex;justify-content: center;align-items: center;}
+      @keyframes change {
+            0%{
+                 
+                scale: 0;
+            
+            }
+
+           100% {
+                scale: 2;
+                display: none;
+               
+            }
+              
+        }
+
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="eq_input">
-
-        <input type="number" name="" id=""class="input">
-        <button class="eq">=</button>
-
+      <input type="number" class="input" placeholder="How many nested divs?" />
+      <button class="eq">=</button>
     </div>
-    <div class="divUnderDiv_container">
 
-    </div>
+    <div class="divUnderDiv_container"></div>
+
     <script>
+        function getRandomRgbColor() {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+                const a = Math.random();
+                return `rgb(${r}, ${g}, ${b} )`;
+            };
         const eq_input=document.querySelector(".eq_input");
-        const input=document.querySelector(".input");
-        const eq=document.querySelector(".eq");
+      const input = document.querySelector(".input");
+      const eq = document.querySelector(".eq");
+      const divUnderDiv_container = document.querySelector(".divUnderDiv_container");
 
-        
-   const divUnderDiv_container=document.querySelector(".divUnderDiv_container");
-   divUnderDiv_container.innerHTML='';
-eq.addEventListener("click",()=>{
- 
-for(let ndiv=1;ndiv<=+input.value;ndiv++){
-    const addadiv=document.createElement("div");
-    addadiv.classList.add("addadiv");
-    divUnderDiv_container.innerHTML=` <div class="yy">
+      eq.addEventListener("click", () => {
+          eq_input.style.display="none"
+        // Clear previous output
+        divUnderDiv_container.innerHTML = "";
 
-    </div>`
- let totaldiv=`<div class="yy"></div>`
- setTimeout(()=>{
+        const count = +input.value;
+        if (count <= 0) return;
 
-    
-    
-    addadiv.style.width=`${(+input.value - ndiv)*10}px`;
-    addadiv.style.height = `${(+input.value - ndiv) * 10}px`;
-     divUnderDiv_container.appendChild(addadiv);
-    console.log(ndiv)
-},1000*ndiv)
-  
-}
+        // Start with the main container as the initial parent
+        let currentParent = divUnderDiv_container;
 
-    
-//eq.addEventListener(()=>{
-})
+        for (let ndiv = 0; ndiv < count; ndiv++) {
+            setTimeout(()=>{
+          const newDiv = document.createElement("div");
+          newDiv.classList.add(`div${ndiv}`, "sdiv");
+          setInterval(() => {
+              // newDiv.style.border = `2px solid ${getRandomRgbColor()}`;
+                // newDiv.style.border = `2px solid transparent`
+          }, 1000);
+       
+         // newDiv.innerText = `div${ndiv}`; // Optional label to see the nesting
 
+          // Append the new div inside the current parent
+          currentParent.appendChild(newDiv);
 
-
+          // Set the newly created div as the parent for the next iteration
+          currentParent = newDiv;
+          }, 1000 * ndiv)
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

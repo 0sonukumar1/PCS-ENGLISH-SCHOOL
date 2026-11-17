@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nested Divs - Concentric Rings</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            gap: 2rem;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .eq_input {
+            z-index: 10;
+        }
+
+        .divUnderDiv_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sdiv {
+            border: 2px solid transparent;
+            padding: 15px;
+            margin: 5px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: change 5s linear infinite;
+            color: transparent;
+        }
+ 
+        @keyframes change {
+            0% {
+                scale: 0.2;
+                opacity: 1;
+                transform: rotateZ(0deg);
+            }
+
+            80% {
+                opacity: 1;
+                 transform: rotateZ2(360deg);
+            }
+
+            100% {
+                scale: 1.5;
+                opacity: 1;
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="eq_input">
+        <input type="number" class="input" placeholder="How many nested divs?" value="50"/>
+        <button class="eq">=</button>
+    </div>
+
+    <div class="divUnderDiv_container"></div>
+
+    <script>
+         function getRandomRgbColor() {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+                const a = Math.random();
+                return `rgb(${r}, ${g}, ${b} )`;
+            };
+            const eq_input=document.querySelector(".eq_input");
+        const input = document.querySelector(".input");
+        //input.value="22";
+        const eq = document.querySelector(".eq");
+        const divUnderDiv_container = document.querySelector(".divUnderDiv_container");
+
+        let timers = [];
+
+        // eq.addEventListener("click", () => {
+          window.addEventListener("DOMContentLoaded", (event) => {
+                console.log("HTML DOM पूरी तरह लोड हो चुका है!");
+            eq_input.style.display="none"
+            // Clear previous timers and rings
+            timers.forEach((id) => clearTimeout(id));
+            timers = [];
+            divUnderDiv_container.innerHTML = "";
+
+            const count = +input.value;
+            if (count <= 0) return;
+
+            let currentParent = divUnderDiv_container;
+
+            for (let ndiv = 0; ndiv < count; ndiv++) {
+                const timerId = setTimeout(() => {
+
+                    const newDiv = document.createElement("div");
+                    newDiv.classList.add(`div${ndiv}`, "sdiv");
+ newDiv.style.borderTop=`2px solid  white`;
+
+                    currentParent.appendChild(newDiv);
+                    currentParent = newDiv;
+                }, 1000 * ndiv);
+
+                timers.push(timerId);
+            }
+        });   
+        // });
+    </script>
+</body>
+
+</html>
