@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संशोधित भूमि विवरण सूची - लाइव कैलकुलेटर</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+        .rate-input {
+            width: 80px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .total-container {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            background-color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+<input type="number" name="" id="">
+<div class="container">
+    <h2 id="pageTitle">संशोधित भूमि विवरण सूची</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>क्रम संख्या</th>
+                <th>खेत / स्थान का नाम</th>
+                <th>मूल क्षेत्रफल</th>
+                <th>रेट (बदलाव योग्य)</th>
+                <th>वर्तमान मूल्य (लाख में)</th>
+                <th>खाता / प्लॉट नंबर</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- डेटा जावास्क्रिप्ट और appendChild के माध्यम से यहाँ डायनेमिक रूप से जुड़ेगा -->
+        </tbody>
+    </table>
+
+    <div class="total-container" id="totalContainer">
+        <!-- कुल योग यहाँ ऑटोमैटिक अपडेट होगा -->
+    </div>
+</div>
+
+<script>
+    // JSON डेटा जिसमें सभी रिकॉर्ड्स मौजूद हैं
+    const landData = {
+      "title": "संशोधित भूमि विवरण सूची",
+      "unit": "लाख (Lakh)",
+      "records": [
+        { "id": 1, "name": "भाठात", "raw_area": 2.250, "rate": 1.25, "plot_number": "87/1031" },
+        { "id": 2, "name": "पच्छिम भ पौलत लास्ट खेत", "raw_area": 4.500, "rate": 0.50, "plot_number": "96/36" },
+        { "id": 3, "name": "पच्छिम भ करहात", "raw_area": 3.00, "rate": 0.50, "plot_number": "121/47" },
+        { "id": 4, "name": "बिल ल कोरथान", "raw_area": 2.00, "rate": 0.50, "plot_number": "121/473" },
+        { "id": 5, "name": "बिड़वा वाला", "raw_area": 3.500, "rate": 0.50, "plot_number": "121/660" },
+        { "id": 6, "name": "निम 4 कठा वाला", "raw_area": 14.500, "rate": 0.50, "plot_number": "121/673" },
+        { "id": 7, "name": "भुनेश्वर केल्ला मंदिर", "raw_area": 4.500, "rate": 2.00, "plot_number": "121/979" },
+        { "id": 8, "name": "खजुरत", "raw_area": 10.00, "rate": 0.50, "plot_number": "121/1195" },
+        { "id": 9, "name": "पच्छिम भ प्रदिप भी", "raw_area": 3.00, "rate": 0.50, "plot_number": "121/60" },
+        { "id": 10, "name": "डेड बिधुआ छोटा खेत", "raw_area": 8.250, "rate": 0.50, "plot_number": "121/1195" },
+        { "id": 11, "name": "टाराप किशोरी भी", "raw_area": 18.750, "rate": 0.50, "plot_number": "122/305" },
+        { "id": 12, "name": "सोतिया में मलखण बोरिंग करहात", "raw_area": 13.00, "rate": 0.50, "plot_number": "122/1219" },
+        { "id": 13, "name": "टाराप छोटा खेत", "raw_area": 2.00, "rate": 0.50, "plot_number": "125/1041" },
+        { "id": 14, "name": "दलान", "raw_area": 0.500, "rate": 2.00, "plot_number": "100/1048" },
+        { "id": 15, "name": "स्कूल अहरा पर", "raw_area": 4.500, "rate": 2.00, "plot_number": "32/1002" },
+        { "id": 16, "name": "घर के", "raw_area": 1.00, "rate": 0.0, "plot_number": "128/1040" },
+        { "id": 17, "name": "मुस्तकिम", "raw_area": 7.500, "rate": 2.0, "plot_number": "118/871" },
+        { "id": 18, "name": "सिगासन चौरी पर", "raw_area": 10.00, "rate": 2.0, "plot_number": "183/481" }
+      ]
+    };
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const tbody = document.getElementById("tableBody");
+        document.getElementById("pageTitle").innerText = landData.title;
+
+        // JSON डेटा का उपयोग करके appendChild के माध्यम से रो और कॉलम बनाना
+        landData.records.forEach(record => {
+            const tr = document.createElement("tr");
+            tr.dataset.rawArea = record.raw_area; // मूल क्षेत्रफल को डेटा एट्रिब्यूट में सुरक्षित रखना
+
+            // 1. आईडी कॉलम
+            const tdId = document.createElement("td");
+            tdId.innerText = record.id;
+            tr.appendChild(tdId);
+
+            // 2. खेत का नाम कॉलम
+            const tdName = document.createElement("td");
+            tdName.innerText = record.name;
+            tr.appendChild(tdName);
+
+            // 3. मूल क्षेत्रफल कॉलम
+            const tdArea = document.createElement("td");
+            tdArea.innerText = record.raw_area;
+            tr.appendChild(tdArea);
+
+            // 4. रेट कॉलम (जिसमें इनपुट बॉक्स होगा ताकि वैल्यू बदली जा सके)
+            const tdRate = document.createElement("td");
+            const rateInput = document.createElement("input");
+            rateInput.type = "number";
+            rateInput.step = "any";
+            rateInput.value = record.rate;
+            rateInput.className = "rate-input";
+            
+            // रेट बदलने पर ऑटोमैटिक कैलकुलेशन ट्रिगर करने के लिए इवेंट लिसनर
+            rateInput.addEventListener("input", calculateTotals);
+            tdRate.appendChild(rateInput);
+            tr.appendChild(tdRate);
+
+            // 5. वर्तमान मूल्य (लाख में) कॉलम
+            const tdValue = document.createElement("td");
+            tdValue.className = "calc-value";
+            tr.appendChild(tdValue);
+
+            // 6. प्लॉट नंबर कॉलम
+            const tdPlot = document.createElement("td");
+            tdPlot.innerText = record.plot_number;
+            tr.appendChild(tdPlot);
+
+            // पूरी टेबल रॉ (tr) को tbody में appendChild करना
+            tbody.appendChild(tr);
+        });
+
+        // पेज लोड होने पर पहली बार कैलकुलेशन रन करना
+        calculateTotals();
+    });
+
+    // सभी पंक्तियों के मान को कैलकुलेट करने और टोटल अपडेट करने का फंक्शन
+    function calculateTotals() {
+        const rows = document.querySelectorAll("#tableBody tr");
+        let grandTotal = 0;
+
+        rows.forEach(row => {
+            const rawArea = parseFloat(row.dataset.rawArea) || 0;
+            const rateInput = row.querySelector(".rate-input");
+            const rate = parseFloat(rateInput.value) || 0;
+
+            // क्षेत्रफल * रेट = वर्तमान मूल्य
+            const currentVal = rawArea * rate;
+
+            // उस पंक्ति के वर्तमान मूल्य वाले कॉलम को अपडेट करना
+            const valueCell = row.querySelector(".calc-value");
+            valueCell.innerText = currentVal.toFixed(4);
+
+            // ग्रैंड टोटल में जोड़ना
+            grandTotal += currentVal;
+        });
+
+        // सबसे नीचे कुल योग दिखाना
+        document.getElementById("totalContainer").innerText = `कुल वर्तमान मूल्य (Total Value): ${grandTotal.toFixed(4)} लाख`;
+    }
+      
+            const input=document.querySelector("input");
+            const container=document.querySelector(".container");
+            container.style.display = "none"
+        input.addEventListener("keyup",()=>{if(input.value== +6024){
+                container.style.display = "block"
+            };
+    })
+    
+</script>
+
+</body>
+</html>

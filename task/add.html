@@ -149,7 +149,7 @@
         id=""
         class="row"
         autofocus
-        placeholder="row"
+        placeholder="digits"value="3"
       />
       <input
         type="number"
@@ -157,16 +157,16 @@
         id=""
         class="col"
         autofocus
-        placeholder="col"
+        placeholder="line"value="2"
       />
       <input
         type="number"
         name=""
         id=""
         class="how_many"
-        value=""
+       
         autofocus
-        placeholder="how-many"
+        placeholder="Add"value="10"
       />
 
       <button class="btn_eq">=</button>
@@ -209,7 +209,7 @@
 
       const sln = document.createElement("span");
       sln.classList.add("sln");
-      sln.innerText = `Q${howMany} Add the following numbers.`;
+      sln.innerText = `Q${howMany}. Add the following numbers.`;
       mini_container.prepend(sln);
 
       for (let howManyCol = 1; howManyCol <= numCount; howManyCol++) {

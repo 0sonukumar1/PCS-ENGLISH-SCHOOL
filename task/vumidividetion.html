@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>विवरण सूची</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f1f9fc;
+        }
+        td:first-child {
+            font-weight: bold;
+            color: #2c3e50;
+            width: 25%;
+        }
+        input{height: 2.5rem;}
+    </style>
+    
+</head>
+<body>
+<input type="number">
+    <div class="container">
+        <h2>विवरण और विवरण सूची</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>नाम</th>
+                    <th>विवरण</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>प्रशांत जेड़ी</td>
+                    <td>अहरा + खजुरत + पौल पश्चिम (25)</td>
+                </tr>
+                <tr>
+                    <td>सोनू</td>
+                    <td>मुस्तकिम 1/2 + किशोरी टाराप + (80)</td>
+                </tr>
+                <tr>
+                    <td>रंजन</td>
+                    <td>मुनेश्वर स. + नीम + बिड़़ा + वित्त + पश्चिमी करहा</td>
+                </tr>
+                <tr>
+                    <td>पिता</td>
+                    <td>बाँस (4.5) + मुस्तकिम + भाद्दात + टाराप छोटा खेत</td>
+                </tr>
+                <tr>
+                    <td>हैप्पी</td>
+                    <td>शिगासन 1/2 + सोतिया मे (मलख) + (50)</td>
+                </tr>
+                <tr>
+                    <td>पवन</td>
+                    <td>शिगासन 1/2 + पश्चिम प्रदीप + पाचुविगहा छोटा खेत (-25)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const input=document.querySelector("input");
+        const container=document.querySelector(".container");
+        container.style.display = "none"
+        input.addEventListener("keyup",()=>{if(input.value== +6024){
+container.style.display="block"
+        };
+    })
+    </script>
+
+</body>
+</html>
