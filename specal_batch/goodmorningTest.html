@@ -70,7 +70,7 @@
     <script>
         const greetingEl = document.querySelector(".greeting");
         const timeEl = document.querySelector(".time");
-        const enableVoiceBtn = document.getElementById("enableVoiceBtn");
+        //const enableVoiceBtn = document.getElementById("enableVoiceBtn");
         const statusEl = document.getElementById("statusEl");
 
         let lastSpokenGreeting = "";
@@ -171,11 +171,11 @@
             }
         }
 
-        enableVoiceBtn.addEventListener("click", () => {
-            const text = greetingEl.textContent?.trim() || getGreeting(new Date().getHours());
-            lastSpokenGreeting = text;
-            speakGreeting(text);
-        });
+        // enableVoiceBtn.addEventListener("click", () => {
+        //     const text = greetingEl.textContent?.trim() || getGreeting(new Date().getHours());
+        //     lastSpokenGreeting = text;
+        //     speakGreeting(text);
+        // });
 
         if ("speechSynthesis" in window) {
             window.speechSynthesis.getVoices();
@@ -186,7 +186,8 @@
 
         updateClock(false);
         setInterval(() => updateClock(true), 1000);
-    </script>
+   
+   </script>
 </body>
 
 </html>
