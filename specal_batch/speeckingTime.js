@@ -125,3 +125,5 @@ body_voice.addEventListener("click", () => {
   updateClock(true);
 });
 // setTimeout(() => updateClock(true), 1000);
+updateClock();
+setInterval(updateClock, 1000);
