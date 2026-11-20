@@ -150,6 +150,8 @@
             border-radius: 12px;
             padding: 12px;
             overflow: hidden;
+            scale: 1;
+            margin-top: 0px;
         }
 
         svg {
@@ -158,6 +160,7 @@
             display: block;
             border-radius: 8px;
             background: #e2e8f0;
+          
         }
     </style>
 </head>
@@ -703,7 +706,7 @@
             const endNoseX = POLE_X + totalVisualPx;
             const noseX = startNoseX + clamped * (endNoseX - startNoseX);
             currentNoseX = noseX;
-            trainGroup.setAttribute("transform", `translate(${noseX}, 0)`);
+            trainGroup.setAttribute("transform", `translate(${noseX}, 0) ` );
 
             const engineFrontX = noseX - enginePx;
             if (!hornPlayedAtPole && engineFrontX >= POLE_X) {
