@@ -1,4 +1,4 @@
-document.querySelector(".nl-wrap").style.display = "none";
+document.querySelector("#nl-badge-frame").style.display = "none";
 setTimeout(() => {
-  document.querySelector(".nl-wrap").style.display = "none";
+  document.querySelector("#nl-badge-frame").style.display = "none";
 }, 10000);
