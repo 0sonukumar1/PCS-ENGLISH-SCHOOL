@@ -111,6 +111,9 @@
 
       .add {
         transform: translateX(-0.9rem);
+         display:  inline-block;
+         border: 0px solid red;
+        
       }
       .add::before {
         content: "+";
@@ -132,7 +135,8 @@
         padding-left: 1rem;
         letter-spacing: 1rem;
         font-size: 1.3rem;
-        text-align: left;
+
+         
 
       }
 
@@ -229,12 +233,44 @@
         // Add the '+' sign and answer box on the last number
         if (howManyCol === numCount) {
           col_num.classList.add("col_num_last", "add");
-
+        
           const hr = document.createElement("hr");
           mini_container.append(hr);
 
           const input_sum = document.createElement("input");
           input_sum.classList.add("input_sum");
+///////////////////////////
+         
+          const div_ra = document.querySelector(".add");
+          const input_rb = document.querySelector(".input_sum");
+         
+          //console.log("input_",input_rb)
+          ///////////
+/*for(let i=1;i<= +howMany;i++)
+{
+
+
+
+          if (div_ra && input_rb) {
+            // Get computed height as a string with unit (e.g., "60px")
+
+            const divWidth = window.getComputedStyle(div_ra).width;
+            //input_rb[0].style.width = divWidth;
+            
+            // Set the input width to match the div width
+            console.log(divWidth, "_width", input_rb.style.width);
+            }
+          }
+          ///////////////
+
+
+
+
+
+*/
+/**/
+//////////////////////////////////////
+
           input_sum.setAttribute("type", "number");
           input_sum.setAttribute("placeholder", "?...");
           input_sum.autofocus=true;
@@ -257,11 +293,11 @@
           });
           
           
-
+        
           mini_container.append(input_sum);
         }
-      }
-    }
+      } 
+    } 
   });
  
     </script>

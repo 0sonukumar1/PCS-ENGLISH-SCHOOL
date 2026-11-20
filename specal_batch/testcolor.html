@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="coman_style.css">
+    
+   <style>
+         *{box-sizing: border-box;padding: 0%;margin: 0%;}
+         input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+</head>
+<body>
+ 
+
+
+<div class="color_eq_container open_colse"> 
+    <input type="color" id="colorPicker" value="#38bdf8">
+    <p id="hexOutput"></p>
+    </div>
+    <script>
+        const picker = document.getElementById("colorPicker");
+        const output = document.getElementById("hexOutput");
+
+        // Read current value on load
+        output.textContent = picker.value;
+
+        // Update live as the user drags in the color picker
+        picker.addEventListener("input", () => {
+            output.textContent = picker.value;
+            document.body.style.backgroundColor = picker.value;
+        });
+        /////////
+       /* const displaybody_input = document.createElement("input");
+        displaybody_input.setAttribute("type", "number");
+         displaybody_input.classList.add("displaybody_input");
+        document.body.prepend   (displaybody_input);
+
+         
+        const color_eq_container = document.querySelector(".color_eq_container");
+        const body = document.querySelector("body");
+        color_eq_container.style.display = "none";
+            displaybody_input.addEventListener("keyup", () => {
+                if (displaybody_input.value == +88) {
+                    color_eq_container.style.display = "block";
+                    displaybody_input.style.display = "none";
+                }
+            })*/
+    </script>
+    <script src="/specal_batch/coman_password.js"></script>
+</body>
+</html>

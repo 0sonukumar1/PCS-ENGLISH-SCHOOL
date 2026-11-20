@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Crossing a Pole — SVG Simulator</title>
+    <link rel="stylesheet" href="coman_style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .bogie-stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bogie-stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .bogie-count {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="color_eq_container open_colse"> 
+    <div class="app">
+        <h1>Train Crossing a Pole</h1>
+        <p class="sub">Adjust speed and bogies, then press <strong>Go</strong> to see how long the full train takes to
+            pass the pole.</p>
+
+        <div class="controls">
+            <div class="field">
+                <label for="speedVal">Speed</label>
+                <input type="number" id="speedVal" min="0.5" step="any" value="20" />
+            </div>
+            <div class="field">
+                <label for="speedUnit">Speed Unit</label>
+                <select id="speedUnit">
+                    <option value="mps" selected>m/s (meters/sec)</option>
+                    <option value="kmph">km/h (kilometers/hr)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Number of Bogies</label>
+                <div class="bogie-stepper">
+                    <button type="button" id="decBogie" aria-label="Decrease bogies">−</button>
+                    <div class="bogie-count" id="bogieDisplay">3</div>
+                    <button type="button" id="incBogie" aria-label="Increase bogies">+</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="bogieLen">Length per Bogie (m)</label>
+                <input type="number" id="bogieLen" min="1" step="any" value="15" />
+            </div>
+            <div class="field">
+                <label for="engineLen">Engine Length (m)</label>
+                <input type="number" id="engineLen" min="1" step="any" value="20" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="readout" id="readout">
+            <div>Total Train Length: <strong id="totalLenOut">65.0 m</strong></div>
+            <div>Calculated Crossing Time: <strong id="calcTimeOut">3.25 s</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 s</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img" aria-label="SVG train with bogies crossing a pole">
+                <!-- Sky & Road / Ground -->
+                <rect x="0" y="0" width="1000" height="190" fill="#f1f5f9" />
+                <rect x="0" y="190" width="1000" height="90" fill="#475569" />
+                <!-- Road / Track rail -->
+                <line x1="0" y1="205" x2="1000" y2="205" stroke="#1e293b" stroke-width="4" />
+                <line x1="0" y1="213" x2="1000" y2="213" stroke="#94a3b8" stroke-width="2" stroke-dasharray="14 10" />
+
+                <!-- Pole at x = 680 -->
+                <g id="pole">
+                    <rect x="675" y="65" width="10" height="145" rx="2" fill="#dc2626" stroke="#7f1d1d"
+                        stroke-width="1.5" />
+                    <rect x="668" y="205" width="24" height="8" rx="2" fill="#1e293b" />
+                    <text x="680" y="54" text-anchor="middle" font-size="13" font-weight="700"
+                        fill="#0f172a">POLE</text>
+                    <line x1="680" y1="60" x2="680" y2="225" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 4"
+                        opacity="0.6" />
+                </g>
+
+                <!-- Moving Train Group (nose at x = 0 inside group) -->
+                <g id="trainGroup"></g>
+            </svg>
+        </div>
+    </div>
+</div>
+    <script>
+        const speedInput = document.getElementById("speedVal");
+        const speedUnitSelect = document.getElementById("speedUnit");
+        const bogieDisplay = document.getElementById("bogieDisplay");
+        const bogieLenInput = document.getElementById("bogieLen");
+        const engineLenInput = document.getElementById("engineLen");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const totalLenOut = document.getElementById("totalLenOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+        const trainGroup = document.getElementById("trainGroup");
+
+        const POLE_X = 680;
+        const TRACK_Y = 205;
+        const PX_PER_METER = 3.2; // visual scale so bogies fit nicely on screen
+
+        let bogies = 3;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+        let elapsedRealSec = 0;
+
+        function getSpeedMps() {
+            const raw = Number(speedInput.value);
+            if (!raw || raw <= 0 || Number.isNaN(raw)) return 0;
+            return speedUnitSelect.value === "kmph" ? raw * (1000 / 3600) : raw;
+        }
+
+        function getTotalLengthMeters() {
+            const eLen = Math.max(1, Number(engineLenInput.value) || 20);
+            const bLen = Math.max(1, Number(bogieLenInput.value) || 15);
+            return eLen + bogies * bLen;
+        }
+
+        function getCrossingTimeSec() {
+            const v = getSpeedMps();
+            if (v <= 0) return Infinity;
+            return getTotalLengthMeters() / v;
+        }
+
+        function renderTrainSvg() {
+            const eLen = Math.max(1, Number(engineLenInput.value) || 20);
+            const bLen = Math.max(1, Number(bogieLenInput.value) || 15);
+
+            const enginePx = Math.max(44, Math.min(130, eLen * PX_PER_METER));
+            const bogiePx = Math.max(34, Math.min(95, bLen * PX_PER_METER));
+            const gapPx = 6;
+
+            let parts = [];
+
+            // Engine: front nose is at x = -enginePx, back is at x = 0 (so nose leads to the right)
+            const engX = -enginePx;
+            const engY = TRACK_Y - 46;
+            parts.push(`
+        <rect x="${engX}" y="${engY}" width="${enginePx}" height="36" rx="6" fill="#2563eb" stroke="#1e3a8a" stroke-width="2" />
+        <rect x="${engX + 8}" y="${engY + 6}" width="${Math.max(12, enginePx * 0.35)}" height="12" rx="2" fill="#bae6fd" />
+        <circle cx="${engX + enginePx - 4}" cy="${engY + 24}" r="4" fill="#facc15" />
+        <text x="${engX + enginePx / 2}" y="${engY + 23}" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">ENGINE</text>
+        <circle cx="${engX + 12}" cy="${TRACK_Y - 4}" r="6" fill="#0f172a" />
+        <circle cx="${engX + enginePx - 12}" cy="${TRACK_Y - 4}" r="6" fill="#0f172a" />
+      `);
+
+            // Bogies trailing behind the engine (going left, toward negative x)
+            let cursorRight = engX - gapPx;
+            for (let i = 1; i <= bogies; i++) {
+                const bx = cursorRight - bogiePx;
+                const by = TRACK_Y - 42;
+                // Coupler
+                parts.push(`<line x1="${cursorRight}" y1="${TRACK_Y - 22}" x2="${cursorRight + gapPx}" y2="${TRACK_Y - 22}" stroke="#1e293b" stroke-width="3" />`);
+                // Bogie body
+                parts.push(`
+          <rect x="${bx}" y="${by}" width="${bogiePx}" height="32" rx="5" fill="#0284c7" stroke="#0c4a6e" stroke-width="2" />
+          <rect x="${bx + 6}" y="${by + 6}" width="${Math.max(8, bogiePx - 12)}" height="9" rx="2" fill="#e0f2fe" />
+          <text x="${bx + bogiePx / 2}" y="${by + 25}" text-anchor="middle" font-size="9" font-weight="700" fill="#ffffff">B${i}</text>
+          <circle cx="${bx + 10}" cy="${TRACK_Y - 4}" r="5.5" fill="#0f172a" />
+          <circle cx="${bx + bogiePx - 10}" cy="${TRACK_Y - 4}" r="5.5" fill="#0f172a" />
+        `);
+                cursorRight = bx - gapPx;
+            }
+
+            trainGroup.innerHTML = parts.join("");
+        }
+
+        function updateReadouts() {
+            bogieDisplay.textContent = bogies;
+            const totalM = getTotalLengthMeters();
+            const tSec = getCrossingTimeSec();
+            totalLenOut.textContent = `${totalM.toFixed(1)} m (${bogies} bogie${bogies === 1 ? "" : "s"})`;
+            calcTimeOut.textContent = Number.isFinite(tSec) ? `${tSec.toFixed(2)} s` : "Enter speed > 0";
+            renderTrainSvg();
+            positionTrainByProgress(0);
+        }
+
+        // Progress = 0 when train nose touches POLE_X; Progress = 1 when train tail passes POLE_X
+        function positionTrainByProgress(progress) {
+            const totalLenPx = getTotalLengthMeters() * PX_PER_METER;
+            // Nose starts at POLE_X (progress=0) and moves right by totalLenPx (progress=1)
+            const noseX = POLE_X + progress * totalLenPx;
+            trainGroup.setAttribute("transform", `translate(${noseX}, 0)`);
+        }
+
+        function stopAnimation() {
+            running = false;
+            startTimestamp = null;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+        }
+
+        function resetSimulation() {
+            stopAnimation();
+            elapsedRealSec = 0;
+            liveTimeOut.textContent = "0.00 s";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const tSec = getCrossingTimeSec();
+            if (!Number.isFinite(tSec) || tSec <= 0) {
+                calcTimeOut.textContent = "Please enter a valid speed > 0";
+                return;
+            }
+
+            stopAnimation();
+            running = true;
+            elapsedRealSec = 0;
+            liveTimeOut.textContent = "0.00 s";
+            positionTrainByProgress(0);
+
+            // Visual animation runs in real time (capped at 12s visually for long calculations while showing true calculated time)
+            const visualDurationSec = Math.min(12, Math.max(0.6, tSec));
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) startTimestamp = now;
+                const dtReal = (now - startTimestamp) / 1000;
+                const visualProgress = Math.min(1, dtReal / visualDurationSec);
+                const simulatedClockSec = visualProgress * tSec;
+
+                liveTimeOut.textContent = `${simulatedClockSec.toFixed(2)} s`;
+                positionTrainByProgress(visualProgress);
+
+                if (visualProgress < 1) {
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    running = false;
+                    liveTimeOut.textContent = `${tSec.toFixed(2)} s (Done)`;
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        document.getElementById("incBogie").addEventListener("click", () => {
+            bogies = Math.min(20, bogies + 1);
+            resetSimulation();
+        });
+
+        document.getElementById("decBogie").addEventListener("click", () => {
+            bogies = Math.max(0, bogies - 1);
+            resetSimulation();
+        });
+
+        [speedInput, speedUnitSelect, bogieLenInput, engineLenInput].forEach((el) => {
+            el.addEventListener("input", resetSimulation);
+            el.addEventListener("change", resetSimulation);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSimulation);
+
+        updateReadouts();
+    </script>
+    <script src="/specal_batch/coman_password.js"></script>
+</body>
+
+</html>

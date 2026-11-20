@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fraction Addition ( + )</title>
+    <link rel="stylesheet" href="/specal_batch/coman_style.css">
+
+
+    
+    <link rel="shortcut icon" href="/task/pcslogoimage.svg" type="image/x-icon">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0%;
+            margin: 0%;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: rgb(250, 249, 247);
+        }
+
+        input[type="text"]::-webkit-inner-spin-button,
+        input[type="text"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .heading_frac {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            background-color: beige;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            ;
+            font-size: 2rem;
+        }
+
+        .r_c_hm {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .max_den,
+        .mode,
+        .how_many {
+            padding: 1rem;
+            width: 45vw;
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 500;
+            border: 0px solid gray;
+            margin-right: 0rem;
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+        }
+
+        .how_many {
+            border-bottom: 0 solid;
+            border-right: 0 solid;
+        }
+
+        .frac_container {
+            background-color: rgb(215, 216, 218);
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 10vh;
+        }
+
+        .mini_container {
+            margin: 1rem;
+            display: inline-block;
+            padding: 0.8rem 1.2rem 1.5rem 1.2rem;
+            border-radius: 0.3pc;
+            background-color: whitesmoke;
+            min-width: 260px;
+        }
+
+        .sln {
+            color: gray;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .equation_row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 0.5rem 0;
+        }
+
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.4rem;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+        }
+
+        .numerator {
+            padding: 0 0.4rem 0.1rem 0.4rem;
+            border-bottom: 2px solid black;
+        }
+
+        .denominator {
+            padding: 0.1rem 0.4rem 0 0.4rem;
+        }
+
+        .symbol {
+            font-size: 1.5rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 300;
+        }
+
+        .input_ans {
+            width: 100px;
+            height: 2.5rem;
+            color: blue;
+            border: 1px solid rgb(88, 87, 87);
+            padding-left: 0.5rem;
+            letter-spacing: 0.1rem;
+            font-size: 1.2rem;
+            text-align: left;
+        }
+
+        button {
+            min-width: 25vw;
+            border: 1px solid gray;
+        }
+
+        .btn_eq {
+            font-size: 2.5rem;
+            border: 1px solid gray;
+            width: 45vw;
+            border-top: 0px solid gray;
+            border-bottom: 0 solid;
+            cursor: pointer;
+        }
+
+        .refresh {
+            width: 95vw;
+            height: 2rem;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="color_eq_container open_colse">
+
+    <h1 class="heading_frac">Fraction Addition ( + )</h1>
+
+    <div class="r_c_hm">
+        <input type="number" class="max_den" autofocus placeholder="max denominator (e.g. 10)" />
+        <input type="number" class="mode" placeholder="mode: 1=Like, 2=Unlike" />
+        <input type="number" class="how_many" placeholder="how-many questions" />
+
+        <button class="btn_eq">=</button>
+        <button class="refresh">Refresh</button>
+    </div>
+    <hr />
+
+    <div class="frac_container"></div>
+</div>
+    <script>
+        const maxDenInput = document.querySelector(".max_den");
+        const modeInput = document.querySelector(".mode");
+        const howManyInput = document.querySelector(".how_many");
+        const btn_eq = document.querySelector(".btn_eq");
+        const frac_container = document.querySelector(".frac_container");
+        const refresh = document.querySelector(".refresh");
+
+        // GCD helper for simplifying fractions
+        function getGCD(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        refresh.addEventListener("click", () => {
+            frac_container.innerHTML = "";
+            maxDenInput.value = "";
+            modeInput.value = "";
+            howManyInput.value = "";
+        });
+
+        btn_eq.addEventListener("click", () => {
+            frac_container.innerHTML = "";
+
+            const maxDen = +maxDenInput.value || 10;
+            const mode = +modeInput.value || 1; // 1 = Like denominators, 2 = Unlike
+            const questionCount = +howManyInput.value || 10;
+
+            if (maxDen <= 1 || questionCount <= 0) return;
+
+            for (let q = 1; q <= questionCount; q++) {
+                let d1, d2, n1, n2;
+
+                if (mode === 1) {
+                    // Like Denominators
+                    d1 = Math.floor(Math.random() * (maxDen - 1)) + 2;
+                    d2 = d1;
+                    n1 = Math.floor(Math.random() * (d1 - 1)) + 1;
+                    n2 = Math.floor(Math.random() * (d1 - 1)) + 1;
+                } else {
+                    // Unlike Denominators
+                    d1 = Math.floor(Math.random() * (maxDen - 1)) + 2;
+                    d2 = Math.floor(Math.random() * (maxDen - 1)) + 2;
+                    while (d2 === d1) {
+                        d2 = Math.floor(Math.random() * (maxDen - 1)) + 2;
+                    }
+                    n1 = Math.floor(Math.random() * (d1 - 1)) + 1;
+                    n2 = Math.floor(Math.random() * (d2 - 1)) + 1;
+                }
+
+                // Calculate correct fraction addition sum: (n1/d1) + (n2/d2)
+                // Common denominator
+                let commonD = (d1 * d2) / getGCD(d1, d2);
+                let newN1 = n1 * (commonD / d1);
+                let newN2 = n2 * (commonD / d2);
+                let sumN = newN1 + newN2;
+                let sumD = commonD;
+
+                // Simplify fraction
+                let commonDivisor = getGCD(sumN, sumD);
+                let finalN = sumN / commonDivisor;
+                let finalD = sumD / commonDivisor;
+
+                // Correct answer string format expected from user (e.g. "3/4" or whole number if finalD === 1)
+                const correctAnswerStr = finalD === 1 ? `${finalN}` : `${finalN}/${finalD}`;
+
+                const mini_container = document.createElement("div");
+                mini_container.classList.add("mini_container");
+                frac_container.appendChild(mini_container);
+
+                const sln = document.createElement("span");
+                sln.classList.add("sln");
+                sln.innerText = `Q${q}.`;
+                mini_container.appendChild(sln);
+
+                const equation_row = document.createElement("div");
+                equation_row.classList.add("equation_row");
+
+                // Fraction 1 markup
+                const f1 = document.createElement("div");
+                f1.classList.add("fraction");
+                f1.innerHTML = `<span class="numerator">${n1}</span><span class="denominator">${d1}</span>`;
+
+                const plus = document.createElement("span");
+                plus.classList.add("symbol");
+                plus.innerText = "+";
+
+                // Fraction 2 markup
+                const f2 = document.createElement("div");
+                f2.classList.add("fraction");
+                f2.innerHTML = `<span class="numerator">${n2}</span><span class="denominator">${d2}</span>`;
+
+                const equals = document.createElement("span");
+                equals.classList.add("symbol");
+                equals.innerText = "=";
+
+                const input_ans = document.createElement("input");
+                input_ans.classList.add("input_ans");
+                input_ans.setAttribute("type", "text");
+                input_ans.setAttribute("placeholder", "n/d");
+                if (q === 1) input_ans.autofocus = true;
+
+                // Live validation + 1.11 cheat code
+                input_ans.addEventListener("keyup", () => {
+                    let val = input_ans.value.trim();
+
+                    if (val === "1.11") {
+                        input_ans.value = correctAnswerStr;
+                        val = correctAnswerStr;
+                    }
+
+                    if (val === correctAnswerStr) {
+                        input_ans.style.border = "2px solid green";
+                        input_ans.style.backgroundColor = "#90EE90";
+                    } else {
+                        input_ans.style.border = "1px solid rgb(88, 87, 87)";
+                        input_ans.style.backgroundColor = "";
+                    }
+                });
+
+                equation_row.appendChild(f1);
+                equation_row.appendChild(plus);
+                equation_row.appendChild(f2);
+                equation_row.appendChild(equals);
+                equation_row.appendChild(input_ans);
+                mini_container.appendChild(equation_row);
+            }
+        });
+    </script>
+    <script src="/specal_batch/coman_password.js"></script>
+</body>
+
+</html>
