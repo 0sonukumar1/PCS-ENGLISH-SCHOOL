@@ -1,2 +1,4 @@
-const nl_badge = document.querySelector(".nl-badge");
-nl_badge.style.display = "none";
+setTimeout(() => {
+  const nl_badge = document.querySelector(".nl-badge");
+  nl_badge.style.display = "none";
+}, 10000);
