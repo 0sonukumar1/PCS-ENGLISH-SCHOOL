@@ -85,7 +85,7 @@
             }
         }
 
-        document.addEventListener("pointerdown", () => {
+        document.addEventListener("click", () => {
             if (!lastSpokenGreeting && greetingEl.textContent) {
                 lastSpokenGreeting = greetingEl.textContent;
                 speakGreeting(greetingEl.textContent);
