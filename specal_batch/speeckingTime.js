@@ -120,4 +120,8 @@ if ("speechSynthesis" in window) {
 }
 
 updateClock(false);
-setInterval(() => updateClock(true), 50000);
+const body_voice = document.querySelector("body");
+body_voice.addEventListener("click", () => {
+  updateClock(true);
+});
+// setTimeout(() => updateClock(true), 1000);
