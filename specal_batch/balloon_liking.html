@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balloon Air Diffusion &amp; Multi-Point Leak — SVG Simulator</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Balloon Air Diffusion &amp; Multi-Point Leak</h1>
+        <p class="sub">Set initial air volume, base leak rate, and number of leak points (starting at <strong>2</strong>
+            or more) with different leak speeds, then press <strong>Go</strong>.</p>
+
+        <div class="controls">
+            <div class="field">
+                <label>Leak Points Count</label>
+                <div class="stepper">
+                    <button type="button" id="decPoints" aria-label="Decrease leak points">−</button>
+                    <div class="stepper-val" id="pointsDisplay">2</div>
+                    <button type="button" id="incPoints" aria-label="Increase leak points">+</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="initVolumeVal">Initial Air Volume (L)</label>
+                <input type="number" id="initVolumeVal" min="10" step="any" value="120" />
+            </div>
+            <div class="field">
+                <label for="baseLeakRate">Base Leak Rate (L / s)</label>
+                <input type="number" id="baseLeakRate" min="0.5" step="any" value="8" />
+            </div>
+            <div class="field">
+                <label for="speedProfile">Leak Speeds Across Points</label>
+                <select id="speedProfile">
+                    <option value="different" selected>Different Speeds (1.0x, 1.5x, 2.0x...)</option>
+                    <option value="uniform">Equal Speed Across All Points</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="simPace">Time Scale (sim sec / real sec)</label>
+                <input type="number" id="simPace" min="0.25" max="10" step="any" value="1" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Total Diffusion Rate: <strong id="totalRateOut">20.00 L/s</strong></div>
+            <div>Air Remaining: <strong id="airRemOut">120.0 / 120.0 L</strong></div>
+            <div>Calculated Deflation Time: <strong id="calcTimeOut">6.00 s</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 s</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img"
+                aria-label="SVG balloon deflating as air diffuses out from multiple leak points at different speeds">
+                <!-- Chamber Background -->
+                <rect x="0" y="0" width="1000" height="280" fill="#0f172a" />
+                <rect x="24" y="18" width="952" height="244" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2" />
+
+                <!-- Reference Outline of Full Balloon -->
+                <ellipse id="refOutline" cx="380" cy="140" rx="115" ry="92" fill="none" stroke="#475569"
+                    stroke-width="1.5" stroke-dasharray="6 5" />
+
+                <!-- Balloon & Leak Points Group -->
+                <g id="balloonGroup"></g>
+
+                <!-- Diffusing Air Jets & Gas Particles -->
+                <g id="airJetsGroup"></g>
+
+                <!-- Per-Point Speed Breakdown Panel (Right Side) -->
+                <g id="legendGroup" transform="translate(565, 38)">
+                    <rect x="0" y="0" width="380" height="204" rx="8" fill="#0f172a" stroke="#334155"
+                        stroke-width="1.5" />
+                    <text x="16" y="24" font-size="12.5" font-weight="800" fill="#38bdf8">LEAK POINT DIFFUSION
+                        SPEEDS</text>
+                    <g id="pointSpeedRows"></g>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const decPointsBtn = document.getElementById("decPoints");
+        const incPointsBtn = document.getElementById("incPoints");
+        const pointsDisplay = document.getElementById("pointsDisplay");
+        const initVolumeInput = document.getElementById("initVolumeVal");
+        const baseLeakRateInput = document.getElementById("baseLeakRate");
+        const speedProfileSelect = document.getElementById("speedProfile");
+        const simPaceInput = document.getElementById("simPace");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+
+        const totalRateOut = document.getElementById("totalRateOut");
+        const airRemOut = document.getElementById("airRemOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+
+        const balloonGroup = document.getElementById("balloonGroup");
+        const airJetsGroup = document.getElementById("airJetsGroup");
+        const pointSpeedRows = document.getElementById("pointSpeedRows");
+
+        const CENTER_X = 380;
+        const CENTER_Y = 140;
+        const MAX_RX = 115;
+        const MAX_RY = 92;
+        const MIN_SCALE = 0.22;
+        const POINT_COLORS = ["#f97316", "#eab308", "#ec4899", "#a855f7", "#10b981", "#06b6d4", "#f43f5e", "#84cc16"];
+
+        let leakPointsCount = 2;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+        let lastFrameMs = null;
+        let airParticles = [];
+        let emitAccum = [];
+
+        let soundEnabled = true;
+        let audioCtx = null;
+        let hissSource = null;
+        let hissFilter = null;
+        let hissGain = null;
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function startHissSound(totalRate) {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            stopHissSound();
+
+            const len = ctx.sampleRate * 1.5;
+            const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+
+            hissSource = ctx.createBufferSource();
+            hissSource.buffer = buf;
+            hissSource.loop = true;
+
+            hissFilter = ctx.createBiquadFilter();
+            hissFilter.type = "bandpass";
+            hissFilter.frequency.setValueAtTime(1600 + Math.min(1800, totalRate * 45), ctx.currentTime);
+            hissFilter.Q.setValueAtTime(1.4, ctx.currentTime);
+
+            hissGain = ctx.createGain();
+            hissGain.gain.setValueAtTime(Math.min(0.12, 0.03 + totalRate * 0.002), ctx.currentTime);
+
+            hissSource.connect(hissFilter);
+            hissFilter.connect(hissGain);
+            hissGain.connect(ctx.destination);
+            hissSource.start();
+        }
+
+        function stopHissSound() {
+            try {
+                if (hissSource) { hissSource.stop(); hissSource.disconnect(); }
+                if (hissFilter) hissFilter.disconnect();
+                if (hissGain) hissGain.disconnect();
+            } catch (_) { }
+            hissSource = null;
+            hissFilter = null;
+            hissGain = null;
+        }
+
+        function getInitialVolume() {
+            return Math.max(10, Number(initVolumeInput.value) || 120);
+        }
+
+        function getBaseRate() {
+            return Math.max(0.2, Number(baseLeakRateInput.value) || 8);
+        }
+
+        // Multiplier per leak point: when "different", points leak at distinct speeds (1.0x, 1.5x, 2.0x, 1.25x, ...)
+        function getPointMultipliers() {
+            const variedPattern = [1.0, 1.5, 2.0, 1.25, 1.75, 0.85, 2.2, 1.4];
+            const list = [];
+            for (let i = 0; i < leakPointsCount; i++) {
+                if (speedProfileSelect.value === "uniform") {
+                    list.push(1.0);
+                } else {
+                    list.push(variedPattern[i % variedPattern.length]);
+                }
+            }
+            return list;
+        }
+
+        function getPointRates() {
+            const base = getBaseRate();
+            return getPointMultipliers().map((m) => base * m);
+        }
+
+        function getTotalLeakRate() {
+            return getPointRates().reduce((sum, r) => sum + r, 0);
+        }
+
+        function getDeflationTimeSec() {
+            const totalRate = getTotalLeakRate();
+            if (totalRate <= 0) return Infinity;
+            return getInitialVolume() / totalRate;
+        }
+
+        function getLeakPointCoords(rx, ry, index, total) {
+            // Distribute leak points around the balloon perimeter (avoiding bottom knot at +90 deg)
+            const startAngle = -Math.PI * 0.82;
+            const endAngle = Math.PI * 0.62;
+            const t = total === 1 ? 0.5 : index / (total - 1);
+            const theta = startAngle + t * (endAngle - startAngle);
+            const x = CENTER_X + Math.cos(theta) * rx;
+            const y = CENTER_Y + Math.sin(theta) * ry;
+            return { x, y, nx: Math.cos(theta), ny: Math.sin(theta) };
+        }
+
+        function renderBalloonAndPoints(remainingRatio, elapsedSec, isActive) {
+            const clamped = Math.max(0, Math.min(1, remainingRatio));
+            const visualScale = MIN_SCALE + (1 - MIN_SCALE) * Math.pow(clamped, 0.55);
+            const rx = MAX_RX * visualScale;
+            const ry = MAX_RY * visualScale;
+            const wobble = isActive ? Math.sin(elapsedSec * 14) * 1.6 : 0;
+
+            const rates = getPointRates();
+            const maxRate = Math.max(...rates, 0.001);
+
+            let pointsSvg = "";
+            for (let i = 0; i < leakPointsCount; i++) {
+                const pt = getLeakPointCoords(rx, ry, i, leakPointsCount);
+                const px = pt.x + pt.nx * wobble;
+                const py = pt.y + pt.ny * wobble;
+                const speedRatio = rates[i] / maxRate;
+                const rDot = 3.5 + speedRatio * 2.5;
+
+                pointsSvg += `
+                    <g>
+                        <circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${(rDot + 3).toFixed(1)}" fill="${POINT_COLORS[i]}" opacity="0.28" />
+                        <circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${rDot.toFixed(1)}" fill="${POINT_COLORS[i]}" stroke="#0f172a" stroke-width="1.2" />
+                        <text x="${(px + pt.nx * 14).toFixed(1)}" y="${(py + pt.ny * 14 + 3).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="800" fill="#f8fafc">P${i + 1}</text>
+                    </g>
+                `;
+            }
+
+            const knotY = CENTER_Y + ry;
+            balloonGroup.innerHTML = `
+                <ellipse cx="${CENTER_X}" cy="${CENTER_Y}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" fill="#38bdf8" fill-opacity="0.26" stroke="#38bdf8" stroke-width="2.5" />
+                <polygon points="${CENTER_X - 6},${knotY} ${CENTER_X + 6},${knotY} ${CENTER_X},${knotY + 9}" fill="#0284c7" stroke="#0f172a" stroke-width="1.2" />
+                <path d="M ${CENTER_X},${knotY + 9} Q ${CENTER_X + 10},${knotY + 24} ${CENTER_X - 4},${knotY + 38}" fill="none" stroke="#94a3b8" stroke-width="1.6" />
+                <text x="${CENTER_X}" y="${(CENTER_Y + 4).toFixed(1)}" text-anchor="middle" font-size="14" font-weight="800" fill="#f8fafc">${Math.round(clamped * 100)}%</text>
+                ${pointsSvg}
+            `;
+        }
+
+        function renderSpeedTable() {
+            const rates = getPointRates();
+            const mults = getPointMultipliers();
+            const shown = Math.min(rates.length, 6);
+            let rowsHtml = "";
+
+            for (let i = 0; i < shown; i++) {
+                const ryRow = 48 + i * 24;
+                rowsHtml += `
+                    <g transform="translate(16, ${ryRow})">
+                        <circle cx="7" cy="-4" r="5" fill="${POINT_COLORS[i]}" />
+                        <text x="19" y="0" font-size="11" font-weight="700" fill="#e2e8f0">Point ${i + 1} (${mults[i].toFixed(2)}×)</text>
+                        <text x="348" y="0" text-anchor="end" font-size="11" font-weight="700" fill="#38bdf8">${rates[i].toFixed(2)} L/s</text>
+                    </g>
+                `;
+            }
+
+            if (rates.length > shown) {
+                rowsHtml += `
+                    <text x="16" y="${48 + shown * 24}" font-size="10.5" fill="#94a3b8">+ ${rates.length - shown} more leak point(s) active</text>
+                `;
+            }
+
+            pointSpeedRows.innerHTML = rowsHtml;
+        }
+
+        function updateAirDiffusion(dtStep, remainingRatio, isActive) {
+            const clamped = Math.max(0, Math.min(1, remainingRatio));
+            const visualScale = MIN_SCALE + (1 - MIN_SCALE) * Math.pow(clamped, 0.55);
+            const rx = MAX_RX * visualScale;
+            const ry = MAX_RY * visualScale;
+            const rates = getPointRates();
+
+            if (emitAccum.length !== rates.length) {
+                emitAccum = new Array(rates.length).fill(0);
+            }
+
+            if (isActive && clamped > 0.01) {
+                for (let i = 0; i < rates.length; i++) {
+                    // Higher leak speed emits air particles more frequently and faster outward
+                    const emissionHz = Math.min(28, Math.max(3, rates[i] * 1.4));
+                    emitAccum[i] += dtStep * emissionHz;
+                    while (emitAccum[i] >= 1) {
+                        emitAccum[i] -= 1;
+                        const pt = getLeakPointCoords(rx, ry, i, rates.length);
+                        const jetSpeed = 55 + rates[i] * 14;
+                        const spread = (Math.random() - 0.5) * 0.28;
+                        const angle = Math.atan2(pt.ny, pt.nx) + spread;
+
+                        airParticles.push({
+                            x: pt.x,
+                            y: pt.y,
+                            vx: Math.cos(angle) * jetSpeed,
+                            vy: Math.sin(angle) * jetSpeed,
+                            color: POINT_COLORS[i],
+                            radius: Math.min(4.2, 2.2 + rates[i] * 0.12),
+                            age: 0,
+                            maxAge: 0.75
+                        });
+                    }
+                }
+            }
+
+            const nextParticles = [];
+            for (const p of airParticles) {
+                p.age += dtStep;
+                p.x += p.vx * dtStep;
+                p.y += p.vy * dtStep;
+                p.vx *= 0.96;
+                p.vy *= 0.96;
+                if (p.age < p.maxAge && p.x < 555) {
+                    nextParticles.push(p);
+                }
+            }
+            airParticles = nextParticles;
+
+            airJetsGroup.innerHTML = airParticles
+                .map((p) => {
+                    const op = Math.max(0, (1 - p.age / p.maxAge) * 0.85);
+                    return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.radius.toFixed(1)}" fill="${p.color}" opacity="${op.toFixed(2)}" />`;
+                })
+                .join("");
+        }
+
+        function updateReadouts() {
+            pointsDisplay.textContent = String(leakPointsCount);
+            const initVol = getInitialVolume();
+            const totalRate = getTotalLeakRate();
+            const tDeflate = getDeflationTimeSec();
+
+            totalRateOut.textContent = `${totalRate.toFixed(2)} L/s (${leakPointsCount} pts)`;
+            airRemOut.textContent = `${initVol.toFixed(1)} / ${initVol.toFixed(1)} L`;
+            calcTimeOut.textContent = Number.isFinite(tDeflate) ? `${tDeflate.toFixed(2)} s` : "Enter rate > 0";
+
+            renderSpeedTable();
+            renderBalloonAndPoints(1, 0, false);
+        }
+
+        function stopSim() {
+            running = false;
+            startTimestamp = null;
+            lastFrameMs = null;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+            stopHissSound();
+        }
+
+        function resetSim() {
+            stopSim();
+            airParticles = [];
+            emitAccum = [];
+            airJetsGroup.innerHTML = "";
+            liveTimeOut.textContent = "0.00 s";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const totalRate = getTotalLeakRate();
+            const tDeflate = getDeflationTimeSec();
+            const initVol = getInitialVolume();
+
+            if (!Number.isFinite(tDeflate) || tDeflate <= 0 || totalRate <= 0) {
+                calcTimeOut.textContent = "Enter valid leak rate > 0";
+                return;
+            }
+
+            stopSim();
+            running = true;
+            airParticles = [];
+            emitAccum = new Array(leakPointsCount).fill(0);
+            startTimestamp = null;
+            lastFrameMs = null;
+            liveTimeOut.textContent = "0.00 s";
+            startHissSound(totalRate);
+
+            const pace = Math.max(0.25, Number(simPaceInput.value) || 1);
+            const realDurationSec = Math.max(0.6, tDeflate / pace);
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) {
+                    startTimestamp = now;
+                    lastFrameMs = now;
+                }
+
+                const dtStep = Math.min(0.05, Math.max(0, (now - lastFrameMs) / 1000));
+                lastFrameMs = now;
+
+                const dtReal = (now - startTimestamp) / 1000;
+                const progress = Math.min(1, dtReal / realDurationSec);
+                const simTimeSec = progress * tDeflate;
+                const remainingVol = Math.max(0, initVol - totalRate * simTimeSec);
+                const remainingRatio = remainingVol / initVol;
+
+                liveTimeOut.textContent = `${simTimeSec.toFixed(2)} s`;
+                airRemOut.textContent = `${remainingVol.toFixed(1)} / ${initVol.toFixed(1)} L`;
+                renderBalloonAndPoints(remainingRatio, dtReal, progress < 1);
+                updateAirDiffusion(dtStep, remainingRatio, progress < 1);
+
+                if (progress < 1 || airParticles.length > 0) {
+                    if (progress >= 1 && running) {
+                        running = false;
+                        stopHissSound();
+                        airRemOut.textContent = `0.0 / ${initVol.toFixed(1)} L`;
+                        renderBalloonAndPoints(0, dtReal, false);
+                        liveTimeOut.textContent = `${tDeflate.toFixed(2)} s (Deflated)`;
+                    }
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    animId = null;
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        decPointsBtn.addEventListener("click", () => {
+            leakPointsCount = Math.max(2, leakPointsCount - 1);
+            resetSim();
+        });
+
+        incPointsBtn.addEventListener("click", () => {
+            leakPointsCount = Math.min(8, leakPointsCount + 1);
+            resetSim();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+            if (!soundEnabled) stopHissSound();
+        });
+
+        [initVolumeInput, baseLeakRateInput, speedProfileSelect, simPaceInput].forEach((el) => {
+            el.addEventListener("input", resetSim);
+            el.addEventListener("change", resetSim);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSim);
+
+        updateReadouts();
+    </script>
+</body>
+
+</html>

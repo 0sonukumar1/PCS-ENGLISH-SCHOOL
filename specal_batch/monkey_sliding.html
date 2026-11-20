@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monkey Climbing &amp; Sliding on a Pole — SVG Simulator</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Monkey Climbing &amp; Sliding on a Pole</h1>
+        <p class="sub">Adjust pole height, climb/slip rates, and mode, then press <strong>Go</strong> to simulate the
+            monkey reaching the top.</p>
+
+        <div class="controls">
+            <div class="field">
+                <label for="poleHeightVal">Pole Height (m)</label>
+                <input type="number" id="poleHeightVal" min="4" max="200" step="any" value="20" />
+            </div>
+            <div class="field">
+                <label for="climbVal">Climb Gain (m / cycle)</label>
+                <input type="number" id="climbVal" min="0.5" step="any" value="5" />
+            </div>
+            <div class="field">
+                <label for="slipVal">Slide / Slip Back (m / cycle)</label>
+                <input type="number" id="slipVal" min="0" step="any" value="2" />
+            </div>
+            <div class="field">
+                <label for="simMode">Motion Model</label>
+                <select id="simMode">
+                    <option value="step" selected>Climb then Slip (1 cycle = 1s)</option>
+                    <option value="netRate">Continuous Net Rate (m/s)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Monkey Count</label>
+                <div class="stepper">
+                    <button type="button" id="decMonkeys" aria-label="Decrease monkeys">−</button>
+                    <div class="stepper-val" id="monkeysDisplay">1</div>
+                    <button type="button" id="incMonkeys" aria-label="Increase monkeys">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Net Gain / Cycle: <strong id="netGainOut">3.0 m</strong></div>
+            <div>Current Height: <strong id="heightOut">0.0 / 20.0 m</strong></div>
+            <div>Calculated Time to Top: <strong id="calcTimeOut">6.33 s</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 s</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img" aria-label="SVG monkey climbing and sliding on a pole">
+                <!-- Sky & Ground -->
+                <rect x="0" y="0" width="1000" height="225" fill="#f1f5f9" />
+                <rect x="0" y="225" width="1000" height="55" fill="#475569" />
+                <line x1="0" y1="225" x2="1000" y2="225" stroke="#1e293b" stroke-width="3" />
+
+                <!-- Height Scale Guide (Left) -->
+                <g id="scaleGroup">
+                    <line x1="250" y1="45" x2="250" y2="225" stroke="#64748b" stroke-width="1.5" />
+                    <line x1="243" y1="45" x2="257" y2="45" stroke="#0f172a" stroke-width="2" />
+                    <text x="236" y="49" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">TOP</text>
+                    <text x="236" y="225" text-anchor="end" font-size="11" font-weight="700" fill="#0f172a">0m</text>
+                    <line id="heightMarkerLine" x1="250" y1="225" x2="500" y2="225" stroke="#0284c7" stroke-width="1.2"
+                        stroke-dasharray="4 4" opacity="0.7" />
+                </g>
+
+                <!-- Vertical Pole at x = 500 -->
+                <g id="poleGroup">
+                    <rect x="494" y="45" width="12" height="182" rx="3" fill="#b45309" stroke="#78350f"
+                        stroke-width="1.5" />
+                    <rect x="480" y="222" width="40" height="7" rx="2" fill="#1e293b" />
+                    <circle cx="500" cy="42" r="6" fill="#eab308" stroke="#854d0e" stroke-width="1.5" />
+                    <text x="524" y="52" font-size="11.5" font-weight="700" fill="#0f172a">TOP TARGET</text>
+                </g>
+
+                <!-- Animated Monkeys Group -->
+                <g id="monkeysGroup"></g>
+
+                <!-- Slip / Slide Motion Marks -->
+                <g id="slipMarksGroup"></g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const poleHeightInput = document.getElementById("poleHeightVal");
+        const climbInput = document.getElementById("climbVal");
+        const slipInput = document.getElementById("slipVal");
+        const modeSelect = document.getElementById("simMode");
+        const monkeysDisplay = document.getElementById("monkeysDisplay");
+        const decMonkeysBtn = document.getElementById("decMonkeys");
+        const incMonkeysBtn = document.getElementById("incMonkeys");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const netGainOut = document.getElementById("netGainOut");
+        const heightOut = document.getElementById("heightOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+        const monkeysGroup = document.getElementById("monkeysGroup");
+        const slipMarksGroup = document.getElementById("slipMarksGroup");
+        const heightMarkerLine = document.getElementById("heightMarkerLine");
+
+        const POLE_X = 500;
+        const POLE_TOP_Y = 45;
+        const POLE_BOTTOM_Y = 225;
+        const POLE_PX_HEIGHT = POLE_BOTTOM_Y - POLE_TOP_Y; // 180 px
+
+        let monkeyCount = 1;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+
+        // Web Audio feedback
+        let soundEnabled = true;
+        let audioCtx = null;
+        let lastPhaseBeep = -1;
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function playTone(freqStart, freqEnd, durationSec = 0.09, type = "sine") {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freqStart, now);
+            osc.frequency.exponentialRampToValueAtTime(Math.max(40, freqEnd), now + durationSec);
+
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + durationSec);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + durationSec + 0.01);
+        }
+
+        function getPoleHeightMeters() {
+            return Math.max(4, Number(poleHeightInput.value) || 20);
+        }
+
+        function getClimbMeters() {
+            return Math.max(0.5, Number(climbInput.value) || 5);
+        }
+
+        function getSlipMeters() {
+            return Math.max(0, Number(slipInput.value) || 0);
+        }
+
+        function getNetPerCycle() {
+            return getClimbMeters() - getSlipMeters();
+        }
+
+        // Exact time to reach pole top (H):
+        // - In "step" mode (each cycle = 1s: first 0.65s climb +c, next 0.35s slip -s):
+        //   Once monkey reaches H during a climb phase, it stays at top without slipping back!
+        function getTimeToTopSec() {
+            const H = getPoleHeightMeters();
+            const c = getClimbMeters();
+            const s = getSlipMeters();
+
+            if (c >= H) {
+                return Math.min(0.65, H / c);
+            }
+
+            if (modeSelect.value === "netRate") {
+                const net = c - s;
+                if (net <= 0) return Infinity;
+                return H / net;
+            }
+
+            const net = c - s;
+            if (net <= 0) return Infinity;
+
+            // Number of full completed cycles before the final climb reaches H
+            const remainingBeforeFinalClimb = Math.max(0, H - c);
+            const fullCycles = Math.ceil(remainingBeforeFinalClimb / net);
+            const heightAfterFullCycles = fullCycles * net;
+            const neededInFinalClimb = Math.max(0, H - heightAfterFullCycles);
+            const fractionOfClimb = Math.min(1, neededInFinalClimb / c);
+
+            return fullCycles + fractionOfClimb * 0.65;
+        }
+
+        // Height h(t) in meters at elapsed time t (seconds)
+        function getHeightAtTime(tSec) {
+            const H = getPoleHeightMeters();
+            const c = getClimbMeters();
+            const s = getSlipMeters();
+            const totalTime = getTimeToTopSec();
+
+            if (!Number.isFinite(totalTime)) return 0;
+            if (tSec >= totalTime) return H;
+
+            if (modeSelect.value === "netRate") {
+                const net = Math.max(0, c - s);
+                return Math.min(H, net * tSec);
+            }
+
+            const cycleIndex = Math.floor(tSec);
+            const inCycle = tSec - cycleIndex;
+            const net = c - s;
+            const baseHeight = cycleIndex * net;
+
+            if (inCycle <= 0.65) {
+                // Climbing phase (0.0s .. 0.65s)
+                const climbFrac = inCycle / 0.65;
+                return Math.min(H, baseHeight + c * climbFrac);
+            } else {
+                // Sliding/slipping phase (0.65s .. 1.0s)
+                const peakHeight = Math.min(H, baseHeight + c);
+                if (peakHeight >= H) return H;
+                const slipFrac = (inCycle - 0.65) / 0.35;
+                return Math.max(0, peakHeight - s * slipFrac);
+            }
+        }
+
+        function heightToY(heightMeters) {
+            const H = getPoleHeightMeters();
+            const ratio = Math.max(0, Math.min(1, heightMeters / H));
+            return POLE_BOTTOM_Y - ratio * POLE_PX_HEIGHT;
+        }
+
+        function renderMonkeys(heightMeters, elapsedSec, isSliding) {
+            const H = getPoleHeightMeters();
+            const y = heightToY(heightMeters);
+            heightMarkerLine.setAttribute("y1", y.toFixed(1));
+            heightMarkerLine.setAttribute("y2", y.toFixed(1));
+            heightOut.textContent = `${heightMeters.toFixed(1)} / ${H.toFixed(1)} m`;
+
+            let html = "";
+            for (let i = 0; i < monkeyCount; i++) {
+                const offsetX = (i - (monkeyCount - 1) / 2) * 26;
+                const x = POLE_X + offsetX;
+                const swing = running ? Math.sin(elapsedSec * 12 + i) * 3 : 0;
+
+                html += `
+                    <g transform="translate(${(x + swing).toFixed(1)}, ${y.toFixed(1)})">
+                        <!-- Tail -->
+                        <path d="M -7 -10 Q -18 -16 -15 -24" fill="none" stroke="#78350f" stroke-width="2.2" stroke-linecap="round" />
+                        <!-- Arms gripping pole -->
+                        <line x1="-5" y1="-14" x2="5" y2="-18" stroke="#92400e" stroke-width="2.5" stroke-linecap="round" />
+                        <!-- Body -->
+                        <ellipse cx="0" cy="-10" rx="6.5" ry="8" fill="#92400e" stroke="#451a03" stroke-width="1.2" />
+                        <!-- Head -->
+                        <circle cx="0" cy="-21" r="6" fill="#92400e" stroke="#451a03" stroke-width="1.2" />
+                        <circle cx="0" cy="-20.5" r="3.8" fill="#fde68a" />
+                        <circle cx="-1.4" cy="-21.2" r="0.9" fill="#0f172a" />
+                        <circle cx="1.4" cy="-21.2" r="0.9" fill="#0f172a" />
+                        <!-- Legs -->
+                        <line x1="-3" y1="-3" x2="-6" y2="3" stroke="#92400e" stroke-width="2.3" stroke-linecap="round" />
+                        <line x1="3" y1="-3" x2="6" y2="3" stroke="#92400e" stroke-width="2.3" stroke-linecap="round" />
+                    </g>
+                `;
+            }
+
+            monkeysGroup.innerHTML = html;
+
+            if (running && isSliding && heightMeters < H) {
+                slipMarksGroup.innerHTML = `
+                    <line x1="${POLE_X - 18}" y1="${(y - 18).toFixed(1)}" x2="${POLE_X - 18}" y2="${(y - 4).toFixed(1)}" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 3" />
+                    <polygon points="${POLE_X - 21},${(y - 4).toFixed(1)} ${POLE_X - 15},${(y - 4).toFixed(1)} ${POLE_X - 18},${(y + 2).toFixed(1)}" fill="#ef4444" />
+                `;
+            } else {
+                slipMarksGroup.innerHTML = "";
+            }
+        }
+
+        function updateReadouts() {
+            monkeysDisplay.textContent = monkeyCount;
+            const net = getNetPerCycle();
+            const tTop = getTimeToTopSec();
+
+            netGainOut.textContent = `${net.toFixed(1)} m`;
+            calcTimeOut.textContent = Number.isFinite(tTop) ? `${tTop.toFixed(2)} s` : "Never reaches top (net ≤ 0)";
+            renderMonkeys(0, 0, false);
+        }
+
+        function stopSim() {
+            running = false;
+            startTimestamp = null;
+            lastPhaseBeep = -1;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+            slipMarksGroup.innerHTML = "";
+        }
+
+        function resetSim() {
+            stopSim();
+            liveTimeOut.textContent = "0.00 s";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const tTop = getTimeToTopSec();
+            if (!Number.isFinite(tTop) || tTop <= 0) {
+                calcTimeOut.textContent = "Climb must exceed slip to reach top";
+                return;
+            }
+
+            stopSim();
+            running = true;
+            startTimestamp = null;
+            liveTimeOut.textContent = "0.00 s";
+            playTone(320, 520, 0.12, "triangle");
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) startTimestamp = now;
+
+                const elapsedSec = (now - startTimestamp) / 1000;
+                const simClock = Math.min(tTop, elapsedSec);
+                const currentH = getHeightAtTime(simClock);
+
+                let isSliding = false;
+                if (modeSelect.value === "step" && simClock < tTop) {
+                    const cycle = Math.floor(simClock);
+                    const frac = simClock - cycle;
+                    isSliding = frac > 0.65 && getSlipMeters() > 0;
+
+                    const phaseKey = cycle * 2 + (frac > 0.65 ? 1 : 0);
+                    if (phaseKey !== lastPhaseBeep) {
+                        lastPhaseBeep = phaseKey;
+                        if (frac <= 0.65) {
+                            playTone(280, 440, 0.08, "sine");
+                        } else if (getSlipMeters() > 0) {
+                            playTone(360, 170, 0.1, "sawtooth");
+                        }
+                    }
+                }
+
+                liveTimeOut.textContent = `${simClock.toFixed(2)} s`;
+                renderMonkeys(currentH, elapsedSec, isSliding);
+
+                if (elapsedSec < tTop) {
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    running = false;
+                    slipMarksGroup.innerHTML = "";
+                    renderMonkeys(getPoleHeightMeters(), elapsedSec, false);
+                    liveTimeOut.textContent = `${tTop.toFixed(2)} s (Top Reached)`;
+                    playTone(523, 784, 0.18, "triangle");
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        decMonkeysBtn.addEventListener("click", () => {
+            monkeyCount = Math.max(1, monkeyCount - 1);
+            resetSim();
+        });
+
+        incMonkeysBtn.addEventListener("click", () => {
+            monkeyCount = Math.min(5, monkeyCount + 1);
+            resetSim();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+        });
+
+        [poleHeightInput, climbInput, slipInput, modeSelect].forEach((el) => {
+            el.addEventListener("input", resetSim);
+            el.addEventListener("change", resetSim);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSim);
+
+        updateReadouts();
+    </script>
+</body>
+
+</html>

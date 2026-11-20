@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time &amp; Work (Workers A, B, C) — SVG Simulator</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Time &amp; Work — Workers A, B, C</h1>
+        <p class="sub">Set how many days each worker (A, B, C) takes alone and total work units, then press
+            <strong>Go</strong> to watch combined work progress.</p>
+
+        <div class="controls">
+            <div class="field">
+                <label>Active Workers</label>
+                <div class="stepper">
+                    <button type="button" id="decWorkers" aria-label="Decrease workers">−</button>
+                    <div class="stepper-val" id="workersDisplay">3 (A, B, C)</div>
+                    <button type="button" id="incWorkers" aria-label="Increase workers">+</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="daysA">Worker A Alone (days)</label>
+                <input type="number" id="daysA" min="1" step="any" value="6" />
+            </div>
+            <div class="field">
+                <label for="daysB">Worker B Alone (days)</label>
+                <input type="number" id="daysB" min="1" step="any" value="12" />
+            </div>
+            <div class="field">
+                <label for="daysC">Worker C Alone (days)</label>
+                <input type="number" id="daysC" min="1" step="any" value="24" />
+            </div>
+            <div class="field">
+                <label for="totalWorkVal">Total Work Units</label>
+                <input type="number" id="totalWorkVal" min="1" step="any" value="24" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Combined Rate: <strong id="combinedRateOut">7.00 units/day</strong></div>
+            <div>Work Completed: <strong id="workDoneOut">0.0 / 24.0 units</strong></div>
+            <div>Calculated Time: <strong id="calcTimeOut">3.43 days</strong></div>
+            <div>Live Timer (1s = 1 day): <strong id="liveTimeOut">0.00 days</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img"
+                aria-label="SVG workers A, B, C completing a work project">
+                <!-- Sky & Ground -->
+                <rect x="0" y="0" width="1000" height="225" fill="#f1f5f9" />
+                <rect x="0" y="225" width="1000" height="55" fill="#475569" />
+                <line x1="0" y1="225" x2="1000" y2="225" stroke="#1e293b" stroke-width="3" />
+
+                <!-- Work Site Target Frame (Top/Center-Right) -->
+                <g id="workSiteGroup">
+                    <text x="540" y="34" text-anchor="middle" font-size="13" font-weight="800" fill="#0f172a">PROJECT
+                        WORK SITE (100% TARGET)</text>
+                    <rect x="260" y="45" width="560" height="58" rx="6" fill="#cbd5e1" stroke="#334155"
+                        stroke-width="2.5" />
+                    <g id="workProgressGroup"></g>
+                    <text id="workPctText" x="540" y="80" text-anchor="middle" font-size="15" font-weight="800"
+                        fill="#0f172a">0%</text>
+                </g>
+
+                <!-- Workers A, B, C Lane -->
+                <g id="workersGroup"></g>
+
+                <!-- Floating Work Unit Sparks -->
+                <g id="sparksGroup"></g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const decWorkersBtn = document.getElementById("decWorkers");
+        const incWorkersBtn = document.getElementById("incWorkers");
+        const workersDisplay = document.getElementById("workersDisplay");
+        const daysAInput = document.getElementById("daysA");
+        const daysBInput = document.getElementById("daysB");
+        const daysCInput = document.getElementById("daysC");
+        const totalWorkInput = document.getElementById("totalWorkVal");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const combinedRateOut = document.getElementById("combinedRateOut");
+        const workDoneOut = document.getElementById("workDoneOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+        const workProgressGroup = document.getElementById("workProgressGroup");
+        const workPctText = document.getElementById("workPctText");
+        const workersGroup = document.getElementById("workersGroup");
+        const sparksGroup = document.getElementById("sparksGroup");
+
+        const LABELS = ["A", "B", "C"];
+        const COLORS = ["#2563eb", "#0d9488", "#d97706"];
+        const GROUND_Y = 225;
+        const BAR_X = 264;
+        const BAR_Y = 49;
+        const BAR_W = 552;
+        const BAR_H = 50;
+
+        let activeWorkers = 3;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+        let sparks = [];
+        let nextSparkSec = 0.25;
+
+        // Web Audio chime
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function playTick(freq = 440, duration = 0.06) {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "triangle";
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(0.05, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + duration + 0.01);
+        }
+
+        function getTotalWork() {
+            return Math.max(1, Number(totalWorkInput.value) || 24);
+        }
+
+        function getWorkerDaysList() {
+            const raw = [
+                Math.max(0.1, Number(daysAInput.value) || 6),
+                Math.max(0.1, Number(daysBInput.value) || 12),
+                Math.max(0.1, Number(daysCInput.value) || 24)
+            ];
+            return raw.slice(0, activeWorkers);
+        }
+
+        // Work rate in "units per day" = TotalWork / DaysAlone
+        function getWorkerRatesPerDay() {
+            const W = getTotalWork();
+            return getWorkerDaysList().map((d) => W / d);
+        }
+
+        function getCombinedRatePerDay() {
+            return getWorkerRatesPerDay().reduce((sum, r) => sum + r, 0);
+        }
+
+        function getCompletionDays() {
+            const rate = getCombinedRatePerDay();
+            if (rate <= 0) return Infinity;
+            return getTotalWork() / rate;
+        }
+
+        function renderWorkBar(completedUnits) {
+            const W = getTotalWork();
+            const clamped = Math.max(0, Math.min(W, completedUnits));
+            const pct = Math.min(100, (clamped / W) * 100);
+            const rates = getWorkerRatesPerDay();
+            const totalRate = Math.max(0.0001, getCombinedRatePerDay());
+
+            let xCursor = BAR_X;
+            let segmentsHtml = "";
+            const totalFillW = (pct / 100) * BAR_W;
+
+            rates.forEach((r, idx) => {
+                const share = r / totalRate;
+                const segW = totalFillW * share;
+                if (segW > 0.2) {
+                    segmentsHtml += `<rect x="${xCursor.toFixed(1)}" y="${BAR_Y}" width="${segW.toFixed(1)}" height="${BAR_H}" fill="${COLORS[idx]}" opacity="0.88" />`;
+                    xCursor += segW;
+                }
+            });
+
+            workProgressGroup.innerHTML = segmentsHtml;
+            workPctText.textContent = `${Math.round(pct)}%`;
+            workDoneOut.textContent = `${clamped.toFixed(1)} / ${W.toFixed(1)} units`;
+        }
+
+        function renderWorkers(elapsedSec, isMoving) {
+            const rates = getWorkerRatesPerDay();
+            const W = getTotalWork();
+            const spacing = 760 / (activeWorkers + 1);
+            let html = "";
+
+            for (let i = 0; i < activeWorkers; i++) {
+                const baseX = 120 + spacing * (i + 1);
+                const bobY = isMoving ? Math.abs(Math.sin(elapsedSec * (7 + i * 1.4))) * -5 : 0;
+                const armAngle = isMoving ? Math.sin(elapsedSec * 11 + i * 1.7) * 28 : 0;
+                const rate = rates[i];
+                const soloDays = getWorkerDaysList()[i];
+
+                html += `
+                    <g transform="translate(${baseX.toFixed(1)}, ${(GROUND_Y + bobY).toFixed(1)})">
+                        <!-- Worker Badge -->
+                        <rect x="-24" y="-68" width="48" height="16" rx="4" fill="${COLORS[i]}" />
+                        <text x="0" y="-56" text-anchor="middle" font-size="10.5" font-weight="800" fill="#ffffff">Worker ${LABELS[i]}</text>
+
+                        <!-- Legs -->
+                        <line x1="-5" y1="-16" x2="-8" y2="0" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+                        <line x1="5" y1="-16" x2="8" y2="0" stroke="#1e293b" stroke-width="3" stroke-linecap="round" />
+
+                        <!-- Torso -->
+                        <rect x="-9" y="-36" width="18" height="21" rx="4" fill="${COLORS[i]}" stroke="#0f172a" stroke-width="1.3" />
+
+                        <!-- Head & Hardhat -->
+                        <circle cx="0" cy="-42" r="7" fill="#fde68a" stroke="#92400e" stroke-width="1.1" />
+                        <path d="M -8 -44 Q 0 -53 8 -44 Z" fill="#facc15" stroke="#854d0e" stroke-width="1" />
+
+                        <!-- Working Arm -->
+                        <g transform="translate(8, -31) rotate(${armAngle.toFixed(1)})">
+                            <line x1="0" y1="0" x2="11" y2="-4" stroke="#fde68a" stroke-width="3" stroke-linecap="round" />
+                            <rect x="10" y="-8" width="6" height="6" rx="1" fill="#64748b" />
+                        </g>
+
+                        <!-- Rate Label Below Ground -->
+                        <text x="0" y="15" text-anchor="middle" font-size="10.5" font-weight="700" fill="#f8fafc">${rate.toFixed(2)} u/d (${soloDays}d)</text>
+                        <text x="0" y="28" text-anchor="middle" font-size="9.5" fill="#cbd5e1">${((rate / W) * 100).toFixed(1)}%/day</text>
+                    </g>
+                `;
+            }
+
+            workersGroup.innerHTML = html;
+        }
+
+        function updateSparks(dtReal, dtStep, isMoving) {
+            if (isMoving && dtReal >= nextSparkSec) {
+                nextSparkSec = dtReal + 0.22;
+                const idx = Math.floor(Math.random() * activeWorkers);
+                const spacing = 760 / (activeWorkers + 1);
+                const wx = 120 + spacing * (idx + 1) + 14;
+                sparks.push({
+                    x: wx,
+                    y: GROUND_Y - 36,
+                    vx: (Math.random() - 0.3) * 40,
+                    vy: -55 - Math.random() * 35,
+                    color: COLORS[idx],
+                    age: 0
+                });
+            }
+
+            const active = [];
+            for (const s of sparks) {
+                s.age += dtStep;
+                s.x += s.vx * dtStep;
+                s.vy += 170 * dtStep;
+                s.y += s.vy * dtStep;
+                if (s.age < 0.6) active.push(s);
+            }
+            sparks = active;
+
+            sparksGroup.innerHTML = sparks
+                .map((s) => {
+                    const op = Math.max(0, 1 - s.age / 0.6);
+                    return `<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="3" fill="${s.color}" opacity="${op.toFixed(2)}" />`;
+                })
+                .join("");
+        }
+
+        function updateReadouts() {
+            const activeNames = LABELS.slice(0, activeWorkers).join(", ");
+            workersDisplay.textContent = `${activeWorkers} (${activeNames})`;
+
+            const combinedRate = getCombinedRatePerDay();
+            const daysNeeded = getCompletionDays();
+
+            combinedRateOut.textContent = `${combinedRate.toFixed(2)} units/day`;
+            calcTimeOut.textContent = Number.isFinite(daysNeeded) ? `${daysNeeded.toFixed(2)} days` : "Invalid rate";
+
+            renderWorkBar(0);
+            renderWorkers(0, false);
+        }
+
+        function stopSim() {
+            running = false;
+            startTimestamp = null;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+        }
+
+        function resetSim() {
+            stopSim();
+            sparks = [];
+            sparksGroup.innerHTML = "";
+            nextSparkSec = 0.25;
+            liveTimeOut.textContent = "0.00 days";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const daysNeeded = getCompletionDays();
+            const combinedRate = getCombinedRatePerDay();
+            const W = getTotalWork();
+
+            if (!Number.isFinite(daysNeeded) || daysNeeded <= 0) {
+                calcTimeOut.textContent = "Enter valid positive days";
+                return;
+            }
+
+            stopSim();
+            running = true;
+            sparks = [];
+            nextSparkSec = 0.25;
+            startTimestamp = null;
+            let lastTime = null;
+            let lastBeepDay = -1;
+            liveTimeOut.textContent = "0.00 days";
+            playTick(392, 0.08);
+
+            // Visual playback duration capped smoothly between 1.0s and 10s while keeping stopwatch in "days"
+            const visualDurationSec = Math.max(1.0, Math.min(10.0, daysNeeded));
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) {
+                    startTimestamp = now;
+                    lastTime = now;
+                }
+                const dtStep = Math.min(0.05, Math.max(0, (now - lastTime) / 1000));
+                lastTime = now;
+
+                const dtReal = (now - startTimestamp) / 1000;
+                const progress = Math.min(1, dtReal / visualDurationSec);
+                const simDays = progress * daysNeeded;
+                const completedUnits = Math.min(W, combinedRate * simDays);
+
+                const wholeDay = Math.floor(simDays);
+                if (wholeDay > lastBeepDay && progress < 1) {
+                    lastBeepDay = wholeDay;
+                    playTick(440 + (wholeDay % 4) * 55, 0.05);
+                }
+
+                liveTimeOut.textContent = `${simDays.toFixed(2)} days`;
+                renderWorkBar(completedUnits);
+                renderWorkers(dtReal, progress < 1);
+                updateSparks(dtReal, dtStep, progress < 1);
+
+                if (progress < 1) {
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    running = false;
+                    renderWorkBar(W);
+                    renderWorkers(dtReal, false);
+                    liveTimeOut.textContent = `${daysNeeded.toFixed(2)} days (Done)`;
+                    playTick(587.33, 0.16);
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        decWorkersBtn.addEventListener("click", () => {
+            activeWorkers = Math.max(1, activeWorkers - 1);
+            resetSim();
+        });
+
+        incWorkersBtn.addEventListener("click", () => {
+            activeWorkers = Math.min(3, activeWorkers + 1);
+            resetSim();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+        });
+
+        [daysAInput, daysBInput, daysCInput, totalWorkInput].forEach((el) => {
+            el.addEventListener("input", resetSim);
+            el.addEventListener("change", resetSim);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSim);
+
+        updateReadouts();
+    </script>
+</body>
+
+</html>

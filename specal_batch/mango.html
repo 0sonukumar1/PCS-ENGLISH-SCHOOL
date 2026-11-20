@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boy Throwing Stones at Mango Tree — SVG Simulator</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-more {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            background: #f59e0b;
+            color: #451a03;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover,
+        .btn-more:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Boy Throwing Stones at a Mango Tree</h1>
+        <p class="sub">Press <strong>Go</strong> to throw stones and collect mangoes, then press <strong>Throw More
+                Stones</strong> to throw again and gather even more mangoes.</p>
+
+        <div class="controls">
+            <div class="field">
+                <label>Stones per Throw Round</label>
+                <div class="stepper">
+                    <button type="button" id="decStones" aria-label="Decrease stones">−</button>
+                    <div class="stepper-val" id="stonesDisplay">3</div>
+                    <button type="button" id="incStones" aria-label="Increase stones">+</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="mangoesPerStone">Mangoes per Hit Stone</label>
+                <input type="number" id="mangoesPerStone" min="0" max="5" step="1" value="1" />
+            </div>
+            <div class="field">
+                <label for="treeMangoesVal">Initial Mangoes on Tree</label>
+                <input type="number" id="treeMangoesVal" min="1" max="24" step="1" value="12" />
+            </div>
+            <div class="field">
+                <label for="throwMode">Throw Accuracy Mode</label>
+                <select id="throwMode">
+                    <option value="steady" selected>Steady Aim (Consistent Yield)</option>
+                    <option value="variable">Variable Aim (Random Hits)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="throwSpeed">Throw Pace (sec / stone)</label>
+                <input type="number" id="throwSpeed" min="0.25" max="2.5" step="0.05" value="0.65" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-more" id="moreBtn">Throw More Stones</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Stones Thrown: <strong id="stonesThrownOut">0</strong></div>
+            <div>Mangoes Collected: <strong id="mangoesCollectedOut">0</strong></div>
+            <div>Remaining on Tree: <strong id="remainingTreeOut">12</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 s</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img"
+                aria-label="SVG boy throwing stones at a mango tree to collect mangoes">
+                <!-- Sky & Ground -->
+                <rect x="0" y="0" width="1000" height="225" fill="#e0f2fe" />
+                <circle cx="910" cy="46" r="22" fill="#fde047" />
+                <rect x="0" y="225" width="1000" height="55" fill="#4d7c0f" />
+                <line x1="0" y1="225" x2="1000" y2="225" stroke="#1e293b" stroke-width="3" />
+
+                <!-- Mango Tree (Right Side) -->
+                <g id="treeGroup">
+                    <!-- Trunk & Branch -->
+                    <rect x="705" y="135" width="32" height="90" rx="6" fill="#78350f" stroke="#451a03"
+                        stroke-width="2" />
+                    <path d="M 721 155 L 650 115 M 721 145 L 785 112" stroke="#78350f" stroke-width="10"
+                        stroke-linecap="round" />
+
+                    <!-- Foliage Canopy -->
+                    <circle cx="720" cy="92" r="54" fill="#16a34a" stroke="#14532d" stroke-width="2" />
+                    <circle cx="672" cy="106" r="42" fill="#22c55e" stroke="#14532d" stroke-width="2" />
+                    <circle cx="768" cy="106" r="42" fill="#22c55e" stroke="#14532d" stroke-width="2" />
+                    <circle cx="720" cy="68" r="38" fill="#15803d" />
+
+                    <!-- Hanging Mangoes Layer -->
+                    <g id="hangingMangoesGroup"></g>
+                </g>
+
+                <!-- Boy Throwing Stones (Left Side) -->
+                <g id="boyGroup" transform="translate(175, 225)">
+                    <!-- Legs -->
+                    <line x1="-5" y1="-18" x2="-9" y2="0" stroke="#1e293b" stroke-width="3.2" stroke-linecap="round" />
+                    <line x1="5" y1="-18" x2="9" y2="0" stroke="#1e293b" stroke-width="3.2" stroke-linecap="round" />
+                    <!-- Shirt & Shorts -->
+                    <rect x="-10" y="-42" width="20" height="24" rx="4" fill="#2563eb" stroke="#1e3a8a"
+                        stroke-width="1.4" />
+                    <rect x="-9" y="-22" width="18" height="8" rx="2" fill="#334155" />
+                    <!-- Head -->
+                    <circle cx="0" cy="-50" r="8" fill="#fde68a" stroke="#92400e" stroke-width="1.2" />
+                    <path d="M -8 -53 Q 0 -62 8 -53 Z" fill="#1e293b" />
+                    <circle cx="2.5" cy="-50.5" r="1.1" fill="#0f172a" />
+                    <!-- Throwing Arm -->
+                    <g id="throwArm" transform="translate(8, -37)">
+                        <line x1="0" y1="0" x2="14" y2="-6" stroke="#fde68a" stroke-width="3.2"
+                            stroke-linecap="round" />
+                        <circle cx="15" cy="-7" r="3" fill="#64748b" />
+                    </g>
+                    <text x="0" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#f8fafc">BOY</text>
+                </g>
+
+                <!-- Collected Mango Basket on Ground -->
+                <g id="basketGroup" transform="translate(250, 225)">
+                    <path d="M -18 -14 L 18 -14 L 13 0 L -13 0 Z" fill="#b45309" stroke="#451a03" stroke-width="1.5" />
+                    <g id="basketMangoesGroup"></g>
+                    <text x="0" y="16" text-anchor="middle" font-size="10.5" font-weight="700"
+                        fill="#f8fafc">BASKET</text>
+                </g>
+
+                <!-- Flying Stones & Falling Mangoes -->
+                <g id="projectilesGroup"></g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const decStonesBtn = document.getElementById("decStones");
+        const incStonesBtn = document.getElementById("incStones");
+        const stonesDisplay = document.getElementById("stonesDisplay");
+        const mangoesPerStoneInput = document.getElementById("mangoesPerStone");
+        const treeMangoesInput = document.getElementById("treeMangoesVal");
+        const throwModeSelect = document.getElementById("throwMode");
+        const throwSpeedInput = document.getElementById("throwSpeed");
+        const goBtn = document.getElementById("goBtn");
+        const moreBtn = document.getElementById("moreBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+
+        const stonesThrownOut = document.getElementById("stonesThrownOut");
+        const mangoesCollectedOut = document.getElementById("mangoesCollectedOut");
+        const remainingTreeOut = document.getElementById("remainingTreeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+
+        const hangingMangoesGroup = document.getElementById("hangingMangoesGroup");
+        const basketMangoesGroup = document.getElementById("basketMangoesGroup");
+        const projectilesGroup = document.getElementById("projectilesGroup");
+        const throwArm = document.getElementById("throwArm");
+
+        const GROUND_Y = 225;
+        const BOY_HAND_X = 198;
+        const BOY_HAND_Y = 181;
+        const BASKET_X = 250;
+        const BASKET_Y = GROUND_Y - 12;
+
+        // Canopy mango anchor slots
+        const CANOPY_SLOTS = [
+            { x: 672, y: 112 }, { x: 702, y: 116 }, { x: 734, y: 114 }, { x: 766, y: 112 },
+            { x: 686, y: 88 }, { x: 718, y: 86 }, { x: 750, y: 90 }, { x: 716, y: 64 },
+            { x: 654, y: 122 }, { x: 786, y: 120 }, { x: 696, y: 102 }, { x: 744, y: 102 },
+            { x: 668, y: 76 }, { x: 768, y: 78 }, { x: 726, y: 126 }, { x: 704, y: 74 },
+            { x: 742, y: 74 }, { x: 682, y: 128 }, { x: 756, y: 128 }, { x: 720, y: 52 },
+            { x: 644, y: 96 }, { x: 794, y: 96 }, { x: 712, y: 96 }, { x: 736, y: 96 }
+        ];
+
+        let stonesPerRound = 3;
+        let treeRemaining = 12;
+        let collectedCount = 0;
+        let totalStonesThrown = 0;
+        let simElapsedSec = 0;
+
+        let animId = null;
+        let running = false;
+        let lastFrameMs = null;
+        let activeRound = null;
+        let flyingStones = [];
+        let fallingMangoes = [];
+
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function playEffect(freqStart, freqEnd, duration = 0.09, type = "triangle") {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freqStart, now);
+            osc.frequency.exponentialRampToValueAtTime(Math.max(50, freqEnd), now + duration);
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + duration + 0.01);
+        }
+
+        function drawMangoShape(cx, cy, scale = 1, angle = 0) {
+            return `
+                <g transform="translate(${cx.toFixed(1)}, ${cy.toFixed(1)}) rotate(${angle.toFixed(1)}) scale(${scale})">
+                    <path d="M 0 -6 C 6 -5 8 2 4 7 C 1 10 -4 9 -5 5 C -6 1 -3 -5 0 -6 Z" fill="#f59e0b" stroke="#b45309" stroke-width="1" />
+                    <path d="M 0 -6 L 1.5 -9.5" stroke="#15803d" stroke-width="1.6" stroke-linecap="round" />
+                </g>
+            `;
+        }
+
+        function renderScene() {
+            stonesDisplay.textContent = stonesPerRound;
+            stonesThrownOut.textContent = String(totalStonesThrown);
+            mangoesCollectedOut.textContent = String(collectedCount);
+            remainingTreeOut.textContent = String(treeRemaining);
+            liveTimeOut.textContent = `${simElapsedSec.toFixed(2)} s`;
+
+            let hangingHtml = "";
+            for (let i = 0; i < treeRemaining; i++) {
+                const slot = CANOPY_SLOTS[i % CANOPY_SLOTS.length];
+                const jitterX = Math.floor(i / CANOPY_SLOTS.length) * 6;
+                hangingHtml += drawMangoShape(slot.x + jitterX, slot.y, 1, ((i * 19) % 24) - 12);
+            }
+            hangingMangoesGroup.innerHTML = hangingHtml;
+
+            let basketHtml = "";
+            const shownInBasket = Math.min(collectedCount, 14);
+            for (let i = 0; i < shownInBasket; i++) {
+                const bx = -11 + (i % 5) * 5.5;
+                const by = -14 - Math.floor(i / 5) * 4.5;
+                basketHtml += drawMangoShape(bx, by, 0.78, ((i * 27) % 30) - 15);
+            }
+            basketMangoesGroup.innerHTML = basketHtml;
+
+            let projHtml = "";
+            for (const s of flyingStones) {
+                projHtml += `
+                    <g transform="translate(${s.x.toFixed(1)}, ${s.y.toFixed(1)}) rotate(${s.rot.toFixed(1)})">
+                        <ellipse cx="0" cy="0" rx="4.5" ry="3.3" fill="#64748b" stroke="#0f172a" stroke-width="1" />
+                    </g>
+                `;
+            }
+            for (const m of fallingMangoes) {
+                projHtml += drawMangoShape(m.x, m.y, 1, m.angle);
+            }
+            projectilesGroup.innerHTML = projHtml;
+        }
+
+        function launchSingleStone(willHit) {
+            totalStonesThrown += 1;
+            const slot = CANOPY_SLOTS[Math.max(0, treeRemaining - 1) % CANOPY_SLOTS.length];
+            const targetX = willHit ? slot.x : 660 + Math.random() * 130;
+            const targetY = willHit ? slot.y : 55 + Math.random() * 55;
+            const flightDuration = 0.34;
+
+            flyingStones.push({
+                x: BOY_HAND_X,
+                y: BOY_HAND_Y,
+                startX: BOY_HAND_X,
+                startY: BOY_HAND_Y,
+                targetX,
+                targetY,
+                elapsed: 0,
+                duration: flightDuration,
+                rot: 0,
+                willHit,
+                triggeredHit: false
+            });
+
+            playEffect(520, 260, 0.08, "triangle");
+        }
+
+        function spawnFallingMangoFromTree() {
+            if (treeRemaining <= 0) return;
+            treeRemaining -= 1;
+            const slot = CANOPY_SLOTS[treeRemaining % CANOPY_SLOTS.length];
+
+            fallingMangoes.push({
+                x: slot.x,
+                y: slot.y,
+                vx: -95 - Math.random() * 45,
+                vy: -20,
+                angle: 0,
+                spin: (Math.random() < 0.5 ? -1 : 1) * 260,
+                collected: false
+            });
+
+            playEffect(660, 440, 0.09, "sine");
+        }
+
+        function stepSimulation(dt) {
+            simElapsedSec += dt;
+
+            if (activeRound) {
+                activeRound.timer += dt;
+                const swing = Math.sin(activeRound.timer * 18) * 35;
+                throwArm.setAttribute("transform", `translate(8, -37) rotate(${swing.toFixed(1)})`);
+
+                while (
+                    activeRound.thrownInRound < activeRound.stonesToThrow &&
+                    activeRound.timer >= activeRound.thrownInRound * activeRound.paceSec
+                ) {
+                    const perStoneYield = Math.max(0, Math.min(5, Number(mangoesPerStoneInput.value) || 0));
+                    let hitsForStone = 0;
+
+                    if (treeRemaining > 0) {
+                        if (throwModeSelect.value === "variable") {
+                            hitsForStone = Math.random() < 0.72 ? perStoneYield : 0;
+                        } else {
+                            hitsForStone = perStoneYield;
+                        }
+                        hitsForStone = Math.min(hitsForStone, treeRemaining - activeRound.queuedMangoes);
+                        hitsForStone = Math.max(0, hitsForStone);
+                    }
+
+                    activeRound.queuedMangoes += hitsForStone;
+                    activeRound.thrownInRound += 1;
+                    launchSingleStone(hitsForStone > 0);
+                }
+
+                if (
+                    activeRound.thrownInRound >= activeRound.stonesToThrow &&
+                    activeRound.timer >= activeRound.stonesToThrow * activeRound.paceSec
+                ) {
+                    activeRound = null;
+                    throwArm.setAttribute("transform", "translate(8, -37) rotate(0)");
+                }
+            }
+
+            const nextStones = [];
+            for (const s of flyingStones) {
+                s.elapsed += dt;
+                s.rot += 540 * dt;
+                const t = Math.min(1, s.elapsed / s.duration);
+                const arcLift = Math.sin(t * Math.PI) * 58;
+                s.x = s.startX + (s.targetX - s.startX) * t;
+                s.y = s.startY + (s.targetY - s.startY) * t - arcLift;
+
+                if (t >= 1 && !s.triggeredHit) {
+                    s.triggeredHit = true;
+                    if (s.willHit && treeRemaining > 0) {
+                        spawnFallingMangoFromTree();
+                    }
+                }
+                if (t < 1) {
+                    nextStones.push(s);
+                }
+            }
+            flyingStones = nextStones;
+
+            const nextMangoes = [];
+            for (const m of fallingMangoes) {
+                m.x += m.vx * dt;
+                m.vy += 280 * dt;
+                m.y += m.vy * dt;
+                m.angle += m.spin * dt;
+
+                if (m.y >= BASKET_Y) {
+                    collectedCount += 1;
+                    playEffect(440, 660, 0.08, "triangle");
+                } else {
+                    nextMangoes.push(m);
+                }
+            }
+            fallingMangoes = nextMangoes;
+
+            renderScene();
+
+            const stillBusy = Boolean(activeRound) || flyingStones.length > 0 || fallingMangoes.length > 0;
+            if (stillBusy) {
+                animId = requestAnimationFrame(loop);
+            } else {
+                running = false;
+                lastFrameMs = null;
+                animId = null;
+                throwArm.setAttribute("transform", "translate(8, -37) rotate(0)");
+            }
+        }
+
+        function loop(now) {
+            if (!running) return;
+            if (!lastFrameMs) lastFrameMs = now;
+            const dt = Math.min(0.05, Math.max(0, (now - lastFrameMs) / 1000));
+            lastFrameMs = now;
+            stepSimulation(dt);
+        }
+
+        function startThrowRound(isAdditionalRound) {
+            if (!isAdditionalRound) {
+                treeRemaining = Math.max(1, Math.min(24, Number(treeMangoesInput.value) || 12));
+                collectedCount = 0;
+                totalStonesThrown = 0;
+                simElapsedSec = 0;
+                flyingStones = [];
+                fallingMangoes = [];
+            }
+
+            const paceSec = Math.max(0.25, Math.min(2.5, Number(throwSpeedInput.value) || 0.65));
+            activeRound = {
+                stonesToThrow: stonesPerRound,
+                thrownInRound: 0,
+                queuedMangoes: 0,
+                timer: 0,
+                paceSec
+            };
+
+            renderScene();
+            if (!running) {
+                running = true;
+                lastFrameMs = null;
+                animId = requestAnimationFrame(loop);
+            }
+        }
+
+        function resetAll() {
+            running = false;
+            lastFrameMs = null;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+            activeRound = null;
+            flyingStones = [];
+            fallingMangoes = [];
+            treeRemaining = Math.max(1, Math.min(24, Number(treeMangoesInput.value) || 12));
+            collectedCount = 0;
+            totalStonesThrown = 0;
+            simElapsedSec = 0;
+            throwArm.setAttribute("transform", "translate(8, -37) rotate(0)");
+            renderScene();
+        }
+
+        decStonesBtn.addEventListener("click", () => {
+            stonesPerRound = Math.max(1, stonesPerRound - 1);
+            stonesDisplay.textContent = stonesPerRound;
+        });
+
+        incStonesBtn.addEventListener("click", () => {
+            stonesPerRound = Math.min(12, stonesPerRound + 1);
+            stonesDisplay.textContent = stonesPerRound;
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+        });
+
+        treeMangoesInput.addEventListener("change", resetAll);
+        goBtn.addEventListener("click", () => startThrowRound(false));
+        moreBtn.addEventListener("click", () => startThrowRound(true));
+        resetBtn.addEventListener("click", resetAll);
+
+        renderScene();
+    </script>
+</body>
+
+</html>

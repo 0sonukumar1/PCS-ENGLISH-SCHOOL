@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Tank Filling Through a Pipe — SVG Simulator</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Water Tank Filling Through a Pipe</h1>
+        <p class="sub">Adjust tank capacity, inlet pipe rate, and outlet/leak rate, then press <strong>Go</strong> to
+            simulate tank filling (Pipes &amp; Cisterns).</p>
+
+        <div class="controls">
+            <div class="field">
+                <label for="capacityVal">Tank Capacity (L)</label>
+                <input type="number" id="capacityVal" min="10" step="any" value="120" />
+            </div>
+            <div class="field">
+                <label for="inletRateVal">Inlet Pipe Rate</label>
+                <input type="number" id="inletRateVal" min="0.5" step="any" value="20" />
+            </div>
+            <div class="field">
+                <label for="outletRateVal">Outlet / Leak Rate</label>
+                <input type="number" id="outletRateVal" min="0" step="any" value="5" />
+            </div>
+            <div class="field">
+                <label for="rateUnit">Flow Rate Unit</label>
+                <select id="rateUnit">
+                    <option value="lps" selected>L/s (liters/sec)</option>
+                    <option value="lpm">L/min (liters/min)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Inlet Pipes Count</label>
+                <div class="stepper">
+                    <button type="button" id="decPipes" aria-label="Decrease inlet pipes">−</button>
+                    <div class="stepper-val" id="pipesDisplay">1</div>
+                    <button type="button" id="incPipes" aria-label="Increase inlet pipes">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Net Fill Rate: <strong id="netRateOut">15.00 L/s</strong></div>
+            <div>Current Volume: <strong id="volOut">0.0 / 120.0 L</strong></div>
+            <div>Calculated Fill Time: <strong id="calcTimeOut">8.00 s</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 s</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img" aria-label="SVG water tank filling through a pipe">
+                <!-- Background -->
+                <rect x="0" y="0" width="1000" height="215" fill="#f1f5f9" />
+                <rect x="0" y="215" width="1000" height="65" fill="#475569" />
+                <line x1="0" y1="215" x2="1000" y2="215" stroke="#1e293b" stroke-width="3" />
+
+                <!-- Supply Source (Left) -->
+                <g id="supplySource">
+                    <rect x="45" y="45" width="110" height="62" rx="8" fill="#0369a1" stroke="#0c4a6e"
+                        stroke-width="2" />
+                    <text x="100" y="72" text-anchor="middle" font-size="11" font-weight="700"
+                        fill="#ffffff">WATER</text>
+                    <text x="100" y="88" text-anchor="middle" font-size="11" font-weight="700"
+                        fill="#bae6fd">SOURCE</text>
+                </g>
+
+                <!-- Inlet Pipe & Valve -->
+                <g id="inletPipeGroup">
+                    <path d="M 155 76 L 505 76 L 505 102" fill="none" stroke="#64748b" stroke-width="14"
+                        stroke-linejoin="round" />
+                    <path d="M 155 76 L 505 76 L 505 102" fill="none" stroke="#cbd5e1" stroke-width="8"
+                        stroke-linejoin="round" />
+                    <!-- Valve handle -->
+                    <rect x="268" y="62" width="24" height="28" rx="3" fill="#334155" stroke="#0f172a"
+                        stroke-width="1.5" />
+                    <line id="valveLever" x1="280" y1="62" x2="280" y2="48" stroke="#22c55e" stroke-width="4"
+                        stroke-linecap="round" />
+                    <text x="280" y="42" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">INLET
+                        VALVE</text>
+                </g>
+
+                <!-- Falling / Flowing Stream Inside Tank -->
+                <g id="streamGroup"></g>
+
+                <!-- Main Tank (x: 410..600, y: 102..215) -->
+                <g id="tankGroup">
+                    <!-- Water fill clip -->
+                    <defs>
+                        <clipPath id="tankClip">
+                            <rect x="414" y="106" width="182" height="105" rx="4" />
+                        </clipPath>
+                    </defs>
+
+                    <g clip-path="url(#tankClip)">
+                        <rect id="waterRect" x="414" y="211" width="182" height="0" fill="#0ea5e9" />
+                        <path id="waterSurfaceWave" d="" fill="#38bdf8" opacity="0.85" />
+                    </g>
+
+                    <!-- Tank Outer Shell -->
+                    <rect x="410" y="102" width="190" height="113" rx="6" fill="none" stroke="#1e293b"
+                        stroke-width="4" />
+
+                    <!-- Volume Scale Ticks -->
+                    <line x1="410" y1="130" x2="422" y2="130" stroke="#334155" stroke-width="1.5" />
+                    <line x1="410" y1="158" x2="422" y2="158" stroke="#334155" stroke-width="1.5" />
+                    <line x1="410" y1="186" x2="422" y2="186" stroke="#334155" stroke-width="1.5" />
+                    <text id="tankPercentLabel" x="505" y="162" text-anchor="middle" font-size="16" font-weight="800"
+                        fill="#0f172a">0%</text>
+                    <text x="505" y="234" text-anchor="middle" font-size="12" font-weight="700"
+                        fill="#f8fafc">TANK</text>
+                </g>
+
+                <!-- Outlet / Drain Pipe (Bottom Right) -->
+                <g id="outletPipeGroup">
+                    <path d="M 600 198 L 770 198 L 770 215" fill="none" stroke="#64748b" stroke-width="10"
+                        stroke-linejoin="round" />
+                    <path d="M 600 198 L 770 198 L 770 215" fill="none" stroke="#cbd5e1" stroke-width="5"
+                        stroke-linejoin="round" />
+                    <text x="685" y="188" text-anchor="middle" font-size="10.5" font-weight="700"
+                        fill="#0f172a">OUTLET</text>
+                </g>
+
+                <!-- Drain / Splash Drops -->
+                <g id="drainGroup"></g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const capacityInput = document.getElementById("capacityVal");
+        const inletRateInput = document.getElementById("inletRateVal");
+        const outletRateInput = document.getElementById("outletRateVal");
+        const rateUnitSelect = document.getElementById("rateUnit");
+        const pipesDisplay = document.getElementById("pipesDisplay");
+        const decPipesBtn = document.getElementById("decPipes");
+        const incPipesBtn = document.getElementById("incPipes");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const netRateOut = document.getElementById("netRateOut");
+        const volOut = document.getElementById("volOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+        const waterRect = document.getElementById("waterRect");
+        const waterSurfaceWave = document.getElementById("waterSurfaceWave");
+        const tankPercentLabel = document.getElementById("tankPercentLabel");
+        const streamGroup = document.getElementById("streamGroup");
+        const drainGroup = document.getElementById("drainGroup");
+        const valveLever = document.getElementById("valveLever");
+
+        const TANK_TOP_Y = 106;
+        const TANK_BOTTOM_Y = 211;
+        const TANK_INNER_H = TANK_BOTTOM_Y - TANK_TOP_Y; // 105 px
+
+        let pipeCount = 1;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+        let drops = [];
+        let nextDropSec = 0.1;
+
+        // Web Audio water sound
+        let soundEnabled = true;
+        let audioCtx = null;
+        let flowSource = null;
+        let flowFilter = null;
+        let flowGain = null;
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function startWaterSound(netRateLps) {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            stopWaterSound();
+
+            const len = ctx.sampleRate * 1.5;
+            const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+            const data = buf.getChannelData(0);
+            for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+
+            flowSource = ctx.createBufferSource();
+            flowSource.buffer = buf;
+            flowSource.loop = true;
+
+            flowFilter = ctx.createBiquadFilter();
+            flowFilter.type = "bandpass";
+            flowFilter.frequency.setValueAtTime(650 + Math.min(800, Math.abs(netRateLps) * 18), ctx.currentTime);
+            flowFilter.Q.setValueAtTime(1.1, ctx.currentTime);
+
+            flowGain = ctx.createGain();
+            flowGain.gain.setValueAtTime(Math.min(0.14, 0.04 + Math.abs(netRateLps) * 0.0025), ctx.currentTime);
+
+            flowSource.connect(flowFilter);
+            flowFilter.connect(flowGain);
+            flowGain.connect(ctx.destination);
+            flowSource.start();
+        }
+
+        function stopWaterSound() {
+            try {
+                if (flowSource) { flowSource.stop(); flowSource.disconnect(); }
+                if (flowFilter) flowFilter.disconnect();
+                if (flowGain) flowGain.disconnect();
+            } catch (_) { }
+            flowSource = null;
+            flowFilter = null;
+            flowGain = null;
+        }
+
+        function getCapacityLiters() {
+            return Math.max(10, Number(capacityInput.value) || 120);
+        }
+
+        function toLps(val) {
+            const num = Number(val) || 0;
+            return rateUnitSelect.value === "lpm" ? num / 60 : num;
+        }
+
+        function getNetRateLps() {
+            const inletPerPipe = Math.max(0, toLps(inletRateInput.value));
+            const outlet = Math.max(0, toLps(outletRateInput.value));
+            return inletPerPipe * pipeCount - outlet;
+        }
+
+        function getFillTimeSec() {
+            const net = getNetRateLps();
+            if (net <= 0) return Infinity;
+            return getCapacityLiters() / net;
+        }
+
+        function renderTankLevel(progress, elapsedSec, isActive) {
+            const clamped = Math.max(0, Math.min(1, progress));
+            const cap = getCapacityLiters();
+            const currentVol = clamped * cap;
+            const waterH = clamped * TANK_INNER_H;
+            const waterY = TANK_BOTTOM_Y - waterH;
+
+            waterRect.setAttribute("y", waterY.toFixed(1));
+            waterRect.setAttribute("height", waterH.toFixed(1));
+            tankPercentLabel.textContent = `${Math.round(clamped * 100)}%`;
+            volOut.textContent = `${currentVol.toFixed(1)} / ${cap.toFixed(1)} L`;
+
+            if (waterH > 2) {
+                const amp = isActive ? 2.4 : 0.8;
+                const phase = elapsedSec * 7;
+                const d = `M 414 ${waterY.toFixed(1)} ` +
+                    `Q 459 ${(waterY + Math.sin(phase) * amp).toFixed(1)} 505 ${waterY.toFixed(1)} ` +
+                    `T 596 ${waterY.toFixed(1)} L 596 ${(waterY + 7).toFixed(1)} L 414 ${(waterY + 7).toFixed(1)} Z`;
+                waterSurfaceWave.setAttribute("d", d);
+            } else {
+                waterSurfaceWave.setAttribute("d", "");
+            }
+
+            // Falling stream from nozzle (505, 102) down to water surface
+            const inletTotal = Math.max(0, toLps(inletRateInput.value)) * pipeCount;
+            if (isActive && inletTotal > 0 && waterY > 103) {
+                const streamW = Math.min(12, Math.max(3, inletTotal * 0.25));
+                const dashShift = -(elapsedSec * 90) % 16;
+                streamGroup.innerHTML = `
+                    <line x1="505" y1="102" x2="505" y2="${waterY.toFixed(1)}" stroke="#38bdf8" stroke-width="${streamW.toFixed(1)}" stroke-linecap="round" opacity="0.85" />
+                    <line x1="505" y1="102" x2="505" y2="${waterY.toFixed(1)}" stroke="#e0f2fe" stroke-width="${Math.max(1.5, streamW * 0.4).toFixed(1)}" stroke-dasharray="8 8" stroke-dashoffset="${dashShift.toFixed(1)}" opacity="0.8" />
+                `;
+            } else {
+                streamGroup.innerHTML = "";
+            }
+        }
+
+        function updateOutletDrops(dtReal, dtStep, isActive, hasWater) {
+            const outletRate = Math.max(0, toLps(outletRateInput.value));
+            if (isActive && hasWater && outletRate > 0 && dtReal >= nextDropSec) {
+                nextDropSec = dtReal + Math.max(0.08, 0.35 - outletRate * 0.01);
+                drops.push({
+                    x: 770 + (Math.random() - 0.5) * 6,
+                    y: 215,
+                    vy: 40 + outletRate * 3,
+                    age: 0
+                });
+            }
+
+            const active = [];
+            for (const d of drops) {
+                d.age += dtStep;
+                d.vy += 220 * dtStep;
+                d.y += d.vy * dtStep;
+                if (d.age < 0.55) active.push(d);
+            }
+            drops = active;
+
+            drainGroup.innerHTML = drops
+                .map((d) => {
+                    const op = Math.max(0, 1 - d.age / 0.55);
+                    return `<circle cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="2.8" fill="#38bdf8" opacity="${op.toFixed(2)}" />`;
+                })
+                .join("");
+        }
+
+        function updateReadouts() {
+            pipesDisplay.textContent = pipeCount;
+            const net = getNetRateLps();
+            const tSec = getFillTimeSec();
+            const unitLabel = rateUnitSelect.value === "lpm" ? "L/min" : "L/s";
+            const displayNet = rateUnitSelect.value === "lpm" ? net * 60 : net;
+
+            netRateOut.textContent = `${displayNet.toFixed(2)} ${unitLabel} (${net.toFixed(2)} L/s)`;
+            calcTimeOut.textContent = Number.isFinite(tSec) ? `${tSec.toFixed(2)} s` : "Never fills (net ≤ 0)";
+            valveLever.setAttribute("transform", `rotate(${running ? 0 : 90} 280 62)`);
+            renderTankLevel(0, 0, false);
+        }
+
+        function stopSim() {
+            running = false;
+            startTimestamp = null;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+            stopWaterSound();
+            valveLever.setAttribute("transform", "rotate(90 280 62)");
+        }
+
+        function resetSim() {
+            stopSim();
+            drops = [];
+            drainGroup.innerHTML = "";
+            nextDropSec = 0.1;
+            liveTimeOut.textContent = "0.00 s";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const net = getNetRateLps();
+            const tSec = getFillTimeSec();
+            if (!Number.isFinite(tSec) || tSec <= 0 || net <= 0) {
+                calcTimeOut.textContent = "Inlet flow must exceed outlet flow";
+                return;
+            }
+
+            stopSim();
+            running = true;
+            drops = [];
+            nextDropSec = 0.1;
+            startTimestamp = null;
+            let lastTime = null;
+            liveTimeOut.textContent = "0.00 s";
+            valveLever.setAttribute("transform", "rotate(0 280 62)");
+            startWaterSound(net);
+
+            const durationSec = Math.max(0.8, tSec);
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) {
+                    startTimestamp = now;
+                    lastTime = now;
+                }
+                const dtStep = Math.min(0.05, Math.max(0, (now - lastTime) / 1000));
+                lastTime = now;
+
+                const dtReal = (now - startTimestamp) / 1000;
+                const progress = Math.min(1, dtReal / durationSec);
+                const simClock = progress * tSec;
+
+                liveTimeOut.textContent = `${simClock.toFixed(2)} s`;
+                renderTankLevel(progress, dtReal, progress < 1);
+                updateOutletDrops(dtReal, dtStep, progress < 1, progress > 0.01);
+
+                if (progress < 1) {
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    running = false;
+                    stopWaterSound();
+                    valveLever.setAttribute("transform", "rotate(90 280 62)");
+                    renderTankLevel(1, dtReal, false);
+                    liveTimeOut.textContent = `${tSec.toFixed(2)} s (Full)`;
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        decPipesBtn.addEventListener("click", () => {
+            pipeCount = Math.max(1, pipeCount - 1);
+            resetSim();
+        });
+
+        incPipesBtn.addEventListener("click", () => {
+            pipeCount = Math.min(6, pipeCount + 1);
+            resetSim();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+            if (!soundEnabled) stopWaterSound();
+        });
+
+        [capacityInput, inletRateInput, outletRateInput, rateUnitSelect].forEach((el) => {
+            el.addEventListener("input", resetSim);
+            el.addEventListener("change", resetSim);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSim);
+
+        updateReadouts();
+    </script>
+</body>
+
+</html>

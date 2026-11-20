@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boat Crossing a Buoy — SVG Simulator</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #0ea5e9;
+            color: #082f49;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Boat Crossing a Buoy</h1>
+        <p class="sub">Adjust boat speed, water current, boat length, and passengers, then press <strong>Go</strong> to
+            see how long the full boat takes to pass the marker buoy.</p>
+
+        <div class="controls">
+            <div class="field">
+                <label for="boatSpeedVal">Boat Speed (in still water)</label>
+                <input type="number" id="boatSpeedVal" min="0.5" step="any" value="12" />
+            </div>
+            <div class="field">
+                <label for="currentSpeedVal">Water Current (m/s, + downstream / − upstream)</label>
+                <input type="number" id="currentSpeedVal" step="any" value="3" />
+            </div>
+            <div class="field">
+                <label for="speedUnit">Boat Speed Unit</label>
+                <select id="speedUnit">
+                    <option value="mps" selected>m/s (meters/sec)</option>
+                    <option value="kmph">km/h (kilometers/hr)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="boatLen">Boat Length (m)</label>
+                <input type="number" id="boatLen" min="2" step="any" value="24" />
+            </div>
+            <div class="field">
+                <label>Passengers on Deck</label>
+                <div class="stepper">
+                    <button type="button" id="decPax" aria-label="Decrease passengers">−</button>
+                    <div class="stepper-val" id="paxDisplay">4</div>
+                    <button type="button" id="incPax" aria-label="Increase passengers">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Boat Length: <strong id="boatLenOut">24.0 m</strong></div>
+            <div>Ground Speed: <strong id="groundSpeedOut">15.00 m/s</strong></div>
+            <div>Calculated Crossing Time: <strong id="calcTimeOut">1.60 s</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 s</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img" aria-label="SVG boat crossing a water buoy">
+                <!-- Sky -->
+                <rect x="0" y="0" width="1000" height="165" fill="#e0f2fe" />
+                <circle cx="880" cy="48" r="24" fill="#fde047" opacity="0.9" />
+
+                <!-- Distant hills -->
+                <path d="M0 165 Q180 115 360 165 T720 165 T1000 165 Z" fill="#bae6fd" />
+
+                <!-- Water -->
+                <rect x="0" y="165" width="1000" height="115" fill="#0284c7" />
+                <rect x="0" y="165" width="1000" height="14" fill="#38bdf8" opacity="0.45" />
+
+                <!-- Animated Water Ripples -->
+                <g id="ripplesGroup"></g>
+
+                <!-- Marker Buoy at x = 680 -->
+                <g id="buoy">
+                    <line x1="680" y1="95" x2="680" y2="178" stroke="#1e293b" stroke-width="2.5" />
+                    <polygon points="680,92 672,110 688,110" fill="#f97316" stroke="#7c2d12" stroke-width="1.2" />
+                    <rect x="666" y="162" width="28" height="12" rx="4" fill="#ef4444" stroke="#7f1d1d"
+                        stroke-width="1.5" />
+                    <text x="680" y="82" text-anchor="middle" font-size="12.5" font-weight="700"
+                        fill="#0f172a">BUOY</text>
+                    <line x1="680" y1="112" x2="680" y2="235" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 4"
+                        opacity="0.65" />
+                </g>
+
+                <!-- Moving Boat Group -->
+                <g id="boatGroup"></g>
+
+                <!-- Splash / Wake Particles -->
+                <g id="wakeGroup"></g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const boatSpeedInput = document.getElementById("boatSpeedVal");
+        const currentSpeedInput = document.getElementById("currentSpeedVal");
+        const speedUnitSelect = document.getElementById("speedUnit");
+        const boatLenInput = document.getElementById("boatLen");
+        const paxDisplay = document.getElementById("paxDisplay");
+        const decPaxBtn = document.getElementById("decPax");
+        const incPaxBtn = document.getElementById("incPax");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const boatLenOut = document.getElementById("boatLenOut");
+        const groundSpeedOut = document.getElementById("groundSpeedOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+        const boatGroup = document.getElementById("boatGroup");
+        const ripplesGroup = document.getElementById("ripplesGroup");
+        const wakeGroup = document.getElementById("wakeGroup");
+
+        const BUOY_X = 680;
+        const WATER_Y = 172;
+        const PX_PER_METER = 3.2;
+
+        let passengers = 4;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+        let hornPlayedAtBuoy = false;
+        let currentBowX = BUOY_X;
+        let splashes = [];
+        let nextSplashSec = 0.25;
+
+        // Web Audio water & motor synthesizer
+        let soundEnabled = true;
+        let audioCtx = null;
+        let motorOsc = null;
+        let motorFilter = null;
+        let motorGain = null;
+        let waterNoiseNode = null;
+        let waterFilter = null;
+        let waterGain = null;
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function playBoatHorn(durationSec = 0.35) {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+
+            const now = ctx.currentTime;
+            const gain = ctx.createGain();
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.09, now + 0.04);
+            gain.gain.setValueAtTime(0.09, now + durationSec - 0.07);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + durationSec);
+            gain.connect(ctx.destination);
+
+            [220, 277.18].forEach((freq) => {
+                const osc = ctx.createOscillator();
+                osc.type = "sawtooth";
+                osc.frequency.setValueAtTime(freq, now);
+                const lp = ctx.createBiquadFilter();
+                lp.type = "lowpass";
+                lp.frequency.setValueAtTime(950, now);
+                osc.connect(lp);
+                lp.connect(gain);
+                osc.start(now);
+                osc.stop(now + durationSec + 0.02);
+            });
+        }
+
+        function startBoatSound(speedMps) {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            stopBoatSound();
+
+            const absSpeed = Math.min(60, Math.abs(speedMps || 12));
+
+            // Gentle boat motor hum
+            motorOsc = ctx.createOscillator();
+            motorOsc.type = "triangle";
+            motorOsc.frequency.setValueAtTime(68 + absSpeed * 2.2, ctx.currentTime);
+
+            motorFilter = ctx.createBiquadFilter();
+            motorFilter.type = "lowpass";
+            motorFilter.frequency.setValueAtTime(220 + absSpeed * 6, ctx.currentTime);
+
+            motorGain = ctx.createGain();
+            motorGain.gain.setValueAtTime(0.05, ctx.currentTime);
+
+            motorOsc.connect(motorFilter);
+            motorFilter.connect(motorGain);
+            motorGain.connect(ctx.destination);
+            motorOsc.start();
+
+            // Filtered white noise for water wash
+            const bufferLen = ctx.sampleRate * 1.5;
+            const buffer = ctx.createBuffer(1, bufferLen, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferLen; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+
+            waterNoiseNode = ctx.createBufferSource();
+            waterNoiseNode.buffer = buffer;
+            waterNoiseNode.loop = true;
+
+            waterFilter = ctx.createBiquadFilter();
+            waterFilter.type = "bandpass";
+            waterFilter.frequency.setValueAtTime(520 + absSpeed * 14, ctx.currentTime);
+            waterFilter.Q.setValueAtTime(0.9, ctx.currentTime);
+
+            waterGain = ctx.createGain();
+            waterGain.gain.setValueAtTime(Math.min(0.14, 0.03 + absSpeed * 0.003), ctx.currentTime);
+
+            waterNoiseNode.connect(waterFilter);
+            waterFilter.connect(waterGain);
+            waterGain.connect(ctx.destination);
+            waterNoiseNode.start();
+
+            playBoatHorn(0.28);
+        }
+
+        function stopBoatSound() {
+            try {
+                if (motorOsc) { motorOsc.stop(); motorOsc.disconnect(); }
+                if (motorFilter) motorFilter.disconnect();
+                if (motorGain) motorGain.disconnect();
+                if (waterNoiseNode) { waterNoiseNode.stop(); waterNoiseNode.disconnect(); }
+                if (waterFilter) waterFilter.disconnect();
+                if (waterGain) waterGain.disconnect();
+            } catch (_) { }
+            motorOsc = null;
+            motorFilter = null;
+            motorGain = null;
+            waterNoiseNode = null;
+            waterFilter = null;
+            waterGain = null;
+        }
+
+        function getBoatLengthMeters() {
+            return Math.max(2, Number(boatLenInput.value) || 24);
+        }
+
+        function getGroundSpeedMps() {
+            const rawBoat = Number(boatSpeedInput.value);
+            if (!rawBoat || rawBoat <= 0 || Number.isNaN(rawBoat)) return 0;
+            const boatMps = speedUnitSelect.value === "kmph" ? rawBoat * (1000 / 3600) : rawBoat;
+            const currentMps = Number(currentSpeedInput.value) || 0;
+            return boatMps + currentMps;
+        }
+
+        function getCrossingTimeSec() {
+            const v = Math.abs(getGroundSpeedMps());
+            if (v <= 0) return Infinity;
+            return getBoatLengthMeters() / v;
+        }
+
+        function getBoatVisualPx() {
+            return Math.max(70, Math.min(260, getBoatLengthMeters() * PX_PER_METER));
+        }
+
+        function renderRipples(elapsedSec, currentMps) {
+            const flowShift = (elapsedSec * (25 + currentMps * 12)) % 120;
+            let lines = [];
+            for (let row = 0; row < 5; row++) {
+                const y = 186 + row * 18;
+                const w = 36 + (row % 3) * 14;
+                for (let col = -1; col < 10; col++) {
+                    const x = col * 115 + flowShift + (row % 2) * 35;
+                    lines.push(
+                        `<line x1="${x.toFixed(1)}" y1="${y}" x2="${(x + w).toFixed(1)}" y2="${y}" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round" opacity="0.55" />`
+                    );
+                }
+            }
+            ripplesGroup.innerHTML = lines.join("");
+        }
+
+        function renderBoatSvg() {
+            const boatPx = getBoatVisualPx();
+            const sternX = -boatPx;
+            const bowX = 0;
+            const deckY = WATER_Y - 18;
+            const cabinW = Math.min(46, Math.max(22, boatPx * 0.26));
+            const cabinX = sternX + boatPx * 0.42;
+
+            let paxHtml = "";
+            const shownPax = Math.min(passengers, Math.max(1, Math.floor((boatPx - 36) / 14)));
+            for (let i = 0; i < shownPax; i++) {
+                const px = sternX + 14 + ((i + 0.5) / shownPax) * Math.max(12, boatPx - 28);
+                paxHtml += `
+                    <g class="boat-pax" data-idx="${i}">
+                        <circle cx="${px.toFixed(1)}" cy="${(deckY - 11).toFixed(1)}" r="3.4" fill="#fde68a" stroke="#92400e" stroke-width="0.9" />
+                        <rect x="${(px - 2.6).toFixed(1)}" y="${(deckY - 7.5).toFixed(1)}" width="5.2" height="7.5" rx="1.5" fill="#f97316" />
+                    </g>
+                `;
+            }
+
+            boatGroup.innerHTML = `
+                <!-- Outboard motor at stern -->
+                <rect x="${(sternX - 8).toFixed(1)}" y="${(deckY - 2).toFixed(1)}" width="9" height="14" rx="2" fill="#334155" stroke="#0f172a" stroke-width="1.2" />
+                <!-- Cabin -->
+                <rect x="${cabinX.toFixed(1)}" y="${(deckY - 14).toFixed(1)}" width="${cabinW.toFixed(1)}" height="14" rx="3" fill="#f8fafc" stroke="#0f172a" stroke-width="1.4" />
+                <rect x="${(cabinX + 4).toFixed(1)}" y="${(deckY - 10).toFixed(1)}" width="${Math.max(5, cabinW - 8).toFixed(1)}" height="6" rx="1" fill="#38bdf8" />
+                ${paxHtml}
+                <!-- Hull -->
+                <path d="M ${sternX} ${deckY} L ${bowX - 10} ${deckY} L ${bowX + 6} ${deckY - 5} L ${bowX - 8} ${WATER_Y + 6} L ${sternX + 8} ${WATER_Y + 6} Z" fill="#dc2626" stroke="#7f1d1d" stroke-width="1.8" />
+                <line x1="${sternX + 4}" y1="${WATER_Y}" x2="${bowX - 4}" y2="${WATER_Y}" stroke="#fef08a" stroke-width="1.5" />
+                <text x="${(sternX + boatPx * 0.5).toFixed(1)}" y="${(WATER_Y + 3).toFixed(1)}" text-anchor="middle" font-size="8.5" font-weight="700" fill="#ffffff">BOAT (${passengers} pax)</text>
+            `;
+        }
+
+        function animateBoatAndPax(elapsedSec, isMoving) {
+            const bobY = isMoving ? Math.sin(elapsedSec * 7) * 2.2 : Math.sin(elapsedSec * 2) * 0.8;
+            const tiltDeg = isMoving ? Math.cos(elapsedSec * 7) * 1.4 : 0;
+            boatGroup.setAttribute("transform", `translate(${currentBowX.toFixed(1)}, ${bobY.toFixed(2)}) rotate(${tiltDeg.toFixed(2)} 0 ${WATER_Y})`);
+
+            boatGroup.querySelectorAll(".boat-pax").forEach((el, idx) => {
+                const wave = isMoving ? Math.sin(elapsedSec * 8 + idx) * 1.2 : 0;
+                el.setAttribute("transform", `translate(0, ${wave.toFixed(2)})`);
+            });
+        }
+
+        function updateSplashes(dtReal, dtStep, isMoving) {
+            if (isMoving && dtReal >= nextSplashSec) {
+                nextSplashSec = dtReal + 0.22;
+                const sternWorldX = currentBowX - getBoatVisualPx();
+                splashes.push({
+                    x: sternWorldX,
+                    y: WATER_Y,
+                    vx: -25 - Math.random() * 25,
+                    vy: -35 - Math.random() * 25,
+                    age: 0
+                });
+            }
+
+            const active = [];
+            for (const s of splashes) {
+                s.age += dtStep;
+                s.x += s.vx * dtStep;
+                s.vy += 150 * dtStep;
+                s.y += s.vy * dtStep;
+                if (s.age < 0.65) active.push(s);
+            }
+            splashes = active;
+
+            wakeGroup.innerHTML = splashes
+                .map((s) => {
+                    const op = Math.max(0, 1 - s.age / 0.65);
+                    return `<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="2.6" fill="#e0f2fe" opacity="${op.toFixed(2)}" />`;
+                })
+                .join("");
+        }
+
+        function positionBoatByProgress(progress) {
+            const clamped = Math.max(0, Math.min(1, progress));
+            const boatPx = getBoatVisualPx();
+            const startBowX = BUOY_X;
+            const endBowX = BUOY_X + boatPx;
+            currentBowX = startBowX + clamped * (endBowX - startBowX);
+
+            if (!hornPlayedAtBuoy && currentBowX >= BUOY_X + boatPx * 0.5) {
+                hornPlayedAtBuoy = true;
+                playBoatHorn(0.25);
+            }
+        }
+
+        function updateReadouts() {
+            paxDisplay.textContent = passengers;
+            const lenM = getBoatLengthMeters();
+            const vGround = getGroundSpeedMps();
+            const tSec = getCrossingTimeSec();
+
+            boatLenOut.textContent = `${lenM.toFixed(1)} m`;
+            groundSpeedOut.textContent = `${vGround.toFixed(2)} m/s`;
+            calcTimeOut.textContent = Number.isFinite(tSec) ? `${tSec.toFixed(2)} s` : "Enter boat speed > 0";
+
+            renderBoatSvg();
+            positionBoatByProgress(0);
+            animateBoatAndPax(0, false);
+            renderRipples(0, Number(currentSpeedInput.value) || 0);
+        }
+
+        function stopSim() {
+            running = false;
+            startTimestamp = null;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+            stopBoatSound();
+        }
+
+        function resetSim() {
+            stopSim();
+            hornPlayedAtBuoy = false;
+            splashes = [];
+            wakeGroup.innerHTML = "";
+            nextSplashSec = 0.25;
+            liveTimeOut.textContent = "0.00 s";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const vGround = getGroundSpeedMps();
+            const tSec = getCrossingTimeSec();
+            if (!Number.isFinite(tSec) || tSec <= 0 || vGround === 0) {
+                calcTimeOut.textContent = "Net speed must not be 0";
+                return;
+            }
+
+            stopSim();
+            running = true;
+            hornPlayedAtBuoy = false;
+            splashes = [];
+            nextSplashSec = 0.25;
+            startTimestamp = null;
+            let lastTime = null;
+            liveTimeOut.textContent = "0.00 s";
+            positionBoatByProgress(0);
+            startBoatSound(vGround);
+
+            const durationSec = Math.max(0.6, tSec);
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) {
+                    startTimestamp = now;
+                    lastTime = now;
+                }
+                const dtStep = Math.min(0.05, Math.max(0, (now - lastTime) / 1000));
+                lastTime = now;
+
+                const dtReal = (now - startTimestamp) / 1000;
+                const progress = Math.min(1, dtReal / durationSec);
+                const simClock = progress * tSec;
+
+                liveTimeOut.textContent = `${simClock.toFixed(2)} s`;
+                positionBoatByProgress(progress);
+                animateBoatAndPax(dtReal, progress < 1);
+                renderRipples(dtReal, Number(currentSpeedInput.value) || 0);
+                updateSplashes(dtReal, dtStep, progress < 1);
+
+                if (progress < 1) {
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    running = false;
+                    stopBoatSound();
+                    animateBoatAndPax(dtReal, false);
+                    liveTimeOut.textContent = `${tSec.toFixed(2)} s (Done)`;
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        decPaxBtn.addEventListener("click", () => {
+            passengers = Math.max(0, passengers - 1);
+            resetSim();
+        });
+
+        incPaxBtn.addEventListener("click", () => {
+            passengers = Math.min(20, passengers + 1);
+            resetSim();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+            if (!soundEnabled) stopBoatSound();
+        });
+
+        [boatSpeedInput, currentSpeedInput, speedUnitSelect, boatLenInput].forEach((el) => {
+            el.addEventListener("input", resetSim);
+            el.addEventListener("change", resetSim);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSim);
+
+        updateReadouts();
+    </script>
+</body>
+
+</html>

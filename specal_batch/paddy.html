@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paddy Harvesting by Area &amp; Time (With Real Paddy Image)</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 24px;
+        }
+
+        .app {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.55rem;
+            margin-bottom: 6px;
+        }
+
+        .sub {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            margin-bottom: 18px;
+        }
+
+        .reference-card {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 16px;
+            align-items: center;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .reference-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+        }
+
+        .reference-info h2 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            color: #e2e8f0;
+        }
+
+        .reference-info p {
+            font-size: 0.88rem;
+            color: #94a3b8;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+
+        .reference-info input {
+            width: 100%;
+            padding: 7px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .reference-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #f8fafc;
+            font-size: 0.95rem;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stepper button {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #334155;
+            color: #f8fafc;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .stepper-val {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 7px 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn-go {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            background: #22c55e;
+            color: #052e16;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-go:hover {
+            filter: brightness(1.06);
+        }
+
+        .btn-reset,
+        .btn-mute {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .readout {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .readout strong {
+            color: #38bdf8;
+        }
+
+        .stage {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Paddy Cutting by Field Area &amp; Time</h1>
+        <p class="sub">Set how many minutes 1 man takes to cut <strong>1 m²</strong> of paddy, enter the total area to
+            cut, and press <strong>Go</strong>.</p>
+
+        <div class="reference-card">
+            <img id="paddyPhoto"
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+                alt="Paddy crop field reference" />
+            <div class="reference-info">
+                <h2>Paddy Crop Reference Photo</h2>
+                <p>Paste any direct image URL below if you want to test with a specific local or hosted paddy photo in
+                    your browser.</p>
+                <input type="url" id="paddyPhotoUrl" placeholder="Paste paddy image URL (https://...)" />
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="field">
+                <label for="minPerSqm">Time for 1 m² (minutes / man)</label>
+                <input type="number" id="minPerSqm" min="0.1" step="any" value="2" />
+            </div>
+            <div class="field">
+                <label for="areaVal">Total Paddy Area to Cut</label>
+                <input type="number" id="areaVal" min="0.5" step="any" value="25" />
+            </div>
+            <div class="field">
+                <label for="areaUnit">Area Unit</label>
+                <select id="areaUnit">
+                    <option value="sqm" selected>m² (square meters)</option>
+                    <option value="are">Are (100 m²)</option>
+                    <option value="acre">Acre (4046.86 m²)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>Number of Workers (Men)</label>
+                <div class="stepper">
+                    <button type="button" id="decMen" aria-label="Decrease workers">−</button>
+                    <div class="stepper-val" id="menDisplay">1</div>
+                    <button type="button" id="incMen" aria-label="Increase workers">+</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="simPace">Animation Speed (sim min / sec)</label>
+                <input type="number" id="simPace" min="1" max="500" step="any" value="5" />
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn-go" id="goBtn">Go</button>
+            <button type="button" class="btn-reset" id="resetBtn">Reset</button>
+            <button type="button" class="btn-mute" id="muteBtn">Sound: ON</button>
+        </div>
+
+        <div class="readout">
+            <div>Team Cut Rate: <strong id="cutRateOut">0.50 m²/min</strong></div>
+            <div>Area Cut: <strong id="areaCutOut">0.0 / 25.0 m²</strong></div>
+            <div>Calculated Time: <strong id="calcTimeOut">50.00 min</strong></div>
+            <div>Live Stopwatch: <strong id="liveTimeOut">0.00 min</strong></div>
+        </div>
+
+        <div class="stage">
+            <svg id="scene" viewBox="0 0 1000 280" role="img"
+                aria-label="SVG worker cutting paddy plants across a field area">
+                <rect x="0" y="0" width="1000" height="92" fill="#e0f2fe" />
+                <circle cx="905" cy="36" r="18" fill="#fde047" />
+                <path d="M0 92 Q220 62 450 92 T900 92 L1000 92 L1000 102 L0 102 Z" fill="#bbf7d0" />
+
+                <rect x="0" y="92" width="1000" height="188" fill="#4d7c0f" />
+                <rect x="90" y="106" width="820" height="148" rx="8" fill="#365314" stroke="#1a2e05"
+                    stroke-width="2.5" />
+
+                <g id="paddyGridGroup"></g>
+                <g id="bundlesGroup"></g>
+                <g id="workersGroup"></g>
+                <g id="cutParticlesGroup"></g>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        const paddyPhoto = document.getElementById("paddyPhoto");
+        const paddyPhotoUrl = document.getElementById("paddyPhotoUrl");
+        const minPerSqmInput = document.getElementById("minPerSqm");
+        const areaValInput = document.getElementById("areaVal");
+        const areaUnitSelect = document.getElementById("areaUnit");
+        const decMenBtn = document.getElementById("decMen");
+        const incMenBtn = document.getElementById("incMen");
+        const menDisplay = document.getElementById("menDisplay");
+        const simPaceInput = document.getElementById("simPace");
+        const goBtn = document.getElementById("goBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const muteBtn = document.getElementById("muteBtn");
+
+        const cutRateOut = document.getElementById("cutRateOut");
+        const areaCutOut = document.getElementById("areaCutOut");
+        const calcTimeOut = document.getElementById("calcTimeOut");
+        const liveTimeOut = document.getElementById("liveTimeOut");
+
+        const paddyGridGroup = document.getElementById("paddyGridGroup");
+        const bundlesGroup = document.getElementById("bundlesGroup");
+        const workersGroup = document.getElementById("workersGroup");
+        const cutParticlesGroup = document.getElementById("cutParticlesGroup");
+
+        const GRID_X = 102;
+        const GRID_Y = 114;
+        const GRID_W = 796;
+        const GRID_H = 132;
+        const COLS = 16;
+        const ROWS = 6;
+        const TOTAL_CELLS = COLS * ROWS;
+
+        let workersCount = 1;
+        let animId = null;
+        let running = false;
+        let startTimestamp = null;
+        let lastFrameMs = null;
+        let particles = [];
+        let nextParticleSec = 0.14;
+        let lastBeepCell = -1;
+
+        let soundEnabled = true;
+        let audioCtx = null;
+
+        paddyPhotoUrl.addEventListener("input", () => {
+            const url = paddyPhotoUrl.value.trim();
+            if (url) {
+                paddyPhoto.src = url;
+            }
+        });
+
+        function ensureAudio() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            if (!audioCtx) audioCtx = new AudioCtx();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            return audioCtx;
+        }
+
+        function playSnipSound() {
+            if (!soundEnabled) return;
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            const now = ctx.currentTime;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "triangle";
+            osc.frequency.setValueAtTime(540, now);
+            osc.frequency.exponentialRampToValueAtTime(210, now + 0.055);
+            gain.gain.setValueAtTime(0.045, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.065);
+        }
+
+        function getTotalSqm() {
+            const raw = Math.max(0.1, Number(areaValInput.value) || 25);
+            if (areaUnitSelect.value === "are") return raw * 100;
+            if (areaUnitSelect.value === "acre") return raw * 4046.8564224;
+            return raw;
+        }
+
+        function getMinPerSqmPerMan() {
+            return Math.max(0.05, Number(minPerSqmInput.value) || 2);
+        }
+
+        function getTeamRateSqmPerMin() {
+            return workersCount / getMinPerSqmPerMan();
+        }
+
+        function getTotalMinutesRequired() {
+            const rate = getTeamRateSqmPerMin();
+            if (rate <= 0) return Infinity;
+            return getTotalSqm() / rate;
+        }
+
+        function formatDurationMinutes(mins) {
+            if (!Number.isFinite(mins)) return "Invalid";
+            if (mins < 60) return `${mins.toFixed(2)} min`;
+            const hrs = Math.floor(mins / 60);
+            const rem = mins % 60;
+            return `${hrs} hr ${rem.toFixed(1)} min (${mins.toFixed(1)} min)`;
+        }
+
+        function renderFieldAndBundles(progress, elapsedSec, isMoving) {
+            const clamped = Math.max(0, Math.min(1, progress));
+            const totalSqm = getTotalSqm();
+            const cutSqm = clamped * totalSqm;
+            const cellW = GRID_W / COLS;
+            const cellH = GRID_H / ROWS;
+            const cutFloat = clamped * TOTAL_CELLS;
+
+            let cellsHtml = "";
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    const idx = r * COLS + c;
+                    const x = GRID_X + c * cellW;
+                    const y = GRID_Y + r * cellH;
+                    const isCut = idx < cutFloat;
+
+                    if (isCut) {
+                        cellsHtml += `
+                            <rect x="${(x + 1).toFixed(1)}" y="${(y + 1).toFixed(1)}" width="${(cellW - 2).toFixed(1)}" height="${(cellH - 2).toFixed(1)}" rx="3" fill="#eab308" opacity="0.55" />
+                            <line x1="${(x + cellW * 0.35).toFixed(1)}" y1="${(y + cellH * 0.7).toFixed(1)}" x2="${(x + cellW * 0.35).toFixed(1)}" y2="${(y + cellH * 0.45).toFixed(1)}" stroke="#ca8a04" stroke-width="1.6" />
+                            <line x1="${(x + cellW * 0.65).toFixed(1)}" y1="${(y + cellH * 0.7).toFixed(1)}" x2="${(x + cellW * 0.65).toFixed(1)}" y2="${(y + cellH * 0.45).toFixed(1)}" stroke="#ca8a04" stroke-width="1.6" />
+                        `;
+                    } else {
+                        const sway = isMoving ? Math.sin(elapsedSec * 5 + c * 0.6 + r) * 1.4 : 0;
+                        const cx = x + cellW * 0.5;
+                        const baseY = y + cellH * 0.78;
+                        const tipY = y + cellH * 0.25;
+                        cellsHtml += `
+                            <rect x="${(x + 1).toFixed(1)}" y="${(y + 1).toFixed(1)}" width="${(cellW - 2).toFixed(1)}" height="${(cellH - 2).toFixed(1)}" rx="3" fill="#3f6212" opacity="0.45" />
+                            <path d="M ${(cx - 6).toFixed(1)} ${baseY.toFixed(1)} Q ${(cx - 8 + sway).toFixed(1)} ${((baseY + tipY) / 2).toFixed(1)} ${(cx - 5 + sway).toFixed(1)} ${tipY.toFixed(1)}" fill="none" stroke="#84cc16" stroke-width="2" stroke-linecap="round" />
+                            <path d="M ${cx.toFixed(1)} ${baseY.toFixed(1)} Q ${(cx + sway).toFixed(1)} ${((baseY + tipY) / 2).toFixed(1)} ${(cx + sway).toFixed(1)} ${(tipY - 2).toFixed(1)}" fill="none" stroke="#a3e635" stroke-width="2.2" stroke-linecap="round" />
+                            <path d="M ${(cx + 6).toFixed(1)} ${baseY.toFixed(1)} Q ${(cx + 8 + sway).toFixed(1)} ${((baseY + tipY) / 2).toFixed(1)} ${(cx + 5 + sway).toFixed(1)} ${tipY.toFixed(1)}" fill="none" stroke="#84cc16" stroke-width="2" stroke-linecap="round" />
+                        `;
+                    }
+                }
+            }
+            paddyGridGroup.innerHTML = cellsHtml;
+
+            const bundleCount = Math.min(18, Math.floor(clamped * 18));
+            let bundlesHtml = "";
+            for (let b = 0; b < bundleCount; b++) {
+                const bx = 115 + b * 44;
+                const by = 264;
+                bundlesHtml += `
+                    <g transform="translate(${bx}, ${by})">
+                        <ellipse cx="0" cy="0" rx="13" ry="5.5" fill="#facc15" stroke="#a16207" stroke-width="1.2" />
+                        <line x1="-2" y1="-5" x2="-2" y2="5" stroke="#b45309" stroke-width="1.5" />
+                    </g>
+                `;
+            }
+            bundlesGroup.innerHTML = bundlesHtml;
+            areaCutOut.textContent = `${cutSqm.toFixed(1)} / ${totalSqm.toFixed(1)} m² (${Math.round(clamped * 100)}%)`;
+        }
+
+        function renderWorkers(progress, elapsedSec, isMoving) {
+            const clamped = Math.max(0, Math.min(1, progress));
+            const cutFloat = clamped * TOTAL_CELLS;
+            const cellW = GRID_W / COLS;
+            const cellH = GRID_H / ROWS;
+
+            let html = "";
+            for (let i = 0; i < workersCount; i++) {
+                const workerPosFloat = Math.min(TOTAL_CELLS - 0.01, cutFloat + i * 1.4);
+                const cellIdx = Math.floor(workerPosFloat);
+                const col = cellIdx % COLS;
+                const row = Math.floor(cellIdx / COLS);
+
+                const wx = GRID_X + (col + 0.5) * cellW;
+                const wy = GRID_Y + (row + 0.65) * cellH;
+                const bob = isMoving ? Math.abs(Math.sin(elapsedSec * 10 + i * 1.5)) * -3.5 : 0;
+                const sickleSwing = isMoving ? Math.sin(elapsedSec * 14 + i * 2) * 32 : 0;
+
+                html += `
+                    <g transform="translate(${wx.toFixed(1)}, ${(wy + bob).toFixed(1)})">
+                        <line x1="-3.5" y1="-8" x2="-5" y2="2" stroke="#1e293b" stroke-width="2.4" stroke-linecap="round" />
+                        <line x1="3.5" y1="-8" x2="5" y2="2" stroke="#1e293b" stroke-width="2.4" stroke-linecap="round" />
+                        <rect x="-6" y="-20" width="12" height="12" rx="3" fill="#0284c7" stroke="#0f172a" stroke-width="1" />
+                        <circle cx="0" cy="-25" r="4.8" fill="#fde68a" stroke="#92400e" stroke-width="0.9" />
+                        <ellipse cx="0" cy="-28.5" rx="8.5" ry="2.5" fill="#fef08a" stroke="#854d0e" stroke-width="0.9" />
+                        <g transform="translate(5, -16) rotate(${sickleSwing.toFixed(1)})">
+                            <line x1="0" y1="0" x2="8" y2="2" stroke="#fde68a" stroke-width="2.2" stroke-linecap="round" />
+                            <path d="M 8 2 Q 13 0 11 -5" fill="none" stroke="#e2e8f0" stroke-width="1.8" stroke-linecap="round" />
+                        </g>
+                    </g>
+                `;
+            }
+
+            workersGroup.innerHTML = html;
+        }
+
+        function updateCutParticles(dtReal, dtStep, isMoving, progress) {
+            if (isMoving && dtReal >= nextParticleSec) {
+                nextParticleSec = dtReal + 0.14;
+                const cutFloat = progress * TOTAL_CELLS;
+                const cellIdx = Math.min(TOTAL_CELLS - 1, Math.floor(cutFloat));
+                const col = cellIdx % COLS;
+                const row = Math.floor(cellIdx / COLS);
+                const px = GRID_X + (col + 0.5) * (GRID_W / COLS);
+                const py = GRID_Y + (row + 0.5) * (GRID_H / ROWS);
+
+                particles.push({
+                    x: px,
+                    y: py,
+                    vx: (Math.random() - 0.5) * 36,
+                    vy: -25 - Math.random() * 25,
+                    age: 0
+                });
+            }
+
+            const active = [];
+            for (const p of particles) {
+                p.age += dtStep;
+                p.x += p.vx * dtStep;
+                p.vy += 120 * dtStep;
+                p.y += p.vy * dtStep;
+                if (p.age < 0.45) active.push(p);
+            }
+            particles = active;
+
+            cutParticlesGroup.innerHTML = particles
+                .map((p) => {
+                    const op = Math.max(0, 1 - p.age / 0.45);
+                    return `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.2" fill="#fde047" opacity="${op.toFixed(2)}" />`;
+                })
+                .join("");
+        }
+
+        function updateReadouts() {
+            menDisplay.textContent = String(workersCount);
+            const rate = getTeamRateSqmPerMin();
+            const minsNeeded = getTotalMinutesRequired();
+
+            cutRateOut.textContent = `${rate.toFixed(2)} m²/min`;
+            calcTimeOut.textContent = formatDurationMinutes(minsNeeded);
+
+            renderFieldAndBundles(0, 0, false);
+            renderWorkers(0, 0, false);
+        }
+
+        function stopSim() {
+            running = false;
+            startTimestamp = null;
+            lastFrameMs = null;
+            lastBeepCell = -1;
+            if (animId) cancelAnimationFrame(animId);
+            animId = null;
+        }
+
+        function resetSim() {
+            stopSim();
+            particles = [];
+            cutParticlesGroup.innerHTML = "";
+            nextParticleSec = 0.14;
+            liveTimeOut.textContent = "0.00 min";
+            updateReadouts();
+        }
+
+        function startGo() {
+            const minsNeeded = getTotalMinutesRequired();
+            if (!Number.isFinite(minsNeeded) || minsNeeded <= 0) {
+                calcTimeOut.textContent = "Enter valid area and time > 0";
+                return;
+            }
+
+            stopSim();
+            running = true;
+            particles = [];
+            nextParticleSec = 0.14;
+            lastBeepCell = -1;
+            startTimestamp = null;
+            lastFrameMs = null;
+            liveTimeOut.textContent = "0.00 min";
+            playSnipSound();
+
+            const paceMinPerSec = Math.max(0.5, Number(simPaceInput.value) || 5);
+            const visualDurationSec = Math.max(0.8, minsNeeded / paceMinPerSec);
+
+            function frame(now) {
+                if (!running) return;
+                if (!startTimestamp) {
+                    startTimestamp = now;
+                    lastFrameMs = now;
+                }
+
+                const dtStep = Math.min(0.05, Math.max(0, (now - lastFrameMs) / 1000));
+                lastFrameMs = now;
+
+                const dtReal = (now - startTimestamp) / 1000;
+                const progress = Math.min(1, dtReal / visualDurationSec);
+                const simMins = progress * minsNeeded;
+
+                const cellStep = Math.floor(progress * TOTAL_CELLS);
+                if (cellStep > lastBeepCell && progress < 1) {
+                    lastBeepCell = cellStep;
+                    playSnipSound();
+                }
+
+                liveTimeOut.textContent = `${simMins.toFixed(2)} min`;
+                renderFieldAndBundles(progress, dtReal, progress < 1);
+                renderWorkers(progress, dtReal, progress < 1);
+                updateCutParticles(dtReal, dtStep, progress < 1, progress);
+
+                if (progress < 1) {
+                    animId = requestAnimationFrame(frame);
+                } else {
+                    running = false;
+                    renderFieldAndBundles(1, dtReal, false);
+                    renderWorkers(1, dtReal, false);
+                    liveTimeOut.textContent = `${minsNeeded.toFixed(2)} min (Done)`;
+                }
+            }
+
+            animId = requestAnimationFrame(frame);
+        }
+
+        decMenBtn.addEventListener("click", () => {
+            workersCount = Math.max(1, workersCount - 1);
+            resetSim();
+        });
+
+        incMenBtn.addEventListener("click", () => {
+            workersCount = Math.min(8, workersCount + 1);
+            resetSim();
+        });
+
+        muteBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.textContent = soundEnabled ? "Sound: ON" : "Sound: OFF";
+        });
+
+        [minPerSqmInput, areaValInput, areaUnitSelect, simPaceInput].forEach((el) => {
+            el.addEventListener("input", resetSim);
+            el.addEventListener("change", resetSim);
+        });
+
+        goBtn.addEventListener("click", startGo);
+        resetBtn.addEventListener("click", resetSim);
+
+        updateReadouts();
+    </script>
+</body>
+
+</html>
