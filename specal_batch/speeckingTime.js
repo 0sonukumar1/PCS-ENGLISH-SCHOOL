@@ -120,4 +120,4 @@ if ("speechSynthesis" in window) {
 }
 
 updateClock(false);
-setInterval(() => updateClock(true), 1000);
+setInterval(() => updateClock(true), 50000);
