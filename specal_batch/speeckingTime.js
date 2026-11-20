@@ -8,7 +8,7 @@ function getGreeting(hour24) {
   if (hour24 >= 17 && hour24 < 21) return "Good Evening";
   return "Good Night";
 }
-
+ 
 function speakGreeting(text) {
   if (!("speechSynthesis" in window)) return;
   window.speechSynthesis.cancel();
@@ -37,7 +37,7 @@ function updateClock(shouldSpeakIfChanged = false) {
 }
 
 document.addEventListener(
-  "pointerdown",
+  "click",
   () => {
     if (!lastSpokenGreeting && greetingEl.textContent) {
       lastSpokenGreeting = greetingEl.textContent;
