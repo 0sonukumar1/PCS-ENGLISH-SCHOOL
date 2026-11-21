@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add(+)</title>
+    
     <script src="/netlifyiconjs/netlifyicon.js" defer></script>
     <style>
       
@@ -18,11 +19,11 @@
       body {
         background-color: rgb(250, 249, 247);
       }
-      input[type="number"]::-webkit-inner-spin-button,
+      /* input[type="number"]::-webkit-inner-spin-button,
       input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
-      }
+      } */
       .heading_addition {
         display: flex;
         justify-content: center;
@@ -62,6 +63,7 @@
          
         flex-wrap: wrap;
         padding-bottom: 10vh;
+        justify-content: center;align-items: center;
       }
       .mini_container {
         margin: 1rem;
@@ -104,16 +106,17 @@
         height: 2rem;
         margin-top: 1rem;
       }
+       
       .col_num_last::before {
       }
       .col_num {
-        transform: translateX(1rem);
+        transform: translateX(1rem); 
       }
 
       .add {
         transform: translateX(-0.9rem);
-         display:  inline-block;
-         border: 0px solid red;
+         /* display:  inline-block;
+         border: 1px solid red; */
         
       }
       .add::before {
@@ -134,14 +137,14 @@
         border: 1px solid rgb(88, 87, 87);
         border-top: none;
         padding-left: 1rem;
+        padding-right: 1rem;
         letter-spacing: 1rem;
         font-size: 1.3rem;
-
+        transform: translateX(-1.2rem);
          
+         }
 
-      }
-
- 
+ .rtlTypingInput{text-align: right; font-size: 22px; padding: 10px; width: 100%; box-sizing: border-box;width:100px;}
     </style>
   </head>
   <body>
@@ -197,6 +200,9 @@
   });
 
   btn_eq.addEventListener("click", () => {
+    setTimeout(() => {
+      inputPositionFixer();
+    }, 1000);
     // Optional: Clear previous questions before generating new ones
     add_container.innerHTML = "";
 
@@ -235,46 +241,34 @@
         if (howManyCol === numCount) {
           col_num.classList.add("col_num_last", "add");
         
-          const hr = document.createElement("hr");
-          mini_container.append(hr);
+          //const hr = document.createElement("hr");
+         // mini_container.append(hr);
 
-          const input_sum = document.createElement("input");
-          input_sum.classList.add("input_sum");
+          const input_sum = document.createElement ("input");
+          input_sum.classList.add("input_sum","rtlTypingInput");
+          
+        input_sum.setAttribute("type", "text");
+          // input_sum.setAttribute("placeholder", "?...");
+          // input_sum.autofocus=true;
+          
+
+
+
+          
+          
+          // 3. Assign the calculated sum directly to this card's input
+          // (Remove the line below if you want the user to type the answer themselves)
+          //input_sum.value = totalsum;  
+         input_sum.style.border="2px solid lightgray";
+          input_sum.style.width=`${digits*2*16+32}px`;
 ///////////////////////////
-         
-          const div_ra = document.querySelector(".add");
-          const input_rb = document.querySelector(".input_sum");
-         
-          //console.log("input_",input_rb)
-          ///////////
-/*for(let i=1;i<= +howMany;i++)
-{
 
 
-
-          if (div_ra && input_rb) {
-            // Get computed height as a string with unit (e.g., "60px")
-
-            const divWidth = window.getComputedStyle(div_ra).width;
-            //input_rb[0].style.width = divWidth;
-            
-            // Set the input width to match the div width
-            console.log(divWidth, "_width", input_rb.style.width);
-            }
-          }
-          ///////////////
-
-
-
-
-
-*/
-/**/
 //////////////////////////////////////
 
-          input_sum.setAttribute("type", "number");
-          input_sum.setAttribute("placeholder", "?...");
-          input_sum.autofocus=true;
+         
+          // input_sum.setAttribute("placeholder", "?...");
+          // input_sum.autofocus=true;
           
           // 3. Assign the calculated sum directly to this card's input
           // (Remove the line below if you want the user to type the answer themselves)
@@ -302,5 +296,6 @@
   });
  
     </script>
+    <script src="/task/rtlTypingInput.js"></script>
   </body>
 </html>

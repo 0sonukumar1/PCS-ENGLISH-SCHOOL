@@ -24,15 +24,14 @@
     <style>
       body{font-size: 16px;font-family: system-ui, -apple-system, sans-serif;}
       header{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 1.0rem;
-      font-weight:700 ;font-size: 1.5rem;
-     color: #3730a3;
-    /* color: transparent;
-    -webkit-text-stroke: 1px black;#3730a3;  
-    letter-spacing: 2px; */
+      font-weight:600 ;font-size: 1.5rem;
+     color: green;
+     opacity: 0.9;
+     font-size: 1.5rem;
     text-align: center;
   }
 a{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;text-decoration: underline;color: rgb(0, 0, 0);text-transform: capitalize;}
-.doubleFont{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 1.0rem;font-weight:700 ;font-size: 2rem;
+.doubleFont{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 1.0rem;font-weight:700 ;font-size: 1.5rem;
     font-weight: 900;
     color: transparent;
     -webkit-text-stroke: 1px #3730a3; /* मुख्य आउटलाइन का रंग */
@@ -50,8 +49,7 @@ a{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sa
       .vumi a{color: transparent;text-decoration: dashed;
       text-decoration:underline;text-decoration-color: #aca9a9;}
       
-      .header{font-size: 1.0rem;font-weight:700 ;font-size: 1.5rem;
-    color: #3730a3;
+      .header{ 
       }
       .timsedule_container{display: flex;justify-content: center;align-items: center;gap: 1rem;
         border: 1px solid rgb(0, 0, 0);border-radius: 6px;padding: 1rem;margin-top: 1rem;
@@ -79,38 +77,28 @@ a{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sa
       font-variant-numeric: tabular-nums;
       letter-spacing: 0.04em;
         }
-        .special_batch_link_on_home_page{display: flex;justify-content: center;align-items: center;margin-top: 1rem;border-radius: 6px;padding: 0.5rem;}
-        .special_batch_link_on_home_page:hover{background-color: rgb(209, 238, 248);border-radius: 6px;padding: 0.5rem;}
+        .special_batch_link_on_home_page{display: flex;justify-content: center;align-items: center;margin-top: 1rem;border-radius: 6px;padding: 0.5rem;text-decoration: none;color:#296b6d;;
+        }
+    .special_batch_link_on_home_page a{text-decoration:underline;color:#296b6d;;}   
+        /* .special_batch_link_on_home_page:hover{background-color: rgb(209, 238, 248);border-radius: 6px;padding: 0.5rem;} */
     </style>
   </head>
   <body>
-    <header> PCS ENGLISH SCHOOL   <span class="header">New</span></header>
+    <header class="header_top"> PCS ENGLISH SCHOOL   <span class="header_new"> </span></header>
     
 
-<h2 class="welcome">You are welcome here.</h2>
+<!-- <h2 class="welcome">You are welcome here.</h2> -->
 <div class="timsedule_container">
 <div class="greeting"></div>
 <div class="time"></div>
 </div>
     <br> 
     <div class="special_batch_link_on_home_page"> 
- <a href="/specal_batch/specal_batch.html"><div> Specal Batch</div></a> 
+ <a href="/specal_batch/specal_batch.html"><div style="background-color: #f0f0f0; padding: 0.5rem; border-radius: 6px;color: #296b6d;"> Specal Batch</div></a> 
 </div>
     <ul>
       
-<li><details><summary>specal batch</summary>
-<ul>
-  <li><a href="/specal_batch/trainmove.html">train travels</a></li>
-  <li><a href="/specal_batch/fraction_add.html">fraction add</a></li>
-  <li><a href="/specal_batch/color_background.html">background color</a></li>
-  <li><a href="/specal_batch/testcolor.html">color picker</a></li>
-   
-</ul>
-
-
-</details>
-   
-</li>
+ 
 
       <li> 
       <details  ><summary>English</summary>

@@ -1,6 +1,10 @@
 const displaybody_input = document.createElement("input");
 displaybody_input.setAttribute("type", "number");
 displaybody_input.setAttribute("placeholder", "Enter Password");
+displaybody_input.style.padding = "0.5rem";
+displaybody_input.style.fontSize = "1rem";
+displaybody_input.style.borderRadius = "0.5rem";
+displaybody_input.style.border = "1px solid #ccc";
 displaybody_input.autofocus = true;
 displaybody_input.classList.add("displaybody_input");
 
