@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Random A-Z Word Generator</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 640px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            line-height: 1.6;
+        }
+
+        .controls {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f4f4f5;
+            border-radius: 8px;
+            word-spacing: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="controls">
+        <button id="generate-btn">Generate Unique Words</button>
+        <button id="reset-btn">Reset History</button>
+    </div>
+    <p id="output"></p>
+
+    <script>
+        const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+        const sessionHistory = new Set();
+
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function generateRandomWord(minLength = 3, maxLength = 8, capitalize = false) {
+            const length = randomInt(minLength, maxLength);
+            let word = "";
+
+            for (let i = 0; i < length; i++) {
+                word += ALPHABET[randomInt(0, ALPHABET.length - 1)];
+            }
+
+            return capitalize ? word[0].toUpperCase() + word.slice(1) : word;
+        }
+
+        // Generates unique words with no repeats in the batch or across clicks
+        function generateFreshWords(count = 15, minLength = 3, maxLength = 8) {
+            const batch = [];
+            const maxAttempts = count * 200;
+            let attempts = 0;
+
+            while (batch.length < count && attempts < maxAttempts) {
+                attempts++;
+                const word = generateRandomWord(minLength, maxLength);
+                if (!sessionHistory.has(word)) {
+                    sessionHistory.add(word);
+                    batch.push(word);
+                }
+            }
+
+            return batch;
+        }
+
+        const output = document.getElementById("output");
+        const generateBtn = document.getElementById("generate-btn");
+        const resetBtn = document.getElementById("reset-btn");
+
+        function render() {
+            const words = generateFreshWords(15, 3, 8);
+            output.textContent = words.length
+                ? words.join(" ")
+                : "No new unique words left in this range. Click Reset History.";
+        }
+
+        generateBtn.addEventListener("click", render);
+        resetBtn.addEventListener("click", () => {
+            sessionHistory.clear();
+            render();
+        });
+
+        render();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+
+
+<style>
+    *{box-sizing: border-box;margin: 0;padding: 0;
+    background-color: #0f172a;color: #fff;font-family: 'Poppins', sans-serif;}
+    @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    .lit-banner {
+        margin: 2px;
+        padding: 0.5rem;
+        position: relative;
+        /* display: inline-block; */
+        /* padding: 14px 24px; */
+        border-radius: 1pc;
+        /* background: #0f172a; */
+        /* inner card surface */
+        isolation: isolate;
+        display: flex;justify-content: center;align-items: center;
+          /* Add a white border at the bottom */
+    }
+
+    .lit-banner::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+          /* controls border thickness   */
+          border-radius: inherit;  
+        padding: 1px;
+        /* matches border thickness */
+        background: conic-gradient(from var(--angle),
+                #38bdf8,
+                #a855f7,
+                #f472b6,
+                #38bdf8);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: -1;
+        animation: spin-border 1.5s linear infinite;
+    }
+
+    @keyframes spin-border {
+        to {
+            --angle: 360deg;
+        }
+    }
+
+    .line-two {
+        display: block;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        word-spacing: 0.2em;
+        line-height: 1.2;
+
+        background: linear-gradient(90deg, #38bdf8, #a855f7, #f472b6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.45));;
+        
+    }
+    .pcses{    display: block;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    word-spacing: 0.2em;
+    line-height: 1.2;
+display: flex;justify-content: center;align-items: center; 
+ 
+    /* background: linear-gradient(90deg, #38bdf8, #a855f7, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.45)); */
+
+
+}
+.outlined-text {
+  color:#0f172a; #0f172a;text-shadow:
+    -1px -1px 0 #38bdf8,
+     1px -1px 0 #a855f7,
+    -1px  1px 0 #f472b6,
+     1px  1px 0 #38bdf8;
+   /* inner text color */
+  -webkit-text-stroke: 2px rgb(253, 253, 253); /* 2px border around each letter */
+  paint-order: stroke fill; /* keeps stroke crisp behind the fill in supporting browsers */
+  
+}
+    @media (prefers-reduced-motion: reduce) {
+        .lit-banner::before {
+            animation: none;
+        }
+    }
+</style>
+
+<h1 class="lit-banner">
+
+    <div class="pcses outlined-text">PCS ENGLISH SCHOOL</div>
+    <!-- <span class="line-two">PCS ENGLISH SCHOOL</span> -->
+</h1>

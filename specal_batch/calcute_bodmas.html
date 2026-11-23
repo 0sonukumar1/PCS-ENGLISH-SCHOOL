@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Android Calculator</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-shell: #0b0e13;
+            --bg-surface: #12161f;
+            --bg-card: #1a202c;
+            --bg-btn-num: #1e2430;
+            --bg-btn-num-hover: #283040;
+            --bg-btn-fn: #252e40;
+            --bg-btn-fn-hover: #313d54;
+            --bg-btn-op: #1d3b66;
+            --bg-btn-op-hover: #254b82;
+            --bg-btn-clear: #4a1f28;
+            --bg-btn-clear-hover: #612733;
+            --bg-btn-eq: #8ab4f8;
+            --bg-btn-eq-hover: #a1c4fa;
+            --text-primary: #e8eaed;
+            --text-secondary: #9aa0a6;
+            --text-accent: #8ab4f8;
+            --text-eq: #0b192c;
+            --text-error: #f28b82;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at top, #182032 0%, #07090d 75%);
+            padding: 12px;
+            color: var(--text-primary);
+        }
+
+        .phone-calc {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 34px;
+            padding: 18px 16px 20px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+            overflow: hidden;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding: 0 4px;
+        }
+
+        .top-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .icon-btn:hover,
+        .icon-btn.active {
+            background: var(--bg-btn-op);
+            color: var(--text-accent);
+            border-color: rgba(138, 180, 248, 0.35);
+        }
+
+        .display-box {
+            background: var(--bg-shell);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 16px 18px;
+            margin-bottom: 14px;
+            min-height: 152px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.15s ease;
+        }
+
+        .display-box:focus-within {
+            border-color: rgba(138, 180, 248, 0.45);
+        }
+
+        .expr-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-primary);
+            font-size: 2.15rem;
+            font-weight: 400;
+            text-align: right;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            overflow-x: auto;
+        }
+
+        .expr-input.compact {
+            font-size: 1.55rem;
+        }
+
+        .expr-input::placeholder {
+            color: #4b5262;
+        }
+
+        .preview-line {
+            min-height: 32px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: right;
+            word-break: break-all;
+            transition: color 0.15s ease, font-size 0.15s ease;
+        }
+
+        .preview-line.final {
+            color: var(--text-accent);
+            font-size: 1.45rem;
+        }
+
+        .preview-line.error {
+            color: var(--text-error);
+            font-size: 1rem;
+        }
+
+        .sci-pad {
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .sci-pad.open {
+            display: grid;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button.key {
+            height: 62px;
+            border: none;
+            border-radius: 999px;
+            background: var(--bg-btn-num);
+            color: var(--text-primary);
+            font-size: 1.35rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.07s ease, background-color 0.14s ease, border-radius 0.14s ease;
+            user-select: none;
+        }
+
+        .sci-pad button.key {
+            height: 44px;
+            font-size: 0.92rem;
+            border-radius: 16px;
+        }
+
+        button.key:hover {
+            background: var(--bg-btn-num-hover);
+        }
+
+        button.key:active {
+            transform: scale(0.94);
+            border-radius: 22px;
+        }
+
+        button.key.fn {
+            background: var(--bg-btn-fn);
+            color: var(--text-accent);
+            font-size: 1.15rem;
+        }
+
+        button.key.fn:hover {
+            background: var(--bg-btn-fn-hover);
+        }
+
+        button.key.op {
+            background: var(--bg-btn-op);
+            color: #c2d9ff;
+            font-size: 1.45rem;
+        }
+
+        button.key.op:hover {
+            background: var(--bg-btn-op-hover);
+        }
+
+        button.key.clear {
+            background: var(--bg-btn-clear);
+            color: #ffb4ab;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        button.key.clear:hover {
+            background: var(--bg-btn-clear-hover);
+        }
+
+        button.key.eq {
+            background: var(--bg-btn-eq);
+            color: var(--text-eq);
+            font-size: 1.55rem;
+            font-weight: 700;
+        }
+
+        button.key.eq:hover {
+            background: var(--bg-btn-eq-hover);
+        }
+
+        .history-drawer {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-surface);
+            z-index: 20;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+        }
+
+        .history-drawer.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 10px;
+        }
+
+        .history-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .history-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-right: 2px;
+        }
+
+        .history-empty {
+            margin: auto;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .history-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 12px 14px;
+            text-align: right;
+            cursor: pointer;
+            transition: background-color 0.14s ease, border-color 0.14s ease;
+        }
+
+        .history-item:hover {
+            background: #232b3b;
+            border-color: rgba(138, 180, 248, 0.35);
+        }
+
+        .history-expr {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+
+        .history-res {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-accent);
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="phone-calc" aria-label="Calculator">
+        <div class="top-bar">
+            <div class="top-left">
+                <button type="button" id="sciToggle" class="icon-btn" aria-expanded="false">
+                    <span>SCI</span>
+                </button>
+                <button type="button" id="angleToggle" class="icon-btn" title="Toggle angle unit">
+                    <span id="angleLabel">DEG</span>
+                </button>
+            </div>
+            <button type="button" id="historyToggle" class="icon-btn" aria-expanded="false">
+                <span>History</span>
+            </button>
+        </div>
+
+        <div class="display-box">
+            <input type="text" id="exprInput" class="expr-input" placeholder="0" autocomplete="off" spellcheck="false"
+                aria-label="Expression input" />
+            <div id="previewLine" class="preview-line" aria-live="polite"></div>
+        </div>
+
+        <div id="sciPad" class="sci-pad" aria-label="Scientific functions">
+            <button type="button" class="key fn" data-insert="sin(">sin</button>
+            <button type="button" class="key fn" data-insert="cos(">cos</button>
+            <button type="button" class="key fn" data-insert="tan(">tan</button>
+            <button type="button" class="key fn" data-insert="^">xʸ</button>
+
+            <button type="button" class="key fn" data-insert="√(">√x</button>
+            <button type="button" class="key fn" data-insert="log(">log</button>
+            <button type="button" class="key fn" data-insert="ln(">ln</button>
+            <button type="button" class="key fn" data-insert="!">x!</button>
+
+            <button type="button" class="key fn" data-insert="π">π</button>
+            <button type="button" class="key fn" data-insert="e">e</button>
+            <button type="button" class="key fn" data-insert="abs(">|x|</button>
+            <button type="button" class="key fn" data-action="reciprocal">1/x</button>
+        </div>
+
+        <div class="keypad">
+            <button type="button" class="key clear" data-action="clear">C</button>
+            <button type="button" class="key fn" data-insert="(">(</button>
+            <button type="button" class="key fn" data-insert=")">)</button>
+            <button type="button" class="key fn" data-action="percent">%</button>
+
+            <button type="button" class="key" data-insert="7">7</button>
+            <button type="button" class="key" data-insert="8">8</button>
+            <button type="button" class="key" data-insert="9">9</button>
+            <button type="button" class="key op" data-insert="÷" title="Divide">÷</button>
+
+            <button type="button" class="key" data-insert="4">4</button>
+            <button type="button" class="key" data-insert="5">5</button>
+            <button type="button" class="key" data-insert="6">6</button>
+            <button type="button" class="key op" data-insert="×" title="Multiply">×</button>
+
+            <button type="button" class="key" data-insert="1">1</button>
+            <button type="button" class="key" data-insert="2">2</button>
+            <button type="button" class="key" data-insert="3">3</button>
+            <button type="button" class="key op" data-insert="−" title="Subtract">−</button>
+
+            <button type="button" class="key" data-insert="0">0</button>
+            <button type="button" class="key" data-insert=".">.</button>
+            <button type="button" class="key fn" data-action="backspace" title="Backspace">⌫</button>
+            <button type="button" class="key op" data-insert="+" title="Add">+</button>
+
+            <button type="button" class="key eq" data-action="equals" style="grid-column: span 4;">=</button>
+        </div>
+
+        <section id="historyDrawer" class="history-drawer" aria-label="Calculation history">
+            <div class="history-header">
+                <h2 class="history-title">History</h2>
+                <div class="history-actions">
+                    <button type="button" id="clearHistoryBtn" class="icon-btn">Clear</button>
+                    <button type="button" id="closeHistoryBtn" class="icon-btn">Close</button>
+                </div>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </section>
+    </main>
+
+    <script>
+        const exprInput = document.getElementById("exprInput");
+        const previewLine = document.getElementById("previewLine");
+        const sciToggle = document.getElementById("sciToggle");
+        const sciPad = document.getElementById("sciPad");
+        const angleToggle = document.getElementById("angleToggle");
+        const angleLabel = document.getElementById("angleLabel");
+        const historyToggle = document.getElementById("historyToggle");
+        const historyDrawer = document.getElementById("historyDrawer");
+        const historyList = document.getElementById("historyList");
+        const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+        const closeHistoryBtn = document.getElementById("closeHistoryBtn");
+
+        let isDeg = true;
+        let justEvaluated = false;
+        let historyItems = loadHistory();
+
+        function loadHistory() {
+            try {
+                const raw = localStorage.getItem("android_calc_history_v1");
+                return raw ? JSON.parse(raw) : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveHistory() {
+            try {
+                localStorage.setItem("android_calc_history_v1", JSON.stringify(historyItems.slice(0, 30)));
+            } catch {
+                // Ignore storage quota issues
+            }
+        }
+
+        function renderHistory() {
+            if (!historyItems.length) {
+                historyList.innerHTML = `<div class="history-empty">No calculations yet</div>`;
+                return;
+            }
+            historyList.innerHTML = "";
+            historyItems.forEach((item) => {
+                const card = document.createElement("button");
+                card.type = "button";
+                card.className = "history-item";
+                card.innerHTML = `
+                    <div class="history-expr">${escapeHtml(item.expr)}</div>
+                    <div class="history-res">= ${escapeHtml(item.result)}</div>
+                `;
+                card.addEventListener("click", () => {
+                    exprInput.value = item.result;
+                    justEvaluated = false;
+                    closeHistory();
+                    updateFontSize();
+                    updateLivePreview();
+                    exprInput.focus();
+                });
+                historyList.appendChild(card);
+            });
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function addHistory(expr, result) {
+            if (!expr || !result) return;
+            if (historyItems[0] && historyItems[0].expr === expr && historyItems[0].result === result) {
+                return;
+            }
+            historyItems.unshift({ expr, result });
+            historyItems = historyItems.slice(0, 30);
+            saveHistory();
+            renderHistory();
+        }
+
+        function openHistory() {
+            renderHistory();
+            historyDrawer.classList.add("open");
+            historyToggle.setAttribute("aria-expanded", "true");
+        }
+
+        function closeHistory() {
+            historyDrawer.classList.remove("open");
+            historyToggle.setAttribute("aria-expanded", "false");
+        }
+
+        function updateFontSize() {
+            exprInput.classList.toggle("compact", exprInput.value.length > 12);
+        }
+
+        function formatNumber(num) {
+            if (!Number.isFinite(num)) throw new Error("Math error");
+            const rounded = Math.abs(num) < 1e-12 && num !== 0 ? 0 : Number(num.toPrecision(12));
+            return String(rounded);
+        }
+
+        function factorial(n) {
+            if (!Number.isInteger(n) || n < 0 || n > 170) {
+                throw new Error("Invalid factorial");
+            }
+            let acc = 1;
+            for (let i = 2; i <= n; i++) acc *= i;
+            return acc;
+        }
+
+        function toRadians(deg) {
+            return (deg * Math.PI) / 180;
+        }
+
+        // Percentage-only normalization: % always means percent (divided by 100), never modulo
+        function applyPercentages(str) {
+            let out = str;
+
+            // Match `<base> <+ or -> <num or (group)>%` -> `<base> <+ or -> (<base> * (<val>/100))`
+            const addSubPctRegex = /((?:\([^()]+\)|\d+(?:\.\d+)?))\s*([+-])\s*(\d+(?:\.\d+)?|\([^()]+\))%/g;
+            let prev;
+            do {
+                prev = out;
+                out = out.replace(addSubPctRegex, (_, base, op, pctVal) => {
+                    return `${base}${op}(${base}*(${pctVal}/100))`;
+                });
+            } while (out !== prev);
+
+            // Remaining `<value>%` (standalone, after × or ÷, or inside parentheses) -> `(<value>/100)`
+            out = out.replace(/(\d+(?:\.\d+)?|\([^()]+\))%/g, "($1/100)");
+
+            if (out.includes("%")) {
+                throw new Error("Invalid percentage");
+            }
+
+            return out;
+        }
+
+        function normalizeExpression(raw) {
+            let s = raw
+                .replace(/×/g, "*")
+                .replace(/÷/g, "/")
+                .replace(/−/g, "-")
+                .replace(/π/g, `(${Math.PI})`)
+                .replace(/(?<![a-zA-Z])e(?![a-zA-Z0-9_])/g, `(${Math.E})`)
+                .replace(/√\(/g, "sqrt(")
+                .replace(/\s+/g, "");
+
+            s = applyPercentages(s);
+
+            // Implicit multiplication
+            s = s
+                .replace(/(\d|\)|!)\(/g, "$1*(")
+                .replace(/\)(\d)/g, ")*$1")
+                .replace(/(\d|\))([a-zA-Z])/g, "$1*$2");
+
+            return s;
+        }
+
+        function tokenize(exprStr) {
+            const tokens = [];
+            let i = 0;
+
+            while (i < exprStr.length) {
+                const ch = exprStr[i];
+
+                if (/[0-9.]/.test(ch)) {
+                    let num = "";
+                    let dots = 0;
+                    while (i < exprStr.length && /[0-9.]/.test(exprStr[i])) {
+                        if (exprStr[i] === ".") {
+                            dots++;
+                            if (dots > 1) throw new Error("Invalid number");
+                        }
+                        num += exprStr[i++];
+                    }
+                    if (num === ".") throw new Error("Invalid number");
+                    tokens.push({ type: "number", value: parseFloat(num) });
+                    continue;
+                }
+
+                if (/[a-zA-Z]/.test(ch)) {
+                    let fn = "";
+                    while (i < exprStr.length && /[a-zA-Z]/.test(exprStr[i])) {
+                        fn += exprStr[i++];
+                    }
+                    const lower = fn.toLowerCase();
+                    if (!["sin", "cos", "tan", "sqrt", "log", "ln", "abs"].includes(lower)) {
+                        throw new Error(`Unknown function: ${fn}`);
+                    }
+                    tokens.push({ type: "func", value: lower });
+                    continue;
+                }
+
+                if (ch === "(" || ch === ")") {
+                    tokens.push({ type: "paren", value: ch });
+                    i++;
+                    continue;
+                }
+
+                if (ch === "!") {
+                    tokens.push({ type: "postfix", value: "!" });
+                    i++;
+                    continue;
+                }
+
+                if (["+", "-", "*", "/", "^"].includes(ch)) {
+                    const prev = tokens[tokens.length - 1];
+                    const isUnary =
+                        !prev ||
+                        (prev.type === "paren" && prev.value === "(") ||
+                        prev.type === "operator";
+
+                    if (isUnary && (ch === "-" || ch === "+")) {
+                        tokens.push({ type: "number", value: 0 });
+                    }
+                    tokens.push({ type: "operator", value: ch });
+                    i++;
+                    continue;
+                }
+
+                throw new Error("Invalid input");
+            }
+
+            return tokens;
+        }
+
+        function toRPN(tokens) {
+            const prec = { "^": 4, "*": 3, "/": 3, "+": 2, "-": 2 };
+            const rightAssoc = { "^": true };
+            const output = [];
+            const stack = [];
+
+            for (const tok of tokens) {
+                if (tok.type === "number") {
+                    output.push(tok);
+                } else if (tok.type === "postfix") {
+                    output.push(tok);
+                } else if (tok.type === "func") {
+                    stack.push(tok);
+                } else if (tok.type === "operator") {
+                    while (stack.length > 0) {
+                        const top = stack[stack.length - 1];
+                        if (top.type === "func") {
+                            output.push(stack.pop());
+                            continue;
+                        }
+                        if (top.type !== "operator") break;
+                        const pTop = prec[top.value];
+                        const pCur = prec[tok.value];
+                        if ((rightAssoc[tok.value] && pTop > pCur) || (!rightAssoc[tok.value] && pTop >= pCur)) {
+                            output.push(stack.pop());
+                        } else {
+                            break;
+                        }
+                    }
+                    stack.push(tok);
+                } else if (tok.value === "(") {
+                    stack.push(tok);
+                } else if (tok.value === ")") {
+                    let matched = false;
+                    while (stack.length > 0) {
+                        const popped = stack.pop();
+                        if (popped.type === "paren" && popped.value === "(") {
+                            matched = true;
+                            break;
+                        }
+                        output.push(popped);
+                    }
+                    if (!matched) throw new Error("Mismatched parentheses");
+                    if (stack.length > 0 && stack[stack.length - 1].type === "func") {
+                        output.push(stack.pop());
+                    }
+                }
+            }
+
+            while (stack.length > 0) {
+                const popped = stack.pop();
+                if (popped.type === "paren") throw new Error("Mismatched parentheses");
+                output.push(popped);
+            }
+
+            return output;
+        }
+
+        function evalRPN(rpn) {
+            const st = [];
+
+            for (const tok of rpn) {
+                if (tok.type === "number") {
+                    st.push(tok.value);
+                } else if (tok.type === "postfix" && tok.value === "!") {
+                    if (st.length < 1) throw new Error("Incomplete expression");
+                    st.push(factorial(st.pop()));
+                } else if (tok.type === "func") {
+                    if (st.length < 1) throw new Error("Incomplete expression");
+                    const x = st.pop();
+                    let r;
+                    switch (tok.value) {
+                        case "sin":
+                            r = Math.sin(isDeg ? toRadians(x) : x);
+                            break;
+                        case "cos":
+                            r = Math.cos(isDeg ? toRadians(x) : x);
+                            break;
+                        case "tan": {
+                            const rad = isDeg ? toRadians(x) : x;
+                            if (Math.abs(Math.cos(rad)) < 1e-15) throw new Error("Undefined");
+                            r = Math.tan(rad);
+                            break;
+                        }
+                        case "sqrt":
+                            if (x < 0) throw new Error("Invalid input");
+                            r = Math.sqrt(x);
+                            break;
+                        case "log":
+                            if (x <= 0) throw new Error("Invalid input");
+                            r = Math.log10(x);
+                            break;
+                        case "ln":
+                            if (x <= 0) throw new Error("Invalid input");
+                            r = Math.log(x);
+                            break;
+                        case "abs":
+                            r = Math.abs(x);
+                            break;
+                        default:
+                            throw new Error("Unknown function");
+                    }
+                    if (!Number.isFinite(r)) throw new Error("Math error");
+                    st.push(r);
+                } else if (tok.type === "operator") {
+                    if (st.length < 2) throw new Error("Incomplete expression");
+                    const b = st.pop();
+                    const a = st.pop();
+                    let r;
+                    switch (tok.value) {
+                        case "+":
+                            r = a + b;
+                            break;
+                        case "-":
+                            r = a - b;
+                            break;
+                        case "*":
+                            r = a * b;
+                            break;
+                        case "/":
+                            if (b === 0) throw new Error("Can't divide by 0");
+                            r = a / b;
+                            break;
+                        case "^":
+                            r = Math.pow(a, b);
+                            break;
+                        default:
+                            throw new Error("Unknown operator");
+                    }
+                    if (!Number.isFinite(r)) throw new Error("Math error");
+                    st.push(r);
+                }
+            }
+
+            if (st.length !== 1) throw new Error("Invalid expression");
+            return st[0];
+        }
+
+        function evaluateRaw(raw) {
+            const normalized = normalizeExpression(raw);
+            if (!normalized) return null;
+            const tokens = tokenize(normalized);
+            const rpn = toRPN(tokens);
+            return formatNumber(evalRPN(rpn));
+        }
+
+        function updateLivePreview() {
+            const raw = exprInput.value.trim();
+            previewLine.classList.remove("final", "error");
+
+            if (!raw) {
+                previewLine.textContent = "";
+                return;
+            }
+
+            const endsWithOpOrOpen = /[+\-×÷−*/^(]$/.test(raw);
+            if (endsWithOpOrOpen) {
+                previewLine.textContent = "";
+                return;
+            }
+
+            try {
+                const res = evaluateRaw(raw);
+                if (res !== null && res !== raw) {
+                    previewLine.textContent = `= ${res}`;
+                } else {
+                    previewLine.textContent = "";
+                }
+            } catch {
+                previewLine.textContent = "";
+            }
+        }
+
+        function commitEquals() {
+            const raw = exprInput.value.trim();
+            if (!raw) return;
+            try {
+                const res = evaluateRaw(raw);
+                if (res === null) return;
+                addHistory(raw, res);
+                exprInput.value = res;
+                previewLine.classList.remove("error");
+                previewLine.classList.add("final");
+                previewLine.textContent = `= ${res}`;
+                justEvaluated = true;
+                updateFontSize();
+                const len = exprInput.value.length;
+                exprInput.setSelectionRange(len, len);
+            } catch (err) {
+                previewLine.classList.remove("final");
+                previewLine.classList.add("error");
+                previewLine.textContent = err.message || "Error";
+                justEvaluated = false;
+            }
+        }
+
+        function insertText(text) {
+            const isOperator = /^[+\-×÷−*/^!%]$/.test(text);
+            if (justEvaluated && !isOperator && /^[0-9.(πe]$/.test(text)) {
+                exprInput.value = "";
+            }
+            justEvaluated = false;
+
+            const start = exprInput.selectionStart ?? exprInput.value.length;
+            const end = exprInput.selectionEnd ?? exprInput.value.length;
+            const cur = exprInput.value;
+
+            exprInput.value = cur.slice(0, start) + text + cur.slice(end);
+            const pos = start + text.length;
+            updateFontSize();
+            updateLivePreview();
+            exprInput.focus();
+            exprInput.setSelectionRange(pos, pos);
+        }
+
+        function backspace() {
+            justEvaluated = false;
+            const start = exprInput.selectionStart ?? exprInput.value.length;
+            const end = exprInput.selectionEnd ?? exprInput.value.length;
+            const cur = exprInput.value;
+
+            if (start !== end) {
+                exprInput.value = cur.slice(0, start) + cur.slice(end);
+                updateFontSize();
+                updateLivePreview();
+                exprInput.focus();
+                exprInput.setSelectionRange(start, start);
+            } else if (start > 0) {
+                exprInput.value = cur.slice(0, start - 1) + cur.slice(start);
+                updateFontSize();
+                updateLivePreview();
+                exprInput.focus();
+                exprInput.setSelectionRange(start - 1, start - 1);
+            }
+        }
+
+        function clearAll() {
+            exprInput.value = "";
+            previewLine.textContent = "";
+            previewLine.classList.remove("final", "error");
+            justEvaluated = false;
+            updateFontSize();
+            exprInput.focus();
+        }
+
+        function applyReciprocal() {
+            const cur = exprInput.value.trim();
+            if (!cur) return;
+            exprInput.value = `1/(${cur})`;
+            justEvaluated = false;
+            updateFontSize();
+            updateLivePreview();
+            commitEquals();
+        }
+
+        document.querySelectorAll("button.key").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const ins = btn.dataset.insert;
+                const act = btn.dataset.action;
+                if (ins) {
+                    insertText(ins);
+                } else if (act === "clear") {
+                    clearAll();
+                } else if (act === "backspace") {
+                    backspace();
+                } else if (act === "equals") {
+                    commitEquals();
+                } else if (act === "percent") {
+                    insertText("%");
+                } else if (act === "reciprocal") {
+                    applyReciprocal();
+                }
+            });
+        });
+
+        exprInput.addEventListener("input", () => {
+            justEvaluated = false;
+            updateFontSize();
+            updateLivePreview();
+        });
+
+        exprInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === "=") {
+                e.preventDefault();
+                commitEquals();
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                clearAll();
+            }
+        });
+
+        sciToggle.addEventListener("click", () => {
+            const open = sciPad.classList.toggle("open");
+            sciToggle.classList.toggle("active", open);
+            sciToggle.setAttribute("aria-expanded", String(open));
+        });
+
+        angleToggle.addEventListener("click", () => {
+            isDeg = !isDeg;
+            angleLabel.textContent = isDeg ? "DEG" : "RAD";
+            angleToggle.classList.toggle("active", !isDeg);
+            updateLivePreview();
+        });
+
+        historyToggle.addEventListener("click", () => {
+            if (historyDrawer.classList.contains("open")) closeHistory();
+            else openHistory();
+        });
+
+        closeHistoryBtn.addEventListener("click", closeHistory);
+
+        clearHistoryBtn.addEventListener("click", () => {
+            historyItems = [];
+            saveHistory();
+            renderHistory();
+        });
+
+        exprInput.focus();
+    </script>
+</body>
+
+</html>

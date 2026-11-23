@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+    <style>
+        *{box-sizing: border-box;margin: 0%;padding: 0%;}
+
+        body{background-color: black;
+            display: flex;justify-content: center;align-items: center;width: 100vw;height: 100vh;flex-wrap: wrap; ;
+            animation: changingbody 10s linear infinite;}
+        .whitedot,.wyhitedot2{ width:1px;height: 1px;background-color: white; 
+           animation: changingwhitedot 10s linear infinite;
+           width:1px;height: 5px; margin:0px; ;
+        }
+        @keyframes  changingwhitedot {
+            0% {width:1px;height: 5px;rotate: 0deg;margin:20px;}
+            10% {width:1px;height: 20px;rotate: 360deg;margin:50px; ;}
+            100% {width:1px;height: 5px;rotate: 720deg;margin:0px; ;}
+            
+        }
+        @keyframes  changingbody {
+            0% {transform: translateX(0px) translateY(0px);}
+            100% { transform: translateX(40vw) translateY(40vh);}
+            
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function getRandomRgbColor() {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+                const a = Math.random();
+                return `rgb(${r}, ${g}, ${b} )`;
+            };
+        const body=document.querySelector("body");
+
+
+
+        for(let i=1;i<=400;i++){
+                const whitedot = document.createElement("div");
+                whitedot.classList.add("whitedot");
+
+                
+                
+                body.appendChild(whitedot); 
+            
+            }
+            setInterval(()=>{
+                const whitedotallDiv = document.querySelectorAll(".whitedot");
+                whitedotallDiv.forEach((el) => { 
+                    // console.log(el);
+                    // el.style.backgroundColor= getRandomRgbColor()
+                    // el.style.backgroundColor =`${getRandomRgbColor()}`; 
+
+                })
+            },5000)
+       for (let i = 1; i <= 400; i++) {
+            const whitedot2 = document.createElement("div");
+            whitedot2.classList.add("whitedot2")
+            body.prepend(whitedot2);
+        }
+    </script>
+    
+</body>
+</html>

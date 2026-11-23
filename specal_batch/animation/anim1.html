@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;padding: 0px;margin: 0px;}
+        body{display: flex;justify-content: center;align-items: center;width: 100vw;height: 100vh;background-color: black;}
+        /* .upper_container{
+            display: flex;border: 2px solid ;padding: 5px;overflow: hidden;
+        } */
+      .container{  
+      width: 70vw;height: 70vw; 
+       rotate: 0deg;
+      border: 1px solid rgb(41, 41, 41);
+        box-sizing: border-box;padding: 0px;margin: 0px;
+ display: flex;justify-content: center;align-items: center;flex-wrap: wrap;  
+ border-radius: 10%;overflow: hidden;
+animation: changingcontainer 100s linear infinite;
+background-color: rgb(34, 34, 34);
+      }  
+      .minidiv {display: inline-block;
+        width: 1px;height: 1px;  box-sizing: border-box;padding: 0px;margin: 0px;background-color:rgb(1, 165, 9);display: flex;justify-content: center;align-items: center;font-size: 1rem;  border-radius: 50%;
+        animation: changingminidiv 100s linear infinite;  
+
+       }
+      @keyframes5  changingcontainer {
+            50% {width:70vw;height: 70vw;rotate: 360deg;margin:10px;}
+             
+            100% {width: 60vw;;height: 60vw;rotate: -720deg;margin:10px; ;}
+            
+        }
+         @keyframes  changingminidiv {
+            0% {width:1px;height:1px;rotate: 360deg;margin:2px;opacity: 1;}
+             
+            100% {width: 1px;;height: 1px;rotate: 360deg;margin:10px; ;opacity: 1;}
+            
+         }
+         @media screen and (max-width:600px) {
+          .container{width: 60vw;height: 70vh; ;}
+            
+         }
+    </style>
+</head>
+<body> 
+   <div class="container"></div>  
+    
+    <script>
+         function getRandomRgbColor() {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+                const a = Math.random();
+                return `rgb(${r}, ${g}, ${b} )`;
+            };
+const body=document.querySelector("body");
+const container=document.querySelector(".container");
+ 
+for(let i=1;i<=3000;i++){
+     const minidiv=document.createElement("div");
+    minidiv.classList.add("minidiv");
+     
+      
+    container.appendChild(minidiv);
+
+};
+     
+
+    
+
+    </script>
+</body>
+</html>
