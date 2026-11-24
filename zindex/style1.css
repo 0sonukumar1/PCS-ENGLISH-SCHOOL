@@ -38,14 +38,16 @@
 }
 
 .microdiv {
-  width: 95%;
-  height: 100px;
+  width: 85%;
+  height: 20vh;
+  margin-left: 0rem;
   padding: 1rem;
   margin-bottom: 2rem;
   border: 0px solid red;
   display: flex;
   border-radius: 1pc;
   background-color: white;
+  
 }
 
 .mcrd_specalBatch {
