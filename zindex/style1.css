@@ -70,7 +70,8 @@ div .mc_d1 {
 }
 
 div .mc_d1 h1 {
-  margin-right: auto;
+  /* margin-right: auto; */
+     margin-right: auto; 
   padding-left: 20px;
 }
 

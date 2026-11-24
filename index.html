@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>PCS</title>
     <script src="/netlifyiconjs/netlifyicon.js" defer></script>
         <link rel="shortcut icon" href="/task/pcslogoimage.svg" type="image/x-icon">
     <link rel="stylesheet" href="/zindex/style1.css">
@@ -58,11 +58,25 @@
       .mcrd_specalBatch{text-align: center;display: flex;justify-content: center;align-items: center;
     
       }
+      .open_rshu{animation: open_rshu 0.5s linear;
+      
+      }
+      .close_rshu{animation: close_rshu 0.5s linear;
+      
+      }
+      @keyframes open_rshu {
+        0%{width: 0px;}
+        100%{width: 90vw;}
+      }
+       @keyframes close_rshu {
+        0%{width:90vw;}
+        100%{width: 0px;}
+      }
     </style>
      
   </head>
   <body>
-   <div class="container">
+   <div class="container zindex_1">
       
       
    <iframe src="/specal_batch/animation/clockAnim.html" frameborder="0"style="width: 100vw; height: 100vh; border: none;"></iframe>
@@ -73,14 +87,14 @@
 
 
 
-    <div class="minidiv" style="">
+    <div class="minidiv zindex_2" style="" >
 
       <header class="mc_d1 ">
         
         <div><img src="/task/PCS_LOGO.jpeg"  alt=""style=" width: 50px;
   object-fit: contain;border-radius:50%;border:2px solid white;   background-color : transparent;"> </div>
        
-        <h1>PCS ENGLIS SCHOOL</h1>
+        <h1>PCS ENGLIS SCHOOL <br> <span style="font-size: 0.7rem;padding-left: 4rem;">Learn  Grow Succed</span></h1> 
         <button type="button" class="home_three_bar">☰</button>
          
       </header>
@@ -260,18 +274,20 @@ let isClose=true;
        
        home_three_bar.style.transform='rotateZ(90deg)';
        right_side_hide_upper.style.display = "block";
-
+       right_side_hide_upper.classList.add("open_rshu");
+        right_side_hide_upper.classList.remove("close_rshu");
        microdiv_container_without_mcd1.style.display = "none"
       }else{
         isClose = true;
-setTimeout(()=>{ home_three_bar.innerHTML = `☰`; },500)
+setTimeout(()=>{ home_three_bar.innerHTML = `☰`; right_side_hide_upper.style.display = "none"; },450)
         
            home_three_bar.classList.add("rotateONFalse")
          home_three_bar.classList.remove("rotateONTrue")
         home_three_bar.style.transform = 'rotateZ(0deg)';
          
-        right_side_hide_upper.style.display="none";
         
+        right_side_hide_upper.classList.remove("open_rshu");
+        right_side_hide_upper.classList.add("close_rshu");
         microdiv_container_without_mcd1.style.display = "flex"
       }
      })
