@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wall Clock (Ghari)</title>
+    <style>
+        :root {
+            --bg: #121418;
+            --panel: #1c2026;
+            --dial: #f7f4ed;
+            --dial-rim: #2d333d;
+            --accent: #c83e2b;
+            --ink: #1a1d21;
+            --text: #eef1f4;
+            --muted: #9aa3b0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at top, #1f242d, var(--bg));
+            color: var(--text);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            padding: 1.5rem;
+        }
+
+        .wall-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .clock-frame {
+            position: relative;
+            width: min(82vw, 380px);
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            padding: 16px;
+            background: linear-gradient(145deg, #3b424e, #181b20);
+            box-shadow:
+                0 24px 50px rgba(0, 0, 0, 0.55),
+                inset 0 2px 4px rgba(255, 255, 255, 0.15);
+        }
+
+        .clock-dial {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 45%, #ffffff, var(--dial));
+            box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+        }
+
+        .tick {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 10px;
+            background: var(--ink);
+            transform-origin: 50% calc(var(--dial-size, 348px) / 2);
+            transform: translateX(-50%) rotate(var(--angle, 0deg));
+            opacity: 0.45;
+        }
+
+        .tick.hour {
+            width: 4px;
+            height: 18px;
+            opacity: 0.9;
+        }
+
+        .numeral {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-weight: 700;
+            font-size: clamp(0.95rem, 3.6vw, 1.35rem);
+            color: var(--ink);
+            transform: translate(-50%, -50%) translate(var(--x), var(--y));
+            user-select: none;
+        }
+
+        .brand-label {
+            position: absolute;
+            top: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #555d68;
+            font-weight: 600;
+        }
+
+        .digital-readout {
+            position: absolute;
+            bottom: 24%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-variant-numeric: tabular-nums;
+            font-size: clamp(0.75rem, 2.8vw, 0.95rem);
+            font-weight: 600;
+            color: #3a4048;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            display: none;
+        }
+
+        .digital-readout.visible {
+            display: block;
+        }
+
+        .hand {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 999px;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .hand.hour {
+            width: 7px;
+            height: 26%;
+            background: var(--ink);
+            z-index: 3;
+        }
+
+        .hand.minute {
+            width: 5px;
+            height: 37%;
+            background: #2b3038;
+            z-index: 4;
+        }
+
+        .hand.second {
+            width: 2.5px;
+            height: 42%;
+            background: var(--accent);
+            z-index: 5;
+        }
+
+        .hand.second::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 5px;
+            height: 12%;
+            background: var(--accent);
+            transform: translateX(-50%);
+            border-radius: 999px;
+        }
+
+        .center-cap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--ink);
+            transform: translate(-50%, -50%);
+            z-index: 6;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        button {
+            background: var(--panel);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: 0.55rem 0.95rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        button:hover {
+            background: #252b34;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        button[aria-pressed="true"] {
+            border-color: var(--accent);
+            color: #ff9d8f;
+        }
+
+        .date-text {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wall-unit">
+        <div class="date-text" id="dateText">Loading date...</div>
+
+        <div class="clock-frame">
+            <div class="clock-dial" id="clockDial">
+                <div class="brand-label">pcs clock</div>
+                <div class="digital-readout" id="digitalReadout">00:00:00</div>
+                <div class="hand hour" id="hourHand"></div>
+                <div class="hand minute" id="minuteHand"></div>
+                <div class="hand second" id="secondHand"></div>
+                <div class="center-cap"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="toggleDigital" aria-pressed="false">Show Digital</button>
+            <button id="toggleSound" aria-pressed="false">Tick Sound: Off</button>
+            <button id="toggleSmooth" aria-pressed="true">Motion: Smooth</button>
+        </div>
+    </main>
+
+    <script>
+        const dial = document.getElementById("clockDial");
+        const hourHand = document.getElementById("hourHand");
+        const minuteHand = document.getElementById("minuteHand");
+        const secondHand = document.getElementById("secondHand");
+        const digitalReadout = document.getElementById("digitalReadout");
+        const dateText = document.getElementById("dateText");
+
+        const toggleDigitalBtn = document.getElementById("toggleDigital");
+        const toggleSoundBtn = document.getElementById("toggleSound");
+        const toggleSmoothBtn = document.getElementById("toggleSmooth");
+
+        let showDigital = false;
+        let soundEnabled = false;
+        let smoothSweep = true;
+        let lastSecond = null;
+        let audioCtx = null;
+
+        function buildDialMarkers() {
+            dial.querySelectorAll(".tick, .numeral").forEach((el) => el.remove());
+            const size = dial.clientWidth;
+            dial.style.setProperty("--dial-size", `${size}px`);
+            const radius = size / 2;
+            const numberRadius = radius * 0.74;
+
+            for (let i = 0; i < 60; i++) {
+                const tick = document.createElement("div");
+                tick.className = i % 5 === 0 ? "tick hour" : "tick";
+                tick.style.setProperty("--angle", `${i * 6}deg`);
+                dial.appendChild(tick);
+            }
+
+            for (let num = 1; num <= 12; num++) {
+                const angleRad = ((num * 30 - 90) * Math.PI) / 180;
+                const x = Math.cos(angleRad) * numberRadius;
+                const y = Math.sin(angleRad) * numberRadius;
+
+                const label = document.createElement("div");
+                label.className = "numeral";
+                label.textContent = num;
+                label.style.setProperty("--x", `${x}px`);
+                label.style.setProperty("--y", `${y}px`);
+                dial.appendChild(label);
+            }
+        }
+
+        function playTick() {
+            if (!soundEnabled) return;
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+            if (!audioCtx) return;
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = "triangle";
+            osc.frequency.setValueAtTime(920, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(240, audioCtx.currentTime + 0.035);
+
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.045);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const ms = now.getMilliseconds();
+            const sec = now.getSeconds();
+            const min = now.getMinutes();
+            const hr = now.getHours();
+
+            const preciseSec = smoothSweep ? sec + ms / 1000 : sec;
+            const preciseMin = min + preciseSec / 60;
+            const preciseHr = (hr % 12) + preciseMin / 60;
+
+            hourHand.style.transform = `translateX(-50%) rotate(${preciseHr * 30}deg)`;
+            minuteHand.style.transform = `translateX(-50%) rotate(${preciseMin * 6}deg)`;
+            secondHand.style.transform = `translateX(-50%) rotate(${preciseSec * 6}deg)`;
+
+            if (sec !== lastSecond) {
+                lastSecond = sec;
+                playTick();
+                if (showDigital) {
+                    digitalReadout.textContent = now.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    });
+                }
+                dateText.textContent = now.toLocaleDateString([], {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+            }
+
+            requestAnimationFrame(updateClock);
+        }
+
+        toggleDigitalBtn.addEventListener("click", () => {
+            showDigital = !showDigital;
+            toggleDigitalBtn.setAttribute("aria-pressed", String(showDigital));
+            toggleDigitalBtn.textContent = showDigital ? "Hide Digital" : "Show Digital";
+            digitalReadout.classList.toggle("visible", showDigital);
+        });
+
+        toggleSoundBtn.addEventListener("click", () => {
+            soundEnabled = !soundEnabled;
+            toggleSoundBtn.setAttribute("aria-pressed", String(soundEnabled));
+            toggleSoundBtn.textContent = soundEnabled ? "Tick Sound: On" : "Tick Sound: Off";
+        });
+
+        toggleSmoothBtn.addEventListener("click", () => {
+            smoothSweep = !smoothSweep;
+            toggleSmoothBtn.setAttribute("aria-pressed", String(smoothSweep));
+            toggleSmoothBtn.textContent = smoothSweep ? "Motion: Smooth" : "Motion: Tick";
+        });
+
+        window.addEventListener("resize", buildDialMarkers);
+        buildDialMarkers();
+        requestAnimationFrame(updateClock);
+    </script>
+</body>
+
+</html>

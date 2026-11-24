@@ -1,242 +1,307 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/zindex/style1.css">
-    <style>
-      *{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
-     
-      div .mc_d1 button{
-        position:fixed;top: 2rem;right: 0px;z-index:11;
-        margin-right: 3rem;border: none;border: 1px solid rgb(6, 9, 231);border-radius: 50%; width: 2rem;height: 2rem;
-        /* border-right-color: transparent;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/zindex/style1.css">
+  <style>
+    * {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    div .mc_d1 button {
+      position: fixed;
+      top: 2rem;
+      right: 0px;
+      z-index: 11;
+      margin-right: 3rem;
+      border: none;
+      border: 1px solid rgb(6, 9, 231);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      /* border-right-color: transparent;
         border-left-color: transparent; */
 
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: blue;
-         
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: blue;
+
+    }
+
+
+    .right_side_hide_upper {
+      position: absolute;
+      z-index: 10;
+      width: 90vw;
+      height: 100vh;
+      /* height:auto;min-height: 100vh; */
+
+      border: 1px solid;
+      position: fixed;
+      top: 3rem;
+      right: 0px;
+      overflow-y: scroll;
+      background-color: white;
+      display: none;
+      padding: 2rem;
+      line-height: 2;
+      color: blue;
+      border-radius: 1pc;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+
+    }
+
+    .rotateONTrue {
+      animation: rotateOnTrue 0.5s linear;
+    }
+
+    .rotateONFalse {
+      animation: rotateONFalse 0.5s linear;
+    }
+
+    @keyframes rotateOnTrue {
+      0% {
+        transform: rotateZ(0deg);
       }
 
-
-      .right_side_hide_upper{position: absolute;z-index:10;width: 90vw;
- height: 100vh;
-        /* height:auto;min-height: 100vh; */
-        
-        border: 1px solid ;  position:fixed;top: 3rem;right: 0px;overflow-y: scroll;
-        background-color: white;
-        display: none;
-   padding: 2rem;line-height: 2;
-   color:blue;border-radius: 1pc  ;
-   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
-   
-   }
-   
-   .rotateONTrue{animation: rotateOnTrue 0.5s  linear  ;}
-   .rotateONFalse{ animation: rotateONFalse 0.5s  linear  ;}
-      @keyframes rotateOnTrue {
-          0%{transform: rotateZ(0deg)  ;}
-          100%{transform: rotateZ(90deg)  ;}
+      100% {
+        transform: rotateZ(90deg);
       }
-       @keyframes rotateONFalse {
-          0%{transform: rotateZ(0deg)  ;}
-          100%{transform: rotateZ(-90deg)  ;}
+    }
+
+    @keyframes rotateONFalse {
+      0% {
+        transform: rotateZ(0deg);
       }
-      .under_DS {padding-left: 1.5rem;}
-      details {padding : 0.5rem; border: 1px solid transparent;}
-      
-       details:hover{
-         border: 1px solid ;border-radius: 1pc;
-        
-        border-left: 7px solid rgba(0, 0, 255, 0.616);transform: translateX(-6px);}
-        details li a{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-transform: capitalize;
 
+      100% {
+        transform: rotateZ(-90deg);
       }
-      .mcrd_specalBatch{text-align: center;display: flex;justify-content: center;align-items: center;}
-    </style>
-     
-  </head>
-  <body>
-    <div class="container">
-      
- 
-      
+    }
 
-      <!-- <div class="container"> -->
-    </div>
+    .under_DS {
+      padding-left: 1.5rem;
+    }
+
+    details {
+      padding: 0.5rem;
+      border: 1px solid transparent;
+    }
+
+    details:hover {
+      border: 1px solid;
+      border-radius: 1pc;
+
+      border-left: 7px solid rgba(0, 0, 255, 0.616);
+      transform: translateX(-6px);
+    }
+
+    details li a {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-transform: capitalize;
+
+    }
+
+    .mcrd_specalBatch {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+
+    <iframe src="/specal_batch/animation/clockAnim.html" frameborder="0"
+      style="width: 100vw; height: 100vh; border: none;"></iframe>
 
 
-
-    <div class="minidiv">
-
-      <header class="mc_d1 ">
-         
-        <h1>PCS ENGLIS SCHOOL</h1>
-        <button type="button" class="home_three_bar">☰</button>
-      </header>
-      <div class="right_side_hide_upper">
-         
- 
-
- 
-  <details>
-    <summary>Class Wise </summary>
-     
-<div class="under_DS">  
-  <ol>  
-      <li><a href="/task/class_bal_pothi.html">class -- बाल मनोहर पोथी -- task</a></li>
-      
-      <li><a href="/task/class1_6.html">class -- 1 To 6 -- task</a></li>
-      <li><a href="/task/class1.html">class -- 1 -- task</a></li>
-      <li><a href="/task/class2.html">class -- 2 -- task</a></li>
-      <li><a href="/task/class3.html">class -- 3 -- task</a></li>
-      <li><a href="/task/class4.html">class -- 4 -- task</a></li>
-      <li><a href="/task/class5.html">class -- 5 -- task</a></li>
-      <li><a href="/task/class6.html">class -- 6 -- task</a></li>
-      <li><a href="/task/class7.html">class -- 7 -- task</a></li>
-      </li></ol>
+    <!-- <div class="container"> -->
   </div>
-  </details>
- 
+
+
+
+  <div class="minidiv">
+
+    <header class="mc_d1 ">
+      <div><img src="/task/PCS_LOGO.jpeg" alt="" style=" width: 50px;
+  object-fit: contain;border-radius:50%;border:2px solid white;   background-color : transparent;"> </div>
+
+      <h1>PCS ENGLIS SCHOOL</h1>
+      <button type="button" class="home_three_bar">☰</button>
+    </header>
+    <div class="right_side_hide_upper">
+
+
+
+
+      <details>
+        <summary>Class Wise </summary>
+
+        <div class="under_DS">
+          <ol>
+            <li><a href="/task/class_bal_pothi.html">class -- बाल मनोहर पोथी -- task</a></li>
+
+            <li><a href="/task/class1_6.html">class -- 1 To 6 -- task</a></li>
+            <li><a href="/task/class1.html">class -- 1 -- task</a></li>
+            <li><a href="/task/class2.html">class -- 2 -- task</a></li>
+            <li><a href="/task/class3.html">class -- 3 -- task</a></li>
+            <li><a href="/task/class4.html">class -- 4 -- task</a></li>
+            <li><a href="/task/class5.html">class -- 5 -- task</a></li>
+            <li><a href="/task/class6.html">class -- 6 -- task</a></li>
+            <li><a href="/task/class7.html">class -- 7 -- task</a></li>
+            </li>
+          </ol>
+        </div>
+      </details>
+
 
 
 
       <details>
         <summary>Englis Subject</summary>
- 
-<div class="under_DS">
-  <ol>
-<li><a href="/task/goodEnglish.html">Good English book</a></li>
-<li><a href="/task/englishTranslation.html">English Translation book</a></li>
-<li><a href="/task/englisGramer.html">English grammar</a></li>
-<li><a href="/task/tenseInDetain.html">All Tense </a></li>
-<li><a href="/task/present_tense.html">Present Tense</a></li>
-<li><a href="/task/past_tense.html">past Tense</a></li>
-<li><a href="/task/future_tense.html">Future Tense</a></li>
-      </div >
-    </ol>
+
+        <div class="under_DS">
+          <ol>
+            <li><a href="/task/goodEnglish.html">Good English book</a></li>
+            <li><a href="/task/englishTranslation.html">English Translation book</a></li>
+            <li><a href="/task/englisGramer.html">English grammar</a></li>
+            <li><a href="/task/tenseInDetain.html">All Tense </a></li>
+            <li><a href="/task/present_tense.html">Present Tense</a></li>
+            <li><a href="/task/past_tense.html">past Tense</a></li>
+            <li><a href="/task/future_tense.html">Future Tense</a></li>
+        </div>
+        </ol>
       </details>
-<details>
-  <summary>Math Subject</summary>
-<div class="under_DS">
-  <ol>
-<li><a href="/task/calculator.html">Calculator 🔢</a></li>
-<li><a href="/task/add.html"> Addition +</a></li>
-<li><a href="/task/subtract.html">subtract - </a></li>
-<li><a href="/task/multiplication.html">multiplication X</a></li>
-<li><a href="/task/division.html">divide ÷</a></li>
-<li><a href="/task/face_place_value.html">face & place value</a></li>
-<li><a href="/task/lcm.html">Lcm</a></li>
-<li><a href="/task/hcf.html">hcf</a></li>
+      <details>
+        <summary>Math Subject</summary>
+        <div class="under_DS">
+          <ol>
+            <li><a href="/task/calculator.html">Calculator 🔢</a></li>
+            <li><a href="/task/add.html"> Addition +</a></li>
+            <li><a href="/task/subtract.html">subtract - </a></li>
+            <li><a href="/task/multiplication.html">multiplication X</a></li>
+            <li><a href="/task/division.html">divide ÷</a></li>
+            <li><a href="/task/face_place_value.html">face & place value</a></li>
+            <li><a href="/task/lcm.html">Lcm</a></li>
+            <li><a href="/task/hcf.html">hcf</a></li>
 
-<li><a href="/task/table_task.html"> TABLE ▦</a></li>
-<li><a href="/task/w_table.html">write table</a></li>
-</li>
+            <li><a href="/task/table_task.html"> TABLE ▦</a></li>
+            <li><a href="/task/w_table.html">write table</a></li>
+            </li>
 
-</div>
-</ol>
-</details>
-
-
-
- 
-<details>
-  <summary>Science Subject</summary>
-    
-<div class="under_DS">
-<ol>
-    <li><a href="/book/">science1</a></li>
-    <li><a href="book/">science2</a></li>
-</ol>
-</div>
-</details>
-<details style="margin-bottom: 10vh;display: none;">
-  <summary>Specal Batch</summary>
-  <div class="under_DS">
-    <ol>
-        <li><a href="/specal_batch/fraction_add.html">fraction addition(+)</a></li>
-        <li><a href="/specal_batch/color_background.html">background color</a></li>
-        <li><a href="/specal_batch/testcolor.html">color picker</a></li>
-        <li><a href="/specal_batch/trainmove.html">train traveling</a></li>
-        <li><a href="/specal_batch/boating_in_water.html">boat traveling</a></li>
-        <li><a href="/specal_batch/water_tank.html">water Tank flow</a></li>
-        <li><a href="/specal_batch/monkey_sliding.html">monkey jumping</a></li>
-        <li><a href="/specal_batch/mango.html">mango collecting</a></li>
-        <li><a href="/specal_batch/work_time.html">work time</a></li>
-        <li><a href="/specal_batch/paddy.html">paddy cutting</a></li>
-        <li><a href="/specal_batch/balloon_liking.html">balloon diffusing</a></li>
-      
-    </ol>
-  </div>
-</details>
-
-
-
-        <!-- <div class="right_side_hide_upper"> -->
-      </div> 
+        </div>
+        </ol>
+      </details>
 
 
 
 
+      <details>
+        <summary>Science Subject</summary>
+
+        <div class="under_DS">
+          <ol>
+            <li><a href="/book/">science1</a></li>
+            <li><a href="book/">science2</a></li>
+          </ol>
+        </div>
+      </details>
+      <details style="margin-bottom: 10vh;display: none;">
+        <summary>Specal Batch</summary>
+        <div class="under_DS">
+          <ol>
+            <li><a href="/specal_batch/fraction_add.html">fraction addition(+)</a></li>
+            <li><a href="/specal_batch/color_background.html">background color</a></li>
+            <li><a href="/specal_batch/testcolor.html">color picker</a></li>
+            <li><a href="/specal_batch/trainmove.html">train traveling</a></li>
+            <li><a href="/specal_batch/boating_in_water.html">boat traveling</a></li>
+            <li><a href="/specal_batch/water_tank.html">water Tank flow</a></li>
+            <li><a href="/specal_batch/monkey_sliding.html">monkey jumping</a></li>
+            <li><a href="/specal_batch/mango.html">mango collecting</a></li>
+            <li><a href="/specal_batch/work_time.html">work time</a></li>
+            <li><a href="/specal_batch/paddy.html">paddy cutting</a></li>
+            <li><a href="/specal_batch/balloon_liking.html">balloon diffusing</a></li>
+
+          </ol>
+        </div>
+      </details>
 
 
-        <div class="microdiv_container_without_mcd1"> 
-<div class="microdiv mcrd_specalBatch"><a href="/specal_batch/specal_batch.html">Specal Batch</a> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<!-- <div class="microdiv_container_without_mcd1"> -->
-</div>
-      <!-- <div class="minidiv"> -->
+
+      <!-- <div class="right_side_hide_upper"> -->
     </div>
-    <script>
-      const body=document.querySelector("body");
-      const microdiv_container_without_mcd1=document.querySelector(".microdiv_container_without_mcd1");
-        const microdiv=document.querySelectorAll("microdiv");
-        const home_three_bar=document.querySelector(".home_three_bar");
-        const right_side_hide_upper =document.querySelector(".right_side_hide_upper");
 
-        microdiv.forEach((el)=>{ })
-      const container=document.querySelector(".container");
-      for(let img=1;img<=1;img++){
-        const img_container=document.createElement("img");
-        img_container.classList.add("img_container");
-        img_container.setAttribute("src"," ")
-        container.appendChild(img_container);
-      }
 
-let isClose=true;
-     home_three_bar.addEventListener("click",()=>{
-      if(isClose){          isClose =false;
 
-      
-      setTimeout(() => { home_three_bar.innerHTML = `⛌`; }, 500)
-      home_three_bar.classList.add("rotateONTrue")
-     home_three_bar.classList.remove("rotateONFalse")
-       
-       home_three_bar.style.transform='rotateZ(90deg)';
-       right_side_hide_upper.style.display = "block";
 
-       microdiv_container_without_mcd1.style.display = "none"
-      }else{
+
+
+    <div class="microdiv_container_without_mcd1">
+      <div class="microdiv mcrd_specalBatch"><a href="/specal_batch/specal_batch.html">Specal Batch</a> </div>
+      <!-- <div class="microdiv"> </div>
+<div class="microdiv"> </div>
+<div class="microdiv"> </div>
+<div class="microdiv"> </div>
+<div class="microdiv"> </div> -->
+      <!-- <div class="microdiv_container_without_mcd1"> -->
+    </div>
+    <!-- <div class="minidiv"> -->
+  </div>
+  <script>
+    const body = document.querySelector("body");
+    const microdiv_container_without_mcd1 = document.querySelector(".microdiv_container_without_mcd1");
+    const microdiv = document.querySelectorAll("microdiv");
+    const home_three_bar = document.querySelector(".home_three_bar");
+    const right_side_hide_upper = document.querySelector(".right_side_hide_upper");
+
+    microdiv.forEach((el) => { })
+    const container = document.querySelector(".container");
+    for (let img = 1; img <= 1; img++) {
+      const img_container = document.createElement("img");
+      img_container.classList.add("img_container");
+      img_container.setAttribute("src", " ")
+      container.appendChild(img_container);
+    }
+
+    let isClose = true;
+    home_three_bar.addEventListener("click", () => {
+      if (isClose) {
+        isClose = false;
+
+
+        setTimeout(() => { home_three_bar.innerHTML = `⛌`; }, 500)
+        home_three_bar.classList.add("rotateONTrue")
+        home_three_bar.classList.remove("rotateONFalse")
+
+        home_three_bar.style.transform = 'rotateZ(90deg)';
+        right_side_hide_upper.style.display = "block";
+
+        microdiv_container_without_mcd1.style.display = "none"
+      } else {
         isClose = true;
-setTimeout(()=>{ home_three_bar.innerHTML = `☰`; },500)
-        
-           home_three_bar.classList.add("rotateONFalse")
-         home_three_bar.classList.remove("rotateONTrue")
+        setTimeout(() => { home_three_bar.innerHTML = `☰`; }, 500)
+
+        home_three_bar.classList.add("rotateONFalse")
+        home_three_bar.classList.remove("rotateONTrue")
         home_three_bar.style.transform = 'rotateZ(0deg)';
-         
-        right_side_hide_upper.style.display="none";
-        
+
+        right_side_hide_upper.style.display = "none";
+
         microdiv_container_without_mcd1.style.display = "flex"
       }
-     })
+    })
 
 
 
-      
-    </script>
-  </body>
+
+  </script>
+</body>
+
 </html>

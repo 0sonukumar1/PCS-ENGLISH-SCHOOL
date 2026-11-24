@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PCS Clock - WhatsApp Background</title>
+    <style>
+        :root {
+            --wa-bg: #efeae2;
+            --wa-doodle: rgba(11, 20, 26, 0.065);
+            --dial: #f7f4ed;
+            --accent: #c83e2b;
+            --ink: #1a1d21;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--wa-bg);
+            color: #111b21;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            position: relative;
+        }
+
+        /* Repeating WhatsApp-style chat doodle background */
+        .wa-pattern-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-color: var(--wa-bg);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%230b141a' stroke-opacity='0.07' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 22h18a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4h-10l-5 5v-5h-3a4 4 0 0 1-4-4V26a4 4 0 0 1 4-4z'/%3E%3Ccircle cx='86' cy='28' r='8'/%3E%3Cpath d='M86 24v4l3 2'/%3E%3Cpath d='M24 84l8-8 6 6 10-12 8 14z'/%3E%3Cpath d='M78 78c6-2 12 2 14 8-6 2-12-2-14-8z'/%3E%3Ccircle cx='58' cy='58' r='2' fill='%230b141a' fill-opacity='0.07'/%3E%3Ccircle cx='98' cy='54' r='1.8' fill='%230b141a' fill-opacity='0.07'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 150px 150px;opacity: 1;
+            color: black;
+        }
+
+        /* Centered 5rem pcs clock background layer */
+        .pcs-clock-bg {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            pointer-events: none;
+            user-select: none;
+            z-index: 191;
+            opacity: 9.35;opacity: 1;
+            color: black;
+        }
+
+        .clock-frame {
+            position: relative;
+            width: 30%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            padding: 0.22rem;
+            background-color: rgba(0, 0, 0, 0.575);
+            /* background: linear-gradient(145deg, #3b424e, #181b20); */
+            box-shadow:
+                0 0.45rem 1rem rgba(0, 0, 0, 0.25),
+                inset 0 0.04rem 0.08rem rgba(255, 255, 255, 0.18);
+                opacity: 1;
+            color: black;
+        }
+
+        .clock-dial {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 45%, #ffffff, var(--dial));
+            background-color: white;
+            /* box-shadow: inset 0 0 0.35rem rgba(0, 0, 0, 0.22); */
+            overflow: hidden;opacity: 1;
+            color: black;
+        }
+
+        .tick {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 0.04rem;
+            height: 0.16rem;
+            background: var(--ink);
+            transform-origin: 50% calc(var(--dial-size, 72.96px) / 2);
+            transform: translateX(-50%) rotate(var(--angle, 0deg));
+            opacity: 0.45;opacity: 1;
+            color: black;
+        }
+
+        .tick.hour {
+            width: 0.08rem;
+            height: 0.3rem;
+            opacity: 1;
+            color: black;
+        }
+
+        .numeral {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-weight: 700;
+            font-size: 0.36rem;
+            line-height: 1;
+            color: var(--ink);
+            transform: translate(-50%, -50%) translate(var(--x), var(--y));
+            color: black;
+            font-size: 0.7rem;
+        }
+
+        .brand-label {
+            position: absolute;
+            top: 27%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.5rem;
+            line-height: 1;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            /* color: #555d68; */
+            color: rgba(0, 0, 0, 0);
+            
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .hand {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 999px;
+            transform: translateX(-50%) rotate(0deg);
+        }
+
+        .hand.hour {
+            width: 0.12rem;
+            height: 26%;
+            background: var(--ink);
+            background: #2b3038;
+             
+            z-index: 3;
+        }
+
+        .hand.minute {
+            width: 0.09rem;
+            height: 37%;
+            background: var(--ink);
+            background: #2b3038;
+            z-index: 4;
+        }
+
+        .hand.second {
+            width: 0.05rem;
+            height: 42%;
+            background: var(--accent);
+            background-color: red;
+            z-index: 5;
+        }
+
+        .hand.second::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            width: 0.1rem;
+            height: 12%;
+            background: var(--accent);
+            transform: translateX(-50%);background-color: red;
+            border-radius: 999px;
+        }
+
+        .center-cap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 0.28rem;
+            height: 0.28rem;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 0.05rem solid var(--ink);
+            transform: translate(-50%, -50%);
+            z-index: 6;
+        }
+
+        /* Foreground chat / page content */
+        .page-content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .bubble {
+            max-width: 75%;
+            padding: 0.6rem 0.85rem;
+            border-radius: 0.65rem;
+            background: #ffffff;
+            box-shadow: 0 1px 1px rgba(11, 20, 26, 0.12);
+            font-size: 0.95rem;
+        }
+
+        .bubble.outgoing {
+            align-self: flex-end;
+            background: #d9fdd3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wa-pattern-bg" aria-hidden="true"></div>
+
+    <div class="pcs-clock-bg" aria-hidden="true">
+
+        <div class="clock-frame">
+            <div class="clock-dial" id="clockDial">
+                <div class="brand-label">pcs clock</div>
+                <div class="hand hour" id="hourHand"></div>
+                <div class="hand minute" id="minuteHand"></div>
+                <div class="hand second" id="secondHand"></div>
+                <div class="center-cap"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="page-content">
+        <div class="bubble">Hey! Check out the pcs clock over the chat background.</div>
+        <div class="bubble outgoing">Looks clean and keeps the clock at 5rem.</div>
+    </main>
+
+    <script>
+        const dial = document.getElementById("clockDial");
+        const hourHand = document.getElementById("hourHand");
+        const minuteHand = document.getElementById("minuteHand");
+        const secondHand = document.getElementById("secondHand");
+
+        let rafId = null;
+
+        function buildDialMarkers() {
+            dial.querySelectorAll(".tick, .numeral").forEach((el) => el.remove());
+            const size = dial.clientWidth;
+            dial.style.setProperty("--dial-size", `${size}px`);
+            const radius = size / 2;
+            const numberRadius = radius * 0.72;
+
+            for (let i = 0; i < 60; i++) {
+                const tick = document.createElement("div");
+                tick.className = i % 5 === 0 ? "tick hour" : "tick";
+                tick.style.setProperty("--angle", `${i * 6}deg`);
+                dial.appendChild(tick);
+            }
+
+            for (let num = 1; num <= 12; num++) {
+                const angleRad = ((num * 30 - 90) * Math.PI) / 180;
+                const x = Math.cos(angleRad) * numberRadius;
+                const y = Math.sin(angleRad) * numberRadius;
+
+                const label = document.createElement("div");
+                label.className = "numeral";
+                label.textContent = num;
+                label.style.setProperty("--x", `${x}px`);
+                label.style.setProperty("--y", `${y}px`);
+                dial.appendChild(label);
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const preciseSec = now.getSeconds() + now.getMilliseconds() / 1000;
+            const preciseMin = now.getMinutes() + preciseSec / 60;
+            const preciseHr = (now.getHours() % 12) + preciseMin / 60;
+
+            hourHand.style.transform = `translateX(-50%) rotate(${preciseHr * 30}deg)`;
+            minuteHand.style.transform = `translateX(-50%) rotate(${preciseMin * 6}deg)`;
+            secondHand.style.transform = `translateX(-50%) rotate(${preciseSec * 6}deg)`;
+
+            rafId = requestAnimationFrame(updateClock);
+        }
+
+        function startLoop() {
+            if (!rafId) rafId = requestAnimationFrame(updateClock);
+        }
+
+        function stopLoop() {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+        }
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                stopLoop();
+            } else {
+                startLoop();
+            }
+        });
+
+        window.addEventListener("resize", buildDialMarkers);
+        buildDialMarkers();
+        startLoop();
+    </script>
+</body>
+
+</html>
