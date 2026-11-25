@@ -27,7 +27,7 @@
 
 .minidiv {
   width: 100%;
-  height: 150vh;
+  height: auto;
   border: 0px solid rgba(247, 247, 247, 0.95384);
   background-color: rgba(126, 120, 120, 0.0068);
   position: relative;
@@ -39,17 +39,19 @@
 
 .microdiv {
   width: 85%;
-  height: 20vh;
+   /* height: 20vh; */
+/* min-height: 20vh; */
   margin-left: 0rem;
   padding: 1rem;
   margin-bottom: 2rem;
   border: 0px solid red;
-  display: flex;
+  display: block;
   border-radius: 1pc;
   background-color: white;
+
   
 }
-
+.microdiv a{border: 1px solid rgb(255, 255, 255);}
 .mcrd_specalBatch {
   width: 50vw;
   height: 2rem;
@@ -117,4 +119,13 @@ div .mc_d1 h1 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+@media screen and (min-width:600px) {
+    .microdiv_container_without_mcd1{display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;}
+       .microdiv{ width: 25vw;margin: 2rem;;padding-right: 0rem;}  
+        .microdiv a{width: 23vw !important;}
+        .microdiv_a_innerDiv{width: 20vw !important; }
 }

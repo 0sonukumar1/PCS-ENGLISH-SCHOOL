@@ -1,340 +1,383 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PCS</title>
 
-
- 
-
-
-
-
-<script src="/netlifyiconjs/netlifyicon.js" defer></script>
-
-    <link rel="shortcut icon" href="/task/pcslogoimage.svg" type="image/x-icon">
-
-    <script src="/correct_answer_sheets.js"></script>
-    <script src="/student_answer_sheets.js"></script>
-    <script src="/cpoy_check.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-      *{box-sizing: border-box;margin: 0%;padding: 0px;}
-      body{font-size: 16px;font-family: system-ui, -apple-system, sans-serif;box-sizing: border-box;margin: 0%;padding: 0px;}
-      header{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 1.0rem;
-      font-weight:600 ;font-size: 1.5rem;
-     color: green;
-     opacity: 0.9;
-     font-size: 1.5rem;
-    text-align: center;box-sizing: border-box;margin: 0;
-  }
-a{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;;text-decoration: underline;color: rgb(0, 0, 0);text-transform: capitalize;}
-.doubleFont{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 1.0rem;font-weight:700 ;font-size: 1.5rem;
-    font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 1px #3730a3; /* मुख्य आउटलाइन का रंग */
-    letter-spacing: 2px;}
-    ul{padding-bottom: 10vh;}
-      ul li{
-        list-style-type: disc;
-        margin-bottom: 1rem;text-transform: capitalize;
-      }
-       
-       
-      details summary{cursor: pointer;text-transform: capitalize;height: 2rem; ;  }
-      details{margin :1.5rem;}
-      details summary:hover{background-color: #dfe0e0 }
-      .vumi a{color: transparent;text-decoration: dashed;
-      text-decoration:underline;text-decoration-color: #aca9a9;}
-      
-      .header{ 
-      }
-      .timsedule_container{display: flex;justify-content: center;align-items: center;gap: 1rem;
-        
-        
-
-        border-radius: 6px;padding: 1rem;margin-top: 1rem;
-      border-style: dashed;
-      border-width: 3px;
-  border-style: double double double double;
-  border-color: #ef4444 #0284c7 #16a34a #d97706;
-      
-      }
-       .greeting {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: #1e293b;
-            color:rgb(132, 132, 133);
-            display: flex;justify-content: center;align-items: center;
-        }
-
-        .time {
-            
-              font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 2.25rem;
-            font-weight: 400;
-            font-variant-numeric: tabular-nums;
-      font-size: 2rem;
-      color:rgba(12, 11, 11, 0.884);
-      
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.04em;
-        }
-        .special_batch_link_on_home_page{display: flex;justify-content: center;align-items: center;margin-top: 1rem;border-radius: 6px;padding: 0.5rem;text-decoration: none;color:#296b6d;;;background-color:transparent} .special_batch_link_on_home_page a{text-decoration:underline;color:transparent;;background-color: transparent;}   
-
-        
-    .special_batch_link_on_home_page a{text-decoration:underline;color:#296b6d;;background-color: transparent;}   
-   .special_batch_link_on_home_page a div {
-  background-color:transparent;
-  padding: 0.5rem;
-  border-radius: 6px;
-  color: hsl(229, 98%, 52%);
-  transition: box-shadow 0.3s ease;  
-}
-
-.special_batch_link_on_home_page a div:hover {
-   
-  box-shadow: 0 4px 15px rgba(41, 107, 109, 0.5);
-  
-   
-}
-        
-  
-    </style>
-    
-    <style>
-  
-
-  @property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-
-  .lit-banner {
-    margin: 2px;
-    padding: 0.5rem;
-    position: relative;
-   
-    border-radius: 0pc;
-     
-    isolation: isolate;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-     background-color: transparent;
-  }
-
-  .lit-banner::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-     
-    border-radius: inherit;
-    padding-bottom: 2px;
-     
-    background: conic-gradient(from var(--angle),
-        #38bdf8,
-        #a855f7,
-        #f472b6,
-        #38bdf8);
-        margin-bottom: -10px;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: -1;
-    animation: spin-border 1.5s linear infinite;
-  }
-
-  @keyframes spin-border {
-    to {
-      --angle: 360deg;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCS 🏫 PCS 🏫PCS 🏫PCS </title>
+  <script src="/netlifyiconjs/netlifyicon.js" defer></script>
+  <link rel="shortcut icon" href="/task/pcslogoimage.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/zindex/style1.css">
+  <style>
+    * {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
-  }
 
-  .line-two {
-    display: block;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    word-spacing: 0.2em;
-    line-height: 1.2;
+    div .mc_d1 button {
+      position: fixed;
+      top: 2rem;
+      right: 0px;
+      z-index: 11;
+      margin-right: 3rem;
+      border: none;
+      border: 1px solid rgb(6, 9, 231);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      /* border-right-color: transparent;
+        border-left-color: transparent; */
 
-    background: linear-gradient(90deg, #38bdf8, #a855f7, #f472b6);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.45));
-    ;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: blue;
+      /* display: flex;justify-content: space-evenly; */
 
-  }
-
-  .pcses {
-    display: block;
-    font-size: clamp(2rem, 5vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    word-spacing: 0.2em;
-    line-height: 1.2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    
-
-
-  }
-
-  .outlined-text {
-    color: whitesmoke;
-    /* color: #0f172a; */
-    /* #0f172a; */
-    text-shadow:
-      -1px -1px 0 #38bdf8,
-      1px -1px 0 #a855f7,
-      -1px 1px 0 #f472b6,
-      1px 1px 0 #38bdf8;
-     
-    -webkit-text-stroke: 2px rgb(253, 253, 253);
-    
-    paint-order: stroke fill;
-     
-
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .lit-banner::before {
-      animation: none;
     }
-  }
-  @media screen and (max-width:600px) {
-    .lit-banner{}
-    .pcses{font-size: 1.3rem; 
-       margin-left: auto;
+
+
+    .right_side_hide_upper {
+      position: absolute;
+      z-index: 10;
+      width: 90vw;
+      height: 100vh;
+      /* height:auto;min-height: 100vh; */
+
+      border: 1px solid;
+      position: fixed;
+      top: 3rem;
+      right: 0px;
+      overflow-y: scroll;
+      background-color: white;
+      display: none;
+      padding: 2rem;
+      line-height: 2;
+      color: blue;
+      border-radius: 1pc;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+
     }
-    
-  }
-</style>
+
+    .rotateONTrue {
+      animation: rotateOnTrue 0.5s linear;
+    }
+
+    .rotateONFalse {
+      animation: rotateONFalse 0.5s linear;
+    }
+
+    @keyframes rotateOnTrue {
+      0% {
+        transform: rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateZ(90deg);
+      }
+    }
+
+    @keyframes rotateONFalse {
+      0% {
+        transform: rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateZ(-90deg);
+      }
+    }
+
+    .under_DS {
+      padding-left: 1.5rem;
+    }
+
+    details {
+      padding: 0.5rem;
+      border: 1px solid transparent;
+    }
+
+    details:hover {
+      border: 1px solid;
+      border-radius: 1pc;
+
+      border-left: 7px solid rgba(0, 0, 255, 0.616);
+      transform: translateX(-6px);
+    }
+
+    details li a {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      text-transform: capitalize;
+
+    }
+
+    .mcrd_specalBatch {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .open_rshu {
+      animation: open_rshu 0.5s linear;
+
+    }
+
+    .close_rshu {
+      animation: close_rshu 0.5s linear;
+
+    }
+
+    @keyframes open_rshu {
+      0% {
+        width: 0px;
+      }
+
+      100% {
+        width: 90vw;
+      }
+    }
+
+    @keyframes close_rshu {
+      0% {
+        width: 90vw;
+      }
+
+      100% {
+        width: 0px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container zindex_1">
 
 
-  </head>
-  <body>
-    <h1 class="lit-banner">
-       
-      <div class="pcses outlined-text">PCS ENGLISH SCHOOL</div>
-    </h1>
-    
-<div class="timsedule_container">
-<div class="greeting"></div>
-<div class="time"></div>
-</div>
+    <iframe src="/specal_batch/animation/clockAnim.html" frameborder="0"
+      style="width: 100vw; height: 100vh; border: none;"></iframe>
 
-    <br> 
-    <div class="special_batch_link_on_home_page"> 
- <a href="/specal_batch/specal_batch.html"><div> Specal Batch</div></a> 
-</div>
-<a href="/zindex/zindex.html">new all container</a>
+
+    <!-- <div class="container"> -->
+  </div>
 
 
 
+  <div class="minidiv zindex_2" style="">
+
+    <header class="mc_d1 ">
+
+      <div><img src="/task/PCS_LOGO.jpeg" alt="" style=" width: 50px;
+  object-fit: contain;border-radius:50%;border:2px solid white;   background-color : transparent;"> </div>
+
+      <h1> PCS English School <br> <span style="font-size: 0.7rem;padding-left: 2rem;">📚Learn 🌱Grow 🏆Succeed</span>
+      </h1>
+      <button type="button" class="home_three_bar">☰</button>
+
+    </header>
+
+    <div class="right_side_hide_upper">
 
 
-    <ul>
-      
- 
 
-      <li>
-         
-      <details  ><summary>English</summary>
-      <li><a href="/task/goodEnglish.html">Good English book</a></li>
-      <li><a href="/task/englishTranslation.html">English Translation book</a></li>
-      <li><a href="/task/englisGramer.html">English grammar</a></li>
-      <li><a href="/task/tenseInDetain.html">All Tense </a></li>
-    
-        <details>
-          <summary>Tense</summary>
-          <ul>
+
+      <details>
+        <summary>Class Wise </summary>
+
+        <div class="under_DS">
+          <ol>
+            <li><a href="/task/class_bal_pothi.html">class -- बाल मनोहर पोथी -- task</a></li>
+
+            <li><a href="/task/class1_6.html">class -- 1 To 6 -- task</a></li>
+            <li><a href="/task/class1.html">class -- 1 -- task</a></li>
+            <li><a href="/task/class2.html">class -- 2 -- task</a></li>
+            <li><a href="/task/class3.html">class -- 3 -- task</a></li>
+            <li><a href="/task/class4.html">class -- 4 -- task</a></li>
+            <li><a href="/task/class5.html">class -- 5 -- task</a></li>
+            <li><a href="/task/class6.html">class -- 6 -- task</a></li>
+            <li><a href="/task/class7.html">class -- 7 -- task</a></li>
+            </li>
+          </ol>
+        </div>
+      </details>
+
+
+
+
+      <details>
+        <summary>Englis Subject</summary>
+
+        <div class="under_DS">
+          <ol>
+            <li><a href="/task/goodEnglish.html">Good English book</a></li>
+            <li><a href="/task/englishTranslation.html">English Translation book</a></li>
+            <li><a href="/task/englisGramer.html">English grammar</a></li>
+            <li><a href="/task/tenseInDetain.html">All Tense </a></li>
             <li><a href="/task/present_tense.html">Present Tense</a></li>
             <li><a href="/task/past_tense.html">past Tense</a></li>
             <li><a href="/task/future_tense.html">Future Tense</a></li>
-          </ul>
-        </details>
-        </details>
-        </li>
-       
-      <li> 
-      </details>
-      <details><summary>Maths</summary>
-
-      <li><a href="/task/calculator.html">Calculator 🔢</a></li>
-      <li><a href="/task/add.html"> Addition +</a></li>
-      <li><a href="/task/subtract.html">subtract - </a></li>
-      <li><a href="/task/multiplication.html">multiplication X</a></li>
-      <li><a href="/task/division.html">divide ÷</a></li>
-      <li><a href="/task/face_place_value.html">face & place value</a></li>
-      <li><a href="/task/lcm.html">Lcm</a></li> 
-      <li><a href="/task/hcf.html">hcf</a></li>
-
-      <li><a href="/task/table_task.html"> TABLE ▦</a></li>
-      <li><a href="/task/w_table.html">write table</a></li>
-      </li>
-      </details>
-      </li>
-      <li> 
-      <details><summary>
-        Task
-      </summary>
-      <li><a href="/task/class_bal_pothi.html">class -- बाल मनोहर पोथी -- task</a></li>
-       
-      <li><a href="/task/class1_6.html">class -- 1 To 6 -- task</a></li>
-      <li><a href="/task/class1.html">class -- 1 -- task</a></li>
-      <li><a href="/task/class2.html">class -- 2 -- task</a></li>
-      <li><a href="/task/class3.html">class -- 3 -- task</a></li>
-      <li><a href="/task/class4.html">class -- 4 -- task</a></li>
-      <li><a href="/task/class5.html">class -- 5 -- task</a></li>
-      <li><a href="/task/class6.html">class -- 6 -- task</a></li>
-      <li><a href="/task/class7.html">class -- 7 -- task</a></li>
-      </li>
-<li>
+        </div>
+        </ol>
       </details>
       <details>
-        <summary>Light magic</summary>
-        <li><a href="/task/animation1.html">Light magic-1.1</a></li>
-        <li><a href="/task/animation2.html">Light magic-1.2</a></li>
-      <li><a href="/task/aaxuanimation.html">light magic_1.3</a></li>
-      </details></li>
+        <summary>Math Subject</summary>
+        <div class="under_DS">
+          <ol>
+            <li><a href="/task/calculator.html">Calculator 🔢</a></li>
+            <li><a href="/task/add.html"> Addition +</a></li>
+            <li><a href="/task/subtract.html">subtract - </a></li>
+            <li><a href="/task/multiplication.html">multiplication X</a></li>
+            <li><a href="/task/division.html">divide ÷</a></li>
+            <li><a href="/task/face_place_value.html">face & place value</a></li>
+            <li><a href="/task/lcm.html">Lcm</a></li>
+            <li><a href="/task/hcf.html">hcf</a></li>
 
-    </ul>
-<li class="vumi"><a href="/task/vumishortdara.html">vumi short-1.1</a></li>
-<br><br>
-<li class="vumi"><a href="/task/vumidividetion.html">vumi short-1.2</a></li><br><br><br>
-    <script>
-      function getRandomRgbColor() {
-          const r = Math.floor(Math.random() * 256);
-          const g = Math.floor(Math.random() * 256);
-          const b = Math.floor(Math.random() * 256);
-          const a = Math.random();
-          return `rgb(${r}, ${g}, ${b} )`;
-        };
-const header=document.querySelector(".header");
+            <li><a href="/task/table_task.html"> TABLE ▦</a></li>
+            <li><a href="/task/w_table.html">write table</a></li>
+            </li>
 
-setInterval(()=>{header.style.color=getRandomRgbColor()},2000)
+        </div>
+        </ol>
+      </details>
 
-    </script>
 
-    <script src="/specal_batch/speeckingTime.js"> </script>
 
-   
-  </body>
+
+      <details>
+        <summary>Science Subject</summary>
+
+        <div class="under_DS">
+          <!-- <ol>
+    <li><a href="/book/">science1</a></li>
+    <li><a href="book/">science2</a></li>
+</ol> -->
+        </div>
+      </details>
+      <details style="margin-bottom: 10vh;display: none;">
+        <summary>Specal Batch</summary>
+        <div class="under_DS">
+          <ol>
+            <li><a href="/specal_batch/fraction_add.html">fraction addition(+)</a></li>
+            <li><a href="/specal_batch/color_background.html">background color</a></li>
+            <li><a href="/specal_batch/testcolor.html">color picker</a></li>
+            <li><a href="/specal_batch/trainmove.html">train traveling</a></li>
+            <li><a href="/specal_batch/boating_in_water.html">boat traveling</a></li>
+            <li><a href="/specal_batch/water_tank.html">water Tank flow</a></li>
+            <li><a href="/specal_batch/monkey_sliding.html">monkey jumping</a></li>
+            <li><a href="/specal_batch/mango.html">mango collecting</a></li>
+            <li><a href="/specal_batch/work_time.html">work time</a></li>
+            <li><a href="/specal_batch/paddy.html">paddy cutting</a></li>
+            <li><a href="/specal_batch/balloon_liking.html">balloon diffusing</a></li>
+
+          </ol>
+        </div>
+      </details>
+
+
+
+      <!-- <div class="right_side_hide_upper"> -->
+    </div>
+
+
+
+
+
+
+    <div class="microdiv_container_without_mcd1">
+      <div class="microdiv mcrd_specalBatch"><a href="/specal_batch/specal_batch.html">Specal Batch</a> </div>
+      <div class="microdiv microdiv1"> </div>
+      <div class="microdiv" style="background-color: transparent;"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <div class="microdiv"> </div>
+      <!-- <div class="microdiv"> </div>
+  -->
+      <!-- <div class="microdiv_container_without_mcd1"> -->
+    </div>
+    <!-- <div class="minidiv"> -->
+
+    <footer>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <div style="background-color: white ;color: black; text-align: center">
+        <br />
+        <!-- about teacher -->
+
+        <button style="
+            background-color: white ;color: black;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 7px;
+            cursor: pointer;
+          " class="button">
+          <!-- About Teacher: -->
+        </button>
+        <address style="background-color: white ;color: black">
+          Address : village-purhara ,street-purub-bh Ahra per , Aurangabad,Bihar(pin- 824120)
+          <br />
+          Contact: +91 8873795418,+91 . . . . 804909,
+        </address>
+        <br />
+        <p style="background-color: white ;color: black">&copy; copyright 2026</p>
+      </div>
+    </footer>
+  </div>
+
+  <!--  -->
+
+  <script>
+    const body = document.querySelector("body");
+    const microdiv_container_without_mcd1 = document.querySelector(".microdiv_container_without_mcd1");
+    const microdiv = document.querySelectorAll("microdiv");
+    const home_three_bar = document.querySelector(".home_three_bar");
+    const right_side_hide_upper = document.querySelector(".right_side_hide_upper");
+
+    microdiv.forEach((el) => { })
+    const container = document.querySelector(".container");
+    for (let img = 1; img <= 1; img++) {
+      const img_container = document.createElement("img");
+      img_container.classList.add("img_container");
+      img_container.setAttribute("src", " ")
+      container.appendChild(img_container);
+    }
+
+    let isClose = true;
+    home_three_bar.addEventListener("click", () => {
+      if (isClose) {
+        isClose = false;
+
+
+        setTimeout(() => { home_three_bar.innerHTML = `⛌`; }, 500)
+        home_three_bar.classList.add("rotateONTrue")
+        home_three_bar.classList.remove("rotateONFalse")
+
+        home_three_bar.style.transform = 'rotateZ(90deg)';
+        right_side_hide_upper.style.display = "block";
+        right_side_hide_upper.classList.add("open_rshu");
+        right_side_hide_upper.classList.remove("close_rshu");
+        microdiv_container_without_mcd1.style.display = "none"
+      } else {
+        isClose = true;
+        setTimeout(() => { home_three_bar.innerHTML = `☰`; right_side_hide_upper.style.display = "none"; }, 450)
+
+        home_three_bar.classList.add("rotateONFalse")
+        home_three_bar.classList.remove("rotateONTrue")
+        home_three_bar.style.transform = 'rotateZ(0deg)';
+
+
+        right_side_hide_upper.classList.remove("open_rshu");
+        right_side_hide_upper.classList.add("close_rshu");
+        microdiv_container_without_mcd1.style.display = "flex"
+      }
+    })
+
+
+
+
+  </script>
+</body>
+
 </html>
- 

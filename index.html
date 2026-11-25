@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PCS</title>
+    <title>PCS ENGLISH SCHOOL</title>
     <script src="/netlifyiconjs/netlifyicon.js" defer></script>
-        <link rel="shortcut icon" href="/task/pcslogoimage.svg" type="image/x-icon">
+        <link rel="shortcut icon" href="/task/PCS_LOGO.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="/zindex/style1.css">
     <style>
       *{font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
@@ -15,7 +15,7 @@
         margin-right: 3rem;border: none;border: 1px solid rgb(6, 9, 231);border-radius: 50%; width: 2rem;height: 2rem;
         /* border-right-color: transparent;
         border-left-color: transparent; */
-
+ /* 🏫   */
         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color: blue;
         /* display: flex;justify-content: space-evenly; */
          
@@ -58,24 +58,28 @@
       .mcrd_specalBatch{text-align: center;display: flex;justify-content: center;align-items: center;
     
       }
-      .open_rshu{animation: open_rshu 0.5s linear;
+      .open_rshu{animation: open_rshu 0.2s linear;
       
       }
-      .close_rshu{animation: close_rshu 0.5s linear;
+      .close_rshu{animation: close_rshu 0.2s linear;
       
       }
       @keyframes open_rshu {
-        0%{width: 0px;}
-        100%{width: 90vw;}
+        /* 0%{height: 0px;}
+        100%{height: 90vw;} */
+        0%{transform: translateX(90vw);}
+        100%{transform: translateX(0vw);}
       }
        @keyframes close_rshu {
-        0%{width:90vw;}
-        100%{width: 0px;}
+       
+         0%{transform: translateX(0vw);}
+        100%{transform: translateX(90vw);}
       }
     </style>
      
   </head>
   <body>
+
    <div class="container zindex_1">
       
       
@@ -87,14 +91,14 @@
 
 
 
-    <div class="minidiv zindex_2" style="" >
+    <div class="minidiv zindex_2" style="">
 
       <header class="mc_d1 ">
         
-        <div><img src="/task/PCS_LOGO.jpeg"  alt=""style=" width: 50px;
+        <div style="padding-left: 0.5rem;"><img src="/task/PCS_LOGO.jpeg"  alt=""style=" width: 50px;
   object-fit: contain;border-radius:50%;border:2px solid white;   background-color : transparent;"> </div>
        
-        <h1>PCS ENGLIS SCHOOL <br> <span style="font-size: 0.7rem;padding-left: 4rem;">Learn  Grow Succed</span></h1> 
+        <h1> PCS English School <br> <span style="font-size: 0.7rem;padding-left: 2rem;">📚Learn 🌱Grow 🏆Succeed</span></h1> 
         <button type="button" class="home_three_bar">☰</button>
          
       </header>
@@ -175,6 +179,19 @@
 </ol> -->
 </div>
 </details>
+<details style="margin-bottom: 100px;"><summary>Light masic</summary>
+  <div class="under_DS">
+  <ol>  
+  <li><a href="/specal_batch/animation/anim1.html">Light animation-1</a></li>
+<li><a href="/specal_batch/animation/anim1.html">Light animation-2</a></li>
+<li><a href="/specal_batch/animation/anim1.html">Light animation-3</a></li>
+<li><a href="/task/aaxuanimation.html">Light animation-4</a></li>
+<li><a href="/task/animation1.html">Light animation-5</a></li>
+<li><a href="/task/animation2.html">Light animation-6</a></li>
+
+</ol></div>
+</details>
+
 <details style="margin-bottom: 10vh;display: none;">
   <summary>Specal Batch</summary>
   <div class="under_DS">
@@ -190,6 +207,7 @@
         <li><a href="/specal_batch/work_time.html">work time</a></li>
         <li><a href="/specal_batch/paddy.html">paddy cutting</a></li>
         <li><a href="/specal_batch/balloon_liking.html">balloon diffusing</a></li>
+       
       
     </ol>
   </div>
@@ -208,12 +226,13 @@
         <div class="microdiv_container_without_mcd1"> 
 <div class="microdiv mcrd_specalBatch"><a href="/specal_batch/specal_batch.html">Specal Batch</a> </div>
 <div class="microdiv microdiv1"> </div>
-<div class="microdiv" style="background-color: transparent;"> </div><div class="microdiv"> </div><div class="microdiv"> </div><div class="microdiv"> </div><div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
-<div class="microdiv"> </div>
+
+<div class="microdiv" style="background-color: transparent;"> </div><div class="microdiv" style="background-color: transparent;"> </div>
+
+ 
+
+
+ 
 <!-- <div class="microdiv"> </div>
   -->
 <!-- <div class="microdiv_container_without_mcd1"> -->
@@ -248,6 +267,14 @@
     <!--  -->
     
     <script>
+
+
+
+
+
+
+
+
       const body=document.querySelector("body");
       const microdiv_container_without_mcd1=document.querySelector(".microdiv_container_without_mcd1");
         const microdiv=document.querySelectorAll("microdiv");
@@ -261,14 +288,14 @@
         img_container.classList.add("img_container");
         img_container.setAttribute("src"," ")
         container.appendChild(img_container);
-      }
-
+      };
+  
 let isClose=true;
      home_three_bar.addEventListener("click",()=>{
       if(isClose){          isClose =false;
 
       
-      setTimeout(() => { home_three_bar.innerHTML = `⛌`; }, 500)
+      setTimeout(() => { home_three_bar.innerHTML = `⛌`; }, 200)
       home_three_bar.classList.add("rotateONTrue")
      home_three_bar.classList.remove("rotateONFalse")
        
@@ -279,7 +306,7 @@ let isClose=true;
        microdiv_container_without_mcd1.style.display = "none"
       }else{
         isClose = true;
-setTimeout(()=>{ home_three_bar.innerHTML = `☰`; right_side_hide_upper.style.display = "none"; },450)
+setTimeout(()=>{ home_three_bar.innerHTML = `☰`; right_side_hide_upper.style.display = "none"; },180)
         
            home_three_bar.classList.add("rotateONFalse")
          home_three_bar.classList.remove("rotateONTrue")
@@ -291,10 +318,42 @@ setTimeout(()=>{ home_three_bar.innerHTML = `☰`; right_side_hide_upper.style.d
         microdiv_container_without_mcd1.style.display = "flex"
       }
      })
+    
+     const all_microdiv_detail = [
+      { "id": "0.1", "class": " बाल मनोहर पोथी", "image_link": "balMnoharPothi", "subject_link": "class_bal_pothi" },
+       { "id": "0.2", "class": " Good English", "image_link": "goodEnglish", "subject_link": "goodEnglish" },
+       { "id": "1", "class": "1", "image_link": " class1", "subject_link":"class1" },
+        { "id": "2", "class": "2", "image_link": " class2", "subject_link": "class2" },
+         { "id": "3", "class": "3", "image_link": " class3", "subject_link": "class3" },
+          { "id": "4", "class": "4", "image_link": " class4", "subject_link": "class4" },
+           { "id": "5", "class": "5", "image_link": " class5", "subject_link": "class5" },
+            { "id": "6", "class": "6", "image_link": " class6", "subject_link": "class6" }, 
+            { "id": "7", "class": "7", "image_link": " class7", "subject_link": "class7" }]; 
+
+ for(let i=1;i<= all_microdiv_detail.length;i++){
+ 
+
+console.log(all_microdiv_detail[i-1].image_link)
+const microdiv=document.createElement("div");
+ microdiv.classList.add("microdiv",`mcrd${i}`);
+
+    microdiv_container_without_mcd1.appendChild(microdiv);
+    microdiv.innerHTML=`
+    <!-- <div style=" border: 0px solid;text-align: center;">class ${all_microdiv_detail[i - 1].class}</div>-->
+
+            <a href="/task/${all_microdiv_detail[i-1].subject_link.trim() }.html" style="border:0px solid green;width:75vw;  display:block;border-radius:1pc">
+
+
+           <div class="microdiv_a_innerDiv" style=" display: flexe;object-fit: cover; width: 60vw;height: 200px;aspect-ratio: 3/4;border:0px solid  ;display: flex;">
+               <img src="image_container/classWise/${all_microdiv_detail[i - 1].image_link.trim() }.jpeg" alt="" style="height:100%;width: 100%;;  border:0px solid  ;border-radius:1pc">
+             </div>
 
 
 
-      
+         </a> `;
+              }
+
+   
     </script>
   </body>
 </html>
